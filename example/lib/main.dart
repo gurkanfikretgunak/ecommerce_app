@@ -1,4 +1,5 @@
 import 'package:example/pages/onboarding.dart';
+import 'package:example/pages/splash.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class ExampleApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Onboarding(),
+      home: Splash(),
     );
   }
 }
