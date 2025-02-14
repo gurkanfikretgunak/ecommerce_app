@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:shopapp_widgets/src/widgets/buttons/buttons.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:shopapp_widgets/src/widgets/texts/text.dart';
 
 class OnboardingSlider extends StatelessWidget {
   final String imagePath;
-  final String text1;
-  final String text2;
-  final String text3;
+  final String firstText;
+  final String secondText;
+  final String thirdText;
   final VoidCallback onNext;
   final PageController pageController;
 
   const OnboardingSlider(
       {super.key,
       required this.imagePath,
-      required this.text1,
-      required this.text2,
-      required this.text3,
+      required this.firstText,
+      required this.secondText,
+      required this.thirdText,
       required this.onNext,
       required this.pageController});
 
@@ -40,9 +40,9 @@ class OnboardingSlider extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text(text1, style: _textStyle()),
-                Text(text2, style: _textStyle()),
-                Text(text3, style: _textStyle()),
+                OnboardingText(text: firstText),
+                OnboardingText(text: secondText),
+                OnboardingText(text: thirdText),
                 SizedBox(
                   height: 15,
                 ),
@@ -56,15 +56,6 @@ class OnboardingSlider extends StatelessWidget {
             bottom: 20,
             child: SliderIndicator(pageController: pageController, count: 3)),
       ],
-    );
-  }
-
-  TextStyle _textStyle() {
-    return GoogleFonts.bebasNeue(
-      fontSize: 45,
-      height: 1,
-      color: ColorConstant.instance.neutral9,
-      fontWeight: FontWeight.bold,
     );
   }
 }
