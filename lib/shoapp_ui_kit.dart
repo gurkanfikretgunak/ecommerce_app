@@ -5,3 +5,5 @@ export 'src/widgets/labels/labels.dart';
 
 export 'src/extensions/extension.dart';
 export 'src/constants/constants.dart';
+
+export 'src/widgets/sliders/sliders.dart';
