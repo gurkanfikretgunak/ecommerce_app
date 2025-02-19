@@ -1,3 +1,4 @@
+import 'package:example/pages/homepage.dart';
 import 'package:example/pages/verification.dart';
 import 'package:example/widgets/signup_form.dart';
 import 'package:flutter/material.dart';
@@ -18,18 +19,26 @@ class _SignUpState extends State<SignUp> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeigth = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(60),
+          child: CustomAppbar(
+            text: "CREATE YOUR ACCOUNT",
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            iconColor: ColorConstant.instance.neutral1,
+          )),
       backgroundColor: ColorConstant.instance.neutral9,
       body: Column(
         children: [
-          Padding(
-              padding: EdgeInsets.only(left: 20, top: screenHeigth * 0.03),
-              child: CustomAppbar(iconColor: ColorConstant.instance.neutral1)),
-          Text("CREATE YOUR ACCOUNT",
-              style: GoogleFonts.bebasNeue(fontSize: 30)),
+          Padding(padding: EdgeInsets.only(left: 20, top: screenHeigth * 0.03)),
           SignUpForm(),
           CustomButton(
             text: "SIGN UP",
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Verification()));
+            },
           ),
           SizedBox(height: 5),
           CustomButton(
