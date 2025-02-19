@@ -6,12 +6,14 @@ class ProductCardModal extends StatelessWidget {
   final String productStock;
   final String productName;
   final String productPrice;
+  final double? imageHeight;
 
   const ProductCardModal(
       {super.key,
       required this.imagePath,
       required this.productStock,
       required this.productName,
+      this.imageHeight,
       required this.productPrice});
 
   @override
@@ -21,7 +23,7 @@ class ProductCardModal extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: 180,
+          height: imageHeight ?? 180,
           child: Image.asset(
             imagePath,
             fit: BoxFit.contain,
