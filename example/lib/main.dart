@@ -1,5 +1,9 @@
+import 'package:example/pages/homepage.dart';
 import 'package:example/pages/onboarding.dart';
+import 'package:example/pages/signin.dart';
+import 'package:example/pages/signup.dart';
 import 'package:example/pages/splash.dart';
+import 'package:example/pages/verification.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,11 +18,12 @@ class ExampleApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Example App',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Splash(),
+      home: HomePage(),
     );
   }
 }

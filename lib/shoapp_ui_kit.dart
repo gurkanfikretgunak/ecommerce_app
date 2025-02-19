@@ -9,3 +9,7 @@ export 'src/widgets/sliders/sliders.dart';
 export 'src/widgets/headers/headers.dart';
 export 'src/widgets/buttons/buttons.dart';
 export 'src/widgets/inputs/inputs.dart';
+export 'src/widgets/texts/text.dart';
+export 'src/widgets/modals/modals.dart';
+export 'src/widgets/layout/layout.dart';
+export 'src/widgets/banners/banners.dart';

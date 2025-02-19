@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class CustomButton extends StatelessWidget {
-  final icon;
+  final dynamic icon;
   final VoidCallback? callBack;
   final Color? color;
   final String? text;
