@@ -4,8 +4,9 @@ import 'package:shopapp_widgets/src/widgets/appbar/custom_appbar/custom_appbar.d
 
 class SignInHeader extends StatelessWidget {
   final String imagePath;
+  final VoidCallback? onPressed;
 
-  const SignInHeader({super.key, required this.imagePath});
+  const SignInHeader({super.key, required this.imagePath, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,9 @@ class SignInHeader extends StatelessWidget {
         Positioned(
           top: screenHeigth * 0.03,
           left: 20,
-          child: CustomAppbar(),
+          child: CustomAppbar(
+            onPressed: onPressed,
+          ),
         )
       ],
     );
