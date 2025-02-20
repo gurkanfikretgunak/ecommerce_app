@@ -27,6 +27,9 @@ class _ProductState extends State<Product> {
           children: [
             ProductHeader(
               imagePaths: imagePaths,
+              onPressed: () {
+                Navigator.pop(context);
+              },
               iconRow: Row(
                 children: [
                   InkWell(

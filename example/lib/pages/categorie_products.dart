@@ -1,3 +1,4 @@
+import 'package:example/pages/product.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -9,39 +10,6 @@ class CategorieProducts extends StatefulWidget {
 }
 
 class _CategorieProductsState extends State<CategorieProducts> {
-  List<Widget> productCardItems = [
-    ProductCardModal(
-        imagePath: "assets/images/productcardimage_third.png",
-        productStock: "Sold(50 Product)",
-        productName: "Cotton T-shirt",
-        productPrice: "\$49.00"),
-    ProductCardModal(
-        imagePath: "assets/images/productcardimage_third.png",
-        productStock: "Sold(50 Product)",
-        productName: "Cotton T-shirt",
-        productPrice: "\$49.00"),
-    ProductCardModal(
-        imagePath: "assets/images/productcardimage_third.png",
-        productStock: "Sold(50 Product)",
-        productName: "Cotton T-shirt",
-        productPrice: "\$49.00"),
-    ProductCardModal(
-        imagePath: "assets/images/productcardimage_third.png",
-        productStock: "Sold(50 Product)",
-        productName: "Cotton T-shirt",
-        productPrice: "\$49.00"),
-    ProductCardModal(
-        imagePath: "assets/images/productcardimage_third.png",
-        productStock: "Sold(50 Product)",
-        productName: "Cotton T-shirt",
-        productPrice: "\$49.00"),
-    ProductCardModal(
-        imagePath: "assets/images/productcardimage_third.png",
-        productStock: "Sold(50 Product)",
-        productName: "Cotton T-shirt",
-        productPrice: "\$49.00"),
-  ];
-
   List<String> bottomDragItems = [
     "All Product",
     "Shirts",
@@ -88,6 +56,44 @@ class _CategorieProductsState extends State<CategorieProducts> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> productCardItems = [
+      ProductCardModal(
+        imagePath: "assets/images/productcardimage_third.png",
+        productStock: "Sold(50 Product)",
+        productName: "Cotton T-shirt",
+        productPrice: "\$49.00",
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Product()));
+        },
+      ),
+      ProductCardModal(
+          imagePath: "assets/images/productcardimage_third.png",
+          productStock: "Sold(50 Product)",
+          productName: "Cotton T-shirt",
+          productPrice: "\$49.00"),
+      ProductCardModal(
+          imagePath: "assets/images/productcardimage_third.png",
+          productStock: "Sold(50 Product)",
+          productName: "Cotton T-shirt",
+          productPrice: "\$49.00"),
+      ProductCardModal(
+          imagePath: "assets/images/productcardimage_third.png",
+          productStock: "Sold(50 Product)",
+          productName: "Cotton T-shirt",
+          productPrice: "\$49.00"),
+      ProductCardModal(
+          imagePath: "assets/images/productcardimage_third.png",
+          productStock: "Sold(50 Product)",
+          productName: "Cotton T-shirt",
+          productPrice: "\$49.00"),
+      ProductCardModal(
+          imagePath: "assets/images/productcardimage_third.png",
+          productStock: "Sold(50 Product)",
+          productName: "Cotton T-shirt",
+          productPrice: "\$49.00"),
+    ];
+
     return Scaffold(
       backgroundColor: ColorConstant.instance.neutral9,
       body: Column(

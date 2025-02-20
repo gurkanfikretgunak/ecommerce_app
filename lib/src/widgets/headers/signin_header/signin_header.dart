@@ -14,14 +14,17 @@ class SignInHeader extends StatelessWidget {
     double screenHeigth = MediaQuery.of(context).size.height;
     return Stack(
       children: [
-        HeaderImage(imagePath: imagePath),
+        HeaderImage(
+            imagePath: imagePath,
+            borderBottomLeftRadius: 60,
+            borderBottomRightRadius: 60),
         Positioned(
           top: screenHeigth * 0.03,
           left: 20,
           child: CustomAppbar(
             onPressed: onPressed,
           ),
-        )
+        ),
       ],
     );
   }
