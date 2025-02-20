@@ -14,7 +14,7 @@ class BackArrowButton extends StatelessWidget {
     return IconButton(
       iconSize: size ?? 30,
       onPressed: onPressed ?? () {},
-      icon: Icon(iconData ?? Icons.arrow_back_ios_rounded),
+      icon: Icon(iconData ?? Icons.arrow_back_ios_new_rounded),
       color: color ?? Colors.white,
     );
   }

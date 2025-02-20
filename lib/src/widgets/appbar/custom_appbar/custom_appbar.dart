@@ -29,7 +29,7 @@ class _CustomAppbarState extends State<CustomAppbar> {
           children: [
             BackArrowButton(
               color: widget.iconColor,
-              size: 20,
+              size: 15,
               onPressed: widget.onPressed,
             ),
             if (widget.text != null) Expanded(child: Container()),

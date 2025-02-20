@@ -30,7 +30,11 @@ class HomepageBanner extends StatelessWidget {
                 HeadText(text: subTitleText),
                 ProductText(text: descriptionText),
               ],
-            ))
+            )),
+        Positioned(
+            bottom: 10,
+            right: 10,
+            child: BannerButton(icon: Icons.arrow_forward))
       ],
     );
   }
