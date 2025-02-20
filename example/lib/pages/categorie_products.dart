@@ -30,25 +30,98 @@ class _CategorieProductsState extends State<CategorieProducts> {
         productStock: "Sold(50 Product)",
         productName: "Cotton T-shirt",
         productPrice: "\$49.00"),
+    ProductCardModal(
+        imagePath: "assets/images/productcardimage_third.png",
+        productStock: "Sold(50 Product)",
+        productName: "Cotton T-shirt",
+        productPrice: "\$49.00"),
+    ProductCardModal(
+        imagePath: "assets/images/productcardimage_third.png",
+        productStock: "Sold(50 Product)",
+        productName: "Cotton T-shirt",
+        productPrice: "\$49.00"),
   ];
+
+  List<String> bottomDragItems = [
+    "All Product",
+    "Shirts",
+    "Polos",
+    "Jeans",
+    "Trousers",
+    "Jackets",
+    "Shoes",
+    "Accessories"
+  ];
+
+  String selectedItem = "All Product";
+  bool bottomDragOpen = false;
+
+  void initState() {
+    super.initState();
+    bottomDragOpen = false;
+  }
+
+  void showBottomSheet() {
+    setState(() {
+      bottomDragOpen = true;
+    });
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height * 0.5,
+      ),
+      builder: (context) {
+        return BottomSheetLayout(
+          items: bottomDragItems,
+          selectedValue: selectedItem,
+          onItemSelected: (value) {
+            setState(() {
+              bottomDragOpen = false;
+              selectedItem = value;
+            });
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            CategoriesHeader(
-                imagePath: "assets/images/categorieheader_first.png",
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                text: "MEN"),
-            ProductGridLayout(
-                crossAxisSpacing: 3,
-                heigth: MediaQuery.sizeOf(context).height * 0.8,
-                productItems: productCardItems)
-          ],
-        ),
+      backgroundColor: ColorConstant.instance.neutral9,
+      body: Column(
+        children: [
+          CategoriesHeader(
+            imagePath: "assets/images/categorieheader_first.png",
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            text: "MEN",
+          ),
+          SizedBox(height: 30),
+          Container(
+            width: 350,
+            height: 40,
+            child: GestureDetector(
+              onTap: showBottomSheet,
+              child: AbsorbPointer(
+                  child: CategoriesTextfieldInput(
+                initialText: selectedItem,
+                suffixIcon: bottomDragOpen
+                    ? Icons.arrow_drop_up
+                    : Icons.arrow_drop_down,
+              )),
+            ),
+          ),
+          SizedBox(height: 30),
+          Expanded(
+            child: ProductGridLayout(
+              crossAxisSpacing: 3,
+              productItems: productCardItems,
+            ),
+          ),
+        ],
       ),
     );
   }
