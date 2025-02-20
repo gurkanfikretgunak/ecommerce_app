@@ -54,6 +54,10 @@ class _ProductState extends State<Product> {
               padding: EdgeInsets.all(15),
               child: ColorsLabel(),
             ),
+            Padding(
+              padding: EdgeInsets.all(15),
+              child: SizesLabel(),
+            ),
           ],
         ),
       ),
