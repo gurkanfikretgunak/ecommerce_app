@@ -1,4 +1,4 @@
-import 'package:example/pages/home.dart';
+import 'package:example/pages/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -18,7 +18,7 @@ class _OnboardingState extends State<Onboarding> {
           duration: Duration(milliseconds: 300), curve: Curves.easeIn);
     } else {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => Home()));
+          context, MaterialPageRoute(builder: (context) => SignIn()));
     }
   }
 
@@ -29,7 +29,7 @@ class _OnboardingState extends State<Onboarding> {
         controller: _pageController,
         children: [
           OnboardingSlider(
-            imagePath: "lib/assets/images/onboardingimage_first.png",
+            imagePath: "assets/images/onboardingimage_first.png",
             firstText: "CLASSY",
             secondText: "FROM HEAD",
             thirdText: "TO TOE",
@@ -37,7 +37,7 @@ class _OnboardingState extends State<Onboarding> {
             onNext: () => _goToNextPage(0),
           ),
           OnboardingSlider(
-            imagePath: "lib/assets/images/onboardingimage_second.png",
+            imagePath: "assets/images/onboardingimage_second.png",
             firstText: "FLY AWAY",
             secondText: "WITH YOUR",
             thirdText: "STYLE",
@@ -45,7 +45,7 @@ class _OnboardingState extends State<Onboarding> {
             onNext: () => _goToNextPage(1),
           ),
           OnboardingSlider(
-            imagePath: "lib/assets/images/onboardingimage_third.png",
+            imagePath: "assets/images/onboardingimage_third.png",
             firstText: "CLOTHES",
             secondText: "FOR A BIG",
             thirdText: "PLANET",

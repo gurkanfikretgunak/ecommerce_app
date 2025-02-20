@@ -37,7 +37,7 @@ class _SplashState extends State<Splash> {
         children: [
           Align(
             child: Image.asset(
-              "lib/assets/images/splashtexture.png",
+              "assets/images/splashtexture.png",
               alignment: Alignment.center,
             ),
           ),
@@ -48,7 +48,7 @@ class _SplashState extends State<Splash> {
                 child: Align(
                   alignment: Alignment.center,
                   child: RippleAnim(
-                    logoPath: widget.logoPath ?? "lib/assets/icons/logo.png",
+                    logoPath: widget.logoPath ?? "assets/icons/logo.png",
                   ),
                 ),
               ),

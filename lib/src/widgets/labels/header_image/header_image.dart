@@ -15,8 +15,8 @@ class HeaderImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(borderBottomLeftRadius ?? 60),
-          bottomRight: Radius.circular(borderBottomRightRadius ?? 60)),
+          bottomLeft: Radius.circular(borderBottomLeftRadius ?? 0),
+          bottomRight: Radius.circular(borderBottomRightRadius ?? 0)),
       child: Image.asset(imagePath),
     );
   }

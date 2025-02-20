@@ -5,13 +5,12 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class CustomButton extends StatelessWidget {
   final dynamic icon;
-  final VoidCallback? callBack;
   final Color? color;
   final String? text;
   final double? width;
   final double? height;
   final double? radius;
-  final Function onPressed;
+  final VoidCallback? onPressed;
   final double? fontSize;
   final Color? borderColor;
   final Color? textColor;
@@ -28,7 +27,6 @@ class CustomButton extends StatelessWidget {
       this.textColor,
       this.iconColor,
       this.radius,
-      this.callBack,
       this.borderColor,
       required this.onPressed});
 
@@ -38,7 +36,7 @@ class CustomButton extends StatelessWidget {
       width: width ?? 325,
       height: height ?? 35,
       child: ElevatedButton(
-          onPressed: onPressed() ?? () {},
+          onPressed: onPressed ?? () {},
           style: ElevatedButton.styleFrom(
               side: BorderSide(
                   color: borderColor ?? ColorConstant.instance.neutral5,

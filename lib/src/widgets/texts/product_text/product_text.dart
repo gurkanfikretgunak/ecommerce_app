@@ -8,6 +8,7 @@ class ProductText extends StatelessWidget {
   final Color? color;
   final FontWeight? fontWeight;
   final TextAlign? textAlign;
+  final bool? softWrap;
 
   const ProductText({
     super.key,
@@ -16,6 +17,7 @@ class ProductText extends StatelessWidget {
     this.color,
     this.fontWeight,
     this.textAlign,
+    this.softWrap,
   });
 
   @override
@@ -23,12 +25,12 @@ class ProductText extends StatelessWidget {
     return Text(
       text,
       textAlign: textAlign ?? TextAlign.center,
-      overflow: TextOverflow.ellipsis,
       style: GoogleFonts.poppins(
         color: color ?? ColorConstant.instance.neutral9,
         fontSize: fontSize ?? 12,
         fontWeight: fontWeight ?? FontWeight.normal,
       ),
+      softWrap: softWrap ?? false,
     );
   }
 }

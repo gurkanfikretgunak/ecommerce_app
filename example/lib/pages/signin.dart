@@ -20,7 +20,11 @@ class _SignInState extends State<SignIn> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SignInHeader(imagePath: "assets/images/signinheader.png"),
+            SignInHeader(
+                imagePath: "assets/images/signinheader.png",
+                onPressed: () {
+                  Navigator.pop(context);
+                }),
             SizedBox(
               height: 20,
             ),
@@ -32,7 +36,10 @@ class _SignInState extends State<SignIn> {
               children: [
                 CustomButton(
                   text: "SIGN IN",
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => SignUp()));
+                  },
                 ),
                 SizedBox(height: 5),
                 CustomButton(

@@ -1,3 +1,4 @@
+import 'package:example/pages/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,20 +18,24 @@ class _VerificationState extends State<Verification> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeigth = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(60),
+          child: CustomAppbar(
+            text: "VERIFICATION CODE",
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            iconColor: ColorConstant.instance.neutral1,
+          )),
       backgroundColor: ColorConstant.instance.neutral9,
       body: Column(
         children: [
           Padding(
             padding: EdgeInsets.only(left: 20, top: screenHeigth * 0.03),
-            child: CustomAppbar(iconColor: ColorConstant.instance.neutral1),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "VERIFICATION CODE",
-                style: GoogleFonts.bebasNeue(fontSize: 30),
-              ),
               Text.rich(
                 TextSpan(
                   text: "We have sent the code verification your number\n",
@@ -62,7 +67,10 @@ class _VerificationState extends State<Verification> {
           Text("01:40"),
           CustomButton(
             text: "SUBMIT",
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
+            },
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

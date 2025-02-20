@@ -1,3 +1,4 @@
+import 'package:example/pages/categories.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -55,17 +56,15 @@ class _HomePageState extends State<HomePage> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: HomePageAppbar(
+            logoPath: "assets/icons/logotext.png", icon: Icons.notifications),
+      ),
       backgroundColor: ColorConstant.instance.neutral9,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.all(15),
-              child: HomePageAppbar(
-                  logoPath: "assets/icons/logotext.png",
-                  icon: Icons.notifications),
-            ),
-            SizedBox(height: 20),
             Container(
               width: screenWidth,
               height: 200,
@@ -98,6 +97,13 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.all(15),
               child: SectionLayout(
                 sectionText: "CATEGORIES",
+                rightWidget: SectionActionText(
+                  text: "All Categories",
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Categories()));
+                  },
+                ),
                 layout: CategoriesRowLayout(items: categoriesItems),
               ),
             ),
@@ -110,12 +116,40 @@ class _HomePageState extends State<HomePage> {
             ),
             Padding(
                 padding: EdgeInsets.all(15),
-                child: HomepageBanner(
-                  imagePath: "assets/images/homepagebannerimage_first.png",
-                  titleText: "The Collection",
-                  subTitleText: "NEW SEASON",
-                  descriptionText: "Lorem ipsum dolor sit amet",
+                child: Column(
+                  children: [
+                    HomepageBanner(
+                      imagePath: "assets/images/homepagebannerimage_first.png",
+                      titleText: "The Collection",
+                      subTitleText: "NEW SEASON",
+                      descriptionText: "Lorem ipsum dolor sit amet",
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    HomepageBanner(
+                      imagePath: "assets/images/homepagebannerimage_second.png",
+                      titleText: "50% Off",
+                      subTitleText: "WINTER SALE",
+                      descriptionText: "Lorem ipsum dolor sit amet",
+                    ),
+                  ],
                 )),
+            Padding(
+              padding: EdgeInsets.all(15),
+              child: SectionLayout(
+                sectionText: "NEW ARRIVAL",
+                layout: ProductRowLayout(items: productCardItems),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(15),
+              child: SectionLayout(
+                sectionText: "ON SALE",
+                rightWidget: TimerLabel(),
+                layout: ProductRowLayout(items: productCardItems),
+              ),
+            ),
           ],
         ),
       ),
