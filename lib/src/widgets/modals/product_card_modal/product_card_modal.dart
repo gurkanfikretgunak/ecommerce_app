@@ -29,16 +29,19 @@ class ProductCardModal extends StatelessWidget {
             fit: BoxFit.contain,
           ),
         ),
+        SizedBox(height: 8),
         ProductText(
           text: productStock,
           fontSize: 8,
           color: ColorConstant.instance.neutral4,
         ),
+        SizedBox(height: 4),
         ProductText(
           text: productName,
           fontSize: 12,
           color: ColorConstant.instance.neutral1,
         ),
+        SizedBox(height: 4),
         ProductText(
             text: productPrice,
             fontSize: 16,
