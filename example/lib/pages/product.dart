@@ -50,6 +50,10 @@ class _ProductState extends State<Product> {
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus urna duis convallis convallis tellus.",
               ),
             ),
+            Padding(
+              padding: EdgeInsets.all(15),
+              child: ColorsLabel(),
+            ),
           ],
         ),
       ),
