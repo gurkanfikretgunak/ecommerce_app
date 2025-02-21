@@ -17,4 +17,5 @@ class ColorConstant {
   Color primary_main = Color(0XFFF16023);
   Color neutral5 = Color(0XFFFD9D9D9);
   Color yellow1 = Color(0XFFFEFE15F);
+  Color secondary2 = Color(0XFFFDF3232);
 }
