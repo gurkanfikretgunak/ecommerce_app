@@ -25,10 +25,10 @@ class ProductDescriptionText extends StatelessWidget {
       width: width ?? MediaQuery.of(context).size.width * 0.9,
       child: ProductText(
         text: text,
-        fontSize: fontSize ?? 12, // Varsayılan font size
-        color: color ?? ColorConstant.instance.neutral4, // Varsayılan renk
-        textAlign: textAlign ?? TextAlign.start, // Varsayılan hizalama
-        softWrap: softWrap ?? true, // Varsayılan soft wrap
+        fontSize: fontSize ?? 12,
+        color: color ?? ColorConstant.instance.neutral4,
+        textAlign: textAlign ?? TextAlign.start,
+        softWrap: softWrap ?? true,
       ),
     );
   }

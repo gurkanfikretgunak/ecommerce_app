@@ -26,7 +26,6 @@ class _SignUpFormState extends State<SignUpForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // İlk ad ve soyad kısmı
             Row(
               children: [
                 Expanded(
@@ -45,29 +44,24 @@ class _SignUpFormState extends State<SignUpForm> {
               ],
             ),
             const SizedBox(height: 20),
-
             TextFieldInput(
               controller: emailController,
               hintText: 'Email',
               inputType: InputType.email,
             ),
-
             const SizedBox(height: 20),
-
             TextFieldInput(
               controller: phoneController,
               hintText: 'Phone Number',
               inputType: InputType.phone,
             ),
             const SizedBox(height: 20),
-
             TextFieldInput(
               controller: passwordController,
               hintText: 'Password',
               inputType: InputType.password,
             ),
             const SizedBox(height: 20),
-
             TextFieldInput(
               controller: confirmPasswordController,
               hintText: 'Confirm Password',

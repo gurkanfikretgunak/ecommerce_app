@@ -6,3 +6,7 @@ export 'package:shopapp_widgets/src/widgets/labels/timer_label_box/timer_label_b
 export 'package:shopapp_widgets/src/widgets/labels/product_info_label/product_info_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/colors_label/colors_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/sizes_label/sizes_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/product_description_label/product_description_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/product_description_image/product_description_image.dart';
+export 'package:shopapp_widgets/src/widgets/labels/review_form_label/review_form_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/product_bottom_sheet_label/product_bottom_sheet_label.dart';
