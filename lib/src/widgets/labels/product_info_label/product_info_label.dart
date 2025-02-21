@@ -58,12 +58,8 @@ class ProductInfoLabel extends StatelessWidget {
         ),
         Container(
             width: MediaQuery.of(context).size.width * 0.9,
-            child: ProductText(
+            child: ProductDescriptionText(
               text: description,
-              fontSize: 12,
-              color: ColorConstant.instance.neutral4,
-              softWrap: true,
-              textAlign: TextAlign.start,
             )),
       ],
     );

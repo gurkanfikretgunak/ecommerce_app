@@ -13,17 +13,17 @@ class _HomePageState extends State<HomePage> {
   PageController _pageController = PageController();
 
   List<Widget> categoriesItems = [
-    CategoriesRadiusModal(
+    ImageRadiusModal(
         imagePath: "assets/images/categorierow_first.png", text: "Men"),
-    CategoriesRadiusModal(
+    ImageRadiusModal(
         imagePath: "assets/images/categorierow_second.png", text: "Women"),
-    CategoriesRadiusModal(
+    ImageRadiusModal(
         imagePath: "assets/images/categorierow_third.png", text: "Kids"),
-    CategoriesRadiusModal(
+    ImageRadiusModal(
         imagePath: "assets/images/categorierow_fourth.png", text: "Bags"),
-    CategoriesRadiusModal(
+    ImageRadiusModal(
         imagePath: "assets/images/categorierow_fifth.png", text: "Shoes"),
-    CategoriesRadiusModal(
+    ImageRadiusModal(
         imagePath: "assets/images/categorierow_six.png", text: "Accessories"),
   ];
 
