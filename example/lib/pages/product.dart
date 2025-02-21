@@ -61,6 +61,14 @@ class _ProductState extends State<Product> {
               padding: EdgeInsets.all(15),
               child: SizesLabel(),
             ),
+            Padding(
+              padding: EdgeInsets.all(15),
+              child: ProductDescriptionLabel(
+                text:
+                    "Purus in massa tempor nec feugiat. Congue nisi vitae suscipit tellus mauris a diam. Nam aliquam sem et tortor. Quis risus sed vulputate odio ut enim. Ultrices dui sapien eget mi proin sed libero enim sed. Quis viverra nibh cras pulvinar mattis nunc sed blandit libero. At volutpat diam ut venenatis tellus in",
+                imagePath: "assets/images/productdescriptionimage.png",
+              ),
+            ),
           ],
         ),
       ),

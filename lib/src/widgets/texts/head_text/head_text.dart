@@ -8,6 +8,7 @@ class HeadText extends StatelessWidget {
   final Color? color;
   final FontWeight? fontWeight;
   final TextAlign? textAlign;
+  final bool? softWrap;
 
   const HeadText({
     super.key,
@@ -16,6 +17,7 @@ class HeadText extends StatelessWidget {
     this.color,
     this.fontWeight,
     this.textAlign,
+    this.softWrap,
   });
 
   @override
@@ -28,6 +30,7 @@ class HeadText extends StatelessWidget {
         fontSize: fontSize ?? 30,
         fontWeight: fontWeight ?? FontWeight.normal,
       ),
+      softWrap: softWrap,
     );
   }
 }
