@@ -1,6 +1,7 @@
 import 'package:example/pages/categories.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,6 +12,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   PageController _pageController = PageController();
+
+  void initState() {
+    super.initState();
+    _checkPopup();
+  }
 
   List<Widget> categoriesItems = [
     ImageRadiusModal(
@@ -49,6 +55,38 @@ class _HomePageState extends State<HomePage> {
         productName: "Embroidered T-Shirt",
         productPrice: "\$39.00"),
   ];
+
+  Future<void> _checkPopup() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    bool hidePopup = preferences.getBool('hidePopUp') ?? false;
+
+    if (!hidePopup) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _showPopup();
+      });
+    }
+  }
+
+  void _showPopup() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return PopupSaleBanner(
+          imagePath: "assets/images/popupbannerimage.png",
+          saleTitle: "WINTER SALE",
+          subTitle: "SALE OFF",
+          discount: "50",
+          button: BannerButton(
+            icon: Icons.arrow_forward,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

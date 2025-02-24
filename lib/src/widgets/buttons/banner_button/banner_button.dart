@@ -7,6 +7,7 @@ class BannerButton extends StatelessWidget {
   final double? iconSize;
   final Color? iconColor;
   final double? paddingValue;
+  final VoidCallback? onPressed;
 
   const BannerButton({
     super.key,
@@ -15,12 +16,13 @@ class BannerButton extends StatelessWidget {
     this.iconSize,
     this.iconColor,
     this.paddingValue,
+    this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onPressed ?? () {},
       style: ElevatedButton.styleFrom(
         backgroundColor: backgroundColor ?? ColorConstant.instance.primary_main,
         shape: const CircleBorder(),
