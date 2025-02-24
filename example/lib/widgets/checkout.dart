@@ -26,32 +26,34 @@ class _CheckoutState extends State<Checkout> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 20,
-        ),
-        AddressBoxModal(
-            name: "Theresa Webb",
-            address: "3517 W. Gray St. Utica, Pennsylvania 57867",
-            email: "willie.jennings@example.com",
-            phone: "(480) 555-0103"),
-        SizedBox(
-          height: 10,
-        ),
-        PaymentMethodBoxModal(text: "Master card Ending *****23"),
-        SizedBox(
-          height: 10,
-        ),
-        CheckoutListLayout(items: productBoxRowItems),
-        SizedBox(
-          height: 10,
-        ),
-        CustomButton(
-            onPressed: widget.buttonCallBack ?? () {},
-            height: 50,
-            text: "Order Now"),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 20,
+          ),
+          AddressBoxModal(
+              name: "Theresa Webb",
+              address: "3517 W. Gray St. Utica, Pennsylvania 57867",
+              email: "willie.jennings@example.com",
+              phone: "(480) 555-0103"),
+          SizedBox(
+            height: 10,
+          ),
+          PaymentMethodBoxModal(text: "Master card Ending *****23"),
+          SizedBox(
+            height: 10,
+          ),
+          CheckoutListLayout(items: productBoxRowItems),
+          SizedBox(
+            height: 20,
+          ),
+          CustomButton(
+              onPressed: widget.buttonCallBack ?? () {},
+              height: 50,
+              text: "Order Now"),
+        ],
+      ),
     );
   }
 }

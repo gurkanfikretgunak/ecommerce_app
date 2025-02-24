@@ -11,7 +11,7 @@ class Payment extends StatefulWidget {
 }
 
 class _PaymentState extends State<Payment> {
-  int currentStep = 1;
+  int currentStep = 0;
 
   List<Widget> get stepContents {
     return [
@@ -31,44 +31,6 @@ class _PaymentState extends State<Payment> {
     "Cart",
     "Checkout",
     "Payment",
-  ];
-
-  final List<ProductBoxModal> productBoxRowItems = [
-    ProductBoxModal(
-        imagePath: "assets/images/productboximage.png",
-        name: "Basic T-shirt",
-        price: 49.99),
-    ProductBoxModal(
-        imagePath: "assets/images/productboximage.png",
-        name: "Basic T-shirt",
-        price: 40.99),
-    ProductBoxModal(
-        imagePath: "assets/images/productboximage.png",
-        name: "Basic T-shirt",
-        price: 52.99),
-  ];
-
-  List<Widget> productCardItems = [
-    ProductCardModal(
-        imagePath: "assets/images/productcardimage_first.png",
-        productStock: "Sold(50 Product)",
-        productName: "Long-sleeved T-shirt",
-        productPrice: "\$49.00"),
-    ProductCardModal(
-        imagePath: "assets/images/productcardimage_second.png",
-        productStock: "Sold(50 Product)",
-        productName: "Printed Cotton Shirt",
-        productPrice: "\$45.00"),
-    ProductCardModal(
-        imagePath: "assets/images/productcardimage_third.png",
-        productStock: "Sold(50 Product)",
-        productName: "Cotton T-shirt",
-        productPrice: "\$49.00"),
-    ProductCardModal(
-        imagePath: "assets/images/productcardimage_fourth.png",
-        productStock: "Sold(50 Product)",
-        productName: "Embroidered T-Shirt",
-        productPrice: "\$39.00"),
   ];
 
   @override

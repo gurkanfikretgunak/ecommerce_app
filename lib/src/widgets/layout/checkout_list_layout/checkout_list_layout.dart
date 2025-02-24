@@ -34,7 +34,7 @@ class _CheckoutListLayoutState extends State<CheckoutListLayout> {
           alignment: Alignment.center,
           child: ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: ScrollPhysics(),
             itemCount: widget.items.length,
             itemBuilder: (context, index) {
               return Column(
@@ -47,12 +47,14 @@ class _CheckoutListLayoutState extends State<CheckoutListLayout> {
                     ),
                     productBox: widget.items[index],
                   ),
-                  SizedBox(height: 15),
+                  SizedBox(height: 10),
                 ],
               );
             },
           ),
         ),
+        CouponcodeTextfieldInput(),
+        SizedBox(height: 15),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -48,23 +48,25 @@ class _CartState extends State<Cart> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 20,
-        ),
-        CartListLayout(items: productBoxRowItems),
-        SizedBox(
-          height: 20,
-        ),
-        SectionLayout(
-            sectionText: "YOU ALSO VIEWED",
-            layout: ProductGridLayout(productItems: productCardItems)),
-        CustomButton(
-            onPressed: widget.buttonCallBack ?? () {},
-            height: 50,
-            text: "Proceed To Checkout")
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 20,
+          ),
+          CartListLayout(items: productBoxRowItems),
+          SizedBox(
+            height: 20,
+          ),
+          SectionLayout(
+              sectionText: "YOU ALSO VIEWED",
+              layout: ProductGridLayout(productItems: productCardItems)),
+          CustomButton(
+              onPressed: widget.buttonCallBack ?? () {},
+              height: 50,
+              text: "Proceed To Checkout")
+        ],
+      ),
     );
   }
 }
