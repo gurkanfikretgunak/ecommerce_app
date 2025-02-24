@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class Cart extends StatefulWidget {
-  const Cart({super.key});
+  final VoidCallback? buttonCallBack;
+  const Cart({super.key, this.buttonCallBack});
 
   @override
   State<Cart> createState() => _CartState();
@@ -47,39 +48,23 @@ class _CartState extends State<Cart> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorConstant.instance.neutral9,
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
-        child: CustomAppbar(
-          text: "Cart",
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          iconColor: ColorConstant.instance.neutral1,
+    return Column(
+      children: [
+        SizedBox(
+          height: 20,
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Column(
-            children: [
-              CartListLayout(items: productBoxRowItems),
-              SizedBox(
-                height: 20,
-              ),
-              SectionLayout(
-                  sectionText: "YOU ALSO VIEWED",
-                  layout: ProductGridLayout(productItems: productCardItems)),
-              CustomButton(
-                onPressed: () {},
-                height: 50,
-                text: "Proceed to Checkout",
-              )
-            ],
-          ),
+        CartListLayout(items: productBoxRowItems),
+        SizedBox(
+          height: 20,
         ),
-      ),
+        SectionLayout(
+            sectionText: "YOU ALSO VIEWED",
+            layout: ProductGridLayout(productItems: productCardItems)),
+        CustomButton(
+            onPressed: widget.buttonCallBack ?? () {},
+            height: 50,
+            text: "Proceed To Checkout")
+      ],
     );
   }
 }
