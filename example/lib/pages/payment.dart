@@ -1,4 +1,5 @@
 import 'package:example/widgets/cart.dart';
+import 'package:example/widgets/checkout.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -10,7 +11,7 @@ class Payment extends StatefulWidget {
 }
 
 class _PaymentState extends State<Payment> {
-  int currentStep = 0;
+  int currentStep = 1;
 
   List<Widget> get stepContents {
     return [
@@ -21,7 +22,7 @@ class _PaymentState extends State<Payment> {
           });
         },
       ),
-      Placeholder(),
+      Checkout(),
       Placeholder(),
     ];
   }
@@ -29,7 +30,7 @@ class _PaymentState extends State<Payment> {
   final List<String> stepTitles = [
     "Cart",
     "Checkout",
-    "Payment", // Bu eklenmeli, çünkü 3. adım eklenmiş
+    "Payment",
   ];
 
   final List<ProductBoxModal> productBoxRowItems = [
@@ -77,7 +78,7 @@ class _PaymentState extends State<Payment> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: CustomAppbar(
-          text: stepTitles[currentStep], // Bu kısmı dinamik hale getirdik
+          text: stepTitles[currentStep],
           onPressed: () {
             if (currentStep == 0) {
               Navigator.pop(context);
