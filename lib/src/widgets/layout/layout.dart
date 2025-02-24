@@ -7,3 +7,5 @@ export 'package:shopapp_widgets/src/widgets/layout/bottom_sheet_layout/bottom_sh
 export 'package:shopapp_widgets/src/widgets/layout/product_review_column_layout/product_review_column_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/rate_input_row_layout/rate_input_row_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/rate_row_layout/rate_row_layout.dart';
+export 'package:shopapp_widgets/src/widgets/layout/product_box_row_layout/product_box_row_layout.dart';
+export 'package:shopapp_widgets/src/widgets/layout/cart_list_layout/cart_list_layout.dart';

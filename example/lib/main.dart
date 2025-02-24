@@ -1,3 +1,4 @@
+import 'package:example/pages/cart.dart';
 import 'package:example/pages/categorie_products.dart';
 import 'package:example/pages/homepage.dart';
 import 'package:example/pages/onboarding.dart';
@@ -33,6 +34,6 @@ class ExampleApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: HomePage());
+        home: Cart());
   }
 }
