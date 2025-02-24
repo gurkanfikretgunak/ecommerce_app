@@ -9,3 +9,4 @@ export 'package:shopapp_widgets/src/widgets/layout/rate_input_row_layout/rate_in
 export 'package:shopapp_widgets/src/widgets/layout/rate_row_layout/rate_row_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/product_box_row_layout/product_box_row_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/cart_list_layout/cart_list_layout.dart';
+export 'package:shopapp_widgets/src/widgets/layout/checkout_list_layout/checkout_list_layout.dart';
