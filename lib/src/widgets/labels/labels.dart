@@ -10,3 +10,5 @@ export 'package:shopapp_widgets/src/widgets/labels/product_description_label/pro
 export 'package:shopapp_widgets/src/widgets/labels/product_description_image/product_description_image.dart';
 export 'package:shopapp_widgets/src/widgets/labels/review_form_label/review_form_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/product_bottom_sheet_label/product_bottom_sheet_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/stepper_label/stepper_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/stepper_label_radius/stepper_label_radius.dart';

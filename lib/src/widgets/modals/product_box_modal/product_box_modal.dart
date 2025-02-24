@@ -5,13 +5,18 @@ class ProductBoxModal extends StatefulWidget {
   final String imagePath;
   final String name;
   final double price;
-  int quantity = 1;
+  int quantity;
+  final Color? textColor;
+  final Color? priceColor;
 
   ProductBoxModal({
     super.key,
     required this.imagePath,
     required this.name,
     required this.price,
+    this.quantity = 1, // Varsayılan miktar 1
+    this.textColor, // Varsayılan değeri constructor içinde vereceğiz
+    this.priceColor,
   });
 
   double get total => quantity * price;
@@ -33,9 +38,7 @@ class _ProductBoxModalState extends State<ProductBoxModal> {
             fit: BoxFit.cover,
           ),
         ),
-        SizedBox(
-          width: 10,
-        ),
+        SizedBox(width: 10),
         Align(
           alignment: Alignment.center,
           child: Column(
@@ -44,13 +47,13 @@ class _ProductBoxModalState extends State<ProductBoxModal> {
               ProductText(
                 text: widget.name,
                 fontSize: 15,
-                color: ColorConstant.instance.neutral1,
+                color: widget.textColor ?? ColorConstant.instance.neutral1,
               ),
               SizedBox(height: 3),
               ProductText(
                 text: "\$ ${widget.price}",
                 fontSize: 15,
-                color: ColorConstant.instance.primary_main,
+                color: widget.priceColor ?? ColorConstant.instance.primary_main,
               ),
             ],
           ),
