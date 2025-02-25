@@ -1,3 +1,4 @@
+import 'package:example/pages/newaddress.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -106,7 +107,12 @@ class _AddressesState extends State<Addresses> {
             Padding(
               padding: const EdgeInsets.all(15),
               child: CustomButton(
-                  onPressed: () {}, height: 50, text: "Add New Address"),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => NewAddress()));
+                  },
+                  height: 50,
+                  text: "Add New Address"),
             ),
           ],
         ),

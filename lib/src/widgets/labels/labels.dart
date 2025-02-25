@@ -12,3 +12,5 @@ export 'package:shopapp_widgets/src/widgets/labels/review_form_label/review_form
 export 'package:shopapp_widgets/src/widgets/labels/product_bottom_sheet_label/product_bottom_sheet_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/stepper_label/stepper_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/stepper_label_radius/stepper_label_radius.dart';
+export 'package:shopapp_widgets/src/widgets/labels/address_form_label/address_form_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/map_label/map_label.dart';
