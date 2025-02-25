@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:u_credit_card/u_credit_card.dart';
 
-class PaymentCartModal extends StatelessWidget {
+class PaymentCardModal extends StatelessWidget {
   final String cartNumber;
   final String name;
   final String expirationDate;
@@ -17,7 +17,7 @@ class PaymentCartModal extends StatelessWidget {
   final CardType? cardType;
   final String? validThru;
 
-  const PaymentCartModal({
+  PaymentCardModal({
     super.key,
     required this.cartNumber,
     required this.name,
