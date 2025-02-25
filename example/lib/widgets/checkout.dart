@@ -1,3 +1,4 @@
+import 'package:example/pages/addresses.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -36,6 +37,10 @@ class _CheckoutState extends State<Checkout> {
               name: "Theresa Webb",
               address: "3517 W. Gray St. Utica, Pennsylvania 57867",
               email: "willie.jennings@example.com",
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Addresses()));
+              },
               phone: "(480) 555-0103"),
           SizedBox(
             height: 10,
