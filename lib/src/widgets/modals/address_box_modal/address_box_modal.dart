@@ -13,6 +13,10 @@ class AddressBoxModal extends StatelessWidget {
   final Color? emailColor;
   final Color? phoneColor;
 
+  final bool? isSelected;
+
+  final VoidCallback? onTap;
+
   const AddressBoxModal({
     super.key,
     required this.name,
@@ -24,12 +28,14 @@ class AddressBoxModal extends StatelessWidget {
     this.addressColor,
     this.emailColor,
     this.phoneColor,
+    this.onTap,
+    this.isSelected = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap ?? () {},
       child: Container(
         height: 124,
         decoration: BoxDecoration(
@@ -39,6 +45,12 @@ class AddressBoxModal extends StatelessWidget {
               width: 1,
               color: ColorConstant.instance.neutral7,
             ),
+            start: isSelected == true
+                ? BorderSide(
+                    width: 3,
+                    color: ColorConstant.instance.primary_main,
+                  )
+                : BorderSide.none,
           ),
         ),
         child: Center(
