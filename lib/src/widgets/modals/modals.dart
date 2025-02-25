@@ -4,3 +4,4 @@ export 'package:shopapp_widgets/src/widgets/modals/product_review_modal/product_
 export 'package:shopapp_widgets/src/widgets/modals/product_box_modal/product_box_modal.dart';
 export 'package:shopapp_widgets/src/widgets/modals/address_box_modal/address_box_modal.dart';
 export 'package:shopapp_widgets/src/widgets/modals/payment_method_box_modal/payment_method_box_modal.dart';
+export 'package:shopapp_widgets/src/widgets/modals/payment_cart_modal/payment_cart_modal.dart';
