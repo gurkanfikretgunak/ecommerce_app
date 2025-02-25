@@ -60,48 +60,8 @@ class _AddressesState extends State<Addresses> {
         child: Column(
           children: [
             Expanded(
-              child: ListView.separated(
-                shrinkWrap: true,
-                itemCount: addressItems.length,
-                separatorBuilder: (context, index) => SizedBox(height: 10),
-                itemBuilder: (context, index) {
-                  return Dismissible(
-                      key: Key(addressItems[index].name),
-                      direction: DismissDirection.endToStart,
-                      background: Container(),
-                      secondaryBackground: Container(
-                        color: ColorConstant.instance.secondary2,
-                        alignment: Alignment.centerRight,
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Icon(Icons.delete, color: Colors.white),
-                      ),
-                      confirmDismiss: (direction) async {
-                        if (direction == DismissDirection.endToStart) {
-                          return true;
-                        }
-                        return false;
-                      },
-                      onDismissed: (direction) {
-                        setState(() {
-                          addressItems.removeAt(index);
-                          if (addressItems.length == 0) {
-                            Navigator.pop(context);
-                          }
-                        });
-                      },
-                      child: AddressBoxModal(
-                        name: addressItems[index].name,
-                        address: addressItems[index].address,
-                        email: addressItems[index].email,
-                        phone: addressItems[index].phone,
-                        isSelected: selectedIndex == index,
-                        onTap: () {
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                      ));
-                },
+              child: AddressesColumnLayout(
+                addressItems: addressItems,
               ),
             ),
             Padding(

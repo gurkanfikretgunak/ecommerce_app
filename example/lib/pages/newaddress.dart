@@ -1,3 +1,4 @@
+import 'package:example/pages/addresses.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -23,10 +24,24 @@ class _NewAddressState extends State<NewAddress> {
           iconColor: ColorConstant.instance.neutral1,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          children: [AddressFormLabel()],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            children: [
+              AddressFormLabel(),
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: CustomButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Addresses()));
+                    },
+                    height: 50,
+                    text: "Confirm"),
+              ),
+            ],
+          ),
         ),
       ),
     );
