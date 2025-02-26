@@ -136,8 +136,11 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
                   height: 10,
                 ),
                 Container(
-                  height: 200,
-                  color: ColorConstant.instance.neutral1,
+                  height: 350,
+                  child: GestureDetector(
+                      child: MapLabel(),
+                      behavior: HitTestBehavior.opaque,
+                      onVerticalDragUpdate: (_) {}),
                 ),
                 SizedBox(
                   height: 30,
