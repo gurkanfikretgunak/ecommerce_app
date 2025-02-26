@@ -15,9 +15,10 @@ class TextFieldInput extends StatefulWidget {
   final InputType inputType;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
-  final Color? hintColor; // hintColor parametresi
-  final double? hintFontSize; // hintFontSize parametresi
-  final FontWeight? hintFontWeight; // hintFontWeight parametresi
+  final Color? hintColor;
+  final double? hintFontSize;
+  final FontWeight? hintFontWeight;
+  final Function(String)? onChanged;
 
   const TextFieldInput({
     super.key,
@@ -26,9 +27,10 @@ class TextFieldInput extends StatefulWidget {
     this.inputType = InputType.text,
     this.prefixIcon,
     this.suffixIcon,
-    this.hintColor, // hintColor parametresi burada eklendi
-    this.hintFontSize, // hintFontSize parametresi burada eklendi
-    this.hintFontWeight, // hintFontWeight parametresi burada eklendi
+    this.hintColor,
+    this.hintFontSize,
+    this.hintFontWeight,
+    this.onChanged,
   });
 
   @override
@@ -67,6 +69,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: widget.onChanged,
       controller: widget.controller,
       obscureText: widget.inputType == InputType.password ? isObscure : false,
       keyboardType: widget.inputType == InputType.email
