@@ -1,3 +1,5 @@
+import 'package:example/pages/homepage.dart';
+import 'package:example/widgets/ordersuccess.dart';
 import 'package:example/widgets/cart.dart';
 import 'package:example/widgets/checkout.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +24,20 @@ class _PaymentState extends State<Payment> {
           });
         },
       ),
-      Checkout(),
-      Placeholder(),
+      Checkout(
+        buttonCallBack: () {
+          setState(() {
+            currentStep++;
+          });
+        },
+      ),
+      OrderSuccess(
+        onPrimaryButtonPressed: () {},
+        onSecondaryButtonPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => HomePage()));
+        },
+      ),
     ];
   }
 
@@ -58,7 +72,7 @@ class _PaymentState extends State<Payment> {
           child: Column(
             children: [
               StepperLabel(currentStep: currentStep),
-              stepContents[currentStep],
+              Center(child: stepContents[currentStep]),
             ],
           ),
         ),

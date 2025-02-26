@@ -1,4 +1,5 @@
 import 'package:example/pages/addresses.dart';
+import 'package:example/pages/paymentmethods.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -45,7 +46,12 @@ class _CheckoutState extends State<Checkout> {
           SizedBox(
             height: 10,
           ),
-          PaymentMethodBoxModal(text: "Master card Ending *****23"),
+          PaymentMethodBoxModal(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => PaymentMethods()));
+              },
+              text: "Master card Ending *****23"),
           SizedBox(
             height: 10,
           ),
