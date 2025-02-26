@@ -1,3 +1,4 @@
+import 'package:example/pages/payment.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,6 +12,10 @@ class Product extends StatefulWidget {
 
 class _ProductState extends State<Product> {
   PageController _pageController = PageController();
+
+  void initState() {
+    super.initState();
+  }
 
   final List<String> imagePaths = [
     "assets/images/productheaderimage_first.png",
@@ -56,6 +61,24 @@ class _ProductState extends State<Product> {
             "Cursus sit amet dictum sit amet justo donec enim. Commodo ullamcorper a lacus",
         imagePath: "assets/images/categorierow_first.png"),
   ];
+
+  void _shopPopup() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return PopupSuccesLabel(
+            title: "SUCCESS",
+            buttonOnPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Payment()));
+            },
+            description:
+                "Dolor magna eget est lorem ipsum dolor sit amet consectetur.",
+            iconPath: "assets/icons/cart.svg",
+            buttonText: "VIEW CART",
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -132,6 +155,7 @@ class _ProductState extends State<Product> {
         ),
       ),
       bottomSheet: ProductBottomSheetLabel(
+        buttonOnPressed: _shopPopup,
         price: "45.00",
       ),
     );

@@ -3,7 +3,9 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class ProductBottomSheetLabel extends StatefulWidget {
   final String price;
-  const ProductBottomSheetLabel({super.key, required this.price});
+  final VoidCallback? buttonOnPressed;
+  const ProductBottomSheetLabel(
+      {super.key, required this.price, this.buttonOnPressed});
 
   @override
   State<ProductBottomSheetLabel> createState() =>
@@ -58,7 +60,7 @@ class _ProductBottomSheetLabelState extends State<ProductBottomSheetLabel> {
             ),
             SizedBox(width: screenWidth * 0.05),
             CustomButton(
-              onPressed: () {},
+              onPressed: widget.buttonOnPressed,
               width: 160,
               height: 40,
               borderColor: ColorConstant.instance.neutral9,

@@ -15,3 +15,6 @@ export 'package:shopapp_widgets/src/widgets/labels/stepper_label_radius/stepper_
 export 'package:shopapp_widgets/src/widgets/labels/address_form_label/address_form_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/map_label/map_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/card_form_label/card_form_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/order_success_label/order_success_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/success_label_radius/success_label_radius.dart';
+export 'package:shopapp_widgets/src/widgets/labels/popup_succes_label/popup_success.dart';
