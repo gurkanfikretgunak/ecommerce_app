@@ -50,7 +50,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
     'Burkina Faso',
     'Burundi',
     'Cabo Verde',
-    "Turkey",
+    'Turkey',
   ];
 
   @override
@@ -136,11 +136,8 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
                   height: 10,
                 ),
                 Container(
-                  height: 350,
-                  child: GestureDetector(
-                      child: MapLabel(),
-                      behavior: HitTestBehavior.opaque,
-                      onVerticalDragUpdate: (_) {}),
+                  height: 250,
+                  child: MapLabel(),
                 ),
                 SizedBox(
                   height: 30,
