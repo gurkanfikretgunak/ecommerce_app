@@ -23,12 +23,19 @@ class _PaymentMethodsState extends State<PaymentMethods> {
           iconColor: ColorConstant.instance.neutral1,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          children: [
-            PaymentCartColumnLayout(),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            children: [
+              PaymentCardColumnLayout(),
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: CustomButton(
+                    onPressed: () {}, height: 50, text: "Add New Card"),
+              ),
+            ],
+          ),
         ),
       ),
     );

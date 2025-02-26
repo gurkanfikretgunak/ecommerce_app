@@ -12,6 +12,8 @@ class PaymentMethodBoxModal extends StatelessWidget {
   final double? fontSize;
   final double? iconSize;
 
+  final VoidCallback? onTap;
+
   const PaymentMethodBoxModal({
     super.key,
     this.brand,
@@ -21,6 +23,7 @@ class PaymentMethodBoxModal extends StatelessWidget {
     this.titleColor,
     this.fontSize,
     this.iconSize,
+    this.onTap,
   });
 
   @override
@@ -40,7 +43,7 @@ class PaymentMethodBoxModal extends StatelessWidget {
     }
 
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap ?? () {},
       child: Container(
         height: 60,
         color: backgroundColor ?? ColorConstant.instance.neutral7,

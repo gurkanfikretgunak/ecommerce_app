@@ -14,3 +14,4 @@ export 'package:shopapp_widgets/src/widgets/labels/stepper_label/stepper_label.d
 export 'package:shopapp_widgets/src/widgets/labels/stepper_label_radius/stepper_label_radius.dart';
 export 'package:shopapp_widgets/src/widgets/labels/address_form_label/address_form_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/map_label/map_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/card_form_label/card_form_label.dart';
