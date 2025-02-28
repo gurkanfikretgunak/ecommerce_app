@@ -20,3 +20,4 @@ export 'package:shopapp_widgets/src/widgets/labels/success_label_radius/success_
 export 'package:shopapp_widgets/src/widgets/labels/popup_succes_label/popup_success.dart';
 export 'package:shopapp_widgets/src/widgets/labels/account_box_label/account_box_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/settings_box_label/settings_box_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/account_info_box_label/account_info_box_label.dart';
