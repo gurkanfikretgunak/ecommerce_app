@@ -6,3 +6,4 @@ export 'package:shopapp_widgets/src/widgets/inputs/rate_input/rate_input.dart';
 export 'package:shopapp_widgets/src/widgets/inputs/quantity_selector_input/quantity_selector_input.dart';
 export 'package:shopapp_widgets/src/widgets/inputs/couponcode_textfield_input/couponcode_textfield_input.dart';
 export 'package:shopapp_widgets/src/widgets/inputs/typeahead_textfield_input/typeahead_textfield_input.dart';
+export 'package:shopapp_widgets/src/widgets/inputs/search_bar_input/search_bar_input.dart';
