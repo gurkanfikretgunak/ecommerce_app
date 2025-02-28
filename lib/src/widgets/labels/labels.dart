@@ -18,3 +18,5 @@ export 'package:shopapp_widgets/src/widgets/labels/card_form_label/card_form_lab
 export 'package:shopapp_widgets/src/widgets/labels/order_success_label/order_success_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/success_label_radius/success_label_radius.dart';
 export 'package:shopapp_widgets/src/widgets/labels/popup_succes_label/popup_success.dart';
+export 'package:shopapp_widgets/src/widgets/labels/account_box_label/account_box_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/settings_box_label/settings_box_label.dart';

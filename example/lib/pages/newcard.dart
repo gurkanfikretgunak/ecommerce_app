@@ -24,26 +24,30 @@ class _NewCardState extends State<NewCard> {
           iconColor: ColorConstant.instance.neutral1,
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(15),
-        child: Column(
-          children: [
-            CardFormLabel(),
-            Expanded(child: SizedBox()),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: CustomButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PaymentMethods()),
-                  );
-                },
-                height: 50,
-                text: "Add Card",
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(15),
+          child: Column(
+            children: [
+              CardFormLabel(),
+              SizedBox(
+                height: 150,
               ),
-            ),
-          ],
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: CustomButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => PaymentMethods()),
+                    );
+                  },
+                  height: 50,
+                  text: "Add Card",
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

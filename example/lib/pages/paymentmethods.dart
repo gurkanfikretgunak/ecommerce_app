@@ -1,3 +1,4 @@
+import 'package:example/pages/newcard.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -23,20 +24,27 @@ class _PaymentMethodsState extends State<PaymentMethods> {
           iconColor: ColorConstant.instance.neutral1,
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Column(
-            children: [
-              PaymentCardColumnLayout(),
-              Padding(
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
                 padding: const EdgeInsets.all(15),
-                child: CustomButton(
-                    onPressed: () {}, height: 50, text: "Add New Card"),
+                child: PaymentCardColumnLayout(),
               ),
-            ],
+            ),
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.all(15),
+            child: CustomButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => NewCard()));
+                },
+                height: 50,
+                text: "Add New Card"),
+          ),
+        ],
       ),
     );
   }

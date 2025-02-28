@@ -28,36 +28,8 @@ class _PaymentCardColumnLayoutState extends State<PaymentCardColumnLayout> {
               color: ColorConstant.instance.neutral1,
               brand: CartBrand.mastercard,
               expirationDate: "09/29"),
-          PaymentCardModal(
-              cartNumber: "1234567891011121",
-              name: "Kaan Çerkez",
-              cvvNumber: "222",
-              color: ColorConstant.instance.secondary2,
-              brand: CartBrand.mastercard,
-              expirationDate: "09/29"),
         ];
   }
-
-  final List<PaymentCardModal> items = [
-    PaymentCardModal(
-        cartNumber: "1234567891011121",
-        name: "Kaan Çerkez",
-        brand: CartBrand.mastercard,
-        expirationDate: "09/29"),
-    PaymentCardModal(
-        cartNumber: "99999999999999999999",
-        name: "Kaan Çerkez",
-        color: ColorConstant.instance.neutral1,
-        brand: CartBrand.mastercard,
-        expirationDate: "09/29"),
-    PaymentCardModal(
-        cartNumber: "1234567891011121",
-        name: "Kaan Çerkez",
-        cvvNumber: "222",
-        color: ColorConstant.instance.secondary2,
-        brand: CartBrand.mastercard,
-        expirationDate: "09/29"),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -66,14 +38,14 @@ class _PaymentCardColumnLayoutState extends State<PaymentCardColumnLayout> {
         ListView.separated(
           shrinkWrap: true,
           separatorBuilder: (context, index) => SizedBox(height: 20),
-          itemCount: items.length,
+          itemCount: paymentCardItems.length,
           itemBuilder: (context, index) {
             return PaymentCardModal(
-              cartNumber: items[index].cartNumber,
-              name: items[index].name,
-              color: items[index].color,
-              expirationDate: items[index].expirationDate,
-              brand: items[index].brand,
+              cartNumber: paymentCardItems[index].cartNumber,
+              name: paymentCardItems[index].name,
+              color: paymentCardItems[index].color,
+              expirationDate: paymentCardItems[index].expirationDate,
+              brand: paymentCardItems[index].brand,
             );
           },
         ),

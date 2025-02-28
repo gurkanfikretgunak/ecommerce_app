@@ -1,3 +1,4 @@
+import 'package:example/pages/account.dart';
 import 'package:example/pages/newaddress.dart';
 import 'package:example/pages/newcard.dart';
 import 'package:example/widgets/ordersuccess.dart';
@@ -42,6 +43,6 @@ class ExampleApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: Payment());
+        home: Account());
   }
 }

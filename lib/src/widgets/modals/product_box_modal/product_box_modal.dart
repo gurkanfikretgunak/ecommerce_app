@@ -14,8 +14,8 @@ class ProductBoxModal extends StatefulWidget {
     required this.imagePath,
     required this.name,
     required this.price,
-    this.quantity = 1, // Varsayılan miktar 1
-    this.textColor, // Varsayılan değeri constructor içinde vereceğiz
+    this.quantity = 1,
+    this.textColor,
     this.priceColor,
   });
 

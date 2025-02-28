@@ -10,3 +10,6 @@ export 'package:shopapp_widgets/src/widgets/layout/rate_row_layout/rate_row_layo
 export 'package:shopapp_widgets/src/widgets/layout/product_box_row_layout/product_box_row_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/cart_list_layout/cart_list_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/checkout_list_layout/checkout_list_layout.dart';
+export 'package:shopapp_widgets/src/widgets/layout/payment_card_column_layout/payment_card_column_layout.dart';
+export 'package:shopapp_widgets/src/widgets/layout/addresses_column_layout/addresses_column_layout.dart';
+export 'package:shopapp_widgets/src/widgets/layout/settings_box_column_layout/settings_box_column_layout.dart';
