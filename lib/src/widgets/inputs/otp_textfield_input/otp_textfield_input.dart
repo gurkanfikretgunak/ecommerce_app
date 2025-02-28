@@ -9,8 +9,8 @@ class OtpTextfieldInput extends StatelessWidget {
   final bool? showFieldAsBox;
   final Function(String)? onCodeChanged;
   final Function(String)? onSubmit;
-  final double? fieldWidth; // Yeni parametre
-  final double? fieldHeight; // Yeni parametre
+  final double? fieldWidth;
+  final double? fieldHeight;
 
   const OtpTextfieldInput({
     Key? key,

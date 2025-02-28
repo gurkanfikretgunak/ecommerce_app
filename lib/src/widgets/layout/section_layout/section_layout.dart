@@ -14,17 +14,19 @@ class SectionLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            SectionText(text: sectionText),
-            if (rightWidget != null) rightWidget!,
-          ],
-        ),
-        layout,
-      ],
+    return Container(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SectionText(text: sectionText),
+              if (rightWidget != null) rightWidget!,
+            ],
+          ),
+          layout,
+        ],
+      ),
     );
   }
 }

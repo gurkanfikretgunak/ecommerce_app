@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class CategoriesRadiusModal extends StatelessWidget {
+class ImageRadiusModal extends StatelessWidget {
   final String imagePath;
-  final String text;
+  final String? text;
   final double? width;
   final double? height;
   final Color? textColor;
 
-  const CategoriesRadiusModal(
+  const ImageRadiusModal(
       {super.key,
       required this.imagePath,
-      required this.text,
+      this.text,
       this.width,
       this.height,
       this.textColor});
@@ -30,10 +30,11 @@ class CategoriesRadiusModal extends StatelessWidget {
         SizedBox(
           height: 5,
         ),
-        ProductText(
-          text: text,
-          color: textColor ?? ColorConstant.instance.neutral1,
-        ),
+        if (text != null)
+          ProductText(
+            text: text ?? "",
+            color: textColor ?? ColorConstant.instance.neutral1,
+          ),
       ],
     );
   }

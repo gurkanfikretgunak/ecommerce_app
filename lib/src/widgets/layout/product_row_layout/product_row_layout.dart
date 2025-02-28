@@ -5,23 +5,31 @@ class ProductRowLayout extends StatelessWidget {
   final double? height;
   final double? itemsWidth;
 
-  const ProductRowLayout(
-      {super.key, required this.items, this.height, this.itemsWidth});
+  const ProductRowLayout({
+    super.key,
+    required this.items,
+    this.height,
+    this.itemsWidth,
+  });
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Container(
-      height: height ?? 250,
+      height: height ?? screenHeight * 0.4,
       child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            return Container(
-              width: itemsWidth ?? 160,
-              child: items[index],
-              margin: EdgeInsets.only(right: 20),
-            );
-          }),
+        scrollDirection: Axis.horizontal,
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          return Container(
+            width: itemsWidth ?? screenWidth * 0.4,
+            margin: EdgeInsets.only(right: screenWidth * 0.05), // %5 boşluk
+            child: items[index],
+          );
+        },
+      ),
     );
   }
 }

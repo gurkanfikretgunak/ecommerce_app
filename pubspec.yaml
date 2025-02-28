@@ -18,6 +18,11 @@ dependencies:
   flutter_otp_text_field: ^1.4.0+2
   device_preview: ^1.2.0
   flutter_svg: ^2.0.10  
+  flutter_typeahead: ^4.0.0
+  flutter_dotenv: ^5.0.2
+  u_credit_card: ^1.2.1
+  google_maps_flutter: ^2.10.1
+
   
 
 dev_dependencies:

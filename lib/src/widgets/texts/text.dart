@@ -5,3 +5,4 @@ export 'package:shopapp_widgets/src/widgets/texts/homepage_banner_head_text/home
 export 'package:shopapp_widgets/src/widgets/texts/categorie_banner_text/categorie_banner_text.dart';
 export 'package:shopapp_widgets/src/widgets/texts/section_action_text/section_action_text.dart';
 export 'package:shopapp_widgets/src/widgets/texts/rating_text/rating_text.dart';
+export 'package:shopapp_widgets/src/widgets/texts/product_description_text/product_description_text.dart';

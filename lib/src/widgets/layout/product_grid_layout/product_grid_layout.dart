@@ -22,6 +22,7 @@ class ProductGridLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
       width: width ?? screenWidth,
@@ -29,11 +30,11 @@ class ProductGridLayout extends StatelessWidget {
         shrinkWrap: true,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: crossAxisCount ?? 2,
-          crossAxisSpacing: crossAxisSpacing ?? 16,
-          mainAxisSpacing: mainAxisSpacing ?? 16,
+          crossAxisSpacing: crossAxisSpacing ?? 15,
+          mainAxisSpacing: mainAxisSpacing ?? 17,
           childAspectRatio: childAspectRatio ?? 0.6,
         ),
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(8),
         itemCount: productItems.length,
         itemBuilder: (context, index) {
           return productItems[index];
