@@ -4,6 +4,7 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 class SearchAppbar extends StatefulWidget implements PreferredSizeWidget {
   final Color? iconColor;
   final String? text;
+  final String? hintText;
   final VoidCallback? onPressed;
   final VoidCallback? iconOnPressed;
   const SearchAppbar({
@@ -11,6 +12,7 @@ class SearchAppbar extends StatefulWidget implements PreferredSizeWidget {
     this.iconColor,
     this.text,
     this.onPressed,
+    this.hintText = 'Search Product...',
     required this.iconOnPressed,
   });
 
@@ -38,15 +40,12 @@ class _SearchAppbarState extends State<SearchAppbar> {
               size: 15,
               onPressed: widget.onPressed,
             ),
-            Container(
-                height: 75,
-                width: screenWidth * 0.65,
-                child: SearchBarInput(hintText: "Search Product...")),
+            SizedBox(height: 75, width: screenWidth * 0.65, child: SearchBarInput(hintText: widget.hintText ?? '')),
             IconButton(
               onPressed: widget.iconOnPressed,
-              icon: Icon(Icons.tune),
+              icon: const Icon(Icons.tune),
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
       ),

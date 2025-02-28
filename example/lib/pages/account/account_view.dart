@@ -2,14 +2,14 @@ import 'package:example/pages/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class Account extends StatefulWidget {
-  const Account({super.key});
+class AccountView extends StatefulWidget {
+  const AccountView({super.key});
 
   @override
-  State<Account> createState() => _AccountState();
+  State<AccountView> createState() => _AccountViewState();
 }
 
-class _AccountState extends State<Account> {
+class _AccountViewState extends State<AccountView> {
   @override
   Widget build(BuildContext context) {
     final List<SettingsBoxLabel> settingsBoxItem = [
