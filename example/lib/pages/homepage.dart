@@ -1,3 +1,4 @@
+import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/categories.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
@@ -19,18 +20,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<Widget> categoriesItems = [
-    ImageRadiusModal(
-        imagePath: "assets/images/categorierow_first.png", text: "Men"),
-    ImageRadiusModal(
-        imagePath: "assets/images/categorierow_second.png", text: "Women"),
-    ImageRadiusModal(
-        imagePath: "assets/images/categorierow_third.png", text: "Kids"),
-    ImageRadiusModal(
-        imagePath: "assets/images/categorierow_fourth.png", text: "Bags"),
-    ImageRadiusModal(
-        imagePath: "assets/images/categorierow_fifth.png", text: "Shoes"),
-    ImageRadiusModal(
-        imagePath: "assets/images/categorierow_six.png", text: "Accessories"),
+    ImageRadiusModal(imagePath: Assets.images.categorierowFirst.path, text: "Men"),
+    ImageRadiusModal(imagePath: Assets.images.categorierowSecond.path, text: "Women"),
+    ImageRadiusModal(imagePath: Assets.images.categorierowThird.path, text: "Kids"),
+    ImageRadiusModal(imagePath: Assets.images.categorierowFourth.path, text: "Bags"),
+    ImageRadiusModal(imagePath: Assets.images.categorierowFifth.path, text: "Shoes"),
+    ImageRadiusModal(imagePath: Assets.images.categorierowSix.path, text: "Accessories"),
   ];
 
   List<Widget> productCardItems = [
@@ -96,8 +91,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
-        child: HomePageAppbar(
-            logoPath: "assets/icons/logotext.png", icon: Icons.notifications),
+        child: HomePageAppbar(logoPath: "assets/icons/logotext.png", icon: Icons.notifications),
       ),
       backgroundColor: ColorConstant.instance.neutral9,
       body: SingleChildScrollView(
@@ -138,8 +132,7 @@ class _HomePageState extends State<HomePage> {
                 rightWidget: SectionActionText(
                   text: "All Categories",
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Categories()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Categories()));
                   },
                 ),
                 layout: CategoriesRowLayout(items: categoriesItems),

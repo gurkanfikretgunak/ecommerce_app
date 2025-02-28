@@ -32,7 +32,7 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width ?? 325,
       height: height ?? 35,
       child: ElevatedButton(
@@ -49,7 +49,7 @@ class CustomButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                icon ?? null,
+                icon ?? null, // icon gelmiyorsa default icon atanacak.
                 color: iconColor ?? ColorConstant.instance.neutral9,
                 size: 15,
               ),

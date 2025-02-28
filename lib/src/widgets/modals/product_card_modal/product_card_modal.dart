@@ -22,35 +22,35 @@ class ProductCardModal extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap ?? () {},
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: imageHeight ?? 180,
-            child: Image.asset(
-              imagePath,
-              fit: BoxFit.contain,
+      child: Padding(
+        padding: context.horizontalPaddingLow,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: imageHeight ?? context.dynamicWidth(.47),
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.contain,
+              ),
             ),
-          ),
-          SizedBox(height: 8),
-          ProductText(
-            text: productStock,
-            fontSize: 8,
-            color: ColorConstant.instance.neutral4,
-          ),
-          SizedBox(height: 4),
-          ProductText(
-            text: productName,
-            fontSize: 12,
-            color: ColorConstant.instance.neutral1,
-          ),
-          SizedBox(height: 4),
-          ProductText(
-              text: productPrice,
-              fontSize: 16,
-              color: ColorConstant.instance.primary_main),
-        ],
+            context.emptySizedHeightBoxLow,
+            ProductText(
+              text: productStock,
+              fontSize: 8,
+              color: ColorConstant.instance.neutral4,
+            ),
+            const SizedBox(height: 4),
+            ProductText(
+              text: productName,
+              fontSize: 12,
+              color: ColorConstant.instance.neutral1,
+            ),
+            const SizedBox(height: 4),
+            ProductText(text: productPrice, fontSize: 16, color: ColorConstant.instance.primary_main)
+          ],
+        ),
       ),
     );
   }

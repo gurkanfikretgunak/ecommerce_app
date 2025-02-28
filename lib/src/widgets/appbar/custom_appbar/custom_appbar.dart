@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
-import 'package:shopapp_widgets/src/widgets/buttons/back_arrow_button/back_arrow_button.dart';
 
 class CustomAppbar extends StatefulWidget implements PreferredSizeWidget {
   final Color? iconColor;
