@@ -1,3 +1,4 @@
+import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/payment.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
@@ -18,42 +19,42 @@ class _ProductState extends State<Product> {
   }
 
   final List<String> imagePaths = [
-    "assets/images/productheaderimage_first.png",
-    "assets/images/productheaderimage_first.png",
-    "assets/images/productheaderimage_first.png",
+    Assets.images.productheaderimageFirst.path,
+    Assets.images.productheaderimageFirst.path,
+    Assets.images.productheaderimageFirst.path,
   ];
   List<Widget> productCardItems = [
     ProductCardModal(
-        imagePath: "assets/images/productcardimage_first.png",
+        imagePath: Assets.images.productcardimageFirst.path,
         productStock: "Sold(50 Product)",
         productName: "Long-sleeved T-shirt",
         productPrice: "\$49.00"),
     ProductCardModal(
-        imagePath: "assets/images/productcardimage_second.png",
+        imagePath: Assets.images.productcardimageSecond.path,
         productStock: "Sold(50 Product)",
         productName: "Printed Cotton Shirt",
         productPrice: "\$45.00"),
     ProductCardModal(
-        imagePath: "assets/images/productcardimage_third.png",
+        imagePath: Assets.images.productcardimageThird.path,
         productStock: "Sold(50 Product)",
         productName: "Cotton T-shirt",
         productPrice: "\$49.00"),
     ProductCardModal(
-        imagePath: "assets/images/productcardimage_fourth.png",
+        imagePath: Assets.images.productcardimageFourth.path,
         productStock: "Sold(50 Product)",
         productName: "Embroidered T-Shirt",
         productPrice: "\$39.00"),
   ];
 
   final List<Widget> reviewItems = [
-    ProductReviewModal(
+    const ProductReviewModal(
         name: "Theresa Webb",
         rate: 5,
         date: "May1,2022",
         reviewText:
             "Cursus sit amet dictum sit amet justo donec enim. Commodo ullamcorper a lacus",
         imagePath: "assets/images/categorierow_first.png"),
-    ProductReviewModal(
+    const ProductReviewModal(
         name: "Theresa Webb",
         rate: 3,
         date: "May1,2022",
@@ -104,7 +105,7 @@ class _ProductState extends State<Product> {
                 ],
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(15),
               child: ProductInfoLabel(
                 rating: "4,9",
@@ -115,15 +116,15 @@ class _ProductState extends State<Product> {
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus urna duis convallis convallis tellus.",
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(15),
               child: ColorsLabel(),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(15),
               child: SizesLabel(),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(15),
               child: ProductDescriptionLabel(
                 text:
@@ -137,7 +138,7 @@ class _ProductState extends State<Product> {
                 items: reviewItems,
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(15),
               child: ReviewFormLabel(),
             ),
@@ -148,7 +149,7 @@ class _ProductState extends State<Product> {
                 layout: ProductRowLayout(items: productCardItems),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 80,
             ),
           ],

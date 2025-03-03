@@ -1,3 +1,4 @@
+import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/addresses.dart';
 import 'package:example/pages/paymentmethods.dart';
 import 'package:flutter/material.dart';
@@ -14,15 +15,15 @@ class Checkout extends StatefulWidget {
 class _CheckoutState extends State<Checkout> {
   final List<ProductBoxModal> productBoxRowItems = [
     ProductBoxModal(
-        imagePath: "assets/images/productboximage.png",
+        imagePath: Assets.images.productboximage.path,
         name: "Basic T-shirt",
         price: 49.99),
     ProductBoxModal(
-        imagePath: "assets/images/productboximage.png",
+        imagePath: Assets.images.productboximage.path,
         name: "Basic T-shirt",
         price: 40.99),
     ProductBoxModal(
-        imagePath: "assets/images/productboximage.png",
+        imagePath: Assets.images.productboximage.path,
         name: "Basic T-shirt",
         price: 52.99),
   ];

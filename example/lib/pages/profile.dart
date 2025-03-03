@@ -1,3 +1,4 @@
+import 'package:example/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -56,7 +57,7 @@ class Profile extends StatelessWidget {
           child: Column(
             children: [
               AccountBoxLabel(
-                imagePath: "assets/images/profilepicture.png",
+                imagePath: Assets.images.profilepicture.path,
                 name: "Savannah Robertson",
                 username: "@alexander02",
                 icon: Icons.photo_camera,

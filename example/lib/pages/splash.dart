@@ -1,5 +1,6 @@
 import 'package:example/animation/loadinganimation.dart';
 import 'package:example/animation/rippleanimation.dart';
+import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
@@ -37,7 +38,7 @@ class _SplashState extends State<Splash> {
         children: [
           Align(
             child: Image.asset(
-              "assets/images/splashtexture.png",
+              Assets.images.splashtexture.path,
               alignment: Alignment.center,
             ),
           ),
@@ -48,7 +49,7 @@ class _SplashState extends State<Splash> {
                 child: Align(
                   alignment: Alignment.center,
                   child: RippleAnim(
-                    logoPath: widget.logoPath ?? "assets/icons/logo.png",
+                    logoPath: widget.logoPath ?? Assets.icons.logo.path,
                   ),
                 ),
               ),

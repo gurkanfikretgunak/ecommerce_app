@@ -1,7 +1,7 @@
 import 'package:example/pages/homepage.dart';
 import 'package:flutter/material.dart';
-import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class Verification extends StatefulWidget {
   const Verification({super.key});
@@ -64,7 +64,7 @@ class _VerificationState extends State<Verification> {
           SizedBox(
             height: 80,
           ),
-          Text("01:40"),
+          const Text("01:40"),
           CustomButton(
             text: "SUBMIT",
             onPressed: () {

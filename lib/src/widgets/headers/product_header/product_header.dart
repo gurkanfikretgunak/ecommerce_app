@@ -24,15 +24,14 @@ class ProductHeader extends StatelessWidget {
         Container(
           width: screenWidth,
           height: screenHeight * 0.3,
-          child: PageView.builder(
+          child: PageView(
             controller: _pageController,
-            itemCount: imagePaths.length,
-            itemBuilder: (context, index) {
+            children: imagePaths.map((path) {
               return Image.asset(
-                imagePaths[index],
+                path,
                 fit: BoxFit.cover,
               );
-            },
+            }).toList(),
           ),
         ),
         Positioned(

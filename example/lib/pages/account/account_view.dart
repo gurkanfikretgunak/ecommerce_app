@@ -1,3 +1,4 @@
+import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
@@ -75,8 +76,8 @@ class _AccountViewState extends State<AccountView> {
           padding: const EdgeInsets.all(15),
           child: Column(
             children: [
-              const AccountBoxLabel(
-                imagePath: "assets/images/profilepicture.png",
+              AccountBoxLabel(
+                imagePath: Assets.images.profilepicture.path,
                 name: "Savannah Robertson",
                 username: "@alexander02",
                 icon: Icons.photo_camera,

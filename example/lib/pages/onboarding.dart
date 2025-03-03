@@ -1,3 +1,4 @@
+import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
@@ -29,7 +30,7 @@ class _OnboardingState extends State<Onboarding> {
         controller: _pageController,
         children: [
           OnboardingSlider(
-            imagePath: "assets/images/onboardingimage_first.png",
+            imagePath: Assets.images.onboardingimageFirst.path,
             firstText: "CLASSY",
             secondText: "FROM HEAD",
             thirdText: "TO TOE",
@@ -37,7 +38,7 @@ class _OnboardingState extends State<Onboarding> {
             onNext: () => _goToNextPage(0),
           ),
           OnboardingSlider(
-            imagePath: "assets/images/onboardingimage_second.png",
+            imagePath: Assets.images.onboardingimageSecond.path,
             firstText: "FLY AWAY",
             secondText: "WITH YOUR",
             thirdText: "STYLE",
@@ -45,7 +46,7 @@ class _OnboardingState extends State<Onboarding> {
             onNext: () => _goToNextPage(1),
           ),
           OnboardingSlider(
-            imagePath: "assets/images/onboardingimage_third.png",
+            imagePath: Assets.images.onboardingimageThird.path,
             firstText: "CLOTHES",
             secondText: "FOR A BIG",
             thirdText: "PLANET",

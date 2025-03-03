@@ -1,3 +1,4 @@
+import 'package:example/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -12,36 +13,36 @@ class Cart extends StatefulWidget {
 class _CartState extends State<Cart> {
   final List<ProductBoxModal> productBoxRowItems = [
     ProductBoxModal(
-        imagePath: "assets/images/productboximage.png",
+        imagePath: Assets.images.productboximage.path,
         name: "Basic T-shirt",
         price: 49.99),
     ProductBoxModal(
-        imagePath: "assets/images/productboximage.png",
+        imagePath: Assets.images.productboximage.path,
         name: "Basic T-shirt",
         price: 40.99),
     ProductBoxModal(
-        imagePath: "assets/images/productboximage.png",
+        imagePath: Assets.images.productboximage.path,
         name: "Basic T-shirt",
         price: 52.99),
   ];
   List<Widget> productCardItems = [
     ProductCardModal(
-        imagePath: "assets/images/productcardimage_first.png",
+        imagePath: Assets.images.productcardimageFirst.path,
         productStock: "Sold(50 Product)",
         productName: "Long-sleeved T-shirt",
         productPrice: "\$49.00"),
     ProductCardModal(
-        imagePath: "assets/images/productcardimage_second.png",
+        imagePath: Assets.images.productcardimageSecond.path,
         productStock: "Sold(50 Product)",
         productName: "Printed Cotton Shirt",
         productPrice: "\$45.00"),
     ProductCardModal(
-        imagePath: "assets/images/productcardimage_third.png",
+        imagePath: Assets.images.productcardimageThird.path,
         productStock: "Sold(50 Product)",
         productName: "Cotton T-shirt",
         productPrice: "\$49.00"),
     ProductCardModal(
-        imagePath: "assets/images/productcardimage_fourth.png",
+        imagePath: Assets.images.productcardimageFourth.path,
         productStock: "Sold(50 Product)",
         productName: "Embroidered T-Shirt",
         productPrice: "\$39.00"),

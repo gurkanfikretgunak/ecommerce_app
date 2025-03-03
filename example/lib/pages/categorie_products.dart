@@ -1,3 +1,4 @@
+import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/product.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
@@ -59,7 +60,7 @@ class _CategorieProductsState extends State<CategorieProducts> {
   Widget build(BuildContext context) {
     List<Widget> productCardItems = [
       ProductCardModal(
-        imagePath: "assets/images/productcardimage_third.png",
+        imagePath: Assets.images.productcardimageFirst.path,
         productStock: "Sold(50 Product)",
         productName: "Cotton T-shirt",
         productPrice: "\$49.00",
@@ -68,31 +69,36 @@ class _CategorieProductsState extends State<CategorieProducts> {
               MaterialPageRoute(builder: (context) => const Product()));
         },
       ),
-      const ProductCardModal(
-          imagePath: "assets/images/productcardimage_third.png",
-          productStock: "Sold(50 Product)",
-          productName: "Cotton T-shirt",
-          productPrice: "\$49.00"),
-      const ProductCardModal(
-          imagePath: "assets/images/productcardimage_third.png",
-          productStock: "Sold(50 Product)",
-          productName: "Cotton T-shirt",
-          productPrice: "\$49.00"),
-      const ProductCardModal(
-          imagePath: "assets/images/productcardimage_third.png",
-          productStock: "Sold(50 Product)",
-          productName: "Cotton T-shirt",
-          productPrice: "\$49.00"),
-      const ProductCardModal(
-          imagePath: "assets/images/productcardimage_third.png",
-          productStock: "Sold(50 Product)",
-          productName: "Cotton T-shirt",
-          productPrice: "\$49.00"),
-      const ProductCardModal(
-          imagePath: "assets/images/productcardimage_third.png",
-          productStock: "Sold(50 Product)",
-          productName: "Cotton T-shirt",
-          productPrice: "\$49.00"),
+      ProductCardModal(
+        imagePath: Assets.images.productcardimageThird.path,
+        productStock: "Sold(50 Product)",
+        productName: "Cotton T-shirt",
+        productPrice: "\$49.00",
+      ),
+      ProductCardModal(
+        imagePath: Assets.images.productcardimageThird.path,
+        productStock: "Sold(50 Product)",
+        productName: "Cotton T-shirt",
+        productPrice: "\$49.00",
+      ),
+      ProductCardModal(
+        imagePath: Assets.images.productcardimageThird.path,
+        productStock: "Sold(50 Product)",
+        productName: "Cotton T-shirt",
+        productPrice: "\$49.00",
+      ),
+      ProductCardModal(
+        imagePath: Assets.images.productcardimageThird.path,
+        productStock: "Sold(50 Product)",
+        productName: "Cotton T-shirt",
+        productPrice: "\$49.00",
+      ),
+      ProductCardModal(
+        imagePath: Assets.images.productcardimageThird.path,
+        productStock: "Sold(50 Product)",
+        productName: "Cotton T-shirt",
+        productPrice: "\$49.00",
+      ),
     ];
 
     return Scaffold(
@@ -100,7 +106,7 @@ class _CategorieProductsState extends State<CategorieProducts> {
       body: Column(
         children: [
           CategoriesHeader(
-            imagePath: "assets/images/categorieheader_first.png",
+            imagePath: Assets.images.categorieheaderFirst.path,
             onPressed: () {
               Navigator.pop(context);
             },
@@ -113,12 +119,13 @@ class _CategorieProductsState extends State<CategorieProducts> {
             child: GestureDetector(
               onTap: showBottomSheet,
               child: AbsorbPointer(
-                  child: CategoriesTextfieldInput(
-                initialText: selectedItem,
-                suffixIcon: bottomDragOpen
-                    ? Icons.arrow_drop_up
-                    : Icons.arrow_drop_down,
-              )),
+                child: CategoriesTextfieldInput(
+                  initialText: selectedItem,
+                  suffixIcon: bottomDragOpen
+                      ? Icons.arrow_drop_up
+                      : Icons.arrow_drop_down,
+                ),
+              ),
             ),
           ),
           const SizedBox(height: 30),

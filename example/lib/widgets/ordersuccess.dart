@@ -1,3 +1,4 @@
+import 'package:example/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -24,7 +25,7 @@ class OrderSuccess extends StatelessWidget {
                 primaryButtonText: "MY ORDERS",
                 secondaryButtonText: "CONTINUE SHOPPING",
                 onSecondaryButtonPressed: onSecondaryButtonPressed,
-                iconPath: "assets/icons/truck.svg",
+                iconPath: Assets.icons.success.path,
                 description:
                     "Dolor magna eget est lorem ipsum dolor sit amet consectetur."),
           ],

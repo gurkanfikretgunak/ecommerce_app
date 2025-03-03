@@ -1,3 +1,4 @@
+import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/categorie_products.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
@@ -15,16 +16,16 @@ class Categories extends StatelessWidget {
                 MaterialPageRoute(
                     builder: (context) => const CategorieProducts()));
           },
-          imagePath: "assets/images/categoriebanner_first.png",
+          imagePath: Assets.images.categoriebannerFirst.path,
           text: "MEN"),
-      const CategorieBanner(
-          imagePath: "assets/images/categoriebanner_second.png", text: "WOMEN"),
-      const CategorieBanner(
-          imagePath: "assets/images/categoriebanner_third.png", text: "KIDS"),
-      const CategorieBanner(
-          imagePath: "assets/images/categoriebanner_fourth.png", text: "SHOES"),
-      const CategorieBanner(
-          imagePath: "assets/images/categoriebanner_fifth.png",
+      CategorieBanner(
+          imagePath: Assets.images.categoriebannerSecond.path, text: "WOMEN"),
+      CategorieBanner(
+          imagePath: Assets.images.categoriebannerThird.path, text: "KIDS"),
+      CategorieBanner(
+          imagePath: Assets.images.categoriebannerFourth.path, text: "SHOES"),
+      CategorieBanner(
+          imagePath: Assets.images.categoriebannerFifth.path,
           text: "ACCESSORIES"),
     ];
 

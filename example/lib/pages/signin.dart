@@ -1,3 +1,4 @@
+import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/signup.dart';
 import 'package:example/widgets/signin_form.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class _SignInState extends State<SignIn> {
           mainAxisSize: MainAxisSize.min,
           children: [
             SignInHeader(
-                imagePath: "assets/images/signinheader.png",
+                imagePath: Assets.images.signinheader.path,
                 onPressed: () {
                   Navigator.pop(context);
                 }),
