@@ -10,6 +10,7 @@ class SuccessLabelRadius extends StatelessWidget {
   final Color? color;
   final double? successIconRadius;
   final Color? successIconColor;
+  final String successIconPath;
 
   const SuccessLabelRadius({
     super.key,
@@ -20,6 +21,7 @@ class SuccessLabelRadius extends StatelessWidget {
     this.color,
     this.successIconRadius,
     this.successIconColor,
+    this.successIconPath = "assets/icons/success.svg",
   });
 
   @override
@@ -44,7 +46,8 @@ class SuccessLabelRadius extends StatelessWidget {
           child: CircleAvatar(
             radius: successIconRadius ?? 15,
             child: SvgPicture.asset(
-              "assets/icons/success.svg",
+              successIconPath,
+              color: successIconColor ?? ColorConstant.instance.green2,
             ),
           ),
         ),

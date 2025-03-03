@@ -24,6 +24,7 @@ class _CategorieProductsState extends State<CategorieProducts> {
   String selectedItem = "All Product";
   bool bottomDragOpen = false;
 
+  @override
   void initState() {
     super.initState();
     bottomDragOpen = false;
@@ -63,31 +64,31 @@ class _CategorieProductsState extends State<CategorieProducts> {
         productName: "Cotton T-shirt",
         productPrice: "\$49.00",
         onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Product()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const Product()));
         },
       ),
-      ProductCardModal(
+      const ProductCardModal(
           imagePath: "assets/images/productcardimage_third.png",
           productStock: "Sold(50 Product)",
           productName: "Cotton T-shirt",
           productPrice: "\$49.00"),
-      ProductCardModal(
+      const ProductCardModal(
           imagePath: "assets/images/productcardimage_third.png",
           productStock: "Sold(50 Product)",
           productName: "Cotton T-shirt",
           productPrice: "\$49.00"),
-      ProductCardModal(
+      const ProductCardModal(
           imagePath: "assets/images/productcardimage_third.png",
           productStock: "Sold(50 Product)",
           productName: "Cotton T-shirt",
           productPrice: "\$49.00"),
-      ProductCardModal(
+      const ProductCardModal(
           imagePath: "assets/images/productcardimage_third.png",
           productStock: "Sold(50 Product)",
           productName: "Cotton T-shirt",
           productPrice: "\$49.00"),
-      ProductCardModal(
+      const ProductCardModal(
           imagePath: "assets/images/productcardimage_third.png",
           productStock: "Sold(50 Product)",
           productName: "Cotton T-shirt",
@@ -105,8 +106,8 @@ class _CategorieProductsState extends State<CategorieProducts> {
             },
             text: "MEN",
           ),
-          SizedBox(height: 30),
-          Container(
+          const SizedBox(height: 30),
+          SizedBox(
             width: 350,
             height: 40,
             child: GestureDetector(
@@ -120,7 +121,7 @@ class _CategorieProductsState extends State<CategorieProducts> {
               )),
             ),
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Expanded(
             child: ProductGridLayout(
               crossAxisSpacing: 3,

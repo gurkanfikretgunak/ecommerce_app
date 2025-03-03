@@ -21,27 +21,27 @@ class _AccountState extends State<Account> {
                 context, MaterialPageRoute(builder: (context) => Profile()));
           },
           suffixIcon: Icons.arrow_forward_ios),
-      SettingsBoxLabel(
+      const SettingsBoxLabel(
           icon: Icons.notifications_outlined,
           text: 'Noficiation',
           suffixIcon: Icons.arrow_forward_ios),
-      SettingsBoxLabel(
+      const SettingsBoxLabel(
           icon: Icons.payment,
           text: 'Payment Information',
           suffixIcon: Icons.arrow_forward_ios),
-      SettingsBoxLabel(
+      const SettingsBoxLabel(
           icon: Icons.lock_outline,
           text: 'Privacy Setting',
           suffixIcon: Icons.arrow_forward_ios),
-      SettingsBoxLabel(
+      const SettingsBoxLabel(
           icon: Icons.settings,
           text: 'General Setting',
           suffixIcon: Icons.arrow_forward_ios),
-      SettingsBoxLabel(
+      const SettingsBoxLabel(
           icon: Icons.language,
           text: 'Language',
           suffixIcon: Icons.arrow_forward_ios),
-      SettingsBoxLabel(
+      const SettingsBoxLabel(
           icon: Icons.person,
           text: 'Change Account',
           suffixIcon: Icons.arrow_forward_ios),
@@ -72,16 +72,16 @@ class _AccountState extends State<Account> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Column(
             children: [
-              AccountBoxLabel(
+              const AccountBoxLabel(
                 imagePath: "assets/images/profilepicture.png",
                 name: "Savannah Robertson",
                 username: "@alexander02",
                 icon: Icons.photo_camera,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Column(
@@ -97,7 +97,7 @@ class _AccountState extends State<Account> {
                     textColor: ColorConstant.instance.neutral1,
                     icon: Icons.local_mall,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   CustomButton(
@@ -113,7 +113,7 @@ class _AccountState extends State<Account> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               SettingsBoxColumnLayout(

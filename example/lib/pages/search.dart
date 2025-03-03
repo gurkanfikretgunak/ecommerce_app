@@ -83,10 +83,13 @@ class _SearchState extends State<Search> {
                 runSpacing: 5.0,
                 children: tags,
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 30),
               SectionLayout(
                   sectionText: "YOU ALSO VIEWED",
-                  layout: ProductGridLayout(productItems: productCardItems))
+                  layout: ProductGridLayout(
+                    productItems: productCardItems,
+                    mainAxisSpacing: 17,
+                  ))
             ],
           ),
         ),

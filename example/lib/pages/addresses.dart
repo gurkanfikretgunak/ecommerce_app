@@ -5,7 +5,7 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 class Addresses extends StatefulWidget {
   final List<AddressBoxModal>? addressItems;
 
-  Addresses({super.key, this.addressItems});
+  const Addresses({super.key, this.addressItems});
 
   @override
   State<Addresses> createState() => _AddressesState();
@@ -20,19 +20,19 @@ class _AddressesState extends State<Addresses> {
     super.initState();
     addressItems = widget.addressItems ??
         [
-          AddressBoxModal(
+          const AddressBoxModal(
               name: "Theresa Webb",
               address: "3517 W. Gray St. Utica, Pennsylvania 57867",
               email: "willie.jennings@example.com",
               isSelected: true,
               phone: "(480) 555-0103"),
-          AddressBoxModal(
+          const AddressBoxModal(
               name: "Alemdag ev",
               address: "3517 W. Gray St. Utica, Pennsylvania 57867",
               email: "willie.jennings@example.com",
               isSelected: false,
               phone: "(480) 555-0103"),
-          AddressBoxModal(
+          const AddressBoxModal(
               name: "Madenler ",
               address: "3517 W. Gray St. Utica, Pennsylvania 57867",
               email: "willie.jennings@example.com",

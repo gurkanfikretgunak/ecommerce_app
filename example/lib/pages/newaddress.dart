@@ -29,13 +29,15 @@ class _NewAddressState extends State<NewAddress> {
           padding: const EdgeInsets.all(15),
           child: Column(
             children: [
-              AddressFormLabel(),
+              const AddressFormLabel(),
               Padding(
                 padding: const EdgeInsets.all(15),
                 child: CustomButton(
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Addresses()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Addresses()));
                     },
                     height: 50,
                     text: "Confirm"),

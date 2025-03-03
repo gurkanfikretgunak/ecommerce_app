@@ -11,45 +11,46 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
+  @override
   void initState() {
     super.initState();
     _checkPopup();
   }
 
   List<Widget> categoriesItems = [
-    ImageRadiusModal(
+    const ImageRadiusModal(
         imagePath: "assets/images/categorierow_first.png", text: "Men"),
-    ImageRadiusModal(
+    const ImageRadiusModal(
         imagePath: "assets/images/categorierow_second.png", text: "Women"),
-    ImageRadiusModal(
+    const ImageRadiusModal(
         imagePath: "assets/images/categorierow_third.png", text: "Kids"),
-    ImageRadiusModal(
+    const ImageRadiusModal(
         imagePath: "assets/images/categorierow_fourth.png", text: "Bags"),
-    ImageRadiusModal(
+    const ImageRadiusModal(
         imagePath: "assets/images/categorierow_fifth.png", text: "Shoes"),
-    ImageRadiusModal(
+    const ImageRadiusModal(
         imagePath: "assets/images/categorierow_six.png", text: "Accessories"),
   ];
 
   List<Widget> productCardItems = [
-    ProductCardModal(
+    const ProductCardModal(
         imagePath: "assets/images/productcardimage_first.png",
         productStock: "Sold(50 Product)",
         productName: "Long-sleeved T-shirt",
         productPrice: "\$49.00"),
-    ProductCardModal(
+    const ProductCardModal(
         imagePath: "assets/images/productcardimage_second.png",
         productStock: "Sold(50 Product)",
         productName: "Printed Cotton Shirt",
         productPrice: "\$45.00"),
-    ProductCardModal(
+    const ProductCardModal(
         imagePath: "assets/images/productcardimage_third.png",
         productStock: "Sold(50 Product)",
         productName: "Cotton T-shirt",
         productPrice: "\$49.00"),
-    ProductCardModal(
+    const ProductCardModal(
         imagePath: "assets/images/productcardimage_fourth.png",
         productStock: "Sold(50 Product)",
         productName: "Embroidered T-Shirt",
@@ -94,8 +95,8 @@ class _HomePageState extends State<HomePage> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(60),
         child: HomePageAppbar(
             logoPath: "assets/icons/logotext.png", icon: Icons.notifications),
       ),
@@ -103,7 +104,7 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               width: screenWidth,
               height: 200,
               child: PageView(
@@ -130,9 +131,9 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Padding(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: SectionLayout(
                 sectionText: "CATEGORIES",
                 rightWidget: SectionActionText(
@@ -152,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                 layout: ProductGridLayout(productItems: productCardItems),
               ),
             ),
-            Padding(
+            const Padding(
                 padding: EdgeInsets.all(15),
                 child: Column(
                   children: [
@@ -174,17 +175,17 @@ class _HomePageState extends State<HomePage> {
                   ],
                 )),
             Padding(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: SectionLayout(
                 sectionText: "NEW ARRIVAL",
                 layout: ProductRowLayout(items: productCardItems),
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: SectionLayout(
                 sectionText: "ON SALE",
-                rightWidget: TimerLabel(),
+                rightWidget: const TimerLabel(),
                 layout: ProductRowLayout(items: productCardItems),
               ),
             ),
