@@ -1,15 +1,15 @@
-import 'package:example/pages/addresses.dart';
+import 'package:example/pages/addresses/addresses_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class NewAddress extends StatefulWidget {
-  const NewAddress({super.key});
+class NewAddressView extends StatefulWidget {
+  const NewAddressView({super.key});
 
   @override
-  State<NewAddress> createState() => _NewAddressState();
+  State<NewAddressView> createState() => _NewAddressViewState();
 }
 
-class _NewAddressState extends State<NewAddress> {
+class _NewAddressViewState extends State<NewAddressView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +37,7 @@ class _NewAddressState extends State<NewAddress> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Addresses()));
+                              builder: (context) => const AddressesView()));
                     },
                     height: 50,
                     text: "Confirm"),

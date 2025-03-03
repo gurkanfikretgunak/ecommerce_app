@@ -22,3 +22,4 @@ export 'package:shopapp_widgets/src/widgets/labels/account_box_label/account_box
 export 'package:shopapp_widgets/src/widgets/labels/settings_box_label/settings_box_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/account_info_box_label/account_info_box_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/tags_label/tags_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/product_header_image_label/product_header_image_label.dart';

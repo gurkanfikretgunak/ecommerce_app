@@ -1,19 +1,19 @@
-import 'package:example/pages/homepage.dart';
-import 'package:example/pages/verification.dart';
+import 'package:example/pages/home/home_view.dart';
+import 'package:example/pages/verifiticion/verification_view.dart';
 import 'package:example/widgets/signup_form.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class SignUpView extends StatefulWidget {
+  const SignUpView({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignUpViewState extends State<SignUpView> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -37,7 +37,7 @@ class _SignUpState extends State<SignUp> {
             text: "SIGN UP",
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Verification()));
+                  MaterialPageRoute(builder: (context) => VerificationView()));
             },
           ),
           SizedBox(height: 5),

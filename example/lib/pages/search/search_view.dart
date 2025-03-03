@@ -2,14 +2,14 @@ import 'package:example/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class Search extends StatefulWidget {
-  const Search({super.key});
+class SearchView extends StatefulWidget {
+  const SearchView({super.key});
 
   @override
-  State<Search> createState() => _SearchState();
+  State<SearchView> createState() => _SearchViewState();
 }
 
-class _SearchState extends State<Search> {
+class _SearchViewState extends State<SearchView> {
   List<Widget> productCardItems = [
     ProductCardModal(
         imagePath: Assets.images.productcardimageSecond.path,
@@ -44,18 +44,18 @@ class _SearchState extends State<Search> {
   ];
 
   List<TagsLabel> tags = [
-    TagsLabel(label: "Shoes"),
-    TagsLabel(label: "Dresses"),
-    TagsLabel(label: "Shirts"),
-    TagsLabel(label: "Polos"),
-    TagsLabel(label: "Jeans"),
-    TagsLabel(label: "Blazers"),
-    TagsLabel(label: "Coats"),
-    TagsLabel(label: "Trousers"),
-    TagsLabel(label: "Skirts"),
-    TagsLabel(label: "Bags"),
-    TagsLabel(label: "Jacket"),
-    TagsLabel(label: "Top"),
+    const TagsLabel(label: "Shoes"),
+    const TagsLabel(label: "Dresses"),
+    const TagsLabel(label: "Shirts"),
+    const TagsLabel(label: "Polos"),
+    const TagsLabel(label: "Jeans"),
+    const TagsLabel(label: "Blazers"),
+    const TagsLabel(label: "Coats"),
+    const TagsLabel(label: "Trousers"),
+    const TagsLabel(label: "Skirts"),
+    const TagsLabel(label: "Bags"),
+    const TagsLabel(label: "Jacket"),
+    const TagsLabel(label: "Top"),
   ];
   @override
   Widget build(BuildContext context) {
@@ -78,13 +78,13 @@ class _SearchState extends State<Search> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Wrap(
                 spacing: 5.0,
                 runSpacing: 5.0,
                 children: tags,
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               SectionLayout(
                   sectionText: "YOU ALSO VIEWED",
                   layout: ProductGridLayout(

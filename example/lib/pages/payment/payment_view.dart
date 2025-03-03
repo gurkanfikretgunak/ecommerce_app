@@ -1,18 +1,18 @@
-import 'package:example/pages/homepage.dart';
+import 'package:example/pages/home/home_view.dart';
 import 'package:example/widgets/ordersuccess.dart';
 import 'package:example/widgets/cart.dart';
 import 'package:example/widgets/checkout.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class Payment extends StatefulWidget {
-  const Payment({super.key});
+class PaymentView extends StatefulWidget {
+  const PaymentView({super.key});
 
   @override
-  State<Payment> createState() => _PaymentState();
+  State<PaymentView> createState() => _PaymentViewState();
 }
 
-class _PaymentState extends State<Payment> {
+class _PaymentViewState extends State<PaymentView> {
   int currentStep = 0;
 
   List<Widget> get stepContents {
@@ -35,7 +35,7 @@ class _PaymentState extends State<Payment> {
         onPrimaryButtonPressed: () {},
         onSecondaryButtonPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomePage()));
+              context, MaterialPageRoute(builder: (context) => HomeView()));
         },
       ),
     ];

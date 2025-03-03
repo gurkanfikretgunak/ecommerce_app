@@ -2,31 +2,31 @@ import 'package:example/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class Profile extends StatelessWidget {
-  Profile({super.key});
+class ProfileView extends StatelessWidget {
+  ProfileView({super.key});
 
   final List<AccountInfoBoxLabel> accountBoxItems = [
-    AccountInfoBoxLabel(
+    const AccountInfoBoxLabel(
       title: "Name",
       value: "Savannah",
     ),
-    AccountInfoBoxLabel(
+    const AccountInfoBoxLabel(
       title: "Date of birth",
       value: "Aug 21,1992",
     ),
-    AccountInfoBoxLabel(
+    const AccountInfoBoxLabel(
       title: "Phone Number",
       value: "(214) 429 0123",
     ),
-    AccountInfoBoxLabel(
+    const AccountInfoBoxLabel(
       title: "Gender",
       value: "Female",
     ),
-    AccountInfoBoxLabel(
+    const AccountInfoBoxLabel(
       title: "Email",
       value: "Bill.sanders@example.com",
     ),
-    AccountInfoBoxLabel(
+    const AccountInfoBoxLabel(
       title: "Region",
       value: "United States",
     ),
@@ -53,7 +53,7 @@ class Profile extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Column(
             children: [
               AccountBoxLabel(
@@ -62,7 +62,7 @@ class Profile extends StatelessWidget {
                 username: "@alexander02",
                 icon: Icons.photo_camera,
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               AccountInfoBoxColumnLayout(items: accountBoxItems),
             ],
           ),

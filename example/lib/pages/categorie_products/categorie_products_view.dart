@@ -1,16 +1,16 @@
 import 'package:example/gen/assets.gen.dart';
-import 'package:example/pages/product.dart';
+import 'package:example/pages/product/product_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class CategorieProducts extends StatefulWidget {
-  const CategorieProducts({super.key});
+class CategorieProductsView extends StatefulWidget {
+  const CategorieProductsView({super.key});
 
   @override
-  State<CategorieProducts> createState() => _CategorieProductsState();
+  State<CategorieProductsView> createState() => _CategorieProductsViewState();
 }
 
-class _CategorieProductsState extends State<CategorieProducts> {
+class _CategorieProductsViewState extends State<CategorieProductsView> {
   List<String> bottomDragItems = [
     "All Product",
     "Shirts",
@@ -66,7 +66,7 @@ class _CategorieProductsState extends State<CategorieProducts> {
         productPrice: "\$49.00",
         onTap: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const Product()));
+              MaterialPageRoute(builder: (context) => const ProductView()));
         },
       ),
       ProductCardModal(

@@ -1,15 +1,15 @@
-import 'package:example/pages/paymentmethods.dart';
+import 'package:example/pages/paymentmethods/paymentmethods_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class NewCard extends StatefulWidget {
-  const NewCard({super.key});
+class NewCardView extends StatefulWidget {
+  const NewCardView({super.key});
 
   @override
-  State<NewCard> createState() => _NewCardState();
+  State<NewCardView> createState() => _NewCardViewState();
 }
 
-class _NewCardState extends State<NewCard> {
+class _NewCardViewState extends State<NewCardView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +39,8 @@ class _NewCardState extends State<NewCard> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => PaymentMethods()),
+                      MaterialPageRoute(
+                          builder: (context) => PaymentMethodsView()),
                     );
                   },
                   height: 50,

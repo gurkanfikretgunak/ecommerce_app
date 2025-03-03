@@ -1,18 +1,18 @@
 import 'package:example/gen/assets.gen.dart';
-import 'package:example/pages/signup.dart';
+import 'package:example/pages/signup/signup_view.dart';
 import 'package:example/widgets/signin_form.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+class SignInView extends StatefulWidget {
+  const SignInView({super.key});
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignInView> createState() => _SignInViewState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignInViewState extends State<SignInView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,11 +26,11 @@ class _SignInState extends State<SignIn> {
                 onPressed: () {
                   Navigator.pop(context);
                 }),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            SignInForm(),
-            SizedBox(
+            const SignInForm(),
+            const SizedBox(
               height: 20,
             ),
             Column(
@@ -39,10 +39,10 @@ class _SignInState extends State<SignIn> {
                   text: "SIGN IN",
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SignUp()));
+                        MaterialPageRoute(builder: (context) => SignUpView()));
                   },
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 CustomButton(
                   icon: FontAwesomeIcons.google,
                   text: "SIGN IN WITH GOOGLE",
@@ -51,7 +51,7 @@ class _SignInState extends State<SignIn> {
                   iconColor: ColorConstant.instance.neutral1,
                   onPressed: () {},
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 CustomButton(
                   icon: FontAwesomeIcons.facebook,
                   text: "SIGN IN WITH FACEBOOK",
@@ -63,7 +63,7 @@ class _SignInState extends State<SignIn> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Don’t have an account?"),
+                    const Text("Don’t have an account?"),
                     TextButton(
                         onPressed: () {},
                         child: Text(

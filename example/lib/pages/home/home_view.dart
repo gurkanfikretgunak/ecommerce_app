@@ -1,17 +1,17 @@
 import 'package:example/gen/assets.gen.dart';
-import 'package:example/pages/categories.dart';
+import 'package:example/pages/categories/categories_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeViewState extends State<HomeView> {
   final PageController _pageController = PageController();
 
   @override
@@ -140,8 +140,10 @@ class _HomePageState extends State<HomePage> {
                 rightWidget: SectionActionText(
                   text: "All Categories",
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Categories()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CategoriesView()));
                   },
                 ),
                 layout: CategoriesRowLayout(items: categoriesItems),

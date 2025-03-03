@@ -1,6 +1,6 @@
 import 'package:example/gen/assets.gen.dart';
-import 'package:example/pages/addresses.dart';
-import 'package:example/pages/paymentmethods.dart';
+import 'package:example/pages/addresses/addresses_view.dart';
+import 'package:example/pages/paymentmethods/paymentmethods_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -41,7 +41,7 @@ class _CheckoutState extends State<Checkout> {
               email: "willie.jennings@example.com",
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Addresses()));
+                    MaterialPageRoute(builder: (context) => AddressesView()));
               },
               phone: "(480) 555-0103"),
           SizedBox(
@@ -49,8 +49,10 @@ class _CheckoutState extends State<Checkout> {
           ),
           PaymentMethodBoxModal(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => PaymentMethods()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PaymentMethodsView()));
               },
               text: "Master card Ending *****23"),
           SizedBox(

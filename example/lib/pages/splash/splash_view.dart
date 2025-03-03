@@ -1,23 +1,23 @@
 import 'package:example/animation/loadinganimation.dart';
 import 'package:example/animation/rippleanimation.dart';
 import 'package:example/gen/assets.gen.dart';
-import 'package:example/pages/onboarding.dart';
+import 'package:example/pages/onboarding/onboarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-class Splash extends StatefulWidget {
+class SplashView extends StatefulWidget {
   final String? logoPath;
   final String? splashText;
 
-  const Splash({super.key, this.logoPath, this.splashText});
+  const SplashView({super.key, this.logoPath, this.splashText});
 
   @override
-  State<Splash> createState() => _SplashState();
+  State<SplashView> createState() => _SplashViewState();
 }
 
-class _SplashState extends State<Splash> {
+class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
@@ -25,7 +25,7 @@ class _SplashState extends State<Splash> {
     Future.delayed(Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Onboarding()),
+        MaterialPageRoute(builder: (context) => OnboardingView()),
       );
     });
   }

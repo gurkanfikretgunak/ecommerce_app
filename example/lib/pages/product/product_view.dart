@@ -1,17 +1,17 @@
 import 'package:example/gen/assets.gen.dart';
-import 'package:example/pages/payment.dart';
+import 'package:example/pages/payment/payment_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class Product extends StatefulWidget {
-  const Product({super.key});
+class ProductView extends StatefulWidget {
+  const ProductView({super.key});
 
   @override
-  State<Product> createState() => _ProductState();
+  State<ProductView> createState() => _ProductViewState();
 }
 
-class _ProductState extends State<Product> {
+class _ProductViewState extends State<ProductView> {
   PageController _pageController = PageController();
 
   void initState() {
@@ -71,7 +71,7 @@ class _ProductState extends State<Product> {
             title: "SUCCESS",
             buttonOnPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const Payment()));
+                  MaterialPageRoute(builder: (context) => PaymentView()));
             },
             description:
                 "Dolor magna eget est lorem ipsum dolor sit amet consectetur.",

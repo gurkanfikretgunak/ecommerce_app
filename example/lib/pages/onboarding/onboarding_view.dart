@@ -1,16 +1,16 @@
 import 'package:example/gen/assets.gen.dart';
-import 'package:example/pages/signin.dart';
+import 'package:example/pages/signin/signin_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class Onboarding extends StatefulWidget {
-  const Onboarding({super.key});
+class OnboardingView extends StatefulWidget {
+  const OnboardingView({super.key});
 
   @override
-  State<Onboarding> createState() => _OnboardingState();
+  State<OnboardingView> createState() => _OnboardingViewState();
 }
 
-class _OnboardingState extends State<Onboarding> {
+class _OnboardingViewState extends State<OnboardingView> {
   PageController _pageController = PageController();
 
   void _goToNextPage(int page) {
@@ -19,7 +19,7 @@ class _OnboardingState extends State<Onboarding> {
           duration: Duration(milliseconds: 300), curve: Curves.easeIn);
     } else {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => SignIn()));
+          context, MaterialPageRoute(builder: (context) => SignInView()));
     }
   }
 

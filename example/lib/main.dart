@@ -1,5 +1,5 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:example/pages/homepage.dart';
+import 'package:example/pages/home/home_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -26,6 +26,6 @@ class ExampleApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const HomePage());
+        home: const HomeView());
   }
 }

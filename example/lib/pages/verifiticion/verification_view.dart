@@ -1,16 +1,16 @@
-import 'package:example/pages/homepage.dart';
+import 'package:example/pages/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class Verification extends StatefulWidget {
-  const Verification({super.key});
+class VerificationView extends StatefulWidget {
+  const VerificationView({super.key});
 
   @override
-  State<Verification> createState() => _VerificationState();
+  State<VerificationView> createState() => _VerificationViewState();
 }
 
-class _VerificationState extends State<Verification> {
+class _VerificationViewState extends State<VerificationView> {
   final TextEditingController otpController = TextEditingController();
 
   @override
@@ -69,7 +69,7 @@ class _VerificationState extends State<Verification> {
             text: "SUBMIT",
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
+                  context, MaterialPageRoute(builder: (context) => HomeView()));
             },
           ),
           Row(

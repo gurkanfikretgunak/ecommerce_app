@@ -1,5 +1,4 @@
-import 'package:example/gen/assets.gen.dart';
-import 'package:example/pages/profile.dart';
+import 'package:example/pages/profile/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -18,8 +17,8 @@ class _AccountViewState extends State<AccountView> {
           icon: Icons.person_outlined,
           text: 'Account',
           onTap: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Profile()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ProfileView()));
           },
           suffixIcon: Icons.arrow_forward_ios),
       const SettingsBoxLabel(
@@ -76,8 +75,8 @@ class _AccountViewState extends State<AccountView> {
           padding: const EdgeInsets.all(15),
           child: Column(
             children: [
-              AccountBoxLabel(
-                imagePath: Assets.images.profilepicture.path,
+              const AccountBoxLabel(
+                imagePath: "assets/images/profilepicture.png",
                 name: "Savannah Robertson",
                 username: "@alexander02",
                 icon: Icons.photo_camera,

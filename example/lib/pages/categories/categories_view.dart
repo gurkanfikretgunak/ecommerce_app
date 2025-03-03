@@ -1,10 +1,10 @@
 import 'package:example/gen/assets.gen.dart';
-import 'package:example/pages/categorie_products.dart';
+import 'package:example/pages/categorie_products/categorie_products_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class Categories extends StatelessWidget {
-  const Categories({super.key});
+class CategoriesView extends StatelessWidget {
+  const CategoriesView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class Categories extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const CategorieProducts()));
+                    builder: (context) => const CategorieProductsView()));
           },
           imagePath: Assets.images.categoriebannerFirst.path,
           text: "MEN"),

@@ -1,17 +1,17 @@
-import 'package:example/pages/newaddress.dart';
+import 'package:example/pages/newaddress/newaddress_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class Addresses extends StatefulWidget {
+class AddressesView extends StatefulWidget {
   final List<AddressBoxModal>? addressItems;
 
-  const Addresses({super.key, this.addressItems});
+  const AddressesView({super.key, this.addressItems});
 
   @override
-  State<Addresses> createState() => _AddressesState();
+  State<AddressesView> createState() => _AddressesViewState();
 }
 
-class _AddressesState extends State<Addresses> {
+class _AddressesViewState extends State<AddressesView> {
   late List<AddressBoxModal> addressItems;
   int? selectedIndex;
 
@@ -68,8 +68,10 @@ class _AddressesState extends State<Addresses> {
               padding: const EdgeInsets.all(15),
               child: CustomButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => NewAddress()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NewAddressView()));
                   },
                   height: 50,
                   text: "Add New Address"),
