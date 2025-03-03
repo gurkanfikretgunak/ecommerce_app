@@ -24,37 +24,31 @@ class ProductHeader extends StatelessWidget {
         Container(
           width: screenWidth,
           height: screenHeight * 0.3,
-          child: PageView(
+          child: PageView.builder(
             controller: _pageController,
-            children: imagePaths.map((path) {
-              return Image.asset(
-                path,
-                fit: BoxFit.cover,
+            itemCount: imagePaths.length,
+            itemBuilder: (context, index) {
+              return ProductHeaderImageLabel(
+                imagePath: imagePaths[index],
+                pageController: _pageController,
+                count: imagePaths.length,
               );
-            }).toList(),
+            },
           ),
         ),
         Positioned(
           top: screenHeight * 0.02,
           left: 5,
-          right: 15,
+          right: 5,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomAppbar(
                 iconColor: ColorConstant.instance.neutral1,
                 onPressed: onPressed,
               ),
-              Expanded(child: SizedBox()),
               if (iconRow != null) iconRow!,
             ],
-          ),
-        ),
-        Positioned(
-          bottom: 10,
-          right: 20,
-          child: SliderIndicator(
-            pageController: _pageController,
-            count: imagePaths.length,
           ),
         ),
       ],

@@ -70,8 +70,8 @@ class _ProductState extends State<Product> {
           return PopupSuccesLabel(
             title: "SUCCESS",
             buttonOnPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Payment()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Payment()));
             },
             description:
                 "Dolor magna eget est lorem ipsum dolor sit amet consectetur.",
@@ -98,7 +98,7 @@ class _ProductState extends State<Product> {
                   InkWell(
                     child: SvgPicture.asset("assets/icons/cart.svg"),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   InkWell(
                     child: SvgPicture.asset("assets/icons/search.svg"),
                   ),
@@ -133,7 +133,7 @@ class _ProductState extends State<Product> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: ProductReviewColumnLayout(
                 items: reviewItems,
               ),
@@ -143,7 +143,7 @@ class _ProductState extends State<Product> {
               child: ReviewFormLabel(),
             ),
             Padding(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: SectionLayout(
                 sectionText: "RELATED PRODUCT",
                 layout: ProductRowLayout(items: productCardItems),
