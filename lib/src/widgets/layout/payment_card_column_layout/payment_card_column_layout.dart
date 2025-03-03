@@ -38,7 +38,8 @@ class _PaymentCardColumnLayoutState extends State<PaymentCardColumnLayout> {
       children: [
         ListView.separated(
           shrinkWrap: true,
-          separatorBuilder: (context, index) => SizedBox(height: 20),
+          separatorBuilder: (context, index) =>
+              context.emptySizedHeightBoxNormal,
           itemCount: paymentCardItems.length,
           itemBuilder: (context, index) {
             return PaymentCardModal(

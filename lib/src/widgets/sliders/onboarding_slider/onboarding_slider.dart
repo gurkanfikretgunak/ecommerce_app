@@ -40,9 +40,7 @@ class OnboardingSlider extends StatelessWidget {
                 OnboardingText(text: firstText),
                 OnboardingText(text: secondText),
                 OnboardingText(text: thirdText),
-                const SizedBox(
-                  height: 15,
-                ),
+                context.emptySizedHeightBoxLow,
                 OnboardingButton(
                   onNext: onNext,
                 ),

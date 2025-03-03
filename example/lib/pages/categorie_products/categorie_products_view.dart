@@ -112,7 +112,7 @@ class _CategorieProductsViewState extends State<CategorieProductsView> {
             },
             text: "MEN",
           ),
-          const SizedBox(height: 30),
+          context.emptySizedHeightBoxNormal,
           SizedBox(
             width: 350,
             height: 40,
@@ -128,7 +128,7 @@ class _CategorieProductsViewState extends State<CategorieProductsView> {
               ),
             ),
           ),
-          const SizedBox(height: 30),
+          context.emptySizedHeightBoxNormal,
           Expanded(
             child: ProductGridLayout(
               crossAxisSpacing: 3,

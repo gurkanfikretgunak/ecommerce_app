@@ -78,13 +78,13 @@ class _SearchViewState extends State<SearchView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 10),
+              context.emptySizedHeightBoxNormal,
               Wrap(
                 spacing: 5.0,
                 runSpacing: 5.0,
                 children: tags,
               ),
-              const SizedBox(height: 30),
+              context.emptySizedHeightBoxNormal,
               SectionLayout(
                   sectionText: "YOU ALSO VIEWED",
                   layout: ProductGridLayout(

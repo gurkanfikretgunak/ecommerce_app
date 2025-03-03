@@ -81,9 +81,7 @@ class _AccountViewState extends State<AccountView> {
                 username: "@alexander02",
                 icon: Icons.photo_camera,
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              context.emptySizedHeightBoxNormal,
               Column(
                 children: [
                   CustomButton(
@@ -97,9 +95,7 @@ class _AccountViewState extends State<AccountView> {
                     textColor: ColorConstant.instance.neutral1,
                     icon: Icons.local_mall,
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  context.emptySizedHeightBoxLow,
                   CustomButton(
                     width: buttonWidth,
                     radius: 0,
@@ -113,9 +109,7 @@ class _AccountViewState extends State<AccountView> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              context.emptySizedHeightBoxNormal,
               SettingsBoxColumnLayout(
                 items: settingsBoxItem,
               ),

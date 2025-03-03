@@ -96,7 +96,7 @@ class _ProductViewState extends State<ProductView> {
                   InkWell(
                     child: SvgPicture.asset("assets/icons/cart.svg"),
                   ),
-                  const SizedBox(width: 10),
+                  context.emptySizedWidthBoxNormal,
                   InkWell(
                     child: SvgPicture.asset("assets/icons/search.svg"),
                   ),
@@ -147,9 +147,7 @@ class _ProductViewState extends State<ProductView> {
                 layout: ProductRowLayout(items: productCardItems),
               ),
             ),
-            const SizedBox(
-              height: 80,
-            ),
+            context.emptySizedHeightBoxHigh,
           ],
         ),
       ),

@@ -57,13 +57,11 @@ class _VerificationViewState extends State<VerificationView> {
               ),
             ],
           ),
-          const SizedBox(height: 5),
+          context.emptySizedHeightBoxLow,
           OtpTextfieldInput(
             controller: otpController,
           ),
-          const SizedBox(
-            height: 80,
-          ),
+          context.emptySizedHeightBoxHigh,
           const Text("01:40"),
           CustomButton(
             text: "SUBMIT",

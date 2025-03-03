@@ -9,14 +9,15 @@ class ProductCardModal extends StatelessWidget {
   final VoidCallback? onTap;
   final double? imageHeight;
 
-  const ProductCardModal(
-      {super.key,
-      required this.imagePath,
-      required this.productStock,
-      required this.productName,
-      this.imageHeight,
-      required this.productPrice,
-      this.onTap});
+  const ProductCardModal({
+    super.key,
+    required this.imagePath,
+    required this.productStock,
+    required this.productName,
+    this.imageHeight,
+    required this.productPrice,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +41,13 @@ class ProductCardModal extends StatelessWidget {
               fontSize: 8,
               color: ColorConstant.instance.neutral4,
             ),
-            const SizedBox(height: 4),
+            context.emptySizedHeightBoxLow,
             ProductText(
               text: productName,
               fontSize: 12,
               color: ColorConstant.instance.neutral1,
             ),
-            const SizedBox(height: 4),
+            context.emptySizedHeightBoxLow,
             ProductText(
                 text: productPrice,
                 fontSize: 16,

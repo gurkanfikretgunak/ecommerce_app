@@ -42,7 +42,7 @@ class _SignUpViewState extends State<SignUpView> {
                       builder: (context) => const VerificationView()));
             },
           ),
-          const SizedBox(height: 5),
+          context.emptySizedHeightBoxLow,
           CustomButton(
             icon: FontAwesomeIcons.google,
             text: "SIGN UP WITH GOOGLE",
@@ -51,7 +51,7 @@ class _SignUpViewState extends State<SignUpView> {
             iconColor: ColorConstant.instance.neutral1,
             onPressed: () {},
           ),
-          const SizedBox(height: 5),
+          context.emptySizedHeightBoxLow,
           CustomButton(
             icon: FontAwesomeIcons.facebook,
             text: "SIGN UP WITH FACEBOOK",

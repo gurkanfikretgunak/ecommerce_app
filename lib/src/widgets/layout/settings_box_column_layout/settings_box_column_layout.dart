@@ -15,7 +15,7 @@ class SettingsBoxColumnLayout extends StatelessWidget {
         return items[index];
       },
       separatorBuilder: (context, index) {
-        return const SizedBox(height: 25);
+        return context.emptySizedHeightBoxNormal;
       },
     );
   }

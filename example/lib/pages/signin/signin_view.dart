@@ -26,13 +26,9 @@ class _SignInViewState extends State<SignInView> {
                 onPressed: () {
                   Navigator.pop(context);
                 }),
-            const SizedBox(
-              height: 20,
-            ),
+            context.emptySizedHeightBoxNormal,
             const SignInForm(),
-            const SizedBox(
-              height: 20,
-            ),
+            context.emptySizedHeightBoxNormal,
             Column(
               children: [
                 CustomButton(
@@ -44,7 +40,7 @@ class _SignInViewState extends State<SignInView> {
                             builder: (context) => const SignUpView()));
                   },
                 ),
-                const SizedBox(height: 5),
+                context.emptySizedHeightBoxLow,
                 CustomButton(
                   icon: FontAwesomeIcons.google,
                   text: "SIGN IN WITH GOOGLE",
@@ -53,7 +49,7 @@ class _SignInViewState extends State<SignInView> {
                   iconColor: ColorConstant.instance.neutral1,
                   onPressed: () {},
                 ),
-                const SizedBox(height: 5),
+                context.emptySizedHeightBoxLow,
                 CustomButton(
                   icon: FontAwesomeIcons.facebook,
                   text: "SIGN IN WITH FACEBOOK",

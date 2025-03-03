@@ -18,21 +18,15 @@ class ProductDescriptionLabel extends StatelessWidget {
           text: "DESCRIPTION",
           fontSize: 20,
         ),
-        const SizedBox(
-          height: 10,
-        ),
+        context.emptySizedHeightBoxLow,
         ProductDescriptionText(
           text: text,
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        context.emptySizedHeightBoxLow,
         ProductDescriptionImage(
             width: MediaQuery.of(context).size.width * 0.9,
             imagePath: imagePath),
-        const SizedBox(
-          height: 10,
-        ),
+        context.emptySizedHeightBoxLow,
         Align(
           child: Column(
             children: [

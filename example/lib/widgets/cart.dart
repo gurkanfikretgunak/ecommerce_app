@@ -52,13 +52,9 @@ class _CartState extends State<Cart> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const SizedBox(
-            height: 20,
-          ),
+          context.emptySizedHeightBoxNormal,
           CartListLayout(items: productBoxRowItems),
-          const SizedBox(
-            height: 20,
-          ),
+          context.emptySizedHeightBoxNormal,
           SectionLayout(
               sectionText: "YOU ALSO VIEWED",
               layout: ProductGridLayout(productItems: productCardItems)),

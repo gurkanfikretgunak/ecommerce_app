@@ -36,9 +36,7 @@ class HomePageSlider extends StatelessWidget {
                     color: ColorConstant.instance.primary_main,
                     fontSize: 40,
                   ),
-                  const SizedBox(
-                    width: 15,
-                  ),
+                  context.emptySizedHeightBoxNormal,
                   const BannerButton(icon: Icons.arrow_forward)
                 ],
               )

@@ -47,14 +47,14 @@ class _CheckoutListLayoutState extends State<CheckoutListLayout> {
                     ),
                     productBox: widget.items[index],
                   ),
-                  const SizedBox(height: 10),
+                  context.emptySizedHeightBoxNormal,
                 ],
               );
             },
           ),
         ),
         const CouponcodeTextfieldInput(),
-        const SizedBox(height: 15),
+        context.emptySizedHeightBoxNormal,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

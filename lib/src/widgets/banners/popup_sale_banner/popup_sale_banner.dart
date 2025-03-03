@@ -53,20 +53,20 @@ class _PopupSaleBannerState extends State<PopupSaleBanner> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const SizedBox(height: 10),
+                    context.emptySizedHeightBoxNormal,
                     ProductText(
                       text: widget.subTitle,
                       fontSize: 22,
                       color: ColorConstant.instance.neutral9,
                     ),
-                    const SizedBox(height: 2),
+                    context.emptySizedHeightBoxLow,
                     HeadText(
                       text: "${widget.discount}%",
                       fontSize: 80,
                       color: ColorConstant.instance.neutral9,
                     ),
                     if (widget.button != null) widget.button!,
-                    const SizedBox(height: 2),
+                    context.emptySizedHeightBoxLow,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -89,7 +89,7 @@ class _PopupSaleBannerState extends State<PopupSaleBanner> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    context.emptySizedHeightBoxNormal,
                   ],
                 ),
               ),

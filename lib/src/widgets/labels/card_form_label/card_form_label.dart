@@ -36,9 +36,7 @@ class _CardFormLabelState extends State<CardFormLabel> {
             color: ColorConstant.instance.neutral4,
             expirationDate:
                 "${expMonthController.text}/${expDateController.text}"),
-        const SizedBox(
-          height: 30,
-        ),
+        context.emptySizedHeightBoxNormal,
         TextFieldInput(
           hintText: "Name On Card",
           onChanged: (value) {
@@ -46,7 +44,7 @@ class _CardFormLabelState extends State<CardFormLabel> {
           },
           controller: nameController,
         ),
-        const SizedBox(height: 20),
+        context.emptySizedHeightBoxNormal,
         TextFieldInput(
           hintText: "Card Number",
           onChanged: (value) {
@@ -54,7 +52,7 @@ class _CardFormLabelState extends State<CardFormLabel> {
           },
           controller: cardNumberController,
         ),
-        const SizedBox(height: 20),
+        context.emptySizedHeightBoxNormal,
         Row(
           children: [
             Expanded(
@@ -66,7 +64,7 @@ class _CardFormLabelState extends State<CardFormLabel> {
                 hintText: 'Exp Month',
               ),
             ),
-            const SizedBox(width: 20),
+            context.emptySizedWidthBoxNormal,
             Expanded(
               child: TextFieldInput(
                 controller: expDateController,
@@ -78,7 +76,7 @@ class _CardFormLabelState extends State<CardFormLabel> {
             ),
           ],
         ),
-        const SizedBox(height: 20),
+        context.emptySizedHeightBoxNormal,
         TextFieldInput(
           hintText: "Cvv",
           onChanged: (value) {

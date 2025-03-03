@@ -25,41 +25,29 @@ class _ReviewFormLabelState extends State<ReviewFormLabel> {
           fontSize: 20,
           color: ColorConstant.instance.neutral1,
         ),
-        const SizedBox(
-          height: 10,
-        ),
+        context.emptySizedHeightBoxLow,
         TextFieldInput(
             hintText: "Your Review * ", controller: reviewTextController),
-        const SizedBox(
-          height: 10,
-        ),
+        context.emptySizedHeightBoxLow,
         TextFieldInput(hintText: "Name * ", controller: nameTextController),
-        const SizedBox(
-          height: 10,
-        ),
+        context.emptySizedHeightBoxLow,
         TextFieldInput(
           hintText: "Email* ",
           inputType: InputType.email,
           controller: emailTextController,
         ),
-        const SizedBox(
-          height: 10,
-        ),
+        context.emptySizedHeightBoxLow,
         Row(
           children: [
             ProductText(
                 color: ColorConstant.instance.neutral4,
                 fontSize: 10,
                 text: "Your Rating * "),
-            const SizedBox(
-              width: 5,
-            ),
+            context.emptySizedWidthBoxLow,
             const RateInputRowLayout(),
           ],
         ),
-        const SizedBox(
-          height: 10,
-        ),
+        context.emptySizedHeightBoxLow,
         Row(
           children: [
             Checkbox(
@@ -73,9 +61,7 @@ class _ReviewFormLabelState extends State<ReviewFormLabel> {
                 });
               },
             ),
-            const SizedBox(
-              width: 5,
-            ),
+            context.emptySizedWidthBoxLow,
             Container(
               width: MediaQuery.of(context).size.width * 0.7,
               child: ProductText(
@@ -88,9 +74,7 @@ class _ReviewFormLabelState extends State<ReviewFormLabel> {
             ),
           ],
         ),
-        const SizedBox(
-          height: 10,
-        ),
+        context.emptySizedHeightBoxLow,
         CustomButton(
           width: 130,
           height: 40,

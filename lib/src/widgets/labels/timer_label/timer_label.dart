@@ -11,18 +11,18 @@ class TimerLabel extends StatefulWidget {
 class _TimerLabelState extends State<TimerLabel> {
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TimerLabelBox(),
-        SizedBox(width: 3),
-        Text(":"),
-        SizedBox(width: 3),
-        TimerLabelBox(),
-        SizedBox(width: 3),
-        Text(":"),
-        SizedBox(width: 3),
-        TimerLabelBox(),
+        const TimerLabelBox(),
+        context.emptySizedWidthBoxLow,
+        const Text(":"),
+        context.emptySizedWidthBoxLow,
+        const TimerLabelBox(),
+        context.emptySizedWidthBoxLow,
+        const Text(":"),
+        context.emptySizedWidthBoxLow,
+        const TimerLabelBox(),
       ],
     );
   }

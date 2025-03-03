@@ -37,24 +37,24 @@ class _SignInFormState extends State<SignInForm> {
                 "Email",
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
               ),
-              const SizedBox(height: 5),
+              context.emptySizedHeightBoxLow,
               TextFieldInput(
                 controller: emailController,
                 hintText: "Enter Email",
                 inputType: InputType.email,
               ),
-              const SizedBox(height: 20),
+              context.emptySizedHeightBoxNormal,
               const Text(
                 "Password",
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
               ),
-              const SizedBox(height: 5),
+              context.emptySizedHeightBoxNormal,
               TextFieldInput(
                 hintText: "Enter Password",
                 controller: passwordController,
                 inputType: InputType.password,
               ),
-              const SizedBox(height: 15),
+              context.emptySizedHeightBoxNormal,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

@@ -32,9 +32,7 @@ class _CheckoutState extends State<Checkout> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const SizedBox(
-            height: 20,
-          ),
+          context.emptySizedHeightBoxNormal,
           AddressBoxModal(
               name: "Theresa Webb",
               address: "3517 W. Gray St. Utica, Pennsylvania 57867",
@@ -46,9 +44,7 @@ class _CheckoutState extends State<Checkout> {
                         builder: (context) => const AddressesView()));
               },
               phone: "(480) 555-0103"),
-          const SizedBox(
-            height: 10,
-          ),
+          context.emptySizedHeightBoxNormal,
           PaymentMethodBoxModal(
               onTap: () {
                 Navigator.push(
@@ -57,13 +53,9 @@ class _CheckoutState extends State<Checkout> {
                         builder: (context) => const PaymentMethodsView()));
               },
               text: "Master card Ending *****23"),
-          const SizedBox(
-            height: 10,
-          ),
+          context.emptySizedHeightBoxNormal,
           CheckoutListLayout(items: productBoxRowItems),
-          const SizedBox(
-            height: 20,
-          ),
+          context.emptySizedHeightBoxNormal,
           CustomButton(
               onPressed: widget.buttonCallBack ?? () {},
               height: 50,

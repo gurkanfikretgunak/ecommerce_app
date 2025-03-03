@@ -62,7 +62,7 @@ class ProfileView extends StatelessWidget {
                 username: "@alexander02",
                 icon: Icons.photo_camera,
               ),
-              const SizedBox(height: 30),
+              context.emptySizedHeightBoxNormal,
               AccountInfoBoxColumnLayout(items: accountBoxItems),
             ],
           ),

@@ -26,7 +26,7 @@ class SectionText extends StatelessWidget {
           height: lineHeight ?? 25,
           color: lineColor ?? ColorConstant.instance.primary_main,
         ),
-        SizedBox(width: 10),
+        context.emptySizedWidthBoxNormal,
         HeadText(
           text: text,
           color: color ?? ColorConstant.instance.neutral1,

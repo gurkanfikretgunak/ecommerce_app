@@ -25,7 +25,8 @@ class _AddressesColumnLayoutState extends State<AddressesColumnLayout> {
           child: ListView.separated(
             shrinkWrap: true,
             itemCount: widget.addressItems.length,
-            separatorBuilder: (context, index) => const SizedBox(height: 10),
+            separatorBuilder: (context, index) =>
+                context.emptySizedHeightBoxNormal,
             itemBuilder: (context, index) {
               return Dismissible(
                   key: Key(widget.addressItems[index].name),

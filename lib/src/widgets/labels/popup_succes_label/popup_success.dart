@@ -41,13 +41,13 @@ class PopupSuccesLabel extends StatelessWidget {
                     SuccessLabelRadius(
                       iconPath: iconPath,
                     ),
-                    const SizedBox(height: 10),
+                    context.emptySizedHeightBoxNormal,
                     HeadText(
                       fontSize: titleFontSize ?? 30,
                       color: ColorConstant.instance.neutral1,
                       text: title,
                     ),
-                    const SizedBox(height: 10),
+                    context.emptySizedHeightBoxNormal,
                     SizedBox(
                       width: 300,
                       child: ProductText(
@@ -57,7 +57,7 @@ class PopupSuccesLabel extends StatelessWidget {
                         text: description,
                       ),
                     ),
-                    const SizedBox(height: 30),
+                    context.emptySizedHeightBoxNormal,
                     CustomButton(
                       onPressed: buttonOnPressed,
                       color: buttonColor ?? ColorConstant.instance.primary_main,

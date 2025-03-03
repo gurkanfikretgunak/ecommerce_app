@@ -51,7 +51,7 @@ class _CartListLayoutState extends State<CartListLayout> {
                     ),
                     productBox: widget.items[index],
                   ),
-                  const SizedBox(height: 15),
+                  context.emptySizedHeightBoxNormal,
                 ],
               );
             },

@@ -132,7 +132,7 @@ class _HomeViewState extends State<HomeView> {
                 ],
               ),
             ),
-            const SizedBox(height: 15),
+            context.emptySizedHeightBoxNormal,
             Padding(
               padding: const EdgeInsets.all(15),
               child: SectionLayout(
@@ -166,9 +166,7 @@ class _HomeViewState extends State<HomeView> {
                       subTitleText: "NEW SEASON",
                       descriptionText: "Lorem ipsum dolor sit amet",
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    context.emptySizedHeightBoxLow,
                     HomepageBanner(
                       imagePath: Assets.images.homepagebannerimageSecond.path,
                       titleText: "50% Off",

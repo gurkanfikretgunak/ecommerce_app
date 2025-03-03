@@ -45,17 +45,13 @@ class ProductInfoLabel extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(
-          height: 10,
-        ),
+        context.emptySizedHeightBoxLow,
         ProductText(
           fontSize: 18,
           text: productName,
           color: ColorConstant.instance.neutral1,
         ),
-        SizedBox(
-          height: 10,
-        ),
+        context.emptySizedHeightBoxLow,
         Container(
             width: MediaQuery.of(context).size.width * 0.9,
             child: ProductDescriptionText(

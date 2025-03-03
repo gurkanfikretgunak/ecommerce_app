@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:shopapp_widgets/src/widgets/labels/account_info_box_label/account_info_box_label.dart';
 
 class AccountInfoBoxColumnLayout extends StatelessWidget {
@@ -14,7 +15,7 @@ class AccountInfoBoxColumnLayout extends StatelessWidget {
         },
         physics: const NeverScrollableScrollPhysics(),
         separatorBuilder: (context, index) {
-          return const SizedBox(height: 25);
+          return context.emptySizedHeightBoxNormal;
         },
         itemCount: items.length);
   }
