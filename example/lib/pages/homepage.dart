@@ -1,3 +1,4 @@
+import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/categories.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
@@ -20,38 +21,38 @@ class _HomePageState extends State<HomePage> {
   }
 
   List<Widget> categoriesItems = [
-    const ImageRadiusModal(
-        imagePath: "assets/images/categorierow_first.png", text: "Men"),
-    const ImageRadiusModal(
-        imagePath: "assets/images/categorierow_second.png", text: "Women"),
-    const ImageRadiusModal(
-        imagePath: "assets/images/categorierow_third.png", text: "Kids"),
-    const ImageRadiusModal(
-        imagePath: "assets/images/categorierow_fourth.png", text: "Bags"),
-    const ImageRadiusModal(
-        imagePath: "assets/images/categorierow_fifth.png", text: "Shoes"),
-    const ImageRadiusModal(
-        imagePath: "assets/images/categorierow_six.png", text: "Accessories"),
+    ImageRadiusModal(
+        imagePath: Assets.images.categorierowFirst.path, text: "Men"),
+    ImageRadiusModal(
+        imagePath: Assets.images.categorierowSecond.path, text: "Women"),
+    ImageRadiusModal(
+        imagePath: Assets.images.categorierowThird.path, text: "Kids"),
+    ImageRadiusModal(
+        imagePath: Assets.images.categorierowFourth.path, text: "Bags"),
+    ImageRadiusModal(
+        imagePath: Assets.images.categorierowFifth.path, text: "Shoes"),
+    ImageRadiusModal(
+        imagePath: Assets.images.categorierowSix.path, text: "Accessories"),
   ];
 
   List<Widget> productCardItems = [
-    const ProductCardModal(
-        imagePath: "assets/images/productcardimage_first.png",
+    ProductCardModal(
+        imagePath: Assets.images.productcardimageFirst.path,
         productStock: "Sold(50 Product)",
         productName: "Long-sleeved T-shirt",
         productPrice: "\$49.00"),
-    const ProductCardModal(
-        imagePath: "assets/images/productcardimage_second.png",
+    ProductCardModal(
+        imagePath: Assets.images.productcardimageSecond.path,
         productStock: "Sold(50 Product)",
         productName: "Printed Cotton Shirt",
         productPrice: "\$45.00"),
-    const ProductCardModal(
-        imagePath: "assets/images/productcardimage_third.png",
+    ProductCardModal(
+        imagePath: Assets.images.productcardimageThird.path,
         productStock: "Sold(50 Product)",
         productName: "Cotton T-shirt",
         productPrice: "\$49.00"),
-    const ProductCardModal(
-        imagePath: "assets/images/productcardimage_fourth.png",
+    ProductCardModal(
+        imagePath: Assets.images.productcardimageFourth.path,
         productStock: "Sold(50 Product)",
         productName: "Embroidered T-Shirt",
         productPrice: "\$39.00"),
@@ -74,7 +75,7 @@ class _HomePageState extends State<HomePage> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return PopupSaleBanner(
-          imagePath: "assets/images/popupbannerimage.png",
+          imagePath: Assets.images.popupbannerimage.path,
           saleTitle: "WINTER SALE",
           subTitle: "SALE OFF",
           discount: "50",
@@ -95,10 +96,10 @@ class _HomePageState extends State<HomePage> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(60),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
         child: HomePageAppbar(
-            logoPath: "assets/icons/logotext.png", icon: Icons.notifications),
+            logoPath: Assets.icons.logotext.path, icon: Icons.notifications),
       ),
       backgroundColor: ColorConstant.instance.neutral9,
       body: SingleChildScrollView(
@@ -111,20 +112,20 @@ class _HomePageState extends State<HomePage> {
                 controller: _pageController,
                 children: [
                   HomePageSlider(
-                    imagePath: "assets/images/homepagesliderimage.png",
+                    imagePath: Assets.images.homepagesliderimage.path,
                     headText: "MERGING STYLE WITH",
                     pageController: _pageController,
                     descText: "ELEGANCE",
                   ),
                   HomePageSlider(
                     pageController: _pageController,
-                    imagePath: "assets/images/homepagesliderimage.png",
+                    imagePath: Assets.images.homepagesliderimage.path,
                     headText: "MERGING STYLE WITH",
                     descText: "ELEGANCE",
                   ),
                   HomePageSlider(
                     pageController: _pageController,
-                    imagePath: "assets/images/homepagesliderimage.png",
+                    imagePath: Assets.images.homepagesliderimage.path,
                     headText: "MERGING STYLE WITH",
                     descText: "ELEGANCE",
                   ),
@@ -153,21 +154,21 @@ class _HomePageState extends State<HomePage> {
                 layout: ProductGridLayout(productItems: productCardItems),
               ),
             ),
-            const Padding(
+            Padding(
                 padding: EdgeInsets.all(15),
                 child: Column(
                   children: [
                     HomepageBanner(
-                      imagePath: "assets/images/homepagebannerimage_first.png",
+                      imagePath: Assets.images.homepagebannerimageFirst.path,
                       titleText: "The Collection",
                       subTitleText: "NEW SEASON",
                       descriptionText: "Lorem ipsum dolor sit amet",
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     HomepageBanner(
-                      imagePath: "assets/images/homepagebannerimage_second.png",
+                      imagePath: Assets.images.homepagebannerimageSecond.path,
                       titleText: "50% Off",
                       subTitleText: "WINTER SALE",
                       descriptionText: "Lorem ipsum dolor sit amet",
