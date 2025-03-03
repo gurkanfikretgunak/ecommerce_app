@@ -42,7 +42,6 @@ class AddressBoxModal extends StatelessWidget {
           color: containerColor ?? ColorConstant.instance.neutral7,
           border: BorderDirectional(
             bottom: BorderSide(
-              width: 1,
               color: ColorConstant.instance.neutral7,
             ),
             start: isSelected == true
@@ -55,7 +54,7 @@ class AddressBoxModal extends StatelessWidget {
         ),
         child: Center(
           child: Padding(
-            padding: EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -85,8 +84,8 @@ class AddressBoxModal extends StatelessWidget {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 10),
+                const Padding(
+                  padding: EdgeInsets.only(right: 10),
                   child: Icon(size: 15, Icons.arrow_forward_ios_rounded),
                 ),
               ],

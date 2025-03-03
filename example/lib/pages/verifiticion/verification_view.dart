@@ -57,19 +57,19 @@ class _VerificationViewState extends State<VerificationView> {
               ),
             ],
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           OtpTextfieldInput(
             controller: otpController,
           ),
-          SizedBox(
+          const SizedBox(
             height: 80,
           ),
           const Text("01:40"),
           CustomButton(
             text: "SUBMIT",
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomeView()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const HomeView()));
             },
           ),
           Row(

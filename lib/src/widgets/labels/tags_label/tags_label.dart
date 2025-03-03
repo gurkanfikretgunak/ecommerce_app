@@ -43,7 +43,7 @@ class _TagsLabelState extends State<TagsLabel> {
             color: widget.shadowColor ?? Colors.black.withOpacity(0.1),
             spreadRadius: widget.spreadRadius ?? 1,
             blurRadius: widget.blurRadius ?? 150,
-            offset: widget.offset ?? Offset(0, 1),
+            offset: widget.offset ?? const Offset(0, 1),
           ),
         ],
       ),

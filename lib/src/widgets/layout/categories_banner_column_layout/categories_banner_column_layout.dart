@@ -8,12 +8,11 @@ class CategoriesBannerColumnLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        scrollDirection: Axis.vertical,
         itemCount: items.length,
         itemBuilder: (context, index) {
           return Container(
+            margin: const EdgeInsets.only(bottom: 20),
             child: items[index],
-            margin: EdgeInsets.only(bottom: 20),
           );
         });
   }

@@ -72,7 +72,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
                   hintText: 'First Name*',
                 ),
               ),
-              SizedBox(width: 16),
+              const SizedBox(width: 16),
               Expanded(
                 child: TextFieldInput(
                   controller: lastNameController,
@@ -119,7 +119,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
             hintText: 'Email Address*',
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
         Padding(
@@ -132,14 +132,14 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
                   fontSize: 14,
                   color: ColorConstant.instance.neutral1,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Container(
+                const SizedBox(
                   height: 250,
                   child: MapLabel(),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(

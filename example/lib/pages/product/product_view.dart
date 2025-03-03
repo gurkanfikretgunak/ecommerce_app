@@ -12,8 +12,6 @@ class ProductView extends StatefulWidget {
 }
 
 class _ProductViewState extends State<ProductView> {
-  PageController _pageController = PageController();
-
   void initState() {
     super.initState();
   }
@@ -71,7 +69,7 @@ class _ProductViewState extends State<ProductView> {
             title: "SUCCESS",
             buttonOnPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => PaymentView()));
+                  MaterialPageRoute(builder: (context) => const PaymentView()));
             },
             description:
                 "Dolor magna eget est lorem ipsum dolor sit amet consectetur.",

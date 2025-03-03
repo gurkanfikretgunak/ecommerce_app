@@ -22,7 +22,7 @@ class _ColorsLabelState extends State<ColorsLabel> {
           textAlign: TextAlign.start,
           color: ColorConstant.instance.neutral1,
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Row(
@@ -36,7 +36,7 @@ class _ColorsLabelState extends State<ColorsLabel> {
                 });
               },
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             ColorRadiusInput(
@@ -48,7 +48,7 @@ class _ColorsLabelState extends State<ColorsLabel> {
                 });
               },
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             ColorRadiusInput(

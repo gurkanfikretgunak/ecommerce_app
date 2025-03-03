@@ -11,7 +11,7 @@ class StepperLabel extends StatelessWidget {
   final double? lineHeight;
 
   const StepperLabel({
-    Key? key,
+    super.key,
     required this.currentStep,
     this.steps,
     this.activeColor,
@@ -19,7 +19,7 @@ class StepperLabel extends StatelessWidget {
     this.borderColor,
     this.padding,
     this.lineHeight,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

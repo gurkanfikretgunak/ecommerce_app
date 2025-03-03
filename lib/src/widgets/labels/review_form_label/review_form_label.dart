@@ -25,28 +25,24 @@ class _ReviewFormLabelState extends State<ReviewFormLabel> {
           fontSize: 20,
           color: ColorConstant.instance.neutral1,
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         TextFieldInput(
-            hintText: "Your Review * ",
-            inputType: InputType.text,
-            controller: reviewTextController),
-        SizedBox(
+            hintText: "Your Review * ", controller: reviewTextController),
+        const SizedBox(
+          height: 10,
+        ),
+        TextFieldInput(hintText: "Name * ", controller: nameTextController),
+        const SizedBox(
           height: 10,
         ),
         TextFieldInput(
-            hintText: "Name * ",
-            inputType: InputType.text,
-            controller: nameTextController),
-        SizedBox(
-          height: 10,
+          hintText: "Email* ",
+          inputType: InputType.email,
+          controller: emailTextController,
         ),
-        TextFieldInput(
-            hintText: "Email* ",
-            inputType: InputType.email,
-            controller: emailTextController),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Row(
@@ -55,17 +51,16 @@ class _ReviewFormLabelState extends State<ReviewFormLabel> {
                 color: ColorConstant.instance.neutral4,
                 fontSize: 10,
                 text: "Your Rating * "),
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
-            RateInputRowLayout(),
+            const RateInputRowLayout(),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Checkbox(
               value: checkbox,
@@ -78,7 +73,7 @@ class _ReviewFormLabelState extends State<ReviewFormLabel> {
                 });
               },
             ),
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
             Container(
@@ -93,17 +88,18 @@ class _ReviewFormLabelState extends State<ReviewFormLabel> {
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         CustomButton(
-            width: 130,
-            height: 40,
-            color: ColorConstant.instance.neutral9,
-            textColor: ColorConstant.instance.neutral1,
-            text: "SUBMIT",
-            borderColor: ColorConstant.instance.neutral4,
-            onPressed: () {})
+          width: 130,
+          height: 40,
+          color: ColorConstant.instance.neutral9,
+          textColor: ColorConstant.instance.neutral1,
+          text: "SUBMIT",
+          borderColor: ColorConstant.instance.neutral4,
+          onPressed: () {},
+        )
       ],
     );
   }

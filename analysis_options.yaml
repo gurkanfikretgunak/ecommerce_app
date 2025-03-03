@@ -1,4 +1,13 @@
-include: package:flutter_lints/flutter.yaml
+include: package:lint/analysis_options.yaml
+
+linter:
+  rules:
+    # Ekstra kurallar ekleyebilirsiniz
+    avoid_print: true
+    prefer_const_constructors: true
+    prefer_final_fields: true
+    unnecessary_this: true
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
+

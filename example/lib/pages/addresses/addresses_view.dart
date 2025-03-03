@@ -71,7 +71,7 @@ class _AddressesViewState extends State<AddressesView> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => NewAddressView()));
+                            builder: (context) => const NewAddressView()));
                   },
                   height: 50,
                   text: "Add New Address"),

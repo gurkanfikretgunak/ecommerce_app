@@ -2,8 +2,8 @@ import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/signup/signup_view.dart';
 import 'package:example/widgets/signin_form.dart';
 import 'package:flutter/material.dart';
-import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class SignInView extends StatefulWidget {
   const SignInView({super.key});
@@ -38,8 +38,10 @@ class _SignInViewState extends State<SignInView> {
                 CustomButton(
                   text: "SIGN IN",
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => SignUpView()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignUpView()));
                   },
                 ),
                 const SizedBox(height: 5),

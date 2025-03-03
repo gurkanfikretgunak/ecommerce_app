@@ -34,7 +34,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     hintText: 'First Name',
                   ),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Expanded(
                   child: TextFieldInput(
                     controller: lastNameController,

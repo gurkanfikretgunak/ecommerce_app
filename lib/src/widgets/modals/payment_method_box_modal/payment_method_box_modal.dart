@@ -49,7 +49,7 @@ class PaymentMethodBoxModal extends StatelessWidget {
         color: backgroundColor ?? ColorConstant.instance.neutral7,
         child: Center(
           child: Padding(
-            padding: EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -64,7 +64,7 @@ class PaymentMethodBoxModal extends StatelessWidget {
                     Row(
                       children: [
                         Image.asset(logoPath),
-                        SizedBox(
+                        const SizedBox(
                           width: 5,
                         ),
                         ProductText(

@@ -31,7 +31,7 @@ class HomepageBanner extends StatelessWidget {
                 ProductText(text: descriptionText),
               ],
             )),
-        Positioned(
+        const Positioned(
             bottom: 10,
             right: 10,
             child: BannerButton(icon: Icons.arrow_forward))

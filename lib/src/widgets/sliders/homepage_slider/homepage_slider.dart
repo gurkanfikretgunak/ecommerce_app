@@ -6,7 +6,7 @@ class HomePageSlider extends StatelessWidget {
   final String headText;
   final String descText;
   final PageController pageController;
-  final int? PageCount;
+  final int? pageCount;
 
   const HomePageSlider({
     super.key,
@@ -14,7 +14,7 @@ class HomePageSlider extends StatelessWidget {
     required this.headText,
     required this.descText,
     required this.pageController,
-    this.PageCount,
+    this.pageCount,
   });
 
   @override
@@ -26,22 +26,20 @@ class HomePageSlider extends StatelessWidget {
         Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               HeadText(text: headText),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   HeadText(
                     text: descText,
                     color: ColorConstant.instance.primary_main,
                     fontSize: 40,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 15,
                   ),
-                  BannerButton(icon: Icons.arrow_forward)
+                  const BannerButton(icon: Icons.arrow_forward)
                 ],
               )
             ],
@@ -52,7 +50,7 @@ class HomePageSlider extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(bottom: 5.0),
             child: SliderIndicator(
-                pageController: pageController, count: PageCount ?? 3),
+                pageController: pageController, count: pageCount ?? 3),
           ),
         ),
       ],

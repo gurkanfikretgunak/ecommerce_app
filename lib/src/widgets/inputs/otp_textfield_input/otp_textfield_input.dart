@@ -13,7 +13,7 @@ class OtpTextfieldInput extends StatelessWidget {
   final double? fieldHeight;
 
   const OtpTextfieldInput({
-    Key? key,
+    super.key,
     required this.controller,
     this.numberOfFields,
     this.borderColor,
@@ -23,7 +23,7 @@ class OtpTextfieldInput extends StatelessWidget {
     this.onSubmit,
     this.fieldWidth,
     this.fieldHeight,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

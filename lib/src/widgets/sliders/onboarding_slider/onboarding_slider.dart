@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
-import 'package:shopapp_widgets/src/widgets/buttons/buttons.dart';
-import 'package:shopapp_widgets/src/widgets/texts/text.dart';
 
 class OnboardingSlider extends StatelessWidget {
   final String imagePath;
@@ -38,12 +36,11 @@ class OnboardingSlider extends StatelessWidget {
             top: screenHeigth * 0.6,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 OnboardingText(text: firstText),
                 OnboardingText(text: secondText),
                 OnboardingText(text: thirdText),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 OnboardingButton(

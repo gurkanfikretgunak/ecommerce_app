@@ -15,22 +15,22 @@ class ProductHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-    PageController _pageController = PageController();
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final PageController pageController = PageController();
 
     return Stack(
       children: [
-        Container(
+        SizedBox(
           width: screenWidth,
           height: screenHeight * 0.3,
           child: PageView.builder(
-            controller: _pageController,
+            controller: pageController,
             itemCount: imagePaths.length,
             itemBuilder: (context, index) {
               return ProductHeaderImageLabel(
                 imagePath: imagePaths[index],
-                pageController: _pageController,
+                pageController: pageController,
                 count: imagePaths.length,
               );
             },

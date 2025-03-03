@@ -89,7 +89,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   countryCode,
-                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                  style: const TextStyle(fontSize: 16, color: Colors.grey),
                 ),
               )
             : widget.prefixIcon,

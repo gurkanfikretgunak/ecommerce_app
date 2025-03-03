@@ -32,7 +32,7 @@ class _CheckoutState extends State<Checkout> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           AddressBoxModal(
@@ -40,11 +40,13 @@ class _CheckoutState extends State<Checkout> {
               address: "3517 W. Gray St. Utica, Pennsylvania 57867",
               email: "willie.jennings@example.com",
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AddressesView()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AddressesView()));
               },
               phone: "(480) 555-0103"),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           PaymentMethodBoxModal(
@@ -52,14 +54,14 @@ class _CheckoutState extends State<Checkout> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => PaymentMethodsView()));
+                        builder: (context) => const PaymentMethodsView()));
               },
               text: "Master card Ending *****23"),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           CheckoutListLayout(items: productBoxRowItems),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           CustomButton(

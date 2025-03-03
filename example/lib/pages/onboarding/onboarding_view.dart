@@ -11,15 +11,15 @@ class OnboardingView extends StatefulWidget {
 }
 
 class _OnboardingViewState extends State<OnboardingView> {
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   void _goToNextPage(int page) {
     if (page < 2) {
       _pageController.animateToPage(page + 1,
-          duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+          duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
     } else {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => SignInView()));
+          context, MaterialPageRoute(builder: (context) => const SignInView()));
     }
   }
 

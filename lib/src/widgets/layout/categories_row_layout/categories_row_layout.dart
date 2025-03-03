@@ -10,7 +10,7 @@ class CategoriesRowLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: height ?? 100,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -18,8 +18,8 @@ class CategoriesRowLayout extends StatelessWidget {
           itemBuilder: (context, index) {
             return Container(
               width: itemsWidth ?? 75,
+              margin: const EdgeInsets.only(right: 20),
               child: items[index],
-              margin: EdgeInsets.only(right: 20),
             );
           }),
     );

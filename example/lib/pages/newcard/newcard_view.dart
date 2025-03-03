@@ -26,11 +26,11 @@ class _NewCardViewState extends State<NewCardView> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Column(
             children: [
-              CardFormLabel(),
-              SizedBox(
+              const CardFormLabel(),
+              const SizedBox(
                 height: 150,
               ),
               Align(
@@ -40,7 +40,7 @@ class _NewCardViewState extends State<NewCardView> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => PaymentMethodsView()),
+                          builder: (context) => const PaymentMethodsView()),
                     );
                   },
                   height: 50,

@@ -25,7 +25,7 @@ class _AddressesColumnLayoutState extends State<AddressesColumnLayout> {
           child: ListView.separated(
             shrinkWrap: true,
             itemCount: widget.addressItems.length,
-            separatorBuilder: (context, index) => SizedBox(height: 10),
+            separatorBuilder: (context, index) => const SizedBox(height: 10),
             itemBuilder: (context, index) {
               return Dismissible(
                   key: Key(widget.addressItems[index].name),
@@ -34,8 +34,8 @@ class _AddressesColumnLayoutState extends State<AddressesColumnLayout> {
                   secondaryBackground: Container(
                     color: ColorConstant.instance.secondary2,
                     alignment: Alignment.centerRight,
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Icon(Icons.delete, color: Colors.white),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: const Icon(Icons.delete, color: Colors.white),
                   ),
                   confirmDismiss: (direction) async {
                     if (direction == DismissDirection.endToStart) {
@@ -46,7 +46,7 @@ class _AddressesColumnLayoutState extends State<AddressesColumnLayout> {
                   onDismissed: (direction) {
                     setState(() {
                       widget.addressItems.removeAt(index);
-                      if (widget.addressItems.length == 0) {
+                      if (widget.addressItems.isEmpty) {
                         Navigator.pop(context);
                       }
                     });

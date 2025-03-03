@@ -32,15 +32,17 @@ class _SignUpViewState extends State<SignUpView> {
       body: Column(
         children: [
           Padding(padding: EdgeInsets.only(left: 20, top: screenHeigth * 0.03)),
-          SignUpForm(),
+          const SignUpForm(),
           CustomButton(
             text: "SIGN UP",
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => VerificationView()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const VerificationView()));
             },
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           CustomButton(
             icon: FontAwesomeIcons.google,
             text: "SIGN UP WITH GOOGLE",
@@ -49,7 +51,7 @@ class _SignUpViewState extends State<SignUpView> {
             iconColor: ColorConstant.instance.neutral1,
             onPressed: () {},
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           CustomButton(
             icon: FontAwesomeIcons.facebook,
             text: "SIGN UP WITH FACEBOOK",

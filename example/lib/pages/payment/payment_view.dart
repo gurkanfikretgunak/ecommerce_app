@@ -34,8 +34,8 @@ class _PaymentViewState extends State<PaymentView> {
       OrderSuccess(
         onPrimaryButtonPressed: () {},
         onSecondaryButtonPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomeView()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const HomeView()));
         },
       ),
     ];

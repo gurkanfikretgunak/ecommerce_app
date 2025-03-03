@@ -12,24 +12,22 @@ class OrderSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Column(
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.1,
-            ),
-            OrderSuccessLabel(
-                onPrimaryButtonPressed: onPrimaryButtonPressed,
-                title: "ORDER SUCCESS",
-                primaryButtonText: "MY ORDERS",
-                secondaryButtonText: "CONTINUE SHOPPING",
-                onSecondaryButtonPressed: onSecondaryButtonPressed,
-                iconPath: Assets.icons.success.path,
-                description:
-                    "Dolor magna eget est lorem ipsum dolor sit amet consectetur."),
-          ],
-        ),
+    return Center(
+      child: Column(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.1,
+          ),
+          OrderSuccessLabel(
+              onPrimaryButtonPressed: onPrimaryButtonPressed,
+              title: "ORDER SUCCESS",
+              primaryButtonText: "MY ORDERS",
+              secondaryButtonText: "CONTINUE SHOPPING",
+              onSecondaryButtonPressed: onSecondaryButtonPressed,
+              iconPath: Assets.icons.success.path,
+              description:
+                  "Dolor magna eget est lorem ipsum dolor sit amet consectetur."),
+        ],
       ),
     );
   }

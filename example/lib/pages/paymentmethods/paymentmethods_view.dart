@@ -26,10 +26,10 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
       ),
       body: Column(
         children: [
-          Expanded(
+          const Expanded(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(15),
+                padding: EdgeInsets.all(15),
                 child: PaymentCardColumnLayout(),
               ),
             ),
@@ -38,8 +38,10 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
             padding: const EdgeInsets.all(15),
             child: CustomButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => NewCardView()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const NewCardView()));
                 },
                 height: 50,
                 text: "Add New Card"),

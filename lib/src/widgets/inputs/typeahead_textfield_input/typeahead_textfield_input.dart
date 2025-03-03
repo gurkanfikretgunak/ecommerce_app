@@ -45,7 +45,7 @@ class _TypeaheadTextfieldInputState extends State<TypeaheadTextfieldInput> {
                   color: ColorConstant.instance.neutral5,
                 ),
               ),
-          suffixIcon: widget.suffixIcon ?? Icon(Icons.expand_more),
+          suffixIcon: widget.suffixIcon ?? const Icon(Icons.expand_more),
         ),
       ),
       suggestionsCallback: (pattern) {
@@ -53,7 +53,7 @@ class _TypeaheadTextfieldInputState extends State<TypeaheadTextfieldInput> {
             (country) => country.toLowerCase().contains(pattern.toLowerCase()));
       },
       itemBuilder: (context, String suggestion) {
-        return Container(
+        return ColoredBox(
           color: ColorConstant.instance.neutral9,
           child: ListTile(
             hoverColor: ColorConstant.instance.neutral9,

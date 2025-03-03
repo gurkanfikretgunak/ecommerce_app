@@ -1,8 +1,8 @@
 import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/categories/categories_view.dart';
 import 'package:flutter/material.dart';
-import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -143,21 +143,21 @@ class _HomeViewState extends State<HomeView> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CategoriesView()));
+                            builder: (context) => const CategoriesView()));
                   },
                 ),
                 layout: CategoriesRowLayout(items: categoriesItems),
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               child: SectionLayout(
                 sectionText: "HOT DEAL",
                 layout: ProductGridLayout(productItems: productCardItems),
               ),
             ),
             Padding(
-                padding: EdgeInsets.all(15),
+                padding: const EdgeInsets.all(15),
                 child: Column(
                   children: [
                     HomepageBanner(

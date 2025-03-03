@@ -22,10 +22,10 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => OnboardingView()),
+        MaterialPageRoute(builder: (context) => const OnboardingView()),
       );
     });
   }
@@ -54,10 +54,10 @@ class _SplashViewState extends State<SplashView> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(bottom: 50),
+                padding: const EdgeInsets.only(bottom: 50),
                 child: Column(
                   children: [
-                    LoadingAnimation(),
+                    const LoadingAnimation(),
                     Text(
                       widget.splashText ??
                           "Copyright By NILAH – Designed By La-Studio",

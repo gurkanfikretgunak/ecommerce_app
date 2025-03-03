@@ -35,17 +35,16 @@ class OrderSuccessLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SuccessLabelRadius(iconPath: iconPath),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         HeadText(
           fontSize: titleFontSize ?? 30,
           color: ColorConstant.instance.neutral1,
           text: title,
         ),
-        SizedBox(height: 10),
-        Container(
+        const SizedBox(height: 10),
+        SizedBox(
           width: 300,
           child: ProductText(
             fontSize: 14,
@@ -54,14 +53,14 @@ class OrderSuccessLabel extends StatelessWidget {
             text: description,
           ),
         ),
-        SizedBox(height: 30),
+        const SizedBox(height: 30),
         CustomButton(
           onPressed: onPrimaryButtonPressed,
           color: primaryButtonColor ?? ColorConstant.instance.primary_main,
           height: buttonHeight ?? 40,
           text: primaryButtonText,
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         CustomButton(
           onPressed: onSecondaryButtonPressed,
           color: secondaryButtonColor ?? ColorConstant.instance.neutral9,

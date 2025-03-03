@@ -6,7 +6,7 @@ class ProductHeaderImageLabel extends StatelessWidget {
   final int count;
   final PageController pageController;
 
-  ProductHeaderImageLabel({
+  const ProductHeaderImageLabel({
     super.key,
     required this.imagePath,
     required this.pageController,

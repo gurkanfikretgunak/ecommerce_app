@@ -12,9 +12,9 @@ class AccountInfoBoxColumnLayout extends StatelessWidget {
         itemBuilder: (context, index) {
           return items[index];
         },
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         separatorBuilder: (context, index) {
-          return SizedBox(height: 25);
+          return const SizedBox(height: 25);
         },
         itemCount: items.length);
   }

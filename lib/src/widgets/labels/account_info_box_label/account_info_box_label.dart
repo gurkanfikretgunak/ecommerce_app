@@ -23,7 +23,7 @@ class AccountInfoBoxLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         border: BorderDirectional(
           bottom: BorderSide(

@@ -49,7 +49,7 @@ class _BottomSheetLayoutState extends State<BottomSheetLayout> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            margin: widget.margin ?? EdgeInsets.symmetric(vertical: 10),
+            margin: widget.margin ?? const EdgeInsets.symmetric(vertical: 10),
             height: 2,
             width: 42,
             decoration: BoxDecoration(
@@ -59,15 +59,16 @@ class _BottomSheetLayoutState extends State<BottomSheetLayout> {
           ),
           Expanded(
             child: ListView.builder(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               itemCount: widget.items.length,
               itemBuilder: (context, index) {
                 return ListTile(
                   title: ProductText(
-                      fontSize: 12,
-                      textAlign: TextAlign.start,
-                      color: ColorConstant.instance.neutral1,
-                      text: widget.items[index]),
+                    fontSize: 12,
+                    textAlign: TextAlign.start,
+                    color: ColorConstant.instance.neutral1,
+                    text: widget.items[index],
+                  ),
                   trailing: Radio(
                     hoverColor: ColorConstant.instance.neutral5,
                     activeColor: ColorConstant.instance.primary_main,

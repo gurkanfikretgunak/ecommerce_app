@@ -7,13 +7,14 @@ class CategoriesHeader extends StatelessWidget {
   final Color? textColor;
   final double? fontSize;
   final VoidCallback? onPressed;
-  const CategoriesHeader(
-      {super.key,
-      required this.imagePath,
-      required this.text,
-      this.textColor,
-      this.fontSize,
-      this.onPressed});
+  const CategoriesHeader({
+    super.key,
+    required this.imagePath,
+    required this.text,
+    this.textColor,
+    this.fontSize,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class CategoriesHeader extends StatelessWidget {
                 text: text,
                 fontSize: fontSize ?? 105,
                 color: textColor ??
-                    ColorConstant.instance.neutral9.withOpacity(0.7),
+                    ColorConstant.instance.neutral9.withValues(alpha: 0.7),
               ),
             )),
       ],

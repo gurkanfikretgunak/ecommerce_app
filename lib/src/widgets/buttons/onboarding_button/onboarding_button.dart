@@ -11,16 +11,17 @@ class OnboardingButton extends StatelessWidget {
   final double? iconWeight;
   final VoidCallback onNext;
 
-  const OnboardingButton(
-      {super.key,
-      required this.onNext,
-      this.width,
-      this.height,
-      this.radius,
-      this.color,
-      this.icon,
-      this.iconColor,
-      this.iconWeight});
+  const OnboardingButton({
+    super.key,
+    required this.onNext,
+    this.width,
+    this.height,
+    this.radius,
+    this.color,
+    this.icon,
+    this.iconColor,
+    this.iconWeight,
+  });
 
   @override
   Widget build(BuildContext context) {

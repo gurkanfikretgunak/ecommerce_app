@@ -10,21 +10,20 @@ class ProductGridLayout extends StatelessWidget {
   final List<Widget> productItems;
 
   const ProductGridLayout({
-    Key? key,
+    super.key,
     required this.productItems,
     this.width,
     this.crossAxisCount,
     this.crossAxisSpacing,
     this.mainAxisSpacing,
     this.childAspectRatio,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
 
-    return Container(
+    return SizedBox(
       width: width ?? screenWidth,
       child: GridView.builder(
         shrinkWrap: true,

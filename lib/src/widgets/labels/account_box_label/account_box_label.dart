@@ -24,7 +24,7 @@ class AccountBoxLabel extends StatelessWidget {
           imagePath: imagePath,
           icon: icon ?? Icons.photo_camera,
         ),
-        SizedBox(
+        const SizedBox(
           width: 10,
         ),
         Column(

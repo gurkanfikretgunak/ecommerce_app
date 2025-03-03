@@ -52,11 +52,11 @@ class _CartState extends State<Cart> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           CartListLayout(items: productBoxRowItems),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           SectionLayout(

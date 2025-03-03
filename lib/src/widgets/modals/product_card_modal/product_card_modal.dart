@@ -25,10 +25,9 @@ class ProductCardModal extends StatelessWidget {
       child: Padding(
         padding: context.horizontalPaddingLow,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               height: imageHeight ?? context.dynamicWidth(.47),
               child: Image.asset(
                 imagePath,
@@ -48,7 +47,10 @@ class ProductCardModal extends StatelessWidget {
               color: ColorConstant.instance.neutral1,
             ),
             const SizedBox(height: 4),
-            ProductText(text: productPrice, fontSize: 16, color: ColorConstant.instance.primary_main)
+            ProductText(
+                text: productPrice,
+                fontSize: 16,
+                color: ColorConstant.instance.primary_main)
           ],
         ),
       ),

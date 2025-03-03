@@ -27,7 +27,7 @@ class ImageRadiusModal extends StatelessWidget {
             height: height ?? 60,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         if (text != null)

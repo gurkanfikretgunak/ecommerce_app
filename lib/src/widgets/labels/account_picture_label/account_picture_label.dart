@@ -11,7 +11,7 @@ class AccountPictureLabel extends StatelessWidget {
   final double? imageWidth;
   final double? imageHeight;
 
-  AccountPictureLabel({
+  const AccountPictureLabel({
     super.key,
     required this.imagePath,
     this.borderWidth,
@@ -35,7 +35,7 @@ class AccountPictureLabel extends StatelessWidget {
         Positioned(
           top: 0,
           right: 0,
-          child: Container(
+          child: DecoratedBox(
             decoration: BoxDecoration(
               color: ColorConstant.instance.neutral7,
               shape: BoxShape.circle,

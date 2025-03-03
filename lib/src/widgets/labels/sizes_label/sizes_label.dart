@@ -22,7 +22,7 @@ class _SizesLabelState extends State<SizesLabel> {
           textAlign: TextAlign.start,
           color: ColorConstant.instance.neutral1,
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Row(
@@ -36,7 +36,7 @@ class _SizesLabelState extends State<SizesLabel> {
                 },
                 isSelected: _selectedSize == "S",
                 inStock: true),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             SizeBoxInput(
@@ -48,23 +48,24 @@ class _SizesLabelState extends State<SizesLabel> {
                 },
                 isSelected: _selectedSize == "M",
                 inStock: true),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             SizeBoxInput(
                 text: "L", onTap: () {}, isSelected: false, inStock: false),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             SizeBoxInput(
-                text: "XL",
-                onTap: () {
-                  setState(() {
-                    _selectedSize = "XL";
-                  });
-                },
-                isSelected: _selectedSize == "XL",
-                inStock: true),
+              text: "XL",
+              onTap: () {
+                setState(() {
+                  _selectedSize = "XL";
+                });
+              },
+              isSelected: _selectedSize == "XL",
+              inStock: true,
+            ),
           ],
         )
       ],

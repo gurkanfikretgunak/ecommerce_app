@@ -8,6 +8,10 @@ class ProductBoxModal extends StatefulWidget {
   int quantity;
   final Color? textColor;
   final Color? priceColor;
+  final double? imageWidth;
+  final double? imageHeight;
+  final double? spacing;
+  final double? fontSize;
 
   ProductBoxModal({
     super.key,
@@ -17,6 +21,10 @@ class ProductBoxModal extends StatefulWidget {
     this.quantity = 1,
     this.textColor,
     this.priceColor,
+    this.imageWidth,
+    this.imageHeight,
+    this.spacing,
+    this.fontSize,
   });
 
   double get total => quantity * price;
@@ -30,29 +38,28 @@ class _ProductBoxModalState extends State<ProductBoxModal> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: 60,
-          height: 80,
+        SizedBox(
+          width: widget.imageWidth ?? 60,
+          height: widget.imageHeight ?? 80,
           child: Image.asset(
             widget.imagePath,
             fit: BoxFit.cover,
           ),
         ),
-        SizedBox(width: 10),
+        SizedBox(width: widget.spacing ?? 10),
         Align(
-          alignment: Alignment.center,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ProductText(
                 text: widget.name,
-                fontSize: 15,
+                fontSize: widget.fontSize ?? 15,
                 color: widget.textColor ?? ColorConstant.instance.neutral1,
               ),
-              SizedBox(height: 3),
+              SizedBox(height: widget.spacing ?? 3),
               ProductText(
                 text: "\$ ${widget.price}",
-                fontSize: 15,
+                fontSize: widget.fontSize ?? 15,
                 color: widget.priceColor ?? ColorConstant.instance.primary_main,
               ),
             ],
