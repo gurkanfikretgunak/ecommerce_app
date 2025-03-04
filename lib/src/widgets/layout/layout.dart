@@ -5,6 +5,7 @@ export 'package:shopapp_widgets/src/widgets/layout/cart_list_layout/cart_list_la
 export 'package:shopapp_widgets/src/widgets/layout/categories_banner_column_layout/categories_banner_column_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/categories_row_layout/categories_row_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/checkout_list_layout/checkout_list_layout.dart';
+export 'package:shopapp_widgets/src/widgets/layout/myorder_list_layout/myorder_list_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/payment_card_column_layout/payment_card_column_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/product_box_row_layout/product_box_row_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/product_grid_layout/product_grid_layout.dart';
@@ -14,3 +15,4 @@ export 'package:shopapp_widgets/src/widgets/layout/rate_input_row_layout/rate_in
 export 'package:shopapp_widgets/src/widgets/layout/rate_row_layout/rate_row_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/section_layout/section_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/settings_box_column_layout/settings_box_column_layout.dart';
+export 'package:shopapp_widgets/src/widgets/layout/wishlist_list_layout/wishlist_list_layout.dart';

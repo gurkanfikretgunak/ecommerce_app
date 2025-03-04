@@ -2,6 +2,7 @@ export 'package:shopapp_widgets/src/widgets/labels/account_box_label/account_box
 export 'package:shopapp_widgets/src/widgets/labels/account_info_box_label/account_info_box_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/address_form_label/address_form_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/card_form_label/card_form_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/cart_add_remove_button_label/cart_add_remove_button_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/colors_label/colors_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/filter_form_label/filter_form_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/filter_section_label/filter_section_label.dart';
