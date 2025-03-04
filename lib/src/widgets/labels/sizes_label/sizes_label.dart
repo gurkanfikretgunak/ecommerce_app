@@ -3,64 +3,46 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:shopapp_widgets/src/widgets/inputs/size_box_input/size_box_input.dart';
 
 class SizesLabel extends StatefulWidget {
-  const SizesLabel({super.key});
+  final List<String>? sizes;
+
+  const SizesLabel({
+    super.key,
+    this.sizes,
+  });
 
   @override
   State<SizesLabel> createState() => _SizesLabelState();
 }
 
 class _SizesLabelState extends State<SizesLabel> {
-  String _selectedSize = "S";
+  late String _selectedSize;
+  late List<String> _sizes;
+
+  @override
+  void initState() {
+    super.initState();
+    _sizes = widget.sizes ?? ["S", "M", "L", "XL"];
+    _selectedSize = _sizes[0];
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ProductText(
-          text: "Size:",
-          fontSize: 12,
-          textAlign: TextAlign.start,
-          color: ColorConstant.instance.neutral1,
-        ),
-        context.emptySizedHeightBoxLow,
-        Row(
-          children: [
-            SizeBoxInput(
-                text: "S",
-                onTap: () {
-                  setState(() {
-                    _selectedSize = "S";
-                  });
-                },
-                isSelected: _selectedSize == "S",
-                inStock: true),
-            context.emptySizedWidthBoxLow,
-            SizeBoxInput(
-                text: "M",
-                onTap: () {
-                  setState(() {
-                    _selectedSize = "M";
-                  });
-                },
-                isSelected: _selectedSize == "M",
-                inStock: true),
-            context.emptySizedWidthBoxLow,
-            SizeBoxInput(
-                text: "L", onTap: () {}, isSelected: false, inStock: false),
-            context.emptySizedWidthBoxLow,
-            SizeBoxInput(
-              text: "XL",
-              onTap: () {
-                setState(() {
-                  _selectedSize = "XL";
-                });
-              },
-              isSelected: _selectedSize == "XL",
-              inStock: true,
-            ),
-          ],
-        )
-      ],
+    return Row(
+      children: _sizes.map((size) {
+        return Padding(
+          padding: const EdgeInsets.only(right: 8.0),
+          child: SizeBoxInput(
+            text: size,
+            onTap: () {
+              setState(() {
+                _selectedSize = size;
+              });
+            },
+            isSelected: _selectedSize == size,
+            inStock: true,
+          ),
+        );
+      }).toList(),
     );
   }
 }
