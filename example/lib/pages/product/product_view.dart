@@ -116,11 +116,12 @@ class _ProductViewState extends State<ProductView> {
             ),
             const Padding(
               padding: EdgeInsets.all(15),
-              child: ColorsLabel(),
+              child:
+                  ProductSectionLabel(title: "Color:", element: ColorsLabel()),
             ),
             const Padding(
               padding: EdgeInsets.all(15),
-              child: SizesLabel(),
+              child: ProductSectionLabel(title: "Size:", element: SizesLabel()),
             ),
             const Padding(
               padding: EdgeInsets.all(15),
