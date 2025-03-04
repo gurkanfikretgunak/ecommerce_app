@@ -3,6 +3,8 @@ export 'package:shopapp_widgets/src/widgets/labels/account_info_box_label/accoun
 export 'package:shopapp_widgets/src/widgets/labels/address_form_label/address_form_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/card_form_label/card_form_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/colors_label/colors_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/filter_form_label/filter_form_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/filter_section_label/filter_section_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/header_image/header_image.dart';
 export 'package:shopapp_widgets/src/widgets/labels/horizontal_product_card/horizontal_product_card.dart';
 export 'package:shopapp_widgets/src/widgets/labels/map_label/map_label.dart';
@@ -13,6 +15,7 @@ export 'package:shopapp_widgets/src/widgets/labels/product_description_image/pro
 export 'package:shopapp_widgets/src/widgets/labels/product_description_label/product_description_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/product_header_image_label/product_header_image_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/product_info_label/product_info_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/product_section_label/product_section_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/review_form_label/review_form_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/settings_box_label/settings_box_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/sizes_label/sizes_label.dart';
