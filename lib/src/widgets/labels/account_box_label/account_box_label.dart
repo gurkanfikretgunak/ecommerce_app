@@ -24,7 +24,7 @@ class AccountBoxLabel extends StatelessWidget {
           imagePath: imagePath,
           icon: icon ?? Icons.photo_camera,
         ),
-        context.emptySizedHeightBoxLow,
+        context.emptySizedWidthBoxLow,
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

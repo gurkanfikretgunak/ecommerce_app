@@ -7,7 +7,7 @@ class AccountPictureLabel extends StatelessWidget {
   final Color? borderColor;
   final Color? backgroundColor;
   final double? iconSize;
-  final IconData icon;
+  final IconData? icon;
   final double? imageWidth;
   final double? imageHeight;
 
@@ -18,7 +18,7 @@ class AccountPictureLabel extends StatelessWidget {
     this.borderColor,
     this.backgroundColor,
     this.iconSize,
-    required this.icon,
+    this.icon,
     this.imageWidth,
     this.imageHeight,
   });
@@ -32,26 +32,27 @@ class AccountPictureLabel extends StatelessWidget {
           width: imageWidth ?? 80,
           height: imageHeight ?? 80,
         ),
-        Positioned(
-          top: 0,
-          right: 0,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              color: ColorConstant.instance.neutral7,
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: borderColor ?? ColorConstant.instance.neutral5,
-                width: borderWidth ?? 1,
+        if (icon != null)
+          Positioned(
+            top: 0,
+            right: 0,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: ColorConstant.instance.neutral7,
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: borderColor ?? ColorConstant.instance.neutral5,
+                  width: borderWidth ?? 1,
+                ),
+              ),
+              child: CircleAvatar(
+                backgroundColor:
+                    backgroundColor ?? ColorConstant.instance.neutral9,
+                radius: 12,
+                child: Icon(size: iconSize ?? 15, icon),
               ),
             ),
-            child: CircleAvatar(
-              backgroundColor:
-                  backgroundColor ?? ColorConstant.instance.neutral9,
-              radius: 12,
-              child: Icon(size: iconSize ?? 15, icon),
-            ),
           ),
-        ),
       ],
     );
   }

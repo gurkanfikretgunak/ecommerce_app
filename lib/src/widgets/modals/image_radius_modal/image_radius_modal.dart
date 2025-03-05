@@ -8,24 +8,21 @@ class ImageRadiusModal extends StatelessWidget {
   final double? height;
   final Color? textColor;
 
-  const ImageRadiusModal(
-      {super.key,
-      required this.imagePath,
-      this.text,
-      this.width,
-      this.height,
-      this.textColor});
+  const ImageRadiusModal({
+    super.key,
+    required this.imagePath,
+    this.text,
+    this.width,
+    this.height,
+    this.textColor,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         ClipOval(
-          child: Image.asset(
-            imagePath,
-            width: width ?? 60,
-            height: height ?? 60,
-          ),
+          child: _buildImage(),
         ),
         context.emptySizedHeightBoxLow,
         if (text != null)
@@ -35,5 +32,31 @@ class ImageRadiusModal extends StatelessWidget {
           ),
       ],
     );
+  }
+
+  Widget _buildImage() {
+    if (imagePath.startsWith('http') || imagePath.startsWith('https')) {
+      return Image.network(
+        imagePath,
+        width: width ?? 60,
+        height: height ?? 60,
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          return Image.asset(
+            imagePath,
+            width: width ?? 60,
+            height: height ?? 60,
+            fit: BoxFit.cover,
+          );
+        },
+      );
+    } else {
+      return Image.asset(
+        imagePath,
+        width: width ?? 60,
+        height: height ?? 60,
+        fit: BoxFit.cover,
+      );
+    }
   }
 }

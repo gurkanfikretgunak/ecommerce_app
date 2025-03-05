@@ -1,6 +1,8 @@
 export 'package:shopapp_widgets/src/widgets/labels/account_box_label/account_box_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/account_info_box_label/account_info_box_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/account_picture_label/account_picture_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/address_form_label/address_form_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/bottom_navigation_label/bottom_navigation_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/card_form_label/card_form_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/cart_add_remove_button_label/cart_add_remove_button_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/colors_label/colors_label.dart';
