@@ -1,5 +1,6 @@
 import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/home/home_view.dart';
+import 'package:example/pages/mainpage/mainpage_view.dart';
 import 'package:example/pages/signup/signup_view.dart';
 import 'package:example/services/auth.dart';
 import 'package:example/widgets/signin_form.dart';
@@ -55,7 +56,7 @@ class _SignInViewState extends State<SignInView> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const HomeView()));
+                              builder: (context) => const MainpageView()));
                     }
                   },
                 ),

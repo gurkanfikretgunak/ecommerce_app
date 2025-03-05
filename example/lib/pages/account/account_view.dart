@@ -1,4 +1,8 @@
+import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/profile/profile_view.dart';
+import 'package:example/pages/signin/signin_view.dart';
+import 'package:example/services/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -23,7 +27,7 @@ class _AccountViewState extends State<AccountView> {
           suffixIcon: Icons.arrow_forward_ios),
       const SettingsBoxLabel(
           icon: Icons.notifications_outlined,
-          text: 'Noficiation',
+          text: 'Notification',
           suffixIcon: Icons.arrow_forward_ios),
       const SettingsBoxLabel(
           icon: Icons.payment,
@@ -48,6 +52,12 @@ class _AccountViewState extends State<AccountView> {
       SettingsBoxLabel(
         icon: Icons.logout,
         text: 'Sign Out',
+        onTap: () async {
+          if (await AuthService().signOut()) {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const SignInView()));
+          }
+        },
         iconColor: ColorConstant.instance.secondary2,
         textColor: ColorConstant.instance.secondary2,
       ),
@@ -63,9 +73,7 @@ class _AccountViewState extends State<AccountView> {
         child: CustomAppbar(
           text: "ACCOUNT",
           onPressed: () {
-            setState(() {
-              Navigator.pop(context);
-            });
+            Navigator.pop(context);
           },
           iconColor: ColorConstant.instance.neutral1,
         ),
@@ -75,11 +83,26 @@ class _AccountViewState extends State<AccountView> {
           padding: const EdgeInsets.all(15),
           child: Column(
             children: [
-              const AccountBoxLabel(
-                imagePath: "assets/images/profilepicture.png",
-                name: "Savannah Robertson",
-                username: "@alexander02",
-                icon: Icons.photo_camera,
+              FutureBuilder<User?>(
+                future: AuthService().getCurrentUser(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else if (snapshot.hasData) {
+                    User? user = snapshot.data;
+                    return AccountBoxLabel(
+                      imagePath:
+                          user?.photoURL ?? Assets.images.profilepicture.path,
+                      name: user?.displayName ?? "",
+                      username: user?.email ?? "",
+                      icon: Icons.photo_camera,
+                    );
+                  } else {
+                    return const Text('No user data');
+                  }
+                },
               ),
               context.emptySizedHeightBoxNormal,
               Column(

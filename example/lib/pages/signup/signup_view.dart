@@ -1,4 +1,5 @@
 import 'package:example/pages/home/home_view.dart';
+import 'package:example/pages/mainpage/mainpage_view.dart';
 import 'package:example/pages/verifiticion/verification_view.dart';
 import 'package:example/services/auth.dart';
 import 'package:example/widgets/signup_form.dart';
@@ -53,8 +54,10 @@ class _SignUpViewState extends State<SignUpView> {
             onPressed: () async {
               await AuthService().signUpWithGoogle();
               if (AuthService().getCurrentUser() != null) {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const HomeView()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MainpageView()));
               }
             },
           ),
