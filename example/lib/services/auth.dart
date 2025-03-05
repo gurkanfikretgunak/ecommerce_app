@@ -35,4 +35,14 @@ class AuthService {
       throw Exception(e.toString());
     }
   }
+
+  Future<bool> signOut() async {
+    try {
+      await auth.signOut();
+      await GoogleSignIn().signOut();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
 }
