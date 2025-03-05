@@ -80,6 +80,7 @@ class _OrderwishlistViewState extends State<OrderwishlistView> {
                       });
                     },
                     text: "My Order",
+                    fontSize: 13,
                     width: context.width * 0.4,
                     color: _showOrder
                         ? ColorConstant.instance.primary_main
@@ -100,6 +101,7 @@ class _OrderwishlistViewState extends State<OrderwishlistView> {
                         _showOrder = false;
                       });
                     },
+                    fontSize: 13,
                     text: "Wishlist",
                     width: context.width * 0.4,
                     color: !_showOrder

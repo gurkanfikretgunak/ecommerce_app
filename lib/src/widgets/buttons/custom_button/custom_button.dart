@@ -48,7 +48,7 @@ class CustomButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                icon ?? null, // icon gelmiyorsa default icon atanacak.
+                icon ?? null,
                 color: iconColor ?? ColorConstant.instance.neutral9,
                 size: 15,
               ),

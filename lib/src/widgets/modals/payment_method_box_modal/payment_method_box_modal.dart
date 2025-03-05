@@ -64,9 +64,7 @@ class PaymentMethodBoxModal extends StatelessWidget {
                     Row(
                       children: [
                         Image.asset(logoPath),
-                        const SizedBox(
-                          width: 5,
-                        ),
+                        context.emptySizedWidthBoxLow,
                         ProductText(
                           text: text,
                           fontSize: fontSize ?? 14,

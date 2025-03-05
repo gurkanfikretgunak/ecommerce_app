@@ -1,4 +1,5 @@
 import 'package:example/gen/assets.gen.dart';
+import 'package:example/pages/filter/filter_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -68,7 +69,10 @@ class _SearchViewState extends State<SearchView> {
           onPressed: () {
             Navigator.pop(context);
           },
-          iconOnPressed: () {},
+          iconOnPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const FilterView()));
+          },
           iconColor: ColorConstant.instance.neutral1,
         ),
       ),

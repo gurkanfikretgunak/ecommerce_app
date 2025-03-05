@@ -1,5 +1,6 @@
 import 'package:example/pages/home/home_view.dart';
 import 'package:example/pages/verifiticion/verification_view.dart';
+import 'package:example/services/auth.dart';
 import 'package:example/widgets/signup_form.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
@@ -49,7 +50,13 @@ class _SignUpViewState extends State<SignUpView> {
             color: ColorConstant.instance.neutral9,
             textColor: ColorConstant.instance.neutral1,
             iconColor: ColorConstant.instance.neutral1,
-            onPressed: () {},
+            onPressed: () async {
+              await AuthService().signUpWithGoogle();
+              if (AuthService().getCurrentUser() != null) {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomeView()));
+              }
+            },
           ),
           context.emptySizedHeightBoxLow,
           CustomButton(

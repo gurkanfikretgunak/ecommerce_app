@@ -23,7 +23,7 @@ class _WishlistListLayoutState extends State<WishlistListLayout> {
           return Column(
             children: [
               ProductBoxRowLayout(
-                item: CartAddRemoveButtonLabel(),
+                item: const CartAddRemoveButtonLabel(),
                 productBox: widget.items[index],
               ),
               context.emptySizedHeightBoxNormal,

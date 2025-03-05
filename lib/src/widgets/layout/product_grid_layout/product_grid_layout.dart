@@ -26,6 +26,7 @@ class ProductGridLayout extends StatelessWidget {
     return SizedBox(
       width: width ?? screenWidth,
       child: GridView.builder(
+        physics: const ScrollPhysics(),
         shrinkWrap: true,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: crossAxisCount ?? 2,
