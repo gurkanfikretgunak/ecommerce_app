@@ -1,4 +1,5 @@
 import 'package:example/pages/home/home_view.dart';
+import 'package:example/pages/mainpage/mainpage_view.dart';
 import 'package:example/widgets/ordersuccess.dart';
 import 'package:example/widgets/cart.dart';
 import 'package:example/widgets/checkout.dart';
@@ -35,7 +36,7 @@ class _PaymentViewState extends State<PaymentView> {
         onPrimaryButtonPressed: () {},
         onSecondaryButtonPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const HomeView()));
+              MaterialPageRoute(builder: (context) => const MainpageView()));
         },
       ),
     ];

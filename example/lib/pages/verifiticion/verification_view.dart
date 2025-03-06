@@ -1,4 +1,5 @@
 import 'package:example/pages/home/home_view.dart';
+import 'package:example/pages/mainpage/mainpage_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
@@ -66,8 +67,10 @@ class _VerificationViewState extends State<VerificationView> {
           CustomButton(
             text: "SUBMIT",
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const HomeView()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MainpageView()));
             },
           ),
           Row(

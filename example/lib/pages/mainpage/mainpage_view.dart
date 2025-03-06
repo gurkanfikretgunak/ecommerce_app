@@ -10,7 +10,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class MainpageView extends StatefulWidget {
-  const MainpageView({super.key});
+  final int? pageNo;
+  const MainpageView({super.key, this.pageNo});
 
   @override
   State<MainpageView> createState() => _MainpageViewState();
@@ -54,7 +55,7 @@ class _MainpageViewState extends State<MainpageView> {
   @override
   void initState() {
     super.initState();
-    currentPage = 0;
+    currentPage = widget.pageNo ?? 0;
   }
 
   void setCurrentPage(int index) {

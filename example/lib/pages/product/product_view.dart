@@ -1,4 +1,5 @@
 import 'package:example/gen/assets.gen.dart';
+import 'package:example/pages/mainpage/mainpage_view.dart';
 import 'package:example/pages/payment/payment_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
@@ -68,8 +69,12 @@ class _ProductViewState extends State<ProductView> {
           return PopupSuccesLabel(
             title: "SUCCESS",
             buttonOnPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const PaymentView()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MainpageView(
+                            pageNo: 2,
+                          )));
             },
             description:
                 "Dolor magna eget est lorem ipsum dolor sit amet consectetur.",
