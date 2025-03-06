@@ -28,12 +28,12 @@ class AccountBoxLabel extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ProductText(
+            ContentText(
               text: name,
               fontSize: 18,
               color: ColorConstant.instance.neutral1,
             ),
-            ProductText(
+            ContentText(
               text: username,
               fontSize: 12,
               color: ColorConstant.instance.neutral4,

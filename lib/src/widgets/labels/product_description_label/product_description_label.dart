@@ -30,7 +30,7 @@ class ProductDescriptionLabel extends StatelessWidget {
         Align(
           child: Column(
             children: [
-              ProductText(
+              ContentText(
                 text: "Show More",
                 fontSize: 10,
                 color: ColorConstant.instance.neutral4,

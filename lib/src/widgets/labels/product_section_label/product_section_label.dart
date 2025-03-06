@@ -20,7 +20,7 @@ class ProductSectionLabel extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ProductText(
+        ContentText(
           fontSize: fontSize ?? 12,
           color: color ?? ColorConstant.instance.neutral1,
           text: title,

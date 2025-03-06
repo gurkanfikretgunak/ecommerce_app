@@ -47,7 +47,7 @@ class StepperLabelRadius extends StatelessWidget {
           ),
         ),
         SizedBox(height: spacing ?? 4),
-        ProductText(
+        ContentText(
           text: text,
           fontSize: fontSize ?? 12,
           color: textColor ?? ColorConstant.instance.neutral1,

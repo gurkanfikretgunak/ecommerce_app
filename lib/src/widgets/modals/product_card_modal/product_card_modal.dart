@@ -36,19 +36,19 @@ class ProductCardModal extends StatelessWidget {
               ),
             ),
             context.emptySizedHeightBoxLow,
-            ProductText(
+            ContentText(
               text: productStock,
               fontSize: 8,
               color: ColorConstant.instance.neutral4,
             ),
             context.emptySizedHeightBoxLow,
-            ProductText(
+            ContentText(
               text: productName,
               fontSize: 12,
               color: ColorConstant.instance.neutral1,
             ),
             context.emptySizedHeightBoxLow,
-            ProductText(
+            ContentText(
                 text: productPrice,
                 fontSize: 16,
                 color: ColorConstant.instance.primary_main)

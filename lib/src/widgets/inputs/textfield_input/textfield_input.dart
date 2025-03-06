@@ -78,7 +78,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
               ? TextInputType.phone
               : TextInputType.text,
       decoration: InputDecoration(
-        label: ProductText(
+        label: ContentText(
           text: widget.hintText,
           fontSize: widget.hintFontSize ?? 15,
           color: widget.hintColor ?? ColorConstant.instance.neutral4,

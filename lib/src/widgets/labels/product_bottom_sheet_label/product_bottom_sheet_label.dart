@@ -33,7 +33,7 @@ class _ProductBottomSheetLabelState extends State<ProductBottomSheetLabel> {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           children: [
-            ProductText(
+            ContentText(
               fontSize: 20,
               color: ColorConstant.instance.neutral1,
               text: "\$ ${widget.price}",

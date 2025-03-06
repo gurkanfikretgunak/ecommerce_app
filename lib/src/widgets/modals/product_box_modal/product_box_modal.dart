@@ -51,13 +51,13 @@ class _ProductBoxModalState extends State<ProductBoxModal> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ProductText(
+              ContentText(
                 text: widget.name,
                 fontSize: widget.fontSize ?? 15,
                 color: widget.textColor ?? ColorConstant.instance.neutral1,
               ),
               SizedBox(height: widget.spacing ?? 3),
-              ProductText(
+              ContentText(
                 text: "\$ ${widget.price}",
                 fontSize: widget.fontSize ?? 15,
                 color: widget.priceColor ?? ColorConstant.instance.primary_main,

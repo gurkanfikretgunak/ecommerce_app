@@ -38,7 +38,7 @@ class SettingsBoxLabel extends StatelessWidget {
                 size: iconSize ?? 24,
               ),
               context.emptySizedWidthBoxNormal,
-              ProductText(
+              ContentText(
                 text: text,
                 color: textColor ?? ColorConstant.instance.neutral1,
                 fontSize: fontSize ?? 15,

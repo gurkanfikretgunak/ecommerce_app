@@ -60,12 +60,12 @@ class _CartListLayoutState extends State<CartListLayout> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ProductText(
+            ContentText(
               color: ColorConstant.instance.neutral1,
               fontSize: 18,
               text: "Total",
             ),
-            ProductText(
+            ContentText(
               color: ColorConstant.instance.primary_main,
               fontSize: 18,
               text: "\$ ${calculateTotal().toStringAsFixed(2)}",

@@ -50,7 +50,7 @@ class PopupSuccesLabel extends StatelessWidget {
                     context.emptySizedHeightBoxNormal,
                     SizedBox(
                       width: 300,
-                      child: ProductText(
+                      child: ContentText(
                         fontSize: 14,
                         softWrap: true,
                         color: ColorConstant.instance.neutral4,

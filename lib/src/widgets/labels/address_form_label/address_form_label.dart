@@ -125,7 +125,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ProductText(
+                ContentText(
                   text: "Choose Location",
                   fontSize: 14,
                   color: ColorConstant.instance.neutral1,
@@ -139,7 +139,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ProductText(
+                    ContentText(
                       text: "Set Default Address",
                       fontSize: 14,
                       color: ColorConstant.instance.neutral1,

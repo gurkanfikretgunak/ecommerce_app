@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -47,7 +46,7 @@ class _NofiticationBoxModalState extends State<NofiticationBoxModal> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SuccessLabelRadius(
+        RadiusIconLabel(
           radius: widget.radius ?? 30,
           width: widget.width ?? 20,
           height: widget.height ?? 20,
@@ -65,8 +64,8 @@ class _NofiticationBoxModalState extends State<NofiticationBoxModal> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: MediaQuery.of(context).size.width * 0.6,
-              child: ProductText(
+              width: MediaQuery.of(context).size.width * 0.55,
+              child: ContentText(
                 text: widget.text,
                 softWrap: true,
                 textAlign: TextAlign.start,
@@ -76,7 +75,7 @@ class _NofiticationBoxModalState extends State<NofiticationBoxModal> {
                 fontSize: widget.fontSize ?? 12,
               ),
             ),
-            ProductText(
+            ContentText(
               text: widget.timeText,
               color: widget.isSeen
                   ? ColorConstant.instance.neutral5

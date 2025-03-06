@@ -14,7 +14,7 @@ class HomepageBannerHeadText extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(7.5)),
           color: ColorConstant.instance.neutral9.withOpacity(0.36),
         ),
-        child: ProductText(
+        child: ContentText(
           text: text,
           fontSize: 10,
         ));

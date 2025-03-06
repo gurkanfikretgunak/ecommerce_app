@@ -24,7 +24,7 @@ class _CouponcodeTextfieldInputState extends State<CouponcodeTextfieldInput> {
         ),
         TextButton(
           onPressed: () {},
-          child: ProductText(
+          child: ContentText(
             fontSize: 12,
             color: ColorConstant.instance.neutral1,
             text: "Apply Coupon",

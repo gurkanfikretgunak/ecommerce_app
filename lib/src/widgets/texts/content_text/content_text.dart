@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class ProductText extends StatelessWidget {
+class ContentText extends StatelessWidget {
   final String text;
   final double? fontSize;
   final Color? color;
@@ -10,7 +10,7 @@ class ProductText extends StatelessWidget {
   final TextAlign? textAlign;
   final bool? softWrap;
 
-  const ProductText({
+  const ContentText({
     super.key,
     required this.text,
     this.fontSize,

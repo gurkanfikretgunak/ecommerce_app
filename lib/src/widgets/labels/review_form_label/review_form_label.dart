@@ -39,7 +39,7 @@ class _ReviewFormLabelState extends State<ReviewFormLabel> {
         context.emptySizedHeightBoxLow,
         Row(
           children: [
-            ProductText(
+            ContentText(
                 color: ColorConstant.instance.neutral4,
                 fontSize: 10,
                 text: "Your Rating * "),
@@ -64,7 +64,7 @@ class _ReviewFormLabelState extends State<ReviewFormLabel> {
             context.emptySizedWidthBoxLow,
             Container(
               width: MediaQuery.of(context).size.width * 0.7,
-              child: ProductText(
+              child: ContentText(
                   textAlign: TextAlign.left,
                   color: ColorConstant.instance.neutral4,
                   fontSize: 10,

@@ -24,7 +24,7 @@ class TimerLabelBox extends StatelessWidget {
       decoration: BoxDecoration(
           color: color ?? ColorConstant.instance.primary_main,
           borderRadius: BorderRadius.all(Radius.circular(radius ?? 5))),
-      child: Center(child: ProductText(text: value ?? "00", fontSize: 12)),
+      child: Center(child: ContentText(text: value ?? "00", fontSize: 12)),
     );
   }
 }

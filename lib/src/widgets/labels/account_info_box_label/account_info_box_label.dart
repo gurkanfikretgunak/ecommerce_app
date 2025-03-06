@@ -35,12 +35,12 @@ class AccountInfoBoxLabel extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ProductText(
+          ContentText(
             text: title,
             fontSize: fontSize ?? 18,
             color: titleColor ?? ColorConstant.instance.neutral4,
           ),
-          ProductText(
+          ContentText(
             text: value,
             fontSize: fontSize ?? 18,
             color: valueColor ?? ColorConstant.instance.neutral1,

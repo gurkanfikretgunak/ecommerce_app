@@ -54,7 +54,7 @@ class _PopupSaleBannerState extends State<PopupSaleBanner> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     context.emptySizedHeightBoxNormal,
-                    ProductText(
+                    ContentText(
                       text: widget.subTitle,
                       fontSize: 22,
                       color: ColorConstant.instance.neutral9,
@@ -82,7 +82,7 @@ class _PopupSaleBannerState extends State<PopupSaleBanner> {
                             if (value!) _setNotShowAgain();
                           },
                         ),
-                        ProductText(
+                        ContentText(
                           text: "Do not show popup anymore",
                           fontSize: 10,
                           color: ColorConstant.instance.neutral4,

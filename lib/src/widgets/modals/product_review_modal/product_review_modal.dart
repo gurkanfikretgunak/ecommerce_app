@@ -44,16 +44,16 @@ class ProductReviewModal extends StatelessWidget {
             SizedBox(height: spacing ?? 5),
             Row(
               children: [
-                ProductText(
+                ContentText(
                   color: ColorConstant.instance.neutral1,
                   text: name,
                 ),
-                ProductText(
+                ContentText(
                   color: ColorConstant.instance.neutral4,
                   text: " - ",
                 ),
                 SizedBox(width: spacing ?? 5),
-                ProductText(
+                ContentText(
                   color: ColorConstant.instance.neutral4,
                   text: date,
                 ),

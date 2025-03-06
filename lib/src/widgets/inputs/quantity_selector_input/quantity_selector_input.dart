@@ -29,7 +29,7 @@ class _QuantitySelectorInputState extends State<QuantitySelectorInput> {
           iconSize: widget.size ?? 14,
           icon: const Icon(Icons.remove),
         ),
-        ProductText(
+        ContentText(
             fontSize: widget.size ?? 14,
             color: ColorConstant.instance.neutral1,
             text: "$count"),

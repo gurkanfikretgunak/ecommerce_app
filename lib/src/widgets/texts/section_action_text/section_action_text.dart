@@ -24,7 +24,7 @@ class SectionActionText extends StatelessWidget {
       onTap: onTap,
       child: Column(
         children: [
-          ProductText(
+          ContentText(
             text: text,
             fontSize: fontSize ?? 10,
             color: color ?? ColorConstant.instance.neutral4,

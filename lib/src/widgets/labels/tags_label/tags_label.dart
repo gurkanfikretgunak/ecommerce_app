@@ -48,7 +48,7 @@ class _TagsLabelState extends State<TagsLabel> {
         ],
       ),
       child: ActionChip(
-        label: ProductText(
+        label: ContentText(
           text: widget.label,
           color: isSelected
               ? widget.selectedTextColor ?? ColorConstant.instance.primary_main

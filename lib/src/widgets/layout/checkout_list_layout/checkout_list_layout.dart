@@ -40,7 +40,7 @@ class _CheckoutListLayoutState extends State<CheckoutListLayout> {
               return Column(
                 children: [
                   ProductBoxRowLayout(
-                    item: ProductText(
+                    item: ContentText(
                       text: "${widget.items[index].quantity}",
                       fontSize: 14,
                       color: ColorConstant.instance.neutral1,
@@ -58,12 +58,12 @@ class _CheckoutListLayoutState extends State<CheckoutListLayout> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ProductText(
+            ContentText(
               color: ColorConstant.instance.neutral1,
               fontSize: 18,
               text: "Total",
             ),
-            ProductText(
+            ContentText(
               color: ColorConstant.instance.primary_main,
               fontSize: 18,
               text: "\$ ${calculateTotal().toStringAsFixed(2)}",

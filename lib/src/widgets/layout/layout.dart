@@ -6,6 +6,7 @@ export 'package:shopapp_widgets/src/widgets/layout/categories_banner_column_layo
 export 'package:shopapp_widgets/src/widgets/layout/categories_row_layout/categories_row_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/checkout_list_layout/checkout_list_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/myorder_list_layout/myorder_list_layout.dart';
+export 'package:shopapp_widgets/src/widgets/layout/notification_box_column_layout/notification_box_column_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/payment_card_column_layout/payment_card_column_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/product_box_row_layout/product_box_row_layout.dart';
 export 'package:shopapp_widgets/src/widgets/layout/product_grid_layout/product_grid_layout.dart';

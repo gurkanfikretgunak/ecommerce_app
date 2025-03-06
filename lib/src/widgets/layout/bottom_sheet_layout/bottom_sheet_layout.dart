@@ -63,7 +63,7 @@ class _BottomSheetLayoutState extends State<BottomSheetLayout> {
               itemCount: widget.items.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: ProductText(
+                  title: ContentText(
                     fontSize: 12,
                     textAlign: TextAlign.start,
                     color: ColorConstant.instance.neutral1,

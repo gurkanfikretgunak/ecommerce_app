@@ -62,22 +62,22 @@ class AddressBoxModal extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ProductText(
+                    ContentText(
                       text: name,
                       color: nameColor ?? ColorConstant.instance.neutral1,
                       fontSize: 14,
                     ),
-                    ProductText(
+                    ContentText(
                       text: address,
                       color: addressColor ?? ColorConstant.instance.neutral4,
                       fontSize: 10,
                     ),
-                    ProductText(
+                    ContentText(
                       text: email,
                       color: emailColor ?? ColorConstant.instance.neutral4,
                       fontSize: 10,
                     ),
-                    ProductText(
+                    ContentText(
                       text: phone,
                       color: phoneColor ?? ColorConstant.instance.neutral4,
                       fontSize: 10,

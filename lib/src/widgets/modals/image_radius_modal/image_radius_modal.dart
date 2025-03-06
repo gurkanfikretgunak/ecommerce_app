@@ -26,7 +26,7 @@ class ImageRadiusModal extends StatelessWidget {
         ),
         context.emptySizedHeightBoxLow,
         if (text != null)
-          ProductText(
+          ContentText(
             text: text ?? "",
             color: textColor ?? ColorConstant.instance.neutral1,
           ),
