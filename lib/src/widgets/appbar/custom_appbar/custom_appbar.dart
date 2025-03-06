@@ -5,8 +5,15 @@ class CustomAppbar extends StatefulWidget implements PreferredSizeWidget {
   final Color? iconColor;
   final String? text;
   final VoidCallback? onPressed;
+  final List<Widget>? actions; // İsteğe bağlı sağdaki Row için
 
-  const CustomAppbar({super.key, this.iconColor, this.text, this.onPressed});
+  const CustomAppbar({
+    super.key,
+    this.iconColor,
+    this.text,
+    this.onPressed,
+    this.actions,
+  });
 
   @override
   State<CustomAppbar> createState() => _CustomAppbarState();
@@ -41,6 +48,11 @@ class _CustomAppbarState extends State<CustomAppbar> {
                 ),
               ),
             if (widget.text != null) Expanded(child: Container()),
+            if (widget.actions != null)
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: widget.actions!,
+              ),
           ],
         ),
       ),
