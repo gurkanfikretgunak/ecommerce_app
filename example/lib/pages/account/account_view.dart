@@ -1,10 +1,11 @@
 import 'package:example/gen/assets.gen.dart';
+import 'package:example/pages/notification/notification_view.dart';
 import 'package:example/pages/profile/profile_view.dart';
 import 'package:example/pages/signin/signin_view.dart';
 import 'package:example/services/auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AccountView extends StatefulWidget {
   const AccountView({super.key});
@@ -25,9 +26,13 @@ class _AccountViewState extends State<AccountView> {
                 MaterialPageRoute(builder: (context) => ProfileView()));
           },
           suffixIcon: Icons.arrow_forward_ios),
-      const SettingsBoxLabel(
+      SettingsBoxLabel(
           icon: Icons.notifications_outlined,
-          text: 'Notification',
+          text: 'Noficiation',
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => NotificationView()));
+          },
           suffixIcon: Icons.arrow_forward_ios),
       const SettingsBoxLabel(
           icon: Icons.payment,
@@ -73,7 +78,9 @@ class _AccountViewState extends State<AccountView> {
         child: CustomAppbar(
           text: "ACCOUNT",
           onPressed: () {
-            Navigator.pop(context);
+            setState(() {
+              Navigator.pop(context);
+            });
           },
           iconColor: ColorConstant.instance.neutral1,
         ),

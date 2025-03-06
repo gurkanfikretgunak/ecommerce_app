@@ -23,6 +23,7 @@ export 'package:shopapp_widgets/src/widgets/labels/review_form_label/review_form
 export 'package:shopapp_widgets/src/widgets/labels/settings_box_label/settings_box_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/sizes_label/sizes_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/slider_indicator/slider_indicator.dart';
+export 'package:shopapp_widgets/src/widgets/labels/splash_label/splash_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/stepper_label/stepper_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/stepper_label_radius/stepper_label_radius.dart';
 export 'package:shopapp_widgets/src/widgets/labels/success_label_radius/success_label_radius.dart';
