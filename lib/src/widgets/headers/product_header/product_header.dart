@@ -4,13 +4,13 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 class ProductHeader extends StatelessWidget {
   final VoidCallback? onPressed;
   final List<String> imagePaths;
-  final Widget? iconRow;
+  final List<Widget>? action;
 
   const ProductHeader({
     super.key,
     required this.imagePaths,
     this.onPressed,
-    this.iconRow,
+    this.action,
   });
 
   @override
@@ -40,15 +40,10 @@ class ProductHeader extends StatelessWidget {
           top: screenHeight * 0.02,
           left: 5,
           right: 5,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              CustomAppbar(
-                iconColor: ColorConstant.instance.neutral1,
-                onPressed: onPressed,
-              ),
-              if (iconRow != null) iconRow!,
-            ],
+          child: CustomAppbar(
+            iconColor: ColorConstant.instance.neutral1,
+            onPressed: onPressed,
+            actions: action,
           ),
         ),
       ],

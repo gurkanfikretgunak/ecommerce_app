@@ -91,17 +91,15 @@ class _ProductViewState extends State<ProductView> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              iconRow: Row(
-                children: [
-                  InkWell(
-                    child: SvgPicture.asset("assets/icons/cart.svg"),
-                  ),
-                  context.emptySizedWidthBoxNormal,
-                  InkWell(
-                    child: SvgPicture.asset("assets/icons/search.svg"),
-                  ),
-                ],
-              ),
+              action: [
+                InkWell(
+                  child: SvgPicture.asset("assets/icons/cart.svg"),
+                ),
+                context.emptySizedWidthBoxNormal,
+                InkWell(
+                  child: SvgPicture.asset("assets/icons/search.svg"),
+                ),
+              ],
             ),
             const Padding(
               padding: EdgeInsets.all(15),
