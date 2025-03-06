@@ -21,6 +21,8 @@ export 'package:shopapp_widgets/src/widgets/labels/product_info_label/product_in
 export 'package:shopapp_widgets/src/widgets/labels/product_section_label/product_section_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/review_form_label/review_form_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/settings_box_label/settings_box_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/signin_form_label/signin_form_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/signup_form_label/signup_form_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/sizes_label/sizes_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/slider_indicator/slider_indicator.dart';
 export 'package:shopapp_widgets/src/widgets/labels/splash_label/splash_label.dart';

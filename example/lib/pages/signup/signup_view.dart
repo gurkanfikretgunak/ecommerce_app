@@ -2,7 +2,7 @@ import 'package:example/pages/home/home_view.dart';
 import 'package:example/pages/mainpage/mainpage_view.dart';
 import 'package:example/pages/verifiticion/verification_view.dart';
 import 'package:example/services/auth.dart';
-import 'package:example/widgets/signup_form.dart';
+
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:google_fonts/google_fonts.dart';
