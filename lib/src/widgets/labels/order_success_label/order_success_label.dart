@@ -10,6 +10,7 @@ class OrderSuccessLabel extends StatelessWidget {
   final String secondaryButtonText;
   final VoidCallback onSecondaryButtonPressed;
   final Color? secondaryButtonColor;
+  final String succesiconPath;
   final Color? secondaryButtonTextColor;
   final double? buttonHeight;
   final double? titleFontSize;
@@ -29,6 +30,7 @@ class OrderSuccessLabel extends StatelessWidget {
     this.buttonHeight,
     this.titleFontSize,
     required this.iconPath,
+    required this.succesiconPath,
   });
 
   @override
@@ -36,7 +38,11 @@ class OrderSuccessLabel extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SuccessLabelRadius(iconPath: iconPath),
+        RadiusIconLabel(
+          iconPath: iconPath,
+          successIconPath: succesiconPath,
+          color: ColorConstant.instance.primary_main,
+        ),
         context.emptySizedHeightBoxNormal,
         HeadText(
           fontSize: titleFontSize ?? 30,

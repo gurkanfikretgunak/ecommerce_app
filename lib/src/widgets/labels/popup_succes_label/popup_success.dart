@@ -38,7 +38,7 @@ class PopupSuccesLabel extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SuccessLabelRadius(
+                    RadiusIconLabel(
                       iconPath: iconPath,
                     ),
                     context.emptySizedHeightBoxNormal,

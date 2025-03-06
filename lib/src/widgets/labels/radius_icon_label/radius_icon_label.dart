@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class SuccessLabelRadius extends StatelessWidget {
+class RadiusIconLabel extends StatelessWidget {
   final String iconPath;
   final double? width;
   final double? height;
@@ -12,7 +12,7 @@ class SuccessLabelRadius extends StatelessWidget {
   final Color? successIconColor;
   final String successIconPath;
 
-  const SuccessLabelRadius({
+  const RadiusIconLabel({
     super.key,
     required this.iconPath,
     this.width,
@@ -47,7 +47,6 @@ class SuccessLabelRadius extends StatelessWidget {
             radius: successIconRadius ?? 15,
             child: SvgPicture.asset(
               successIconPath,
-              color: successIconColor ?? ColorConstant.instance.green2,
             ),
           ),
         ),

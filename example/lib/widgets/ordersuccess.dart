@@ -24,7 +24,8 @@ class OrderSuccess extends StatelessWidget {
               primaryButtonText: "MY ORDERS",
               secondaryButtonText: "CONTINUE SHOPPING",
               onSecondaryButtonPressed: onSecondaryButtonPressed,
-              iconPath: Assets.icons.success.path,
+              iconPath: Assets.icons.truck.path,
+              succesiconPath: Assets.icons.success.path,
               description:
                   "Dolor magna eget est lorem ipsum dolor sit amet consectetur."),
         ],
