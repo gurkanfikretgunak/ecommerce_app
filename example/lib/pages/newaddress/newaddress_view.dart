@@ -1,7 +1,10 @@
 import 'package:example/pages/addresses/addresses_view.dart';
+import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class NewAddressView extends StatefulWidget {
   const NewAddressView({super.key});
 
@@ -34,10 +37,11 @@ class _NewAddressViewState extends State<NewAddressView> {
                 padding: const EdgeInsets.all(15),
                 child: CustomButton(
                     onPressed: () {
-                      Navigator.push(
+                      AutoRouter.of(context).push(AddressesViewRoute());
+                      /*Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const AddressesView()));
+                              builder: (context) => const AddressesView()));*/
                     },
                     height: 50,
                     text: "Confirm"),

@@ -1,9 +1,12 @@
 import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/addresses/addresses_view.dart';
 import 'package:example/pages/paymentmethods/paymentmethods_view.dart';
+import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class Checkout extends StatefulWidget {
   final VoidCallback? buttonCallBack;
   const Checkout({super.key, this.buttonCallBack});
@@ -38,19 +41,21 @@ class _CheckoutState extends State<Checkout> {
               address: "3517 W. Gray St. Utica, Pennsylvania 57867",
               email: "willie.jennings@example.com",
               onTap: () {
-                Navigator.push(
+                AutoRouter.of(context).push(AddressesViewRoute());
+                /*Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const AddressesView()));
+                        builder: (context) => const AddressesView()));*/
               },
               phone: "(480) 555-0103"),
           context.emptySizedHeightBoxNormal,
           PaymentMethodBoxModal(
               onTap: () {
-                Navigator.push(
+                AutoRouter.of(context).push(const PaymentMethodsViewRoute());
+                /*Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const PaymentMethodsView()));
+                        builder: (context) => const PaymentMethodsView()));*/
               },
               text: "Master card Ending *****23"),
           context.emptySizedHeightBoxNormal,

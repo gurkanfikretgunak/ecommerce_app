@@ -16,10 +16,11 @@ class CategoriesView extends StatelessWidget {
       CategorieBanner(
           onTap: () {
             AutoRouter.of(context).push(const CategorieProductsViewRoute());
-            Navigator.push(
+
+            /* Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const CategorieProductsView()));
+                    builder: (context) => const CategorieProductsView()));*/
           },
           imagePath: Assets.images.categoriebannerFirst.path,
           text: "MEN"),

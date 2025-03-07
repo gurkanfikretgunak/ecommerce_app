@@ -69,8 +69,8 @@ class _CategorieProductsViewState extends State<CategorieProductsView> {
         productPrice: "\$49.00",
         onTap: () {
           AutoRouter.of(context).push(const ProductViewRoute());
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const ProductView()));
+          /* Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const ProductView()));*/
         },
       ),
       ProductCardModal(

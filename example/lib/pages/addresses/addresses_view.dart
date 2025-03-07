@@ -1,7 +1,10 @@
 import 'package:example/pages/newaddress/newaddress_view.dart';
+import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class AddressesView extends StatefulWidget {
   final List<AddressBoxModal>? addressItems;
 
@@ -68,10 +71,11 @@ class _AddressesViewState extends State<AddressesView> {
               padding: const EdgeInsets.all(15),
               child: CustomButton(
                   onPressed: () {
-                    Navigator.push(
+                    AutoRouter.of(context).push(const NewAddressViewRoute());
+                    /*Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const NewAddressView()));
+                            builder: (context) => const NewAddressView()));*/
                   },
                   height: 50,
                   text: "Add New Address"),

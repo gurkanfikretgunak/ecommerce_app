@@ -1,11 +1,14 @@
 import 'package:example/pages/home/home_view.dart';
 import 'package:example/pages/mainpage/mainpage_view.dart';
+import 'package:example/route/route.gr.dart';
 import 'package:example/widgets/ordersuccess.dart';
 import 'package:example/widgets/cart.dart';
 import 'package:example/widgets/checkout.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class PaymentView extends StatefulWidget {
   const PaymentView({super.key});
 
@@ -35,8 +38,9 @@ class _PaymentViewState extends State<PaymentView> {
       OrderSuccess(
         onPrimaryButtonPressed: () {},
         onSecondaryButtonPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const MainpageView()));
+          AutoRouter.of(context).push(MainpageViewRoute(pageNo: 0));
+          /*Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const MainpageView()));*/
         },
       ),
     ];

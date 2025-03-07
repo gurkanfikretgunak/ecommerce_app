@@ -1,7 +1,10 @@
 import 'package:example/pages/paymentmethods/paymentmethods_view.dart';
+import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class NewCardView extends StatefulWidget {
   const NewCardView({super.key});
 
@@ -37,11 +40,12 @@ class _NewCardViewState extends State<NewCardView> {
                 alignment: Alignment.bottomCenter,
                 child: CustomButton(
                   onPressed: () {
-                    Navigator.push(
+                    AutoRouter.of(context).push(PaymentMethodsViewRoute());
+                    /*Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const PaymentMethodsView()),
-                    );
+                    );*/
                   },
                   height: 50,
                   text: "Add Card",
