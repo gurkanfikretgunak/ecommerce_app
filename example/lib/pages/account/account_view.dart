@@ -2,6 +2,7 @@ import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/notification/notification_view.dart';
 import 'package:example/pages/profile/profile_view.dart';
 import 'package:example/pages/signin/signin_view.dart';
+import 'package:example/route/route.gr.dart';
 import 'package:example/services/auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -24,18 +25,20 @@ class _AccountViewState extends State<AccountView> {
           icon: Icons.person_outlined,
           text: 'Account',
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => ProfileView()));
+            AutoRouter.of(context).push(ProfileViewRoute());
+            /*Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ProfileView()));*/
           },
           suffixIcon: Icons.arrow_forward_ios),
       SettingsBoxLabel(
           icon: Icons.notifications_outlined,
           text: 'Noficiation',
           onTap: () {
-            Navigator.push(
+            AutoRouter.of(context).push(const NotificationViewRoute());
+            /*Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const NotificationView()));
+                    builder: (context) => const NotificationView()));*/
           },
           suffixIcon: Icons.arrow_forward_ios),
       const SettingsBoxLabel(
@@ -63,8 +66,9 @@ class _AccountViewState extends State<AccountView> {
         text: 'Sign Out',
         onTap: () async {
           if (await AuthService().signOut()) {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const SignInView()));
+            AutoRouter.of(context).push(const SignInViewRoute());
+            /*Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const SignInView()));*/
           }
         },
         iconColor: ColorConstant.instance.secondary2,
@@ -122,7 +126,10 @@ class _AccountViewState extends State<AccountView> {
                     radius: 0,
                     height: 40,
                     color: ColorConstant.instance.neutral9,
-                    onPressed: () {},
+                    onPressed: () {
+                      AutoRouter.of(context)
+                          .push(OrderwishlistViewRoute(showOrder: true));
+                    },
                     text: "My Order",
                     iconColor: ColorConstant.instance.neutral1,
                     textColor: ColorConstant.instance.neutral1,
@@ -134,7 +141,9 @@ class _AccountViewState extends State<AccountView> {
                     radius: 0,
                     height: 40,
                     color: ColorConstant.instance.neutral9,
-                    onPressed: () {},
+                    onPressed: () {
+                      AutoRouter.of(context).push(OrderwishlistViewRoute());
+                    },
                     text: "Wishlist",
                     iconColor: ColorConstant.instance.neutral1,
                     textColor: ColorConstant.instance.neutral1,

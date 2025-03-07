@@ -3,9 +3,12 @@ import 'package:example/widgets/order.dart';
 import 'package:example/widgets/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class OrderwishlistView extends StatefulWidget {
-  const OrderwishlistView({super.key});
+  final bool? showOrder;
+  const OrderwishlistView({super.key, this.showOrder});
 
   @override
   State<OrderwishlistView> createState() => _OrderwishlistViewState();
@@ -50,6 +53,12 @@ class _OrderwishlistViewState extends State<OrderwishlistView> {
   ];
 
   bool _showOrder = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _showOrder = widget.showOrder ?? false;
+  }
 
   @override
   Widget build(BuildContext context) {

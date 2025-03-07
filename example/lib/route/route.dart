@@ -20,6 +20,12 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: NewAddressViewRoute.page),
         AutoRoute(page: PaymentMethodsViewRoute.page),
         AutoRoute(page: NewCardViewRoute.page),
+        AutoRoute(page: FilterViewRoute.page),
+        AutoRoute(page: SearchViewRoute.page),
+        AutoRoute(page: AccountViewRoute.page),
+        AutoRoute(page: ProfileViewRoute.page),
+        AutoRoute(page: OrderwishlistViewRoute.page),
+        AutoRoute(page: NotificationViewRoute.page),
       ];
 }
 

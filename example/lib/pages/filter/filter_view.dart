@@ -27,7 +27,7 @@ class _FilterViewState extends State<FilterView> {
               alignment: Alignment.bottomCenter,
               child: CustomButton(
                   onPressed: () {
-                    AutoRouter.of(context).push(SearchViewRoute());
+                    AutoRouter.of(context).push(const SearchViewRoute());
                     /*Navigator.push(
                             context,
                             MaterialPageRoute(
