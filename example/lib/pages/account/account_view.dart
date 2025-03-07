@@ -3,10 +3,12 @@ import 'package:example/pages/notification/notification_view.dart';
 import 'package:example/pages/profile/profile_view.dart';
 import 'package:example/pages/signin/signin_view.dart';
 import 'package:example/services/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class AccountView extends StatefulWidget {
   const AccountView({super.key});
 
