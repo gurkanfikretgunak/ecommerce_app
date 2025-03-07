@@ -33,7 +33,6 @@ class _SignUpViewState extends State<SignUpView> {
             },
             iconColor: ColorConstant.instance.neutral1,
           )),
-      backgroundColor: ColorConstant.instance.neutral9,
       body: Column(
         children: [
           Padding(padding: EdgeInsets.only(left: 20, top: screenHeigth * 0.03)),

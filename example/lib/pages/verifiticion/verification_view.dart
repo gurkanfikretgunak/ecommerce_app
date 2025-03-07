@@ -1,9 +1,12 @@
-import 'package:example/pages/home/home_view.dart';
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:example/pages/mainpage/mainpage_view.dart';
+import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
+@RoutePage()
 class VerificationView extends StatefulWidget {
   const VerificationView({super.key});
 
@@ -28,7 +31,6 @@ class _VerificationViewState extends State<VerificationView> {
             },
             iconColor: ColorConstant.instance.neutral1,
           )),
-      backgroundColor: ColorConstant.instance.neutral9,
       body: Column(
         children: [
           Padding(
@@ -67,10 +69,11 @@ class _VerificationViewState extends State<VerificationView> {
           CustomButton(
             text: "SUBMIT",
             onPressed: () {
-              Navigator.push(
+              AutoRouter.of(context).push(MainpageViewRoute());
+              /*Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const MainpageView()));
+                      builder: (context) => const MainpageView()));*/
             },
           ),
           Row(

@@ -47,7 +47,6 @@ class _AddressesViewState extends State<AddressesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorConstant.instance.neutral9,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: CustomAppbar(

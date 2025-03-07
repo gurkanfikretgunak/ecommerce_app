@@ -30,8 +30,10 @@ class _AccountViewState extends State<AccountView> {
           icon: Icons.notifications_outlined,
           text: 'Noficiation',
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => NotificationView()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const NotificationView()));
           },
           suffixIcon: Icons.arrow_forward_ios),
       const SettingsBoxLabel(
@@ -72,7 +74,6 @@ class _AccountViewState extends State<AccountView> {
     double buttonWidth = screenWidth * 0.9;
 
     return Scaffold(
-      backgroundColor: ColorConstant.instance.neutral9,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: CustomAppbar(

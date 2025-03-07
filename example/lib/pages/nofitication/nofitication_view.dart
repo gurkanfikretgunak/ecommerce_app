@@ -41,9 +41,6 @@ class _NotificationViewState extends State<NotificationView> {
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: CustomAppbar(
-            onPressed: () {
-              Navigator.pop(context);
-            },
             text: "notification",
             iconColor: ColorConstant.instance.neutral1,
             actions: [

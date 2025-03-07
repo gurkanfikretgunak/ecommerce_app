@@ -1,11 +1,17 @@
+// ignore: depend_on_referenced_packages
 import 'package:device_preview/device_preview.dart';
-import 'package:example/pages/search/search_view.dart';
-import 'package:example/pages/signin/signin_view.dart';
+import 'package:example/pages/home/home_view.dart';
+import 'package:example/pages/splash/splash_view.dart';
+import 'package:example/route/route.dart';
+// ignore: depend_on_referenced_packages
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:firebase_core/firebase_core.dart';
+// ignore: depend_on_referenced_packages
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 void main() async {
   await dotenv.load();
@@ -14,10 +20,7 @@ void main() async {
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
   OneSignal.initialize(dotenv.env['ONESIGNAL_APP_ID'] ?? "");
   OneSignal.Notifications.requestPermission(true);
-  runApp(DevicePreview(
-    enabled: !kReleaseMode,
-    builder: (context) => const ExampleApp(),
-  ));
+  runApp(const ExampleApp());
 }
 
 class ExampleApp extends StatelessWidget {
@@ -25,16 +28,18 @@ class ExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        useInheritedMediaQuery: true,
-        locale: DevicePreview.locale(context),
-        builder: DevicePreview.appBuilder,
-        title: 'Example App',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: SignInView());
+    return MaterialApp.router(
+      useInheritedMediaQuery: true,
+      //locale: DevicePreview.locale(context),
+      // builder: DevicePreview.appBuilder,
+      title: 'Example App',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: ColorConstant.instance.neutral9),
+        useMaterial3: true,
+      ),
+      routerConfig: AppRouter().config(),
+    );
   }
 }

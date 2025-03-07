@@ -21,7 +21,6 @@ class _SignInViewState extends State<SignInView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorConstant.instance.neutral9,
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,

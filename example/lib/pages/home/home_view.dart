@@ -105,7 +105,6 @@ class _HomeViewState extends State<HomeView> {
         child: HomePageAppbar(
             logoPath: Assets.icons.logotext.path, icon: Icons.notifications),
       ),
-      backgroundColor: ColorConstant.instance.neutral9,
       body: SingleChildScrollView(
         child: Column(
           children: [

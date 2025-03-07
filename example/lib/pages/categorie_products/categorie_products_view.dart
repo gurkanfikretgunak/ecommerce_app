@@ -106,7 +106,6 @@ class _CategorieProductsViewState extends State<CategorieProductsView> {
     ];
 
     return Scaffold(
-      backgroundColor: ColorConstant.instance.neutral9,
       body: Column(
         children: [
           CategoriesHeader(

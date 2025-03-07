@@ -91,7 +91,6 @@ class _ProductViewState extends State<ProductView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorConstant.instance.neutral9,
       body: SingleChildScrollView(
         child: Column(
           children: [
