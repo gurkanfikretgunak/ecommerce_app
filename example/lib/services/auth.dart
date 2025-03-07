@@ -32,7 +32,7 @@ class AuthService {
           await auth.signInWithCredential(credential);
       return userCredential.user;
     } catch (e) {
-      throw Exception(e.toString());
+      return null;
     }
   }
 

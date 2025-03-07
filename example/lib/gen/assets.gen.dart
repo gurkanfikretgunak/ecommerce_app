@@ -15,6 +15,9 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/box.svg
+  SvgGenImage get box => const SvgGenImage('assets/icons/box.svg');
+
   /// File path: assets/icons/camera.svg
   SvgGenImage get camera => const SvgGenImage('assets/icons/camera.svg');
 
@@ -31,6 +34,9 @@ class $AssetsIconsGen {
   AssetGenImage get logotext =>
       const AssetGenImage('assets/icons/logotext.png');
 
+  /// File path: assets/icons/sale.svg
+  SvgGenImage get sale => const SvgGenImage('assets/icons/sale.svg');
+
   /// File path: assets/icons/search.svg
   SvgGenImage get search => const SvgGenImage('assets/icons/search.svg');
 
@@ -45,11 +51,13 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<dynamic> get values => [
+    box,
     camera,
     cart,
     homeIcon,
     logo,
     logotext,
+    sale,
     search,
     success,
     truck,
@@ -238,9 +246,13 @@ class $AssetsMapstyleGen {
 class Assets {
   const Assets._();
 
+  static const String aEnv = '.env';
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsMapstyleGen mapstyle = $AssetsMapstyleGen();
+
+  /// List of all assets
+  static List<String> get values => [aEnv];
 }
 
 class AssetGenImage {

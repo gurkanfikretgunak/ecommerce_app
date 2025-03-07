@@ -101,10 +101,16 @@ class _ProductViewState extends State<ProductView> {
               },
               action: [
                 InkWell(
+                  onTap: () {
+                    AutoRouter.of(context).push(const PaymentViewRoute());
+                  },
                   child: SvgPicture.asset("assets/icons/cart.svg"),
                 ),
                 context.emptySizedWidthBoxNormal,
                 InkWell(
+                  onTap: () {
+                    AutoRouter.of(context).push(const SearchViewRoute());
+                  },
                   child: SvgPicture.asset("assets/icons/search.svg"),
                 ),
               ],

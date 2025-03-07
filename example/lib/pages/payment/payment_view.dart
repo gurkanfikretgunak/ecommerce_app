@@ -62,6 +62,7 @@ class _PaymentViewState extends State<PaymentView> {
           onPressed: () {
             if (currentStep == 0) {
               Navigator.pop(context);
+              return;
             }
             setState(() {
               currentStep--;

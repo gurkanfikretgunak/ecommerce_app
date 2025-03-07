@@ -28,7 +28,7 @@ export 'package:shopapp_widgets/src/widgets/labels/slider_indicator/slider_indic
 export 'package:shopapp_widgets/src/widgets/labels/splash_label/splash_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/stepper_label/stepper_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/stepper_label_radius/stepper_label_radius.dart';
-export 'package:shopapp_widgets/src/widgets/labels/success_label_radius/success_label_radius.dart';
+export 'package:shopapp_widgets/src/widgets/labels/radius_icon_label/radius_icon_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/tags_label/tags_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/timer_label/timer_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/timer_label_box/timer_label_box.dart';

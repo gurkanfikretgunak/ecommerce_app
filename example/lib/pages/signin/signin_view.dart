@@ -88,9 +88,8 @@ class _SignInViewState extends State<SignInView> {
                       if (snapshot.hasData) {
                         if (snapshot.data != null) {
                           WidgetsBinding.instance.addPostFrameCallback((_) {
-                            AutoRouter.of(context).replaceAll([
-                              MainpageViewRoute()
-                            ]); /*Navigator.pushReplacement(
+                            AutoRouter.of(context).push(
+                                MainpageViewRoute()); /*Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>

@@ -47,6 +47,7 @@ class RadiusIconLabel extends StatelessWidget {
             radius: successIconRadius ?? 15,
             child: SvgPicture.asset(
               successIconPath,
+              color: ColorConstant.instance.primary_main,
             ),
           ),
         ),

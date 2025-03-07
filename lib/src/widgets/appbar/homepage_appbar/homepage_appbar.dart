@@ -5,6 +5,7 @@ class HomePageAppbar extends StatelessWidget implements PreferredSizeWidget {
   final IconData icon;
   final Color? iconColor;
   final double? logoScale;
+  final VoidCallback? iconOnPressed;
 
   const HomePageAppbar({
     super.key,
@@ -12,6 +13,7 @@ class HomePageAppbar extends StatelessWidget implements PreferredSizeWidget {
     required this.icon,
     this.iconColor,
     this.logoScale,
+    this.iconOnPressed,
   });
 
   @override
@@ -28,9 +30,12 @@ class HomePageAppbar extends StatelessWidget implements PreferredSizeWidget {
               logoPath,
               scale: logoScale ?? 2,
             ),
-            Icon(
-              icon,
-              color: iconColor ?? Colors.black,
+            IconButton(
+              icon: Icon(
+                icon,
+                color: iconColor ?? Colors.black,
+              ),
+              onPressed: iconOnPressed,
             ),
           ],
         ),

@@ -103,7 +103,11 @@ class _HomeViewState extends State<HomeView> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: HomePageAppbar(
-            logoPath: Assets.icons.logotext.path, icon: Icons.notifications),
+            iconOnPressed: () {
+              AutoRouter.of(context).push(const NotificationViewRoute());
+            },
+            logoPath: Assets.icons.logotext.path,
+            icon: Icons.notifications),
       ),
       body: SingleChildScrollView(
         child: Column(

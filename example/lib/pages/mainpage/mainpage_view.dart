@@ -30,7 +30,7 @@ class _MainpageViewState extends State<MainpageView> {
         label: "Wishlist",
         backgroundColor: ColorConstant.instance.neutral9),
     BottomNavigationBarItem(
-        icon: const Icon(Icons.shopping_cart),
+        icon: const Icon(Icons.local_mall),
         label: "Cart",
         backgroundColor: ColorConstant.instance.neutral9),
     BottomNavigationBarItem(
