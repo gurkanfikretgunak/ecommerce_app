@@ -1,13 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:example/gen/assets.gen.dart';
-import 'package:example/pages/home/home_view.dart';
-import 'package:example/pages/mainpage/mainpage_view.dart';
-import 'package:example/pages/signup/signup_view.dart';
+import 'package:example/route/route.gr.dart';
 import 'package:example/services/auth.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
+@RoutePage()
 class SignInView extends StatefulWidget {
   const SignInView({super.key});
 
@@ -16,6 +16,8 @@ class SignInView extends StatefulWidget {
 }
 
 class _SignInViewState extends State<SignInView> {
+  Future<User?>? _signInFuture;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +29,7 @@ class _SignInViewState extends State<SignInView> {
             SignInHeader(
                 imagePath: Assets.images.signinheader.path,
                 onPressed: () {
-                  Navigator.pop(context);
+                  AutoRouter.of(context).push(const OnboardingViewRoute());
                 }),
             context.emptySizedHeightBoxNormal,
             const SignInForm(),
@@ -36,12 +38,7 @@ class _SignInViewState extends State<SignInView> {
               children: [
                 CustomButton(
                   text: "SIGN IN",
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SignUpView()));
-                  },
+                  onPressed: () {},
                 ),
                 context.emptySizedHeightBoxLow,
                 CustomButton(
@@ -50,14 +47,10 @@ class _SignInViewState extends State<SignInView> {
                   color: ColorConstant.instance.neutral9,
                   textColor: ColorConstant.instance.neutral1,
                   iconColor: ColorConstant.instance.neutral1,
-                  onPressed: () async {
-                    await AuthService().signUpWithGoogle();
-                    if (AuthService().getCurrentUser() != null) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MainpageView()));
-                    }
+                  onPressed: () {
+                    setState(() {
+                      _signInFuture = AuthService().signUpWithGoogle();
+                    });
                   },
                 ),
                 context.emptySizedHeightBoxLow,
@@ -74,7 +67,13 @@ class _SignInViewState extends State<SignInView> {
                   children: [
                     const Text("Don’t have an account?"),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          AutoRouter.of(context).push(SignUpViewRoute());
+                          /* Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SignUpView()));*/
+                        },
                         child: Text(
                           "Register",
                           style: TextStyle(
@@ -82,7 +81,29 @@ class _SignInViewState extends State<SignInView> {
                           ),
                         ))
                   ],
-                )
+                ),
+                if (_signInFuture != null)
+                  FutureBuilder<User?>(
+                    future: _signInFuture,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        if (snapshot.data != null) {
+                          WidgetsBinding.instance.addPostFrameCallback((_) {
+                            AutoRouter.of(context).replaceAll([
+                              MainpageViewRoute()
+                            ]); /*Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const MainpageView()));*/
+                          });
+                        } else {
+                          return Text('Sign in failed');
+                        }
+                      }
+                      return Container();
+                    },
+                  ),
               ],
             ),
           ],

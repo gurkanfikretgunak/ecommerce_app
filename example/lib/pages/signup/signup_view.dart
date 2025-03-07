@@ -1,13 +1,15 @@
-import 'package:example/pages/home/home_view.dart';
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:example/pages/mainpage/mainpage_view.dart';
 import 'package:example/pages/verifiticion/verification_view.dart';
+import 'package:example/route/route.gr.dart';
 import 'package:example/services/auth.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shopapp_widgets/shoapp_ui_kit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
+@RoutePage()
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
 
@@ -16,6 +18,7 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
+  Future<User?>? _signUpFuture;
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -38,10 +41,11 @@ class _SignUpViewState extends State<SignUpView> {
           CustomButton(
             text: "SIGN UP",
             onPressed: () {
-              Navigator.push(
+              AutoRouter.of(context).push(const VerificationViewRoute());
+              /*Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const VerificationView()));
+                      builder: (context) => const VerificationView())))*/
             },
           ),
           context.emptySizedHeightBoxLow,
@@ -51,14 +55,10 @@ class _SignUpViewState extends State<SignUpView> {
             color: ColorConstant.instance.neutral9,
             textColor: ColorConstant.instance.neutral1,
             iconColor: ColorConstant.instance.neutral1,
-            onPressed: () async {
-              await AuthService().signUpWithGoogle();
-              if (AuthService().getCurrentUser() != null) {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const MainpageView()));
-              }
+            onPressed: () {
+              setState(() {
+                _signUpFuture = AuthService().signUpWithGoogle();
+              });
             },
           ),
           context.emptySizedHeightBoxLow,
@@ -70,6 +70,20 @@ class _SignUpViewState extends State<SignUpView> {
             iconColor: ColorConstant.instance.neutral1,
             onPressed: () {},
           ),
+          if (_signUpFuture != null)
+            FutureBuilder<User?>(
+                future: _signUpFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    if (snapshot.data != null) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        AutoRouter.of(context)
+                            .replaceAll([MainpageViewRoute()]);
+                      });
+                    }
+                  }
+                  return Container();
+                })
         ],
       ),
     );

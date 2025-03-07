@@ -1,8 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/signin/signin_view.dart';
+import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:auto_route/annotations.dart';
 
+@RoutePage()
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
 
@@ -18,8 +22,10 @@ class _OnboardingViewState extends State<OnboardingView> {
       _pageController.animateToPage(page + 1,
           duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
     } else {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const SignInView()));
+      AutoRouter.of(context).push(const SignInViewRoute());
+      /* Navigator.pushReplacement(
+          context,
+           MaterialPageRoute(builder: (context) => const SignInView()));*/
     }
   }
 

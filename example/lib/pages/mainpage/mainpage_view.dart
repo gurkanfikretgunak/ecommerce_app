@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/account/account_view.dart';
 import 'package:example/pages/home/home_view.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
+@RoutePage()
 class MainpageView extends StatefulWidget {
   final int? pageNo;
   const MainpageView({super.key, this.pageNo});
