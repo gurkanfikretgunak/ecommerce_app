@@ -1,8 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/product/product_view.dart';
+import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
+@RoutePage()
 class CategorieProductsView extends StatefulWidget {
   const CategorieProductsView({super.key});
 
@@ -65,6 +68,7 @@ class _CategorieProductsViewState extends State<CategorieProductsView> {
         productName: "Cotton T-shirt",
         productPrice: "\$49.00",
         onTap: () {
+          AutoRouter.of(context).push(const ProductViewRoute());
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => const ProductView()));
         },

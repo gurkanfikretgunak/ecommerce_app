@@ -4,7 +4,9 @@ import 'package:example/pages/payment/payment_view.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class ProductView extends StatefulWidget {
   const ProductView({super.key});
 

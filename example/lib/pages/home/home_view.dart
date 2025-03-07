@@ -1,9 +1,13 @@
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/categories/categories_view.dart';
+import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
+@RoutePage()
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -140,10 +144,11 @@ class _HomeViewState extends State<HomeView> {
                 rightWidget: SectionActionText(
                   text: "All Categories",
                   onTap: () {
-                    Navigator.push(
-                        context,
+                    AutoRouter.of(context).push(const CategoriesViewRoute());
+                    /* Navigator.push(
+                        context,                      
                         MaterialPageRoute(
-                            builder: (context) => const CategoriesView()));
+                            builder: (context) => const CategoriesView()));*/
                   },
                 ),
                 layout: CategoriesRowLayout(items: categoriesItems),
