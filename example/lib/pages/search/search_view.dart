@@ -1,8 +1,11 @@
 import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/filter/filter_view.dart';
+import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class SearchView extends StatefulWidget {
   const SearchView({super.key});
 
@@ -61,7 +64,6 @@ class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorConstant.instance.neutral9,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: SearchAppbar(
@@ -70,8 +72,9 @@ class _SearchViewState extends State<SearchView> {
             Navigator.pop(context);
           },
           iconOnPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const FilterView()));
+            AutoRouter.of(context).push(FilterViewRoute());
+            /*Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const FilterView()));*/
           },
           iconColor: ColorConstant.instance.neutral1,
         ),
