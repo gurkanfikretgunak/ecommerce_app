@@ -1,9 +1,10 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:example/cubits/home/home_cubit.dart';
+import 'package:example/cubits/home/home_state.dart';
 import 'package:example/gen/assets.gen.dart';
-import 'package:example/pages/categories/categories_view.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -22,6 +23,7 @@ class _HomeViewState extends State<HomeView> {
   void initState() {
     super.initState();
     _checkPopup();
+    context.read<HomeCubit>().loadHomeData();
   }
 
   List<Widget> categoriesItems = [
@@ -99,108 +101,121 @@ class _HomeViewState extends State<HomeView> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
-        child: HomePageAppbar(
-            iconOnPressed: () {
-              AutoRouter.of(context).push(const NotificationViewRoute());
-            },
-            logoPath: Assets.icons.logotext.path,
-            icon: Icons.notifications),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              width: screenWidth,
-              height: 200,
-              child: PageView(
-                controller: _pageController,
+    return BlocBuilder<HomeCubit, HomeState>(
+      builder: (context, state) {
+        if (state is HomeLoading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (state is HomeLoaded) {
+          return Scaffold(
+            appBar: PreferredSize(
+              preferredSize: const Size.fromHeight(60),
+              child: HomePageAppbar(
+                iconOnPressed: () {
+                  AutoRouter.of(context).push(const NotificationViewRoute());
+                },
+                logoPath: Assets.icons.logotext.path,
+                icon: Icons.notifications,
+              ),
+            ),
+            body: SingleChildScrollView(
+              child: Column(
                 children: [
-                  HomePageSlider(
-                    imagePath: Assets.images.homepagesliderimage.path,
-                    headText: "MERGING STYLE WITH",
-                    pageController: _pageController,
-                    descText: "ELEGANCE",
+                  SizedBox(
+                    width: screenWidth,
+                    height: 200,
+                    child: PageView(
+                      controller: _pageController,
+                      children: [
+                        HomePageSlider(
+                          imagePath: Assets.images.homepagesliderimage.path,
+                          headText: "MERGING STYLE WITH",
+                          pageController: _pageController,
+                          descText: "ELEGANCE",
+                        ),
+                        HomePageSlider(
+                          pageController: _pageController,
+                          imagePath: Assets.images.homepagesliderimage.path,
+                          headText: "MERGING STYLE WITH",
+                          descText: "ELEGANCE",
+                        ),
+                        HomePageSlider(
+                          pageController: _pageController,
+                          imagePath: Assets.images.homepagesliderimage.path,
+                          headText: "MERGING STYLE WITH",
+                          descText: "ELEGANCE",
+                        ),
+                      ],
+                    ),
                   ),
-                  HomePageSlider(
-                    pageController: _pageController,
-                    imagePath: Assets.images.homepagesliderimage.path,
-                    headText: "MERGING STYLE WITH",
-                    descText: "ELEGANCE",
+                  context.emptySizedHeightBoxNormal,
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: SectionLayout(
+                      sectionText: "CATEGORIES",
+                      rightWidget: SectionActionText(
+                        text: "All Categories",
+                        onTap: () {
+                          AutoRouter.of(context)
+                              .push(const CategoriesViewRoute());
+                        },
+                      ),
+                      layout: CategoriesRowLayout(items: state.categories),
+                    ),
                   ),
-                  HomePageSlider(
-                    pageController: _pageController,
-                    imagePath: Assets.images.homepagesliderimage.path,
-                    headText: "MERGING STYLE WITH",
-                    descText: "ELEGANCE",
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: SectionLayout(
+                      sectionText: "HOT DEAL",
+                      layout: ProductGridLayout(productItems: state.hotDeals),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Column(
+                      children: [
+                        HomepageBanner(
+                          imagePath:
+                              Assets.images.homepagebannerimageFirst.path,
+                          titleText: "The Collection",
+                          subTitleText: "NEW SEASON",
+                          descriptionText: "Lorem ipsum dolor sit amet",
+                        ),
+                        context.emptySizedHeightBoxLow,
+                        HomepageBanner(
+                          imagePath:
+                              Assets.images.homepagebannerimageSecond.path,
+                          titleText: "50% Off",
+                          subTitleText: "WINTER SALE",
+                          descriptionText: "Lorem ipsum dolor sit amet",
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: SectionLayout(
+                      sectionText: "NEW ARRIVAL",
+                      layout: ProductRowLayout(items: state.newArrivals),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: SectionLayout(
+                      sectionText: "ON SALE",
+                      rightWidget: const TimerLabel(),
+                      layout: ProductRowLayout(items: state.onSale),
+                    ),
                   ),
                 ],
               ),
             ),
-            context.emptySizedHeightBoxNormal,
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: SectionLayout(
-                sectionText: "CATEGORIES",
-                rightWidget: SectionActionText(
-                  text: "All Categories",
-                  onTap: () {
-                    AutoRouter.of(context).push(const CategoriesViewRoute());
-                    /* Navigator.push(
-                        context,                      
-                        MaterialPageRoute(
-                            builder: (context) => const CategoriesView()));*/
-                  },
-                ),
-                layout: CategoriesRowLayout(items: categoriesItems),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: SectionLayout(
-                sectionText: "HOT DEAL",
-                layout: ProductGridLayout(productItems: productCardItems),
-              ),
-            ),
-            Padding(
-                padding: const EdgeInsets.all(15),
-                child: Column(
-                  children: [
-                    HomepageBanner(
-                      imagePath: Assets.images.homepagebannerimageFirst.path,
-                      titleText: "The Collection",
-                      subTitleText: "NEW SEASON",
-                      descriptionText: "Lorem ipsum dolor sit amet",
-                    ),
-                    context.emptySizedHeightBoxLow,
-                    HomepageBanner(
-                      imagePath: Assets.images.homepagebannerimageSecond.path,
-                      titleText: "50% Off",
-                      subTitleText: "WINTER SALE",
-                      descriptionText: "Lorem ipsum dolor sit amet",
-                    ),
-                  ],
-                )),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: SectionLayout(
-                sectionText: "NEW ARRIVAL",
-                layout: ProductRowLayout(items: productCardItems),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15),
-              child: SectionLayout(
-                sectionText: "ON SALE",
-                rightWidget: const TimerLabel(),
-                layout: ProductRowLayout(items: productCardItems),
-              ),
-            ),
-          ],
-        ),
-      ),
+          );
+        }
+
+        return const SizedBox();
+      },
     );
   }
 }
