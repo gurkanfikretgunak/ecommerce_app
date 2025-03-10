@@ -21,7 +21,7 @@ void main() async {
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
   OneSignal.initialize(dotenv.env['ONESIGNAL_APP_ID'] ?? "");
   OneSignal.Notifications.requestPermission(true);
-  runApp(const ExampleApp() /*MultiBloc()*/);
+  runApp(const MultiBloc());
 }
 
 class ExampleApp extends StatelessWidget {
