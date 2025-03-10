@@ -8,7 +8,10 @@ import 'package:example/pages/search/search_view.dart';
 import 'package:example/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:example/cubits/auth/auth_cubit.dart';
+import 'package:example/cubits/auth/auth_state.dart';
 
 @RoutePage()
 class MainpageView extends StatefulWidget {
@@ -38,15 +41,17 @@ class _MainpageViewState extends State<MainpageView> {
         label: "Search",
         backgroundColor: ColorConstant.instance.neutral9),
     BottomNavigationBarItem(
-        icon: FutureBuilder<User?>(
-          future: AuthService().getCurrentUser(),
-          builder: (context, snapshot) => snapshot.hasData
-              ? AccountPictureLabel(
-                  imageWidth: 24,
-                  imageHeight: 24,
-                  imagePath: snapshot.data!.photoURL ?? "",
-                )
-              : const SizedBox(),
+        icon: BlocBuilder<AuthCubit, AuthState>(
+          builder: (context, state) {
+            if (state is AuthAuthenticated) {
+              return AccountPictureLabel(
+                imageWidth: 24,
+                imageHeight: 24,
+                imagePath: state.user.photoURL ?? "",
+              );
+            }
+            return const SizedBox();
+          },
         ),
         label: "Account",
         backgroundColor: ColorConstant.instance.neutral9),
@@ -58,6 +63,7 @@ class _MainpageViewState extends State<MainpageView> {
   void initState() {
     super.initState();
     currentPage = widget.pageNo ?? 0;
+    context.read<AuthCubit>().getCurrentUser();
   }
 
   void setCurrentPage(int index) {
