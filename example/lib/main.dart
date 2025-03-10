@@ -1,5 +1,6 @@
 // ignore: depend_on_referenced_packages
 import 'package:device_preview/device_preview.dart';
+import 'package:example/cubits/multi_bloc.dart';
 import 'package:example/pages/home/home_view.dart';
 import 'package:example/pages/splash/splash_view.dart';
 import 'package:example/route/route.dart';
@@ -20,7 +21,7 @@ void main() async {
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
   OneSignal.initialize(dotenv.env['ONESIGNAL_APP_ID'] ?? "");
   OneSignal.Notifications.requestPermission(true);
-  runApp(const ExampleApp());
+  runApp(const ExampleApp() /*MultiBloc()*/);
 }
 
 class ExampleApp extends StatelessWidget {
