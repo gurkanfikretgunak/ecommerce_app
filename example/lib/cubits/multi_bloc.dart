@@ -17,6 +17,7 @@ class MultiBloc extends StatelessWidget {
       BlocProvider<HomeCubit>(
         create: (_) => HomeCubit(),
       ),
+      BlocProvider<CategoriesCubit>(create: (_) => CategoriesCubit()),
       BlocProvider<BottomNavigationCubit>(
           create: (_) => BottomNavigationCubit()),
       BlocProvider<CategoriesCubit>(create: (_) => CategoriesCubit())
