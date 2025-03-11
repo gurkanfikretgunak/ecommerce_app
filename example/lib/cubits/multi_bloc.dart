@@ -3,6 +3,7 @@ import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
 import 'package:example/cubits/categorie_products/categorie_products_cubit.dart';
 import 'package:example/cubits/categories/categories_cubit.dart';
 import 'package:example/cubits/home/home_cubit.dart';
+import 'package:example/cubits/payment_step/payment_step_cubit.dart';
 import 'package:example/cubits/product/product_cubit.dart';
 import 'package:example/main.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class MultiBloc extends StatelessWidget {
       BlocProvider<CategorieProductsCubit>(
           create: (_) => CategorieProductsCubit()),
       BlocProvider<ProductCubit>(create: (_) => ProductCubit()),
+      BlocProvider<PaymentStepCubit>(create: (_) => PaymentStepCubit()),
     ], child: const ExampleApp());
   }
 }
