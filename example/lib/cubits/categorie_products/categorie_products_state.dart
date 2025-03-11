@@ -6,26 +6,37 @@ class CategorieProductsState extends Equatable {
   List<Object?> get props => [];
 }
 
-class CategorieProductLoading extends CategorieProductsState {}
+class CategorieProductsLoading extends CategorieProductsState {}
 
-class CategorieProductLoaded extends CategorieProductsState {
+class CategorieProductsLoaded extends CategorieProductsState {
+  final CategoriesHeader categoriesHeader;
+  final List<String> bottomDragItems;
   final List<ProductCardModal> products;
 
-  CategorieProductLoaded({required this.products});
+  CategorieProductsLoaded(
+      {required this.categoriesHeader,
+      required this.bottomDragItems,
+      required this.products});
 
   @override
-  List<Object?> get props => [products];
+  List<Object?> get props => [categoriesHeader, products];
 
-  CategorieProductLoaded copyWith({
+  CategorieProductsLoaded copyWith({
+    CategoriesHeader? categoriesHeader,
+    List<String>? bottomDragItems,
     List<ProductCardModal>? products,
   }) {
-    return CategorieProductLoaded(products: products ?? this.products);
+    return CategorieProductsLoaded(
+      categoriesHeader: categoriesHeader ?? this.categoriesHeader,
+      bottomDragItems: bottomDragItems ?? this.bottomDragItems,
+      products: products ?? this.products,
+    );
   }
 }
 
-class CategorieProductError extends CategorieProductsState {
+class CategorieProductsError extends CategorieProductsState {
   final String message;
-  CategorieProductError(this.message);
+  CategorieProductsError(this.message);
 
   @override
   List<Object?> get props => [message];

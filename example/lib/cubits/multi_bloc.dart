@@ -1,5 +1,6 @@
 import 'package:example/cubits/auth/auth_cubit.dart';
 import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
+import 'package:example/cubits/categorie_products/categorie_products_cubit.dart';
 import 'package:example/cubits/categories/categories_cubit.dart';
 import 'package:example/cubits/home/home_cubit.dart';
 import 'package:example/main.dart';
@@ -20,7 +21,8 @@ class MultiBloc extends StatelessWidget {
       BlocProvider<CategoriesCubit>(create: (_) => CategoriesCubit()),
       BlocProvider<BottomNavigationCubit>(
           create: (_) => BottomNavigationCubit()),
-      BlocProvider<CategoriesCubit>(create: (_) => CategoriesCubit())
+      BlocProvider<CategorieProductsCubit>(
+          create: (_) => CategorieProductsCubit())
     ], child: const ExampleApp());
   }
 }

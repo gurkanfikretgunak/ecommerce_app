@@ -4,14 +4,28 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:example/gen/assets.gen.dart';
 
 class CategorieProductsCubit extends Cubit<CategorieProductsState> {
-  CategorieProductsCubit() : super(CategorieProductLoading());
+  CategorieProductsCubit() : super(CategorieProductsLoading());
 
   Future<void> loadCategorieData() async {
     try {
-      emit(CategorieProductLoading());
+      emit(CategorieProductsLoading());
 
       await Future.delayed(const Duration(seconds: 1));
 
+      final categoriesHeader = CategoriesHeader(
+        imagePath: Assets.images.categorieheaderFirst.path,
+        text: "MEN",
+      );
+      List<String> bottomDragItems = [
+        "All Product",
+        "Shirts",
+        "Polos",
+        "Jeans",
+        "Trousers",
+        "Jackets",
+        "Shoes",
+        "Accessories"
+      ];
       final productCardItems = [
         ProductCardModal(
           imagePath: Assets.images.productcardimageFirst.path,
@@ -50,9 +64,12 @@ class CategorieProductsCubit extends Cubit<CategorieProductsState> {
           productPrice: "\$49.00",
         ),
       ];
-      emit(CategorieProductLoaded(products: productCardItems));
+      emit(CategorieProductsLoaded(
+          categoriesHeader: categoriesHeader,
+          products: productCardItems,
+          bottomDragItems: bottomDragItems));
     } catch (e) {
-      emit(CategorieProductError(e.toString()));
+      emit(CategorieProductsError(e.toString()));
     }
   }
 }
