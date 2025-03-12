@@ -73,23 +73,29 @@ class ProductCubit extends Cubit<ProductState> {
           "Purus in massa tempor nec feugiat. Congue nisi vitae suscipit tellus mauris a diam. Nam aliquam sem et tortor. Quis risus sed vulputate odio ut enim. Ultrices dui sapien eget mi proin sed libero enim sed. Quis viverra nibh cras pulvinar mattis nunc sed blandit libero. At volutpat diam ut venenatis tellus in";
       const productDescriptionImagePath =
           "assets/images/productdescriptionimage.png";
-
       emit(ProductLoaded(
-        imagePaths: imagePaths,
-        productCardItems: productCardItems,
-        reviewItems: reviewItems,
-        sizes: sizes,
-        colors: colors,
-        rating: rating,
-        reviewCount: reviewCount,
-        soldCount: soldCount,
-        productName: productName,
-        description: description,
-        productDescriptionText: productDescriptionText,
-        productDescriptionImagePath: productDescriptionImagePath,
-      ));
+          imagePaths: imagePaths,
+          productCardItems: productCardItems,
+          reviewItems: reviewItems,
+          sizes: sizes,
+          colors: colors,
+          rating: rating,
+          reviewCount: reviewCount,
+          soldCount: soldCount,
+          productName: productName,
+          description: description,
+          productDescriptionText: productDescriptionText,
+          productDescriptionImagePath: productDescriptionImagePath,
+          selectedColor: colors[0]));
     } catch (e) {
       emit(ProductError(e.toString()));
+    }
+  }
+
+  void changeSelectedColor(Color color) {
+    if (state is ProductLoaded) {
+      final loadedState = state as ProductLoaded;
+      emit(loadedState.copyWith(selectedColor: color));
     }
   }
 }

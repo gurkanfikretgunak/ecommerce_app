@@ -22,6 +22,7 @@ class ProductLoaded extends ProductState {
   final String description;
   final String productDescriptionText;
   final String productDescriptionImagePath;
+  final Color selectedColor;
 
   ProductLoaded({
     required this.imagePaths,
@@ -36,6 +37,7 @@ class ProductLoaded extends ProductState {
     required this.description,
     required this.productDescriptionText,
     required this.productDescriptionImagePath,
+    required this.selectedColor,
   });
 
   @override
@@ -52,6 +54,7 @@ class ProductLoaded extends ProductState {
         description,
         productDescriptionText,
         productDescriptionImagePath,
+        selectedColor,
       ];
 
   ProductLoaded copyWith({
@@ -67,6 +70,7 @@ class ProductLoaded extends ProductState {
     String? description,
     String? productDescriptionText,
     String? productDescriptionImagePath,
+    Color? selectedColor,
   }) {
     return ProductLoaded(
       imagePaths: imagePaths ?? this.imagePaths,
@@ -83,6 +87,7 @@ class ProductLoaded extends ProductState {
           productDescriptionText ?? this.productDescriptionText,
       productDescriptionImagePath:
           productDescriptionImagePath ?? this.productDescriptionImagePath,
+      selectedColor: selectedColor ?? this.selectedColor,
     );
   }
 }
