@@ -47,6 +47,7 @@ class _ProductViewState extends State<ProductView> {
           if (state is ProductLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is ProductLoaded) {
+            debugPrint("selectedColor${state.selectedColor}");
             return SingleChildScrollView(
               child: Column(
                 children: [
@@ -85,7 +86,17 @@ class _ProductViewState extends State<ProductView> {
                     padding: const EdgeInsets.all(15),
                     child: ProductSectionLabel(
                         title: "Color:",
-                        element: ColorsLabel(colors: state.colors)),
+                        element: ColorsLabel(
+                          colors: state
+                              .colors, // Renkleri buraya prop olarak geçiyoruz
+                          selectedColor: state
+                              .selectedColor, // Seçilen rengi buraya prop olarak geçiyoruz
+                          onColorSelected: (color) {
+                            context
+                                .read<ProductCubit>()
+                                .changeSelectedColor(color);
+                          },
+                        )),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15),
