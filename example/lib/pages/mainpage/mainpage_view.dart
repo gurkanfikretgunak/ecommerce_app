@@ -100,7 +100,7 @@ class _MainpageViewState extends State<MainpageView> {
       case 1:
         return const OrderwishlistView();
       case 2:
-        return const PaymentView();
+        return PaymentView();
       case 3:
         return const SearchView();
       case 4:

@@ -1,49 +1,34 @@
-import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
-import 'package:example/pages/home/home_view.dart';
-import 'package:example/pages/mainpage/mainpage_view.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:example/cubits/payment_step/payment_step_cubit.dart';
+import 'package:example/cubits/payment_step/payment_step_state.dart';
 import 'package:example/route/route.gr.dart';
-import 'package:example/widgets/ordersuccess.dart';
 import 'package:example/widgets/cart.dart';
 import 'package:example/widgets/checkout.dart';
+import 'package:example/widgets/ordersuccess.dart';
 import 'package:flutter/material.dart';
-import 'package:shopapp_widgets/shoapp_ui_kit.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 @RoutePage()
-class PaymentView extends StatefulWidget {
-  const PaymentView({super.key});
+class PaymentView extends StatelessWidget {
+  PaymentView({super.key});
 
-  @override
-  State<PaymentView> createState() => _PaymentViewState();
-}
-
-class _PaymentViewState extends State<PaymentView> {
-  int currentStep = 0;
-
-  List<Widget> get stepContents {
+  List<Widget> getStepContents(BuildContext context) {
     return [
       Cart(
         buttonCallBack: () {
-          setState(() {
-            currentStep++;
-          });
+          context.read<PaymentStepCubit>().nextStep();
         },
       ),
       Checkout(
         buttonCallBack: () {
-          setState(() {
-            currentStep++;
-          });
+          context.read<PaymentStepCubit>().nextStep();
         },
       ),
       OrderSuccess(
         onPrimaryButtonPressed: () {},
         onSecondaryButtonPressed: () {
           AutoRouter.of(context).push(MainpageViewRoute());
-
-          /*Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const MainpageView()));*/
         },
       ),
     ];
@@ -57,33 +42,40 @@ class _PaymentViewState extends State<PaymentView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
-        child: CustomAppbar(
-          text: stepTitles[currentStep],
-          onPressed: () {
-            if (currentStep == 0) {
-              Navigator.pop(context);
-              return;
-            }
-            setState(() {
-              currentStep--;
-            });
-          },
-          iconColor: ColorConstant.instance.neutral1,
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(15),
-          child: Column(
-            children: [
-              StepperLabel(currentStep: currentStep),
-              Center(child: stepContents[currentStep]),
-            ],
-          ),
-        ),
+    return BlocProvider(
+      create: (context) => PaymentStepCubit(),
+      child: BlocBuilder<PaymentStepCubit, PaymentStepState>(
+        builder: (context, state) {
+          int currentStep = state is PaymentStepChanged ? state.currentStep : 0;
+
+          return Scaffold(
+            appBar: PreferredSize(
+              preferredSize: const Size.fromHeight(60),
+              child: CustomAppbar(
+                text: stepTitles[currentStep],
+                onPressed: () {
+                  if (currentStep == 0) {
+                    Navigator.pop(context);
+                    return;
+                  }
+                  context.read<PaymentStepCubit>().previousStep();
+                },
+                iconColor: ColorConstant.instance.neutral1,
+              ),
+            ),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Column(
+                  children: [
+                    StepperLabel(currentStep: currentStep),
+                    Center(child: getStepContents(context)[currentStep]),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
