@@ -1,5 +1,5 @@
 import 'package:example/cubits/auth/auth_state.dart';
-import 'package:example/services/auth.dart';
+import 'package:example/services/auth/auth.dart';
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 // ignore: depend_on_referenced_packages

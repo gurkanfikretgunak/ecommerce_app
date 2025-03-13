@@ -1,12 +1,8 @@
-// ignore: depend_on_referenced_packages
-import 'package:device_preview/device_preview.dart';
 import 'package:example/cubits/multi_bloc.dart';
-import 'package:example/pages/home/home_view.dart';
-import 'package:example/pages/splash/splash_view.dart';
 import 'package:example/route/route.dart';
+import 'package:example/services/auth/supabase_initialize.dart';
 // ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -15,9 +11,10 @@ import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 void main() async {
-  await dotenv.load();
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load();
   await Firebase.initializeApp();
+  SupabaseInitialize.initializeSupabase();
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
   OneSignal.initialize(dotenv.env['ONESIGNAL_APP_ID'] ?? "");
   OneSignal.Notifications.requestPermission(true);
