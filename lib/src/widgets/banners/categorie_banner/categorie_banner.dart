@@ -15,7 +15,7 @@ class CategorieBanner extends StatelessWidget {
       onTap: onTap ?? () {},
       child: Stack(
         children: [
-          Image.asset(imagePath),
+          Image.network(imagePath),
           Positioned(
             bottom: 45,
             left: 10,
