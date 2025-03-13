@@ -2,10 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:example/cubits/categories/categories_cubit.dart';
 import 'package:example/cubits/categories/categories_state.dart';
 import 'package:example/gen/assets.gen.dart';
-import 'package:example/pages/categorie_products/categorie_products_view.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -76,13 +74,12 @@ class _CategoriesViewState extends State<CategoriesView> {
                     AutoRouter.of(context)
                         .push(const CategorieProductsViewRoute());
                   },
-                  imagePath: category.imagePath,
-                  text: category.text);
+                  imagePath: category.bannerImage,
+                  text: category.title);
             }).toList()),
           );
         } else {
           return const SizedBox();
-          AutoRouter.of(context).push(MainpageViewRoute());
         }
       }),
     );

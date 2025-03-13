@@ -1,7 +1,8 @@
 import 'package:equatable/equatable.dart';
+import 'package:example/models/categorie_model/categorie_model.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class CategoriesState extends Equatable {
+abstract class CategoriesState extends Equatable {
   @override
   List<Object?> get props => [];
 }
@@ -9,7 +10,7 @@ class CategoriesState extends Equatable {
 class CategoriesLoading extends CategoriesState {}
 
 class CategoriesLoaded extends CategoriesState {
-  final List<CategorieBanner> categories;
+  final List<Categorie> categories;
 
   CategoriesLoaded({required this.categories});
 
@@ -17,7 +18,7 @@ class CategoriesLoaded extends CategoriesState {
   List<Object?> get props => [categories];
 
   CategoriesLoaded copyWith({
-    final List<CategorieBanner>? categories,
+    final List<Categorie>? categories,
   }) {
     return CategoriesLoaded(categories: categories ?? this.categories);
   }
