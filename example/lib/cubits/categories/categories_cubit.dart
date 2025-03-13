@@ -11,8 +11,6 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     try {
       emit(CategoriesLoading());
 
-      await Future.delayed(const Duration(seconds: 1));
-
       final categorieRespository = CategorieRespository();
 
       final categories = await categorieRespository.getCategories();

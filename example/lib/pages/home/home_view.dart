@@ -1,4 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:example/cubits/categories/categories_cubit.dart'; // CategoriesCubit import et
+import 'package:example/cubits/categories/categories_state.dart'; // CategoriesState import et
 import 'package:example/cubits/home/home_cubit.dart';
 import 'package:example/cubits/home/home_state.dart';
 import 'package:example/gen/assets.gen.dart';
@@ -24,22 +26,8 @@ class _HomeViewState extends State<HomeView> {
     super.initState();
     _checkPopup();
     context.read<HomeCubit>().loadHomeData();
+    context.read<CategoriesCubit>().loadCategories();
   }
-
-  List<Widget> categoriesItems = [
-    ImageRadiusModal(
-        imagePath: Assets.images.categorierowFirst.path, text: "Men"),
-    ImageRadiusModal(
-        imagePath: Assets.images.categorierowSecond.path, text: "Women"),
-    ImageRadiusModal(
-        imagePath: Assets.images.categorierowThird.path, text: "Kids"),
-    ImageRadiusModal(
-        imagePath: Assets.images.categorierowFourth.path, text: "Bags"),
-    ImageRadiusModal(
-        imagePath: Assets.images.categorierowFifth.path, text: "Shoes"),
-    ImageRadiusModal(
-        imagePath: Assets.images.categorierowSix.path, text: "Accessories"),
-  ];
 
   List<Widget> productCardItems = [
     ProductCardModal(
@@ -102,6 +90,7 @@ class _HomeViewState extends State<HomeView> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return BlocBuilder<HomeCubit, HomeState>(
+      // HomeCubit'in state'ini al
       builder: (context, state) {
         if (state is HomeLoading) {
           return const Center(child: CircularProgressIndicator());
@@ -152,16 +141,36 @@ class _HomeViewState extends State<HomeView> {
                   context.emptySizedHeightBoxNormal,
                   Padding(
                     padding: const EdgeInsets.all(15),
-                    child: SectionLayout(
-                      sectionText: "CATEGORIES",
-                      rightWidget: SectionActionText(
-                        text: "All Categories",
-                        onTap: () {
-                          AutoRouter.of(context)
-                              .push(const CategoriesViewRoute());
-                        },
-                      ),
-                      layout: CategoriesRowLayout(items: state.categories),
+                    child: BlocBuilder<CategoriesCubit, CategoriesState>(
+                      builder: (context, categoriesState) {
+                        if (categoriesState is CategoriesLoading) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        }
+
+                        if (categoriesState is CategoriesLoaded) {
+                          return SectionLayout(
+                            sectionText: "CATEGORIES",
+                            rightWidget: SectionActionText(
+                              text: "All Categories",
+                              onTap: () {
+                                AutoRouter.of(context)
+                                    .push(const CategoriesViewRoute());
+                              },
+                            ),
+                            layout: CategoriesRowLayout(
+                              items: categoriesState.categories.map((category) {
+                                return ImageRadiusModal(
+                                  imagePath: category.smallImage,
+                                  text: category.title,
+                                );
+                              }).toList(),
+                            ),
+                          );
+                        }
+
+                        return const SizedBox();
+                      },
                     ),
                   ),
                   Padding(
