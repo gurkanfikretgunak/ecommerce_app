@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart';
-import 'package:example/cubits/auth/auth_state.dart';
 import 'package:example/cubits/home/home_state.dart';
-import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:example/gen/assets.gen.dart';
+import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeLoading());

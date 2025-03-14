@@ -59,7 +59,7 @@ class _ProductViewState extends State<ProductView> {
                     action: [
                       InkWell(
                         onTap: () {
-                          AutoRouter.of(context).push(const PaymentViewRoute());
+                          AutoRouter.of(context).push(PaymentViewRoute());
                         },
                         child: SvgPicture.asset("assets/icons/cart.svg"),
                       ),
@@ -87,10 +87,8 @@ class _ProductViewState extends State<ProductView> {
                     child: ProductSectionLabel(
                         title: "Color:",
                         element: ColorsLabel(
-                          colors: state
-                              .colors, // Renkleri buraya prop olarak geçiyoruz
-                          selectedColor: state
-                              .selectedColor, // Seçilen rengi buraya prop olarak geçiyoruz
+                          colors: state.colors,
+                          selectedColor: state.selectedColor,
                           onColorSelected: (color) {
                             context
                                 .read<ProductCubit>()

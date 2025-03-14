@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class CategorieProductsState extends Equatable {
+abstract class CategorieProductsState extends Equatable {
   @override
   List<Object?> get props => [];
 }

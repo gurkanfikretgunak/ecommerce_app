@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:example/cubits/categories/categories_cubit.dart'; // CategoriesCubit import et
-import 'package:example/cubits/categories/categories_state.dart'; // CategoriesState import et
+import 'package:example/cubits/categories/categories_cubit.dart';
+import 'package:example/cubits/categories/categories_state.dart';
 import 'package:example/cubits/home/home_cubit.dart';
 import 'package:example/cubits/home/home_state.dart';
 import 'package:example/gen/assets.gen.dart';
@@ -90,7 +90,6 @@ class _HomeViewState extends State<HomeView> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return BlocBuilder<HomeCubit, HomeState>(
-      // HomeCubit'in state'ini al
       builder: (context, state) {
         if (state is HomeLoading) {
           return const Center(child: CircularProgressIndicator());
