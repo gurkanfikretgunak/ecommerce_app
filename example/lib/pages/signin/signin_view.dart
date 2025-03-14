@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:example/cubits/auth/auth_state.dart';
 import 'package:example/gen/assets.gen.dart';
 import 'package:example/route/route.gr.dart';
+import 'package:example/services/auth/auth_service.dart';
+
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,6 +18,8 @@ class SignInView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
     return BlocProvider(
       create: (_) => AuthCubit(),
       child: Scaffold(
@@ -41,13 +45,19 @@ class SignInView extends StatelessWidget {
                     },
                   ),
                   context.emptySizedHeightBoxNormal,
-                  const SignInForm(),
+                  SignInForm(
+                    emailController: emailController,
+                    passwordController: passwordController,
+                  ),
                   context.emptySizedHeightBoxNormal,
                   Column(
                     children: [
                       CustomButton(
                         text: "SIGN IN",
-                        onPressed: () {},
+                        onPressed: () {
+                          context.read<AuthCubit>().signIn(
+                              emailController.text, passwordController.text);
+                        },
                       ),
                       context.emptySizedHeightBoxLow,
                       CustomButton(
@@ -58,6 +68,8 @@ class SignInView extends StatelessWidget {
                         iconColor: ColorConstant.instance.neutral1,
                         onPressed: () {
                           context.read<AuthCubit>().signUpWithGoogle();
+
+                          // SupabaseAuthService().supabasesignUpWithGoogle();
                         },
                       ),
                       context.emptySizedHeightBoxLow,
@@ -67,7 +79,9 @@ class SignInView extends StatelessWidget {
                         color: ColorConstant.instance.neutral9,
                         textColor: ColorConstant.instance.neutral1,
                         iconColor: ColorConstant.instance.neutral1,
-                        onPressed: () {},
+                        onPressed: () {
+                          context.read<AuthCubit>().signUpWithFacebook();
+                        },
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
