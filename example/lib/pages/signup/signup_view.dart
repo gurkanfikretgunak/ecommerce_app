@@ -51,6 +51,8 @@ class _SignUpViewState extends State<SignUpView> {
               listener: (context, state) {
                 if (state is AuthAuthenticated) {
                   AutoRouter.of(context).push(MainpageViewRoute());
+                } else if (state is AuthSignUpSuccess) {
+                  AutoRouter.of(context).push(SignInViewRoute());
                 } else if (state is AuthError) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(state.error)),
@@ -59,7 +61,6 @@ class _SignUpViewState extends State<SignUpView> {
               },
               builder: (context, state) {
                 return SingleChildScrollView(
-                  // <-- Kaydırma ekleniyor
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [

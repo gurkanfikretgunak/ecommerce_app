@@ -29,7 +29,7 @@ class AuthCubit extends Cubit<AuthState> {
       supabase.User? user = await _authService.signUp(email, password);
 
       if (user != null) {
-        emit(AuthAuthenticated(user));
+        emit(AuthSignUpSuccess(user));
       } else {
         emit(AuthUnauthenticated());
       }
