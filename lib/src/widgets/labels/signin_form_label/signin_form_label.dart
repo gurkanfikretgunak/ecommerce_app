@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class SignInForm extends StatefulWidget {
-  const SignInForm({super.key});
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
+
+  const SignInForm({
+    super.key,
+    required this.emailController,
+    required this.passwordController,
+  });
 
   @override
   State<SignInForm> createState() => _SignInFormState();
@@ -10,17 +17,8 @@ class SignInForm extends StatefulWidget {
 
 class _SignInFormState extends State<SignInForm> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
   bool isPasswordVisible = false;
   bool rememberMe = false;
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +37,8 @@ class _SignInFormState extends State<SignInForm> {
               ),
               context.emptySizedHeightBoxLow,
               TextFieldInput(
-                controller: emailController,
+                controller:
+                    widget.emailController, // Dışarıdan alınan controller
                 hintText: "Enter Email",
                 inputType: InputType.email,
               ),
@@ -50,8 +49,9 @@ class _SignInFormState extends State<SignInForm> {
               ),
               context.emptySizedHeightBoxNormal,
               TextFieldInput(
+                controller:
+                    widget.passwordController, // Dışarıdan alınan controller
                 hintText: "Enter Password",
-                controller: passwordController,
                 inputType: InputType.password,
               ),
               context.emptySizedHeightBoxNormal,
