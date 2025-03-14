@@ -1,5 +1,7 @@
+// ignore: depend_on_referenced_packages
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class AuthState extends Equatable {
   @override
@@ -18,6 +20,8 @@ class AuthAuthenticated extends AuthState {
   @override
   List<Object?> get props => [user];
 }
+
+class AuthSignUpSuccess extends AuthState {}
 
 class AuthUnauthenticated extends AuthState {}
 

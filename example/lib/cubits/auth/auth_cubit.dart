@@ -1,9 +1,9 @@
-import 'package:example/cubits/auth/auth_state.dart';
-import 'package:example/services/auth/auth.dart';
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
+import 'package:example/cubits/auth/auth_state.dart';
+import 'package:example/services/auth/auth_service.dart';
 // ignore: depend_on_referenced_packages
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthService _authService = AuthService();
@@ -12,7 +12,49 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> getCurrentUser() async {
     try {
-      User? user = await _authService.getCurrentUser();
+      supabase.User? user = await _authService.getCurrentUser();
+
+      if (user != null) {
+        emit(AuthAuthenticated(user));
+      } else {
+        emit(AuthUnauthenticated());
+      }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> signUp(String email, String password) async {
+    try {
+      supabase.User? user = await _authService.signUp(email, password);
+
+      if (user != null) {
+        emit(AuthAuthenticated(user));
+      } else {
+        emit(AuthUnauthenticated());
+      }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> signIn(String email, String password) async {
+    try {
+      supabase.User? user = await _authService.signIn(email, password);
+
+      if (user != null) {
+        emit(AuthAuthenticated(user));
+      } else {
+        emit(AuthUnauthenticated());
+      }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> signUpWithFacebook() async {
+    try {
+      supabase.User? user = await _authService.signInWithFacebook();
 
       if (user != null) {
         emit(AuthAuthenticated(user));
@@ -26,7 +68,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> signUpWithGoogle() async {
     try {
-      User? user = await _authService.signUpWithGoogle();
+      supabase.User? user = await _authService.signUpWithGoogle();
 
       if (user != null) {
         emit(AuthAuthenticated(user));
