@@ -2,6 +2,7 @@ import 'package:auto_route/annotations.dart';
 import 'package:example/cubits/auth/auth_cubit.dart';
 import 'package:example/cubits/auth/auth_state.dart';
 import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
+import 'package:example/gen/assets.gen.dart';
 import 'package:example/pages/account/account_view.dart';
 import 'package:example/pages/home/home_view.dart';
 import 'package:example/pages/orderwishlist/orderwishlist_view.dart';
@@ -49,10 +50,10 @@ class _MainpageViewState extends State<MainpageView> {
         builder: (context, state) {
           if (state is AuthAuthenticated) {
             return AccountPictureLabel(
-              imageWidth: 24,
-              imageHeight: 24,
-              imagePath: state.user.photoURL ?? "",
-            );
+                imageWidth: 24,
+                imageHeight: 24,
+                imagePath: state.user.userMetadata?['avatar_url'] ??
+                    Assets.images.blankProfilePicture.path);
           }
           return const SizedBox();
         },

@@ -68,6 +68,10 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/blank_profile_picture.png
+  AssetGenImage get blankProfilePicture =>
+      const AssetGenImage('assets/images/blank_profile_picture.png');
+
   /// File path: assets/images/categoriebanner_fifth.png
   AssetGenImage get categoriebannerFifth =>
       const AssetGenImage('assets/images/categoriebanner_fifth.png');
@@ -198,6 +202,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    blankProfilePicture,
     categoriebannerFifth,
     categoriebannerFirst,
     categoriebannerFourth,

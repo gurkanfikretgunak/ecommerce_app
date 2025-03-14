@@ -3,10 +3,10 @@ import 'package:example/cubits/auth/auth_cubit.dart';
 import 'package:example/cubits/auth/auth_state.dart';
 import 'package:example/gen/assets.gen.dart';
 import 'package:example/route/route.gr.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
 @RoutePage()
 class AccountView extends StatefulWidget {
@@ -86,16 +86,16 @@ class _AccountViewState extends State<AccountView> {
           if (state is AuthLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is AuthAuthenticated) {
-            User user = state.user;
+            supabase.User user = state.user;
             return SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(15),
                 child: Column(
                   children: [
                     AccountBoxLabel(
-                      imagePath:
-                          user.photoURL ?? Assets.images.profilepicture.path,
-                      name: user.displayName ?? "",
+                      imagePath: user.userMetadata?['avatar_url'] ??
+                          Assets.images.blankProfilePicture.path,
+                      name: user.userMetadata?['full_name'] ?? "",
                       username: user.email ?? "",
                       icon: Icons.photo_camera,
                     ),
