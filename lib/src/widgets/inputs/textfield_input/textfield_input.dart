@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 enum InputType {
@@ -19,6 +18,7 @@ class TextFieldInput extends StatefulWidget {
   final double? hintFontSize;
   final FontWeight? hintFontWeight;
   final Function(String)? onChanged;
+  final bool isValid;
 
   const TextFieldInput({
     super.key,
@@ -31,6 +31,7 @@ class TextFieldInput extends StatefulWidget {
     this.hintFontSize,
     this.hintFontWeight,
     this.onChanged,
+    this.isValid = false,
   });
 
   @override
@@ -39,31 +40,12 @@ class TextFieldInput extends StatefulWidget {
 
 class _TextFieldInputState extends State<TextFieldInput> {
   bool isObscure = true;
-  bool isValidEmail = false;
   String countryCode = '+1';
 
   @override
   void initState() {
     super.initState();
     isObscure = widget.inputType == InputType.password;
-    widget.controller.addListener(_validateInput);
-  }
-
-  @override
-  void dispose() {
-    widget.controller.removeListener(_validateInput);
-    super.dispose();
-  }
-
-  void _validateInput() {
-    final input = widget.controller.text;
-    if (widget.inputType == InputType.email) {
-      final emailRegex =
-          RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zAZ0-9.-]+\.[a-zA-Z]{2,}$');
-      setState(() {
-        isValidEmail = emailRegex.hasMatch(input);
-      });
-    }
   }
 
   @override
@@ -77,13 +59,35 @@ class _TextFieldInputState extends State<TextFieldInput> {
           : widget.inputType == InputType.phone
               ? TextInputType.phone
               : TextInputType.text,
+      style: TextStyle(
+        color: widget.isValid ? Colors.black : Colors.red,
+      ),
       decoration: InputDecoration(
-        label: ContentText(
-          text: widget.hintText,
+        labelText: widget.hintText,
+        labelStyle: TextStyle(
+          color: widget.isValid ? ColorConstant.instance.neutral4 : Colors.red,
           fontSize: widget.hintFontSize ?? 15,
-          color: widget.hintColor ?? ColorConstant.instance.neutral4,
+          fontWeight: widget.hintFontWeight ?? FontWeight.normal,
         ),
-        border: const UnderlineInputBorder(),
+        border: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: widget.isValid
+                ? ColorConstant.instance.neutral5
+                : Colors.red, // Eğer geçersizse kırmızı
+          ),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+              color: widget.isValid
+                  ? ColorConstant.instance.neutral5
+                  : Colors.red),
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+              color: widget.isValid
+                  ? ColorConstant.instance.neutral5
+                  : Colors.red),
+        ),
         prefixIcon: widget.inputType == InputType.phone
             ? Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -102,15 +106,10 @@ class _TextFieldInputState extends State<TextFieldInput> {
                   });
                 },
               )
-            : widget.inputType == InputType.email && isValidEmail
+            : null,
+        /*: widget.inputType == InputType.email && widget.isValid
                 ? Icon(Icons.check, color: ColorConstant.instance.primary_main)
-                : widget.suffixIcon,
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: ColorConstant.instance.neutral5),
-        ),
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: ColorConstant.instance.neutral5),
-        ),
+                : widget.suffixIcon,*/
       ),
     );
   }
