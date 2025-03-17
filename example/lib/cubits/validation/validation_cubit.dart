@@ -25,13 +25,21 @@ class ValidationCubit extends Cubit<ValidationState> {
     if (password.isEmpty) {
       _isPasswordValid = false;
       emit(PasswordInvalid('Password cannot be empty'));
-    } else if (password.length < 6) {
+    } else if (password.length < 8) {
       _isPasswordValid = false;
-      emit(PasswordInvalid('Password must be at least 6 characters long'));
+      emit(PasswordInvalid('Password must be at least 8 characters long'));
+    } else if (!RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)').hasMatch(password)) {
+      _isPasswordValid = false;
+      emit(PasswordInvalid(
+          'Password must contain at least one uppercase letter, one lowercase letter, and one number'));
     } else {
       _isPasswordValid = true;
       emit(ValidationSuccess(
           isEmailValid: _isEmailValid, isPasswordValid: _isPasswordValid));
     }
+  }
+
+  bool isFormValid() {
+    return _isEmailValid && _isPasswordValid;
   }
 }
