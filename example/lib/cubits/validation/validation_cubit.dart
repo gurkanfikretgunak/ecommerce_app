@@ -1,29 +1,37 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:example/cubits/validation/validation_state.dart';
 
 class ValidationCubit extends Cubit<ValidationState> {
   ValidationCubit() : super(ValidationInitial());
 
-  void validateEmail(String email) {
-    final emailRegex =
-        RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+  bool _isEmailValid = false;
+  bool _isPasswordValid = false;
 
+  void validateEmail(String email) {
     if (email.isEmpty) {
-      emit(ValidationError(error: "Email cannot be empty"));
-    } else if (!emailRegex.hasMatch(email)) {
-      emit(ValidationError(error: "Invalid email format"));
+      _isEmailValid = false;
+      emit(EmailInvalid('Email cannot be empty'));
+    } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(email)) {
+      _isEmailValid = false;
+      emit(EmailInvalid('Invalid email format'));
     } else {
-      emit(EmailValid());
+      _isEmailValid = true;
+      emit(ValidationSuccess(
+          isEmailValid: _isEmailValid, isPasswordValid: _isPasswordValid));
     }
   }
 
-  // Şifre doğrulama işlemi
   void validatePassword(String password) {
-    if (password.isEmpty || password.length < 6) {
-      emit(PasswordInvalid());
+    if (password.isEmpty) {
+      _isPasswordValid = false;
+      emit(PasswordInvalid('Password cannot be empty'));
+    } else if (password.length < 6) {
+      _isPasswordValid = false;
+      emit(PasswordInvalid('Password must be at least 6 characters long'));
     } else {
-      emit(PasswordValid());
+      _isPasswordValid = true;
+      emit(ValidationSuccess(
+          isEmailValid: _isEmailValid, isPasswordValid: _isPasswordValid));
     }
   }
 }
