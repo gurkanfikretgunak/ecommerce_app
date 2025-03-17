@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class SignInForm extends StatefulWidget {
+class SignInFormLabel extends StatefulWidget {
   final TextEditingController emailController;
   final TextEditingController passwordController;
+  final Function(String)? onChangedEmail;
+  final Function(String)? onChangedPassword;
+  final bool? isEmailValid;
+  final bool? isPasswordValid;
 
-  const SignInForm({
+  const SignInFormLabel({
     super.key,
     required this.emailController,
     required this.passwordController,
+    this.onChangedEmail,
+    this.onChangedPassword,
+    this.isEmailValid,
+    this.isPasswordValid,
   });
 
   @override
-  State<SignInForm> createState() => _SignInFormState();
+  State<SignInFormLabel> createState() => _SignInFormLabelState();
 }
 
-class _SignInFormState extends State<SignInForm> {
+class _SignInFormLabelState extends State<SignInFormLabel> {
   final _formKey = GlobalKey<FormState>();
   bool isPasswordVisible = false;
   bool rememberMe = false;
@@ -37,10 +45,11 @@ class _SignInFormState extends State<SignInForm> {
               ),
               context.emptySizedHeightBoxLow,
               TextFieldInput(
-                controller:
-                    widget.emailController, // Dışarıdan alınan controller
+                controller: widget.emailController,
                 hintText: "Enter Email",
                 inputType: InputType.email,
+                onChanged: widget.onChangedEmail,
+                isValid: widget.isEmailValid ?? false,
               ),
               context.emptySizedHeightBoxNormal,
               const Text(
@@ -49,10 +58,11 @@ class _SignInFormState extends State<SignInForm> {
               ),
               context.emptySizedHeightBoxNormal,
               TextFieldInput(
-                controller:
-                    widget.passwordController, // Dışarıdan alınan controller
+                controller: widget.passwordController,
                 hintText: "Enter Password",
                 inputType: InputType.password,
+                onChanged: widget.onChangedPassword,
+                isValid: widget.isPasswordValid ?? false,
               ),
               context.emptySizedHeightBoxNormal,
               Row(

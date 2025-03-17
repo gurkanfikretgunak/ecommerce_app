@@ -1,16 +1,14 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:example/cubits/auth/auth_cubit.dart';
 import 'package:example/cubits/auth/auth_state.dart';
+import 'package:example/cubits/validation/validation_cubit.dart';
+import 'package:example/cubits/validation/validation_state.dart';
 import 'package:example/gen/assets.gen.dart';
 import 'package:example/route/route.gr.dart';
-import 'package:example/services/auth/auth_service.dart';
-
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
-// ignore: depend_on_referenced_packages
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:example/cubits/auth/auth_cubit.dart';
 
 @RoutePage()
 class SignInView extends StatelessWidget {
@@ -20,8 +18,12 @@ class SignInView extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
-    return BlocProvider(
-      create: (_) => AuthCubit(),
+
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => AuthCubit()),
+        BlocProvider(create: (_) => ValidationCubit()),
+      ],
       child: Scaffold(
         body: BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
@@ -45,9 +47,45 @@ class SignInView extends StatelessWidget {
                     },
                   ),
                   context.emptySizedHeightBoxNormal,
-                  SignInForm(
-                    emailController: emailController,
-                    passwordController: passwordController,
+                  BlocListener<ValidationCubit, ValidationState>(
+                    listener: (context, validationState) {
+                      if (validationState is ValidationError) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(validationState.error)),
+                        );
+                      }
+                    },
+                    child: BlocBuilder<ValidationCubit, ValidationState>(
+                      builder: (context, validationState) {
+                        bool isEmailValid = true;
+                        bool isPasswordValid = true;
+
+                        if (validationState is EmailInvalid) {
+                          isEmailValid = false;
+                        }
+
+                        if (validationState is PasswordInvalid) {
+                          isPasswordValid = false;
+                        }
+
+                        return SignInFormLabel(
+                          emailController: emailController,
+                          passwordController: passwordController,
+                          onChangedEmail: (email) {
+                            context
+                                .read<ValidationCubit>()
+                                .validateEmail(email);
+                          },
+                          onChangedPassword: (password) {
+                            context
+                                .read<ValidationCubit>()
+                                .validatePassword(password);
+                          },
+                          isEmailValid: isEmailValid,
+                          isPasswordValid: isPasswordValid,
+                        );
+                      },
+                    ),
                   ),
                   context.emptySizedHeightBoxNormal,
                   Column(
@@ -55,8 +93,16 @@ class SignInView extends StatelessWidget {
                       CustomButton(
                         text: "SIGN IN",
                         onPressed: () {
-                          context.read<AuthCubit>().signIn(
-                              emailController.text, passwordController.text);
+                          if (context.read<ValidationCubit>().isFormValid()) {
+                            context.read<AuthCubit>().signIn(
+                                emailController.text, passwordController.text);
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                  content: Text(
+                                      'Please fix the errors in the form')),
+                            );
+                          }
                         },
                       ),
                       context.emptySizedHeightBoxLow,
@@ -68,8 +114,6 @@ class SignInView extends StatelessWidget {
                         iconColor: ColorConstant.instance.neutral1,
                         onPressed: () {
                           context.read<AuthCubit>().signUpWithGoogle();
-
-                          // SupabaseAuthService().supabasesignUpWithGoogle();
                         },
                       ),
                       context.emptySizedHeightBoxLow,
