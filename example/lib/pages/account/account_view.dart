@@ -6,7 +6,7 @@ import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
+import 'package:example/models/user_model/user_model.dart';
 
 @RoutePage()
 class AccountView extends StatefulWidget {
@@ -86,16 +86,15 @@ class _AccountViewState extends State<AccountView> {
           if (state is AuthLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is AuthAuthenticated) {
-            supabase.User user = state.user;
+            User user = state.user;
             return SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(15),
                 child: Column(
                   children: [
                     AccountBoxLabel(
-                      imagePath: user.userMetadata?['avatar_url'] ??
-                          Assets.images.blankProfilePicture.path,
-                      name: user.userMetadata?['full_name'] ?? "",
+                      imagePath: state.user.profile_picture,
+                      name: user.display_name ?? "",
                       username: user.email ?? "",
                       icon: Icons.photo_camera,
                     ),

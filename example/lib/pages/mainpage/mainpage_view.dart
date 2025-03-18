@@ -50,10 +50,10 @@ class _MainpageViewState extends State<MainpageView> {
         builder: (context, state) {
           if (state is AuthAuthenticated) {
             return AccountPictureLabel(
-                imageWidth: 24,
-                imageHeight: 24,
-                imagePath: state.user.userMetadata?['avatar_url'] ??
-                    Assets.images.blankProfilePicture.path);
+              imageWidth: 24,
+              imageHeight: 24,
+              imagePath: state.user.profile_picture,
+            );
           }
           return const SizedBox();
         },
