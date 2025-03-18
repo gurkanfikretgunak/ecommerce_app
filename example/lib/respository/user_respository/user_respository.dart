@@ -20,6 +20,21 @@ class UserRespository {
     }
   }
 
+  Future<User> getUser(String uuid) async {
+    try {
+      final response = await apiService.getUser(
+          apikey: authToken, authToken: 'Bearer $authToken', uuid: 'eq.$uuid');
+
+      if (response.isNotEmpty) {
+        return response.first;
+      } else {
+        throw Exception('User not found');
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<bool> isUUIDExist(String uuid) async {
     try {
       final response = await apiService.getUser(
