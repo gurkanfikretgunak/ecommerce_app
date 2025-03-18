@@ -1,7 +1,7 @@
 // ignore: depend_on_referenced_packages
 import 'package:equatable/equatable.dart';
 
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:example/models/user_model/user_model.dart';
 
 abstract class AuthState extends Equatable {
   @override

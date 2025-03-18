@@ -15,9 +15,10 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> getCurrentUser() async {
     try {
       supabase.User? user = await _authService.getCurrentUser();
-
       if (user != null) {
-        emit(AuthAuthenticated(user));
+        final userModel = await UserRespository().getUser(user.id);
+
+        emit(AuthAuthenticated(userModel));
       } else {
         emit(AuthUnauthenticated());
       }
@@ -37,12 +38,12 @@ class AuthCubit extends Cubit<AuthState> {
             email: email,
             phone_number: phone,
             created_at: user.createdAt,
-            profile_picture: user.userMetadata?['profile_picture'] ?? '',
+            profile_picture: user.userMetadata?['avatar_url'] ?? '',
             display_name: "$firstName $lastName",
             first_name: firstName,
             last_name: lastName);
         await UserRespository().postUser(userModel);
-        emit(AuthSignUpSuccess(user));
+        emit(AuthSignUpSuccess(userModel));
       } else {
         emit(AuthUnauthenticated());
       }
@@ -54,9 +55,9 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signIn(String email, String password) async {
     try {
       supabase.User? user = await _authService.signIn(email, password);
-      print(user);
       if (user != null) {
-        emit(AuthAuthenticated(user));
+        final userModel = await UserRespository().getUser(user.id);
+        emit(AuthAuthenticated(userModel));
       } else {
         emit(AuthUnauthenticated());
       }
@@ -70,7 +71,21 @@ class AuthCubit extends Cubit<AuthState> {
       supabase.User? user = await _authService.signInWithFacebook();
 
       if (user != null) {
-        emit(AuthAuthenticated(user));
+        final userModel = User(
+          id: user.id,
+          email: user.email!,
+          phone_number: user.userMetadata?['phone'] ?? '',
+          created_at: user.createdAt,
+          profile_picture: user.userMetadata?['avatar_url'] ?? '',
+          display_name: user.userMetadata?['full_name'] ?? '',
+          first_name: user.userMetadata?['first_name'] ?? '',
+          last_name: user.userMetadata?['last_name'] ?? '',
+        );
+
+        if (!await UserRespository().isUUIDExist(user.id)) {
+          await UserRespository().postUser(userModel);
+        }
+        emit(AuthAuthenticated(userModel));
       } else {
         emit(AuthUnauthenticated());
       }
@@ -89,8 +104,8 @@ class AuthCubit extends Cubit<AuthState> {
           email: user.email!,
           phone_number: user.userMetadata?['phone'] ?? '',
           created_at: user.createdAt,
-          profile_picture: user.userMetadata?['profile_picture'] ?? '',
-          display_name: user.userMetadata?['display_name'] ?? '',
+          profile_picture: user.userMetadata?['avatar_url'] ?? '',
+          display_name: user.userMetadata?['full_name'] ?? '',
           first_name: user.userMetadata?['first_name'] ?? '',
           last_name: user.userMetadata?['last_name'] ?? '',
         );
@@ -99,7 +114,7 @@ class AuthCubit extends Cubit<AuthState> {
           await UserRespository().postUser(userModel);
         }
 
-        emit(AuthAuthenticated(user));
+        emit(AuthAuthenticated(userModel));
       } else {
         emit(AuthUnauthenticated());
       }
