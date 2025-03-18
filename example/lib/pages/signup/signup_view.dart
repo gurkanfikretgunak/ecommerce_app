@@ -51,7 +51,7 @@ class _SignUpViewState extends State<SignUpView> {
             if (state is AuthAuthenticated) {
               AutoRouter.of(context).push(MainpageViewRoute());
             } else if (state is AuthSignUpSuccess) {
-              AutoRouter.of(context).push(SignInViewRoute());
+              AutoRouter.of(context).push(const SignInViewRoute());
             } else if (state is AuthError) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.error)),
@@ -148,12 +148,15 @@ class _SignUpViewState extends State<SignUpView> {
                     onPressed: () {
                       if (context.read<ValidationCubit>().isSignUpFormValid()) {
                         context.read<AuthCubit>().signUp(
+                              firstNameController.text,
+                              lastNameController.text,
                               emailController.text,
+                              phoneController.text,
                               passwordController.text,
                             );
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
+                          const SnackBar(
                               content:
                                   Text('Please fix the errors in the form')),
                         );
