@@ -54,7 +54,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signIn(String email, String password) async {
     try {
       supabase.User? user = await _authService.signIn(email, password);
-
+      print(user);
       if (user != null) {
         emit(AuthAuthenticated(user));
       } else {
@@ -84,6 +84,21 @@ class AuthCubit extends Cubit<AuthState> {
       supabase.User? user = await _authService.signUpWithGoogle();
 
       if (user != null) {
+        final userModel = User(
+          id: user.id,
+          email: user.email!,
+          phone_number: user.userMetadata?['phone'] ?? '',
+          created_at: user.createdAt,
+          profile_picture: user.userMetadata?['profile_picture'] ?? '',
+          display_name: user.userMetadata?['display_name'] ?? '',
+          first_name: user.userMetadata?['first_name'] ?? '',
+          last_name: user.userMetadata?['last_name'] ?? '',
+        );
+
+        if (!await UserRespository().isUUIDExist(user.id)) {
+          await UserRespository().postUser(userModel);
+        }
+
         emit(AuthAuthenticated(user));
       } else {
         emit(AuthUnauthenticated());

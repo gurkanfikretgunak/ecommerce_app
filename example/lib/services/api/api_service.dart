@@ -21,4 +21,11 @@ abstract class ApiService {
     @Query('select') String select = '*',
     @Body() required User usermodel,
   });
+  @GET('users')
+  Future<List<User>> getUser({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('select') String select = '*',
+    @Query('id') String? uuid,
+  });
 }
