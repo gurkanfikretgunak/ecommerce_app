@@ -19,6 +19,7 @@ export 'package:shopapp_widgets/src/widgets/labels/product_description_label/pro
 export 'package:shopapp_widgets/src/widgets/labels/product_header_image_label/product_header_image_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/product_info_label/product_info_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/product_section_label/product_section_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/radius_icon_label/radius_icon_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/review_form_label/review_form_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/settings_box_label/settings_box_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/signin_form_label/signin_form_label.dart';
@@ -28,7 +29,7 @@ export 'package:shopapp_widgets/src/widgets/labels/slider_indicator/slider_indic
 export 'package:shopapp_widgets/src/widgets/labels/splash_label/splash_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/stepper_label/stepper_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/stepper_label_radius/stepper_label_radius.dart';
-export 'package:shopapp_widgets/src/widgets/labels/radius_icon_label/radius_icon_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/tags_label/tags_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/timer_label/timer_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/timer_label_box/timer_label_box.dart';
+export 'package:shopapp_widgets/src/widgets/labels/toast_message_label/toast_message_label.dart';

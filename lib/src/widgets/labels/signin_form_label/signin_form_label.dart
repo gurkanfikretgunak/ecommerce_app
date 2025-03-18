@@ -24,7 +24,6 @@ class SignInFormLabel extends StatefulWidget {
 }
 
 class _SignInFormLabelState extends State<SignInFormLabel> {
-  final _formKey = GlobalKey<FormState>();
   bool isPasswordVisible = false;
   bool rememberMe = false;
 
@@ -35,7 +34,6 @@ class _SignInFormLabelState extends State<SignInFormLabel> {
         width: MediaQuery.of(context).size.width * 0.87,
         padding: const EdgeInsets.symmetric(vertical: 20),
         child: Form(
-          key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
