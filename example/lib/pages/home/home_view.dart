@@ -108,116 +108,138 @@ class _HomeViewState extends State<HomeView> {
               ),
             ),
             body: SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: screenWidth,
-                    height: 200,
-                    child: PageView(
-                      controller: _pageController,
-                      children: [
-                        HomePageSlider(
-                          imagePath: Assets.images.homepagesliderimage.path,
-                          headText: "MERGING STYLE WITH",
-                          pageController: _pageController,
-                          descText: "ELEGANCE",
-                        ),
-                        HomePageSlider(
-                          pageController: _pageController,
-                          imagePath: Assets.images.homepagesliderimage.path,
-                          headText: "MERGING STYLE WITH",
-                          descText: "ELEGANCE",
-                        ),
-                        HomePageSlider(
-                          pageController: _pageController,
-                          imagePath: Assets.images.homepagesliderimage.path,
-                          headText: "MERGING STYLE WITH",
-                          descText: "ELEGANCE",
-                        ),
-                      ],
-                    ),
+              child: Column(children: [
+                SizedBox(
+                  width: screenWidth,
+                  height: 200,
+                  child: PageView(
+                    controller: _pageController,
+                    children: [
+                      HomePageSlider(
+                        imagePath: Assets.images.homepagesliderimage.path,
+                        headText: "MERGING STYLE WITH",
+                        pageController: _pageController,
+                        descText: "ELEGANCE",
+                      ),
+                      HomePageSlider(
+                        pageController: _pageController,
+                        imagePath: Assets.images.homepagesliderimage.path,
+                        headText: "MERGING STYLE WITH",
+                        descText: "ELEGANCE",
+                      ),
+                      HomePageSlider(
+                        pageController: _pageController,
+                        imagePath: Assets.images.homepagesliderimage.path,
+                        headText: "MERGING STYLE WITH",
+                        descText: "ELEGANCE",
+                      ),
+                    ],
                   ),
-                  context.emptySizedHeightBoxNormal,
-                  Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: BlocBuilder<CategoriesCubit, CategoriesState>(
-                      builder: (context, categoriesState) {
-                        if (categoriesState is CategoriesLoading) {
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        }
+                ),
+                context.emptySizedHeightBoxNormal,
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: BlocBuilder<CategoriesCubit, CategoriesState>(
+                    builder: (context, categoriesState) {
+                      if (categoriesState is CategoriesLoading) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
 
-                        if (categoriesState is CategoriesLoaded) {
-                          return SectionLayout(
-                            sectionText: "CATEGORIES",
-                            rightWidget: SectionActionText(
-                              text: "All Categories",
-                              onTap: () {
-                                AutoRouter.of(context)
-                                    .push(const CategoriesViewRoute());
-                              },
-                            ),
-                            layout: CategoriesRowLayout(
-                              items: categoriesState.categories.map((category) {
-                                return ImageRadiusModal(
-                                  imagePath: category.smallImage,
-                                  text: category.title,
-                                );
-                              }).toList(),
-                            ),
-                          );
-                        }
+                      if (categoriesState is CategoriesLoaded) {
+                        return SectionLayout(
+                          sectionText: "CATEGORIES",
+                          rightWidget: SectionActionText(
+                            text: "All Categories",
+                            onTap: () {
+                              AutoRouter.of(context)
+                                  .push(const CategoriesViewRoute());
+                            },
+                          ),
+                          layout: CategoriesRowLayout(
+                            items: categoriesState.categories.map((category) {
+                              return ImageRadiusModal(
+                                imagePath: category.smallImage,
+                                text: category.title,
+                              );
+                            }).toList(),
+                          ),
+                        );
+                      }
 
-                        return const SizedBox();
-                      },
+                      return const SizedBox();
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: SectionLayout(
+                    sectionText: "HOT DEAL",
+                    layout: ProductGridLayout(
+                      productItems: state.hotDeals.map((product) {
+                        return ProductCardModal(
+                          imagePath: product.image,
+                          productName: product.name,
+                          productPrice: product.price.toString(),
+                          productStock: product.sold_count.toString(),
+                        );
+                      }).toList(),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: SectionLayout(
-                      sectionText: "HOT DEAL",
-                      layout: ProductGridLayout(productItems: state.hotDeals),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Column(
+                    children: [
+                      HomepageBanner(
+                        imagePath: Assets.images.homepagebannerimageFirst.path,
+                        titleText: "The Collection",
+                        subTitleText: "NEW SEASON",
+                        descriptionText: "Lorem ipsum dolor sit amet",
+                      ),
+                      context.emptySizedHeightBoxLow,
+                      HomepageBanner(
+                        imagePath: Assets.images.homepagebannerimageSecond.path,
+                        titleText: "50% Off",
+                        subTitleText: "WINTER SALE",
+                        descriptionText: "Lorem ipsum dolor sit amet",
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: SectionLayout(
+                    sectionText: "NEW ARRIVAL",
+                    layout: ProductRowLayout(
+                      items: state.hotDeals.map((product) {
+                        return ProductCardModal(
+                          imagePath: product.image,
+                          productName: product.name,
+                          productPrice: product.price.toString(),
+                          productStock: product.sold_count.toString(),
+                        );
+                      }).toList(),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Column(
-                      children: [
-                        HomepageBanner(
-                          imagePath:
-                              Assets.images.homepagebannerimageFirst.path,
-                          titleText: "The Collection",
-                          subTitleText: "NEW SEASON",
-                          descriptionText: "Lorem ipsum dolor sit amet",
-                        ),
-                        context.emptySizedHeightBoxLow,
-                        HomepageBanner(
-                          imagePath:
-                              Assets.images.homepagebannerimageSecond.path,
-                          titleText: "50% Off",
-                          subTitleText: "WINTER SALE",
-                          descriptionText: "Lorem ipsum dolor sit amet",
-                        ),
-                      ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: SectionLayout(
+                    sectionText: "ON SALE",
+                    rightWidget: const TimerLabel(),
+                    layout: ProductRowLayout(
+                      items: state.hotDeals.map((product) {
+                        return ProductCardModal(
+                          imagePath: product.image,
+                          productName: product.name,
+                          productPrice: product.price.toString(),
+                          productStock: product.sold_count.toString(),
+                        );
+                      }).toList(),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: SectionLayout(
-                      sectionText: "NEW ARRIVAL",
-                      layout: ProductRowLayout(items: state.newArrivals),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: SectionLayout(
-                      sectionText: "ON SALE",
-                      rightWidget: const TimerLabel(),
-                      layout: ProductRowLayout(items: state.onSale),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ]),
             ),
           );
         }

@@ -11,14 +11,18 @@ class ProductRespository {
       : dio = Dio(),
         apiService = ApiService(Dio());
 
-  Future<List<Product>> getProducts() async {
+  Future<List<Product>> getProducts(String title) async {
     try {
       final response = await apiService.getProducts(
         apikey: authToken,
         authToken: 'Bearer $authToken',
+        titles: 'cs.["$title"]',
       );
 
       if (response.isNotEmpty) {
+        for (Product item in response) {
+          print(item.name);
+        }
         return response;
       } else {
         throw Exception('Products not found');

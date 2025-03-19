@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:example/models/product_model/product_model.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 abstract class HomeState extends Equatable {
@@ -9,29 +10,25 @@ abstract class HomeState extends Equatable {
 class HomeLoading extends HomeState {}
 
 class HomeLoaded extends HomeState {
-  final List<ImageRadiusModal> categories;
-  final List<ProductCardModal> hotDeals;
-  final List<ProductCardModal> newArrivals;
-  final List<ProductCardModal> onSale;
+  final List<Product> hotDeals;
+  final List<Product> newArrivals;
+  final List<Product> onSale;
 
   HomeLoaded({
-    required this.categories,
     required this.hotDeals,
     required this.newArrivals,
     required this.onSale,
   });
 
   @override
-  List<Object?> get props => [categories, hotDeals, newArrivals, onSale];
+  List<Object?> get props => [hotDeals, newArrivals, onSale];
 
   HomeLoaded copyWith({
-    List<ImageRadiusModal>? categories,
-    List<ProductCardModal>? hotDeals,
-    List<ProductCardModal>? newArrivals,
-    List<ProductCardModal>? onSale,
+    List<Product>? hotDeals,
+    List<Product>? newArrivals,
+    List<Product>? onSale,
   }) {
     return HomeLoaded(
-      categories: categories ?? this.categories,
       hotDeals: hotDeals ?? this.hotDeals,
       newArrivals: newArrivals ?? this.newArrivals,
       onSale: onSale ?? this.onSale,
