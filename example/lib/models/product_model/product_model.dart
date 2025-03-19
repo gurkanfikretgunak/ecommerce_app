@@ -6,16 +6,18 @@ part 'product_model.g.dart';
 class Product {
   final int id;
   final String createdAt;
+  final String image;
   final String name;
   final int sold_count;
-  final String price;
-  final List<String> tags;
-  final List<String> titles;
+  final double price;
+  final List<dynamic> tags;
+  final List<dynamic> titles;
   final int product_id;
 
   Product(
       {required this.id,
       required this.createdAt,
+      required this.image,
       required this.name,
       required this.sold_count,
       required this.price,
@@ -27,6 +29,7 @@ class Product {
     return Product(
       id: json['id'],
       createdAt: json['created_at'],
+      image: json['image'],
       name: json['name'],
       sold_count: json['sold_count'],
       price: json['price'],
@@ -40,6 +43,7 @@ class Product {
     return {
       'id': id,
       'created_at': createdAt,
+      'image': image,
       'name': name,
       'sold_count': sold_count,
       'price': price,

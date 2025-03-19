@@ -30,14 +30,14 @@ class ProductCardModal extends StatelessWidget {
           children: [
             SizedBox(
               height: imageHeight ?? context.dynamicWidth(.47),
-              child: Image.asset(
+              child: Image.network(
                 imagePath,
                 fit: BoxFit.contain,
               ),
             ),
             context.emptySizedHeightBoxLow,
             ContentText(
-              text: productStock,
+              text: 'Sold($productStock Products)',
               fontSize: 8,
               color: ColorConstant.instance.neutral4,
             ),
@@ -49,7 +49,7 @@ class ProductCardModal extends StatelessWidget {
             ),
             context.emptySizedHeightBoxLow,
             ContentText(
-                text: productPrice,
+                text: "\$$productPrice",
                 fontSize: 16,
                 color: ColorConstant.instance.primary_main)
           ],
