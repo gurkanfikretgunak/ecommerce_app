@@ -1,15 +1,21 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:example/cubits/product/product_cubit.dart';
 import 'package:example/cubits/product/product_state.dart';
+import 'package:example/cubits/product_detail/product_detail_cubit.dart';
+import 'package:example/cubits/product_detail/product_detail_state.dart';
+import 'package:example/models/product_model/product_model.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:intl/intl.dart';
 
 @RoutePage()
 class ProductView extends StatefulWidget {
-  const ProductView({super.key});
+  final Product product;
+
+  const ProductView({super.key, required this.product});
 
   @override
   State<ProductView> createState() => _ProductViewState();
@@ -19,40 +25,40 @@ class _ProductViewState extends State<ProductView> {
   @override
   void initState() {
     super.initState();
-    context.read<ProductCubit>().loadProductData();
+    context.read<ProductDetailCubit>().getProductDetail(widget.product.id);
   }
 
   void _shopPopup() {
     showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return PopupSuccesLabel(
-            title: "SUCCESS",
-            buttonOnPressed: () {
-              AutoRouter.of(context).push(MainpageViewRoute(pageNo: 2));
-            },
-            description:
-                "Dolor magna eget est lorem ipsum dolor sit amet consectetur.",
-            iconPath: "assets/icons/cart.svg",
-            buttonText: "VIEW CART",
-          );
-        });
+      context: context,
+      builder: (BuildContext context) {
+        return PopupSuccesLabel(
+          title: "SUCCESS",
+          buttonOnPressed: () {
+            AutoRouter.of(context).push(MainpageViewRoute(pageNo: 2));
+          },
+          description:
+              "Dolor magna eget est lorem ipsum dolor sit amet consectetur.",
+          iconPath: "assets/icons/cart.svg",
+          buttonText: "VIEW CART",
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<ProductCubit, ProductState>(
+      body: BlocBuilder<ProductDetailCubit, ProductDetailState>(
         builder: (context, state) {
-          if (state is ProductLoading) {
+          if (state is ProductDetailLoading) {
             return const Center(child: CircularProgressIndicator());
-          } else if (state is ProductLoaded) {
-            debugPrint("selectedColor${state.selectedColor}");
+          } else if (state is ProductDetailLoaded) {
             return SingleChildScrollView(
               child: Column(
                 children: [
                   ProductHeader(
-                    imagePaths: state.imagePaths,
+                    imagePaths: state.productDetail.images,
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -75,62 +81,75 @@ class _ProductViewState extends State<ProductView> {
                   Padding(
                     padding: const EdgeInsets.all(15),
                     child: ProductInfoLabel(
-                      rating: state.rating,
-                      reviewCount: state.reviewCount,
-                      soldCount: state.soldCount,
-                      productName: state.productName,
-                      description: state.description,
+                      rating: state.productDetail.rate.toString(),
+                      reviewCount: state.productDetail.rate_count.toString(),
+                      soldCount: widget.product.sold_count.toString(),
+                      productName: widget.product.name,
+                      description: state.productDetail.description,
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15),
                     child: ProductSectionLabel(
-                        title: "Color:",
-                        element: ColorsLabel(
-                          colors: state.colors,
-                          selectedColor: state.selectedColor,
-                          onColorSelected: (color) {
-                            context
-                                .read<ProductCubit>()
-                                .changeSelectedColor(color);
-                          },
-                        )),
+                      title: "Color:",
+                      element: ColorsLabel(
+                        colors: state.productDetail.colors
+                            .map((color) => Color(int.parse("0xFF$color")))
+                            .toList(),
+                        selectedColor: state.selectedColor,
+                        onColorSelected: (color) {
+                          context
+                              .read<ProductDetailCubit>()
+                              .changeSelectedColor(color);
+                        },
+                      ),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15),
                     child: ProductSectionLabel(
                         title: "Size:",
-                        element: SizesLabel(sizes: state.sizes)),
+                        element: SizesLabel(sizes: state.productDetail.sizes)),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15),
                     child: ProductDescriptionLabel(
-                      text: state.productDescriptionText,
-                      imagePath: state.productDescriptionImagePath,
+                      text: state.productDetail.description,
+                      imagePath: state.productDetail.description_image[0],
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15),
                     child: ProductReviewColumnLayout(
-                      items: state.reviewItems,
+                      items: state.productDetail.reviews!.map((review) {
+                        return ProductReviewModal(
+                          imagePath: review.user!.profile_picture,
+                          name: review.user!.display_name,
+                          rate: review.rate ?? 0,
+                          reviewText: review.text ?? '',
+                          date: DateFormat('yyyy-MM-dd')
+                              .format(DateTime.parse(review.createdAt ?? '')),
+                        );
+                      }).toList(),
                     ),
                   ),
                   const Padding(
                     padding: EdgeInsets.all(15),
                     child: ReviewFormLabel(),
                   ),
-                  Padding(
+                  /* Padding(
                     padding: const EdgeInsets.all(15),
                     child: SectionLayout(
                       sectionText: "RELATED PRODUCT",
-                      layout: ProductRowLayout(items: state.productCardItems),
+                      layout: ProductRowLayout(
+                          items: state.productDetail.productCardItems),
                     ),
-                  ),
+                  ),*/
                   context.emptySizedHeightBoxHigh,
                 ],
               ),
             );
-          } else if (state is ProductError) {
+          } else if (state is ProductDetailError) {
             return Center(child: Text('Error: ${state.message}'));
           } else {
             return Container();
@@ -139,7 +158,7 @@ class _ProductViewState extends State<ProductView> {
       ),
       bottomSheet: ProductBottomSheetLabel(
         buttonOnPressed: _shopPopup,
-        price: "45.00",
+        price: widget.product.price.toString(),
       ),
     );
   }

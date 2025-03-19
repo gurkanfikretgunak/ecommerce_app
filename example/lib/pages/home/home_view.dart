@@ -181,6 +181,10 @@ class _HomeViewState extends State<HomeView> {
                           productName: product.name,
                           productPrice: product.price.toString(),
                           productStock: product.sold_count.toString(),
+                          onTap: () {
+                            AutoRouter.of(context)
+                                .push(ProductViewRoute(product: product));
+                          },
                         );
                       }).toList(),
                     ),
@@ -217,6 +221,10 @@ class _HomeViewState extends State<HomeView> {
                           productName: product.name,
                           productPrice: product.price.toString(),
                           productStock: product.sold_count.toString(),
+                          onTap: () {
+                            AutoRouter.of(context)
+                                .push(ProductViewRoute(product: product));
+                          },
                         );
                       }).toList(),
                     ),
@@ -234,6 +242,10 @@ class _HomeViewState extends State<HomeView> {
                           productName: product.name,
                           productPrice: product.price.toString(),
                           productStock: product.sold_count.toString(),
+                          onTap: () {
+                            AutoRouter.of(context)
+                                .push(ProductViewRoute(product: product));
+                          },
                         );
                       }).toList(),
                     ),
