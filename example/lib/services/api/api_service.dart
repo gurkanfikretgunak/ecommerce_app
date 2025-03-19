@@ -1,4 +1,6 @@
 import 'package:example/models/categorie_model/categorie_model.dart';
+import 'package:example/models/product_detail_model/product_detail_model.dart';
+import 'package:example/models/product_model/product_model.dart';
 import 'package:example/models/user_model/user_model.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
@@ -27,5 +29,13 @@ abstract class ApiService {
     @Header('Authorization') String? authToken,
     @Query('select') String select = '*',
     @Query('id') String? uuid,
+  });
+
+  @GET('products')
+  Future<List<Product>> getProducts({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('titles') String? titles,
+    @Query('select') String select = '*',
   });
 }
