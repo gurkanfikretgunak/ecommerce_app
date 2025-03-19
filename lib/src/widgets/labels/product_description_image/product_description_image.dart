@@ -22,12 +22,7 @@ class ProductDescriptionImage extends StatelessWidget {
     return Stack(
       children: [
         ClipRRect(
-          child: Image.asset(
-            imagePath,
-            width: width ?? 370,
-            height: height ?? 170,
-            fit: BoxFit.cover,
-          ),
+          child: _getImageWidget(imagePath),
         ),
         Positioned(
           bottom: 0,
@@ -51,5 +46,23 @@ class ProductDescriptionImage extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Widget _getImageWidget(String path) {
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      return Image.network(
+        path,
+        width: width ?? 370,
+        height: height ?? 170,
+        fit: BoxFit.cover,
+      );
+    } else {
+      return Image.asset(
+        path,
+        width: width ?? 370,
+        height: height ?? 170,
+        fit: BoxFit.cover,
+      );
+    }
   }
 }

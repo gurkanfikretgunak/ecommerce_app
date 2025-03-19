@@ -21,6 +21,8 @@ class ProductCardModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isNetworkImage = Uri.parse(imagePath).isAbsolute;
+
     return GestureDetector(
       onTap: onTap ?? () {},
       child: Padding(
@@ -30,10 +32,18 @@ class ProductCardModal extends StatelessWidget {
           children: [
             SizedBox(
               height: imageHeight ?? context.dynamicWidth(.47),
-              child: Image.network(
-                imagePath,
-                fit: BoxFit.contain,
-              ),
+              child: isNetworkImage
+                  ? Image.network(
+                      imagePath,
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Center(child: Icon(Icons.error));
+                      },
+                    )
+                  : Image.asset(
+                      imagePath,
+                      fit: BoxFit.contain,
+                    ),
             ),
             context.emptySizedHeightBoxLow,
             ContentText(

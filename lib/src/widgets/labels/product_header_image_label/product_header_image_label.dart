@@ -18,7 +18,7 @@ class ProductHeaderImageLabel extends StatelessWidget {
     return Stack(
       children: [
         Positioned.fill(
-          child: Image.asset(imagePath, fit: BoxFit.cover),
+          child: _buildImage(imagePath),
         ),
         Positioned(
           bottom: 10,
@@ -30,5 +30,13 @@ class ProductHeaderImageLabel extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Widget _buildImage(String path) {
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      return Image.network(path, fit: BoxFit.cover);
+    } else {
+      return Image.asset(path, fit: BoxFit.cover);
+    }
   }
 }
