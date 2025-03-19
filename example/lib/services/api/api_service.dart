@@ -31,11 +31,19 @@ abstract class ApiService {
     @Query('id') String? uuid,
   });
 
-  @GET('products')
+  @GET('product')
   Future<List<Product>> getProducts({
     @Header('apikey') String? apikey,
     @Header('Authorization') String? authToken,
     @Query('titles') String? titles,
+    @Query('select') String select = '*',
+  });
+
+  @GET('product_detail')
+  Future<List<ProductDetail>> getProductDetail({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('id') String? id,
     @Query('select') String select = '*',
   });
 }

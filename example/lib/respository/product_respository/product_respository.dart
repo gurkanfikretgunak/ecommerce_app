@@ -11,7 +11,7 @@ class ProductRespository {
       : dio = Dio(),
         apiService = ApiService(Dio());
 
-  Future<List<Product>> getProducts(String title) async {
+  Future<List<Product>> getProducts(String? title) async {
     try {
       final response = await apiService.getProducts(
         apikey: authToken,
