@@ -3,6 +3,7 @@ import 'package:example/cubits/categories/categories_cubit.dart';
 import 'package:example/cubits/categories/categories_state.dart';
 import 'package:example/cubits/home/home_cubit.dart';
 import 'package:example/cubits/home/home_state.dart';
+import 'package:example/cubits/product/product_cubit.dart';
 import 'package:example/gen/assets.gen.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
@@ -182,8 +183,9 @@ class _HomeViewState extends State<HomeView> {
                           productPrice: product.price.toString(),
                           productStock: product.sold_count.toString(),
                           onTap: () {
+                            context.read<ProductCubit>().changeProduct(product);
                             AutoRouter.of(context)
-                                .push(ProductViewRoute(product: product));
+                                .push(const ProductViewRoute());
                           },
                         );
                       }).toList(),
@@ -222,8 +224,9 @@ class _HomeViewState extends State<HomeView> {
                           productPrice: product.price.toString(),
                           productStock: product.sold_count.toString(),
                           onTap: () {
+                            context.read<ProductCubit>().changeProduct(product);
                             AutoRouter.of(context)
-                                .push(ProductViewRoute(product: product));
+                                .push(const ProductViewRoute());
                           },
                         );
                       }).toList(),
@@ -243,8 +246,9 @@ class _HomeViewState extends State<HomeView> {
                           productPrice: product.price.toString(),
                           productStock: product.sold_count.toString(),
                           onTap: () {
+                            context.read<ProductCubit>().changeProduct(product);
                             AutoRouter.of(context)
-                                .push(ProductViewRoute(product: product));
+                                .push(const ProductViewRoute());
                           },
                         );
                       }).toList(),
