@@ -1,9 +1,12 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:example/cubits/product/product_cubit.dart';
-import 'package:example/cubits/product/product_state.dart';
+import 'package:example/cubits/auth/auth_cubit.dart';
+import 'package:example/cubits/auth/auth_state.dart';
 import 'package:example/cubits/product_detail/product_detail_cubit.dart';
 import 'package:example/cubits/product_detail/product_detail_state.dart';
+import 'package:example/cubits/review/review_cubit.dart';
+import 'package:example/cubits/review/review_state.dart';
 import 'package:example/models/product_model/product_model.dart';
+import 'package:example/models/review_model/review_model.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,6 +25,8 @@ class ProductView extends StatefulWidget {
 }
 
 class _ProductViewState extends State<ProductView> {
+  final TextEditingController reviewTextController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -109,7 +114,15 @@ class _ProductViewState extends State<ProductView> {
                     padding: const EdgeInsets.all(15),
                     child: ProductSectionLabel(
                         title: "Size:",
-                        element: SizesLabel(sizes: state.productDetail.sizes)),
+                        element: SizesLabel(
+                          sizes: state.productDetail.sizes,
+                          selectedSize: state.selectedSize,
+                          onSizeSelected: (size) {
+                            context
+                                .read<ProductDetailCubit>()
+                                .changeSelectedSize(size);
+                          },
+                        )),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(15),
@@ -133,9 +146,46 @@ class _ProductViewState extends State<ProductView> {
                       }).toList(),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(15),
-                    child: ReviewFormLabel(),
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: BlocBuilder<AuthCubit, AuthState>(
+                      builder: (context, authState) {
+                        if (authState is AuthAuthenticated) {
+                          return BlocListener<ReviewCubit, ReviewState>(
+                            listener: (context, reviewState) {
+                              if (reviewState is ReviewSuccess) {
+                                context
+                                    .read<ProductDetailCubit>()
+                                    .getProductDetail(widget.product.id);
+                                reviewTextController.clear();
+                              }
+                            },
+                            child: ReviewFormLabel(
+                              onStarSelected: (rate) {
+                                context
+                                    .read<ProductDetailCubit>()
+                                    .changeSelectedRate(rate);
+                              },
+                              onSubmit: () {
+                                final review = Review(
+                                  text: reviewTextController.text,
+                                  rate: state.selectedRate,
+                                  productDetailId: state.productDetail.id,
+                                  userId: authState.user.id,
+                                );
+                                context.read<ReviewCubit>().postReview(review);
+                              },
+                              selectedStarCount: state.selectedRate ?? 0,
+                              reviewTextController: reviewTextController,
+                            ),
+                          );
+                        } else {
+                          return const Center(
+                            child: Text('Please sign in to leave a review.'),
+                          );
+                        }
+                      },
+                    ),
                   ),
                   /* Padding(
                     padding: const EdgeInsets.all(15),
