@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class ColorsLabel extends StatefulWidget {
+class ColorsLabel extends StatelessWidget {
   final List<Color>? colors;
   final Color? selectedColor;
   final Function(Color)? onColorSelected;
@@ -14,34 +14,22 @@ class ColorsLabel extends StatefulWidget {
   });
 
   @override
-  State<ColorsLabel> createState() => _ColorsLabelState();
-}
-
-class _ColorsLabelState extends State<ColorsLabel> {
-  late List<Color> _colors;
-  late Color _selectedColor;
-
-  @override
-  void initState() {
-    super.initState();
-    _colors = widget.colors ?? [Colors.brown, Colors.blue, Colors.red];
-    _selectedColor = widget.selectedColor ?? _colors[0];
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final List<Color> colorsList =
+        colors ?? [Colors.red, Colors.blue, Colors.green, Colors.yellow];
+    final Color selected = selectedColor ?? colorsList[0];
+
     return Row(
-      children: _colors.map((color) {
+      children: colorsList.map((color) {
         return Padding(
           padding: const EdgeInsets.only(right: 8.0),
           child: ColorRadiusInput(
             color: color,
-            isSelected: _selectedColor == color,
+            isSelected: selected == color,
             onTap: () {
-              setState(() {
-                _selectedColor = color;
-              });
-              widget.onColorSelected!(color);
+              if (onColorSelected != null) {
+                onColorSelected!(color);
+              }
             },
           ),
         );
