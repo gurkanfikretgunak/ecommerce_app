@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:example/models/product_model/product_model.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 abstract class CategorieProductsState extends Equatable {
@@ -9,26 +10,17 @@ abstract class CategorieProductsState extends Equatable {
 class CategorieProductsLoading extends CategorieProductsState {}
 
 class CategorieProductsLoaded extends CategorieProductsState {
-  final CategoriesHeader categoriesHeader;
-  final List<String> bottomDragItems;
-  final List<ProductCardModal> products;
+  final List<Product> products;
 
-  CategorieProductsLoaded(
-      {required this.categoriesHeader,
-      required this.bottomDragItems,
-      required this.products});
+  CategorieProductsLoaded({required this.products});
 
   @override
-  List<Object?> get props => [categoriesHeader, products];
+  List<Object?> get props => [products];
 
   CategorieProductsLoaded copyWith({
-    CategoriesHeader? categoriesHeader,
-    List<String>? bottomDragItems,
-    List<ProductCardModal>? products,
+    List<Product>? products,
   }) {
     return CategorieProductsLoaded(
-      categoriesHeader: categoriesHeader ?? this.categoriesHeader,
-      bottomDragItems: bottomDragItems ?? this.bottomDragItems,
       products: products ?? this.products,
     );
   }

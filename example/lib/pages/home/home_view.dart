@@ -30,29 +30,6 @@ class _HomeViewState extends State<HomeView> {
     context.read<CategoriesCubit>().loadCategories();
   }
 
-  List<Widget> productCardItems = [
-    ProductCardModal(
-        imagePath: Assets.images.productcardimageFirst.path,
-        productStock: "Sold(50 Product)",
-        productName: "Long-sleeved T-shirt",
-        productPrice: "\$49.00"),
-    ProductCardModal(
-        imagePath: Assets.images.productcardimageSecond.path,
-        productStock: "Sold(50 Product)",
-        productName: "Printed Cotton Shirt",
-        productPrice: "\$45.00"),
-    ProductCardModal(
-        imagePath: Assets.images.productcardimageThird.path,
-        productStock: "Sold(50 Product)",
-        productName: "Cotton T-shirt",
-        productPrice: "\$49.00"),
-    ProductCardModal(
-        imagePath: Assets.images.productcardimageFourth.path,
-        productStock: "Sold(50 Product)",
-        productName: "Embroidered T-Shirt",
-        productPrice: "\$39.00"),
-  ];
-
   Future<void> _checkPopup() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     bool hidePopup = preferences.getBool('hidePopUp') ?? false;

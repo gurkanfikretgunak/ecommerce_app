@@ -8,13 +8,12 @@ class CategorieRespository {
     final Dio dio = Dio();
     final apiService = ApiService(dio);
     final authToken = dotenv.env['SUPABASE_KEY'];
-    print(authToken);
+
     try {
       final response = await apiService.getCategories(
           apikey: authToken, authToken: 'Bearer $authToken');
       return response;
     } catch (e) {
-      print("API Request failed: $e");
       rethrow;
     }
   }

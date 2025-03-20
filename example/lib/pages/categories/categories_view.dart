@@ -24,29 +24,6 @@ class _CategoriesViewState extends State<CategoriesView> {
 
   @override
   Widget build(BuildContext context) {
-    List<CategorieBanner> categoriesBannerItems = [
-      CategorieBanner(
-          onTap: () {
-            AutoRouter.of(context).push(const CategorieProductsViewRoute());
-
-            /* Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const CategorieProductsView()));*/
-          },
-          imagePath: Assets.images.categoriebannerFirst.path,
-          text: "MEN"),
-      CategorieBanner(
-          imagePath: Assets.images.categoriebannerSecond.path, text: "WOMEN"),
-      CategorieBanner(
-          imagePath: Assets.images.categoriebannerThird.path, text: "KIDS"),
-      CategorieBanner(
-          imagePath: Assets.images.categoriebannerFourth.path, text: "SHOES"),
-      CategorieBanner(
-          imagePath: Assets.images.categoriebannerFifth.path,
-          text: "ACCESSORIES"),
-    ];
-
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
@@ -72,7 +49,7 @@ class _CategoriesViewState extends State<CategoriesView> {
               return CategorieBanner(
                   onTap: () {
                     AutoRouter.of(context)
-                        .push(const CategorieProductsViewRoute());
+                        .push(CategorieProductsViewRoute(categorie: category));
                   },
                   imagePath: category.bannerImage,
                   text: category.title);

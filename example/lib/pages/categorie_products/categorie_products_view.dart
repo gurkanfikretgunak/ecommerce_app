@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:example/gen/assets.gen.dart';
+import 'package:example/models/categorie_model/categorie_model.dart';
 import 'package:example/pages/product/product_view.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,8 @@ import 'package:example/cubits/categorie_products/categorie_products_state.dart'
 
 @RoutePage()
 class CategorieProductsView extends StatefulWidget {
-  const CategorieProductsView({super.key});
+  final Categorie categorie;
+  const CategorieProductsView({super.key, required this.categorie});
 
   @override
   State<CategorieProductsView> createState() => _CategorieProductsViewState();
@@ -23,8 +25,21 @@ class _CategorieProductsViewState extends State<CategorieProductsView> {
   @override
   void initState() {
     super.initState();
-    context.read<CategorieProductsCubit>().loadCategorieData();
+    context
+        .read<CategorieProductsCubit>()
+        .loadCategorieData(widget.categorie.id.toString());
   }
+
+  List<String> bottomDragItems = [
+    "All Product",
+    "Shirts",
+    "Polos",
+    "Jeans",
+    "Trousers",
+    "Jackets",
+    "Shoes",
+    "Accessories"
+  ];
 
   void showBottomSheet(List<String> bottomDragItems) {
     setState(() {
@@ -53,61 +68,59 @@ class _CategorieProductsViewState extends State<CategorieProductsView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategorieProductsCubit, CategorieProductsState>(
-      builder: (context, state) {
-        if (state is CategorieProductsLoading) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state is CategorieProductsLoaded) {
-          return Scaffold(
-            body: Column(
-              children: [
-                CategoriesHeader(
-                  imagePath: state.categoriesHeader.imagePath,
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  text: state.categoriesHeader.text,
+    return Scaffold(
+      body: Column(
+        children: [
+          CategoriesHeader(
+            imagePath: widget.categorie.bannerImage,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            text: widget.categorie.title,
+          ),
+          context.emptySizedHeightBoxNormal,
+          SizedBox(
+            width: 350,
+            height: 40,
+            child: GestureDetector(
+              onTap: () => showBottomSheet(bottomDragItems),
+              child: AbsorbPointer(
+                child: CategoriesTextfieldInput(
+                  initialText: selectedItem,
+                  suffixIcon: bottomDragOpen
+                      ? Icons.arrow_drop_up
+                      : Icons.arrow_drop_down,
                 ),
-                context.emptySizedHeightBoxNormal,
-                SizedBox(
-                  width: 350,
-                  height: 40,
-                  child: GestureDetector(
-                    onTap: () => showBottomSheet(state.bottomDragItems),
-                    child: AbsorbPointer(
-                      child: CategoriesTextfieldInput(
-                        initialText: selectedItem,
-                        suffixIcon: bottomDragOpen
-                            ? Icons.arrow_drop_up
-                            : Icons.arrow_drop_down,
-                      ),
-                    ),
-                  ),
-                ),
-                context.emptySizedHeightBoxNormal,
-                Expanded(
-                  child: ProductGridLayout(
+              ),
+            ),
+          ),
+          context.emptySizedHeightBoxNormal,
+          Expanded(
+            child: BlocBuilder<CategorieProductsCubit, CategorieProductsState>(
+              builder: (context, state) {
+                if (state is CategorieProductsLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (state is CategorieProductsLoaded) {
+                  return ProductGridLayout(
                     crossAxisSpacing: 3,
                     productItems: state.products.map((product) {
                       return ProductCardModal(
-                        imagePath: product.imagePath,
-                        productStock: product.productStock,
-                        productName: product.productName,
-                        productPrice: product.productPrice,
-                        onTap: () {
-                          AutoRouter.of(context).push(const ProductViewRoute());
-                        },
+                        imagePath: product.image,
+                        productStock: product.sold_count.toString(),
+                        productName: product.name,
+                        productPrice: product.price.toString(),
+                        onTap: () {},
                       );
                     }).toList(),
-                  ),
-                ),
-              ],
+                  );
+                } else {
+                  return const Center(child: Text("Error loading data"));
+                }
+              },
             ),
-          );
-        } else {
-          return const Center(child: Text("Error loading data"));
-        }
-      },
+          ),
+        ],
+      ),
     );
   }
 }

@@ -10,6 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i23;
+import 'package:example/models/categorie_model/categorie_model.dart' as _i26;
 import 'package:example/pages/account/account_view.dart' as _i1;
 import 'package:example/pages/addresses/addresses_view.dart' as _i2;
 import 'package:example/pages/categorie_products/categorie_products_view.dart'
@@ -93,18 +94,43 @@ class AddressesViewRouteArgs {
 
 /// generated route for
 /// [_i3.CategorieProductsView]
-class CategorieProductsViewRoute extends _i23.PageRouteInfo<void> {
-  const CategorieProductsViewRoute({List<_i23.PageRouteInfo>? children})
-    : super(CategorieProductsViewRoute.name, initialChildren: children);
+class CategorieProductsViewRoute
+    extends _i23.PageRouteInfo<CategorieProductsViewRouteArgs> {
+  CategorieProductsViewRoute({
+    _i24.Key? key,
+    required _i26.Categorie categorie,
+    List<_i23.PageRouteInfo>? children,
+  }) : super(
+         CategorieProductsViewRoute.name,
+         args: CategorieProductsViewRouteArgs(key: key, categorie: categorie),
+         initialChildren: children,
+       );
 
   static const String name = 'CategorieProductsViewRoute';
 
   static _i23.PageInfo page = _i23.PageInfo(
     name,
     builder: (data) {
-      return const _i3.CategorieProductsView();
+      final args = data.argsAs<CategorieProductsViewRouteArgs>();
+      return _i3.CategorieProductsView(
+        key: args.key,
+        categorie: args.categorie,
+      );
     },
   );
+}
+
+class CategorieProductsViewRouteArgs {
+  const CategorieProductsViewRouteArgs({this.key, required this.categorie});
+
+  final _i24.Key? key;
+
+  final _i26.Categorie categorie;
+
+  @override
+  String toString() {
+    return 'CategorieProductsViewRouteArgs{key: $key, categorie: $categorie}';
+  }
 }
 
 /// generated route for

@@ -16,6 +16,7 @@ abstract class ApiService {
     @Header('apikey') String? apikey,
     @Header('Authorization') String? authToken,
     @Query('select') String select = '*',
+    @Query('order') String order = "id.asc",
   });
   @POST('users')
   Future<void> postUser({
@@ -37,6 +38,7 @@ abstract class ApiService {
     @Header('apikey') String? apikey,
     @Header('Authorization') String? authToken,
     @Query('titles') String? titles,
+    @Query('categorie_id') String? categorie_id,
     @Query('select') String select = '*',
   });
 

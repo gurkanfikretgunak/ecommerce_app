@@ -24,9 +24,13 @@ class _ApiService implements ApiService {
     String? apikey,
     String? authToken,
     String select = '*',
+    String order = "id.asc",
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'select': select};
+    final queryParameters = <String, dynamic>{
+      r'select': select,
+      r'order': order,
+    };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{
       r'apikey': apikey,
@@ -131,11 +135,13 @@ class _ApiService implements ApiService {
     String? apikey,
     String? authToken,
     String? titles,
+    String? categorie_id,
     String select = '*',
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'titles': titles,
+      r'categorie_id': categorie_id,
       r'select': select,
     };
     queryParameters.removeWhere((k, v) => v == null);
