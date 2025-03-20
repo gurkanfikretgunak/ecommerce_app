@@ -20,7 +20,7 @@ class CategoriesHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset(imagePath),
+        _buildImage(imagePath),
         Positioned(
             child: CustomAppbar(
           onPressed: onPressed,
@@ -39,5 +39,13 @@ class CategoriesHeader extends StatelessWidget {
             )),
       ],
     );
+  }
+
+  Widget _buildImage(String path) {
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      return Image.network(path);
+    } else {
+      return Image.asset(path);
+    }
   }
 }
