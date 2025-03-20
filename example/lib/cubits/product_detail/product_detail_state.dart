@@ -12,20 +12,30 @@ class ProductDetailLoading extends ProductDetailState {}
 class ProductDetailLoaded extends ProductDetailState {
   final ProductDetail productDetail;
   final Color selectedColor;
+  final String? selectedSize;
+  final int? selectedRate;
 
   ProductDetailLoaded(
-      {required this.selectedColor, required this.productDetail});
+      {this.selectedRate,
+      this.selectedSize,
+      required this.selectedColor,
+      required this.productDetail});
 
   @override
-  List<Object?> get props => [productDetail, selectedColor];
+  List<Object?> get props =>
+      [productDetail, selectedColor, selectedSize, selectedRate];
 
   ProductDetailLoaded copyWith({
     ProductDetail? productDetail,
     Color? selectedColor,
+    String? selectedSize,
+    int? selectedRate,
   }) {
     return ProductDetailLoaded(
       productDetail: productDetail ?? this.productDetail,
       selectedColor: selectedColor ?? this.selectedColor,
+      selectedSize: selectedSize ?? this.selectedSize,
+      selectedRate: selectedRate ?? this.selectedRate,
     );
   }
 }

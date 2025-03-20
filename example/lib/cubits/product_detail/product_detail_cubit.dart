@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:example/cubits/product_detail/product_detail_state.dart';
+import 'package:example/models/review_model/review_model.dart';
 import 'package:example/respository/product_detail_respository/product_detail_respository.dart';
+import 'package:example/respository/review_respository/review_respository.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailCubit extends Cubit<ProductDetailState> {
@@ -13,10 +15,13 @@ class ProductDetailCubit extends Cubit<ProductDetailState> {
       final productDetail =
           await ProductDetailRespository().getProductDetail(id);
 
-      emit(ProductDetailLoaded(
-        productDetail: productDetail,
-        selectedColor: Color(int.parse("0xFF${productDetail.colors[0]}")),
-      ));
+      emit(
+        ProductDetailLoaded(
+            productDetail: productDetail,
+            selectedColor: Color(int.parse("0xFF${productDetail.colors[0]}")),
+            selectedSize: productDetail.sizes[0],
+            selectedRate: 0),
+      );
     } catch (e) {
       emit(ProductDetailError(e.toString()));
     }
@@ -26,6 +31,20 @@ class ProductDetailCubit extends Cubit<ProductDetailState> {
     if (state is ProductDetailLoaded) {
       final loadedState = state as ProductDetailLoaded;
       emit(loadedState.copyWith(selectedColor: color));
+    }
+  }
+
+  void changeSelectedSize(String size) {
+    if (state is ProductDetailLoaded) {
+      final loadedState = state as ProductDetailLoaded;
+      emit(loadedState.copyWith(selectedSize: size));
+    }
+  }
+
+  void changeSelectedRate(int rate) {
+    if (state is ProductDetailLoaded) {
+      final loadedState = state as ProductDetailLoaded;
+      emit(loadedState.copyWith(selectedRate: rate));
     }
   }
 }
