@@ -2,44 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:shopapp_widgets/src/widgets/inputs/size_box_input/size_box_input.dart';
 
-class SizesLabel extends StatefulWidget {
+class SizesLabel extends StatelessWidget {
   final List<String>? sizes;
+  final String? selectedSize;
+  final Function(String)? onSizeSelected;
 
   const SizesLabel({
     super.key,
     this.sizes,
+    this.selectedSize,
+    this.onSizeSelected,
   });
 
   @override
-  State<SizesLabel> createState() => _SizesLabelState();
-}
-
-class _SizesLabelState extends State<SizesLabel> {
-  late String _selectedSize;
-  late List<String> _sizes;
-
-  @override
-  void initState() {
-    super.initState();
-    _sizes = widget.sizes ?? ["S", "M", "L", "XL"];
-    _selectedSize = _sizes[0];
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final List<String> sizesList = sizes ?? ["S", "M", "L", "XL"];
+    final String selected = selectedSize ?? sizesList[0];
+
     return Row(
-      children: _sizes.map((size) {
+      children: sizesList.map((size) {
         return Padding(
           padding: const EdgeInsets.only(right: 8.0),
           child: SizeBoxInput(
             text: size,
-            onTap: () {
-              setState(() {
-                _selectedSize = size;
-              });
-            },
-            isSelected: _selectedSize == size,
+            isSelected: selected == size,
             inStock: true,
+            onTap: () {
+              if (onSizeSelected != null) {
+                onSizeSelected!(size);
+              }
+            },
           ),
         );
       }).toList(),
