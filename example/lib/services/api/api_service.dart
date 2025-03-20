@@ -1,6 +1,7 @@
 import 'package:example/models/categorie_model/categorie_model.dart';
 import 'package:example/models/product_detail_model/product_detail_model.dart';
 import 'package:example/models/product_model/product_model.dart';
+import 'package:example/models/review_model/review_model.dart';
 import 'package:example/models/user_model/user_model.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
@@ -45,5 +46,13 @@ abstract class ApiService {
     @Header('Authorization') String? authToken,
     @Query('id') String? id,
     @Query('select') String select = '*',
+  });
+
+  @POST('reviews')
+  Future<void> postReview({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('select') String select = '*',
+    @Body() required Map<String, dynamic> reviewModel,
   });
 }
