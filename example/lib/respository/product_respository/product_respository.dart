@@ -11,18 +11,26 @@ class ProductRespository {
       : dio = Dio(),
         apiService = ApiService(Dio());
 
-  Future<List<Product>> getProducts(String? title) async {
+  Future<List<Product>> getProducts(
+      {String? title, String? categorieId}) async {
     try {
+      String? titlesQuery;
+      String? categoryIdQuery;
+
+      if (title != null) {
+        titlesQuery = 'cs.["$title"]';
+      }
+      if (categorieId != null) {
+        categoryIdQuery = 'eq.$categorieId';
+      }
       final response = await apiService.getProducts(
         apikey: authToken,
         authToken: 'Bearer $authToken',
-        titles: 'cs.["$title"]',
+        titles: titlesQuery,
+        categorie_id: categoryIdQuery,
       );
 
       if (response.isNotEmpty) {
-        for (Product item in response) {
-          print(item.name);
-        }
         return response;
       } else {
         throw Exception('Products not found');

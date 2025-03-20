@@ -15,7 +15,7 @@ class ProductDetailCubit extends Cubit<ProductDetailState> {
           await ProductDetailRespository().getProductDetail(id);
 
       final relatedProduct =
-          await ProductRespository().getProducts("related product");
+          await ProductRespository().getProducts(title: "related product");
 
       emit(
         ProductDetailLoaded(
