@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:example/cubits/product_detail/product_detail_state.dart';
-import 'package:example/models/review_model/review_model.dart';
 import 'package:example/respository/product_detail_respository/product_detail_respository.dart';
-import 'package:example/respository/review_respository/review_respository.dart';
+import 'package:example/respository/product_respository/product_respository.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetailCubit extends Cubit<ProductDetailState> {
@@ -15,12 +14,17 @@ class ProductDetailCubit extends Cubit<ProductDetailState> {
       final productDetail =
           await ProductDetailRespository().getProductDetail(id);
 
+      final relatedProduct =
+          await ProductRespository().getProducts("related product");
+
       emit(
         ProductDetailLoaded(
-            productDetail: productDetail,
-            selectedColor: Color(int.parse("0xFF${productDetail.colors[0]}")),
-            selectedSize: productDetail.sizes[0],
-            selectedRate: 0),
+          productDetail: productDetail,
+          selectedColor: Color(int.parse("0xFF${productDetail.colors[0]}")),
+          selectedSize: productDetail.sizes[0],
+          selectedRate: 0,
+          relatedProducts: relatedProduct,
+        ),
       );
     } catch (e) {
       emit(ProductDetailError(e.toString()));
