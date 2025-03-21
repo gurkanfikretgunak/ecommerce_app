@@ -138,6 +138,11 @@ class _HomeViewState extends State<HomeView> {
                               return ImageRadiusModal(
                                 imagePath: category.smallImage,
                                 text: category.title,
+                                onTap: () {
+                                  AutoRouter.of(context).push(
+                                      CategorieProductsViewRoute(
+                                          categorie: category));
+                                },
                               );
                             }).toList(),
                           ),

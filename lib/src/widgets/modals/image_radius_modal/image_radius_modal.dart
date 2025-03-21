@@ -7,6 +7,7 @@ class ImageRadiusModal extends StatelessWidget {
   final double? width;
   final double? height;
   final Color? textColor;
+  final VoidCallback? onTap;
 
   const ImageRadiusModal({
     super.key,
@@ -15,22 +16,26 @@ class ImageRadiusModal extends StatelessWidget {
     this.width,
     this.height,
     this.textColor,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ClipOval(
-          child: _buildImage(),
-        ),
-        context.emptySizedHeightBoxLow,
-        if (text != null)
-          ContentText(
-            text: text ?? "",
-            color: textColor ?? ColorConstant.instance.neutral1,
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          ClipOval(
+            child: _buildImage(),
           ),
-      ],
+          context.emptySizedHeightBoxLow,
+          if (text != null)
+            ContentText(
+              text: text ?? "",
+              color: textColor ?? ColorConstant.instance.neutral1,
+            ),
+        ],
+      ),
     );
   }
 
