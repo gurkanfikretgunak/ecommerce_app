@@ -32,7 +32,7 @@ class CategoriesHeader extends StatelessWidget {
               alignment: Alignment.bottomLeft,
               child: HeadText(
                 text: text,
-                fontSize: fontSize ?? 105,
+                fontSize: (text.length * 25).clamp(16, 40).toDouble(),
                 color: textColor ??
                     ColorConstant.instance.neutral9.withValues(alpha: 0.7),
               ),
