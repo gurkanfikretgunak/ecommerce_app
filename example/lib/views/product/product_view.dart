@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:example/cubits/auth/auth_cubit.dart';
-import 'package:example/cubits/auth/auth_state.dart';
+import 'package:example/views/auth/signup/models/auth_cubit.dart';
+import 'package:example/views/auth/signup/models/auth_state.dart';
 import 'package:example/cubits/cart/cart_cubit.dart';
 import 'package:example/cubits/product/product_cubit.dart';
 import 'package:example/cubits/product/product_state.dart';
-import 'package:example/cubits/product_detail/product_detail_cubit.dart';
-import 'package:example/cubits/product_detail/product_detail_state.dart';
+import 'package:example/views/product/models/product_detail_cubit.dart';
+import 'package:example/views/product/models/product_detail_state.dart';
 import 'package:example/cubits/review/review_cubit.dart';
 import 'package:example/cubits/review/review_state.dart';
 import 'package:example/core/network/models/cart_model/cart_model.dart';

@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:example/cubits/categorie_products/categorie_products_state.dart';
+import 'package:example/views/categorie_products/models/categorie_products_state.dart';
 import 'package:example/core/network/respository/product_respository/product_respository.dart';
 
 class CategorieProductsCubit extends Cubit<CategorieProductsState> {

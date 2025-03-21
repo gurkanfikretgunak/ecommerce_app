@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:example/cubits/payment_step/payment_step_cubit.dart';
-import 'package:example/cubits/payment_step/payment_step_state.dart';
+import 'package:example/views/payment/models/payment_step_cubit.dart';
+import 'package:example/views/payment/models/payment_step_state.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:example/core/widgets/cart.dart';
 import 'package:example/core/widgets/checkout.dart';

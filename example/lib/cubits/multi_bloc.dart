@@ -1,12 +1,13 @@
-import 'package:example/cubits/auth/auth_cubit.dart';
-import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
+import 'package:example/views/auth/signup/models/auth_cubit.dart';
+
 import 'package:example/cubits/cart/cart_cubit.dart';
-import 'package:example/cubits/categorie_products/categorie_products_cubit.dart';
-import 'package:example/cubits/categories/categories_cubit.dart';
-import 'package:example/cubits/home/home_cubit.dart';
-import 'package:example/cubits/payment_step/payment_step_cubit.dart';
+import 'package:example/views/categorie_products/models/categorie_products_cubit.dart';
+import 'package:example/views/categories/models/categories_cubit.dart';
+import 'package:example/views/home/models/home_cubit.dart';
+import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
+import 'package:example/views/payment/models/payment_step_cubit.dart';
 import 'package:example/cubits/product/product_cubit.dart';
-import 'package:example/cubits/product_detail/product_detail_cubit.dart';
+import 'package:example/views/product/models/product_detail_cubit.dart';
 import 'package:example/cubits/review/review_cubit.dart';
 import 'package:example/cubits/validation/validation_cubit.dart';
 import 'package:example/main.dart';

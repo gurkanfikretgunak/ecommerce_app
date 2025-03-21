@@ -1,13 +1,13 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:example/cubits/auth/auth_state.dart';
+import 'package:example/views/auth/signup/models/auth_state.dart';
 import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/views/onboarding/onboarding_view.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
-import 'package:example/cubits/auth/auth_cubit.dart';
+import 'package:example/views/auth/signup/models/auth_cubit.dart';
 
 @RoutePage()
 class SplashView extends StatefulWidget {

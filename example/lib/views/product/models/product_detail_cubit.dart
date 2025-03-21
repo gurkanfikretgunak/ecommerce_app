@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:example/cubits/product_detail/product_detail_state.dart';
+import 'package:example/views/product/models/product_detail_state.dart';
 import 'package:example/core/network/respository/product_detail_respository/product_detail_respository.dart';
 import 'package:example/core/network/respository/product_respository/product_respository.dart';
 import 'package:flutter/material.dart';

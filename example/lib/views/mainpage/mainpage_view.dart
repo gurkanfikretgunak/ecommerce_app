@@ -1,7 +1,7 @@
 import 'package:auto_route/annotations.dart';
-import 'package:example/cubits/auth/auth_cubit.dart';
-import 'package:example/cubits/auth/auth_state.dart';
-import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
+import 'package:example/views/auth/signup/models/auth_cubit.dart';
+import 'package:example/views/auth/signup/models/auth_state.dart';
+import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
 import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/views/account/account_view.dart';
 import 'package:example/views/home/home_view.dart';
