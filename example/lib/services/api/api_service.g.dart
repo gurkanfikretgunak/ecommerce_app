@@ -135,12 +135,14 @@ class _ApiService implements ApiService {
     String? apikey,
     String? authToken,
     String? titles,
+    String? tags,
     String? categorie_id,
     String select = '*',
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'titles': titles,
+      r'tags': tags,
       r'categorie_id': categorie_id,
       r'select': select,
     };

@@ -12,13 +12,17 @@ class ProductRespository {
         apiService = ApiService(Dio());
 
   Future<List<Product>> getProducts(
-      {String? title, String? categorieId}) async {
+      {String? title, String? categorieId, String? tag}) async {
     try {
       String? titlesQuery;
+      String? tagsQuery;
       String? categoryIdQuery;
 
       if (title != null) {
         titlesQuery = 'cs.["$title"]';
+      }
+      if (tag != null) {
+        tagsQuery = 'cs.["$tag"]';
       }
       if (categorieId != null) {
         categoryIdQuery = 'eq.$categorieId';
@@ -27,6 +31,7 @@ class ProductRespository {
         apikey: authToken,
         authToken: 'Bearer $authToken',
         titles: titlesQuery,
+        tags: tagsQuery,
         categorie_id: categoryIdQuery,
       );
 

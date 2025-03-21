@@ -7,11 +7,14 @@ import 'package:example/gen/assets.gen.dart';
 class CategorieProductsCubit extends Cubit<CategorieProductsState> {
   CategorieProductsCubit() : super(CategorieProductsLoading());
 
-  Future<void> loadCategorieData(String id) async {
+  Future<void> loadCategorieData({required String id, String? tag}) async {
     try {
       emit(CategorieProductsLoading());
 
-      final products = await ProductRespository().getProducts(categorieId: id);
+      final products = await ProductRespository().getProducts(
+        tag: tag,
+        categorieId: id,
+      );
       emit(CategorieProductsLoaded(products: products));
     } catch (e) {
       emit(CategorieProductsError(e.toString()));

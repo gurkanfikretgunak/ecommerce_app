@@ -19,26 +19,25 @@ class CategorieProductsView extends StatefulWidget {
 }
 
 class _CategorieProductsViewState extends State<CategorieProductsView> {
-  String selectedItem = "All Product";
+  String selectedItem = "all product";
   bool bottomDragOpen = false;
 
   @override
   void initState() {
     super.initState();
-    context
-        .read<CategorieProductsCubit>()
-        .loadCategorieData(widget.categorie.id.toString());
+    context.read<CategorieProductsCubit>().loadCategorieData(
+        id: widget.categorie.id.toString(), tag: selectedItem);
   }
 
   List<String> bottomDragItems = [
-    "All Product",
-    "Shirts",
-    "Polos",
-    "Jeans",
-    "Trousers",
-    "Jackets",
-    "Shoes",
-    "Accessories"
+    "all product",
+    "shirts",
+    "polos",
+    "jeans",
+    "trousers",
+    "jackets",
+    "shoes",
+    "accessories"
   ];
 
   void showBottomSheet(List<String> bottomDragItems) {
@@ -59,6 +58,8 @@ class _CategorieProductsViewState extends State<CategorieProductsView> {
             setState(() {
               bottomDragOpen = false;
               selectedItem = value;
+              context.read<CategorieProductsCubit>().loadCategorieData(
+                  id: widget.categorie.id.toString(), tag: selectedItem);
             });
           },
         );
