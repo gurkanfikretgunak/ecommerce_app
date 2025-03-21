@@ -10,30 +10,30 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i23;
-import 'package:example/models/categorie_model/categorie_model.dart' as _i26;
-import 'package:example/pages/account/account_view.dart' as _i1;
-import 'package:example/pages/addresses/addresses_view.dart' as _i2;
-import 'package:example/pages/categorie_products/categorie_products_view.dart'
+import 'package:example/core/network/models/categorie_model/categorie_model.dart' as _i26;
+import 'package:example/views/account/account_view.dart' as _i1;
+import 'package:example/views/addresses/addresses_view.dart' as _i2;
+import 'package:example/views/categorie_products/categorie_products_view.dart'
     as _i3;
-import 'package:example/pages/categories/categories_view.dart' as _i4;
-import 'package:example/pages/filter/filter_view.dart' as _i6;
-import 'package:example/pages/home/home_view.dart' as _i7;
-import 'package:example/pages/mainpage/mainpage_view.dart' as _i8;
-import 'package:example/pages/newaddress/newaddress_view.dart' as _i9;
-import 'package:example/pages/newcard/newcard_view.dart' as _i10;
-import 'package:example/pages/notification/notification_view.dart' as _i11;
-import 'package:example/pages/onboarding/onboarding_view.dart' as _i12;
-import 'package:example/pages/orderwishlist/orderwishlist_view.dart' as _i13;
-import 'package:example/pages/payment/payment_view.dart' as _i15;
-import 'package:example/pages/paymentmethods/paymentmethods_view.dart' as _i14;
-import 'package:example/pages/product/product_view.dart' as _i16;
-import 'package:example/pages/profile/profile_view.dart' as _i17;
-import 'package:example/pages/search/search_view.dart' as _i18;
-import 'package:example/pages/signin/signin_view.dart' as _i19;
-import 'package:example/pages/signup/signup_view.dart' as _i20;
-import 'package:example/pages/splash/splash_view.dart' as _i21;
-import 'package:example/pages/verifiticion/verification_view.dart' as _i22;
-import 'package:example/widgets/checkout.dart' as _i5;
+import 'package:example/views/categories/categories_view.dart' as _i4;
+import 'package:example/views/filter/filter_view.dart' as _i6;
+import 'package:example/views/home/home_view.dart' as _i7;
+import 'package:example/views/mainpage/mainpage_view.dart' as _i8;
+import 'package:example/views/newaddress/newaddress_view.dart' as _i9;
+import 'package:example/views/newcard/newcard_view.dart' as _i10;
+import 'package:example/views/notification/notification_view.dart' as _i11;
+import 'package:example/views/onboarding/onboarding_view.dart' as _i12;
+import 'package:example/views/orderwishlist/orderwishlist_view.dart' as _i13;
+import 'package:example/views/payment/payment_view.dart' as _i15;
+import 'package:example/views/paymentmethods/paymentmethods_view.dart' as _i14;
+import 'package:example/views/product/product_view.dart' as _i16;
+import 'package:example/views/profile/profile_view.dart' as _i17;
+import 'package:example/views/search/search_view.dart' as _i18;
+import 'package:example/views/signin/signin_view.dart' as _i19;
+import 'package:example/views/signup/signup_view.dart' as _i20;
+import 'package:example/views/splash/splash_view.dart' as _i21;
+import 'package:example/views/verifiticion/verification_view.dart' as _i22;
+import 'package:example/core/widgets/checkout.dart' as _i5;
 import 'package:flutter/material.dart' as _i24;
 import 'package:shopapp_widgets/shoapp_ui_kit.dart' as _i25;
 

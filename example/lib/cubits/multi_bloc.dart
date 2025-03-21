@@ -10,7 +10,7 @@ import 'package:example/cubits/product_detail/product_detail_cubit.dart';
 import 'package:example/cubits/review/review_cubit.dart';
 import 'package:example/cubits/validation/validation_cubit.dart';
 import 'package:example/main.dart';
-import 'package:example/models/cart_model/cart_model.dart';
+import 'package:example/core/network/models/cart_model/cart_model.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';

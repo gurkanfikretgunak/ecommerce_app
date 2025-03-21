@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:example/cubits/review/review_state.dart';
-import 'package:example/models/review_model/review_model.dart';
-import 'package:example/respository/review_respository/review_respository.dart';
+import 'package:example/core/network/models/review_model/review_model.dart';
+import 'package:example/core/network/respository/review_respository/review_respository.dart';
 
 class ReviewCubit extends Cubit<ReviewState> {
   ReviewCubit() : super(ReviewInitial());

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:example/cubits/home/home_state.dart';
-import 'package:example/respository/product_respository/product_respository.dart';
+import 'package:example/core/network/respository/product_respository/product_respository.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeLoading());

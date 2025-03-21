@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:example/models/product_detail_model/product_detail_model.dart';
-import 'package:example/models/product_model/product_model.dart';
+import 'package:example/core/network/models/product_detail_model/product_detail_model.dart';
+import 'package:example/core/network/models/product_model/product_model.dart';
 import 'package:flutter/material.dart';
 
 abstract class ProductDetailState extends Equatable {

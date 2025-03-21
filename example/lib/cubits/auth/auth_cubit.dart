@@ -1,9 +1,9 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:example/cubits/auth/auth_state.dart';
-import 'package:example/models/user_model/user_model.dart';
-import 'package:example/respository/user_respository/user_respository.dart';
-import 'package:example/services/auth/auth_service.dart';
+import 'package:example/core/network/models/user_model/user_model.dart';
+import 'package:example/core/network/respository/user_respository/user_respository.dart';
+import 'package:example/core/network/services/auth/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // ignore: depend_on_referenced_packages
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;

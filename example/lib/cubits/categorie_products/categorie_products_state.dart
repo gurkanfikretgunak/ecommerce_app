@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:example/models/product_model/product_model.dart';
+import 'package:example/core/network/models/product_model/product_model.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 abstract class CategorieProductsState extends Equatable {
