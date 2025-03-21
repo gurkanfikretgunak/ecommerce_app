@@ -14,7 +14,7 @@ class StepperLabelRadius extends StatelessWidget {
   final double? borderWidth;
 
   const StepperLabelRadius({
-    Key? key,
+    super.key,
     required this.text,
     required this.isActive,
     this.dotSize,
@@ -25,7 +25,7 @@ class StepperLabelRadius extends StatelessWidget {
     this.textColor,
     this.spacing,
     this.borderWidth,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class StepperLabelRadius extends StatelessWidget {
           ),
         ),
         SizedBox(height: spacing ?? 4),
-        ProductText(
+        ContentText(
           text: text,
           fontSize: fontSize ?? 12,
           color: textColor ?? ColorConstant.instance.neutral1,

@@ -7,19 +7,20 @@ class CategoriesHeader extends StatelessWidget {
   final Color? textColor;
   final double? fontSize;
   final VoidCallback? onPressed;
-  const CategoriesHeader(
-      {super.key,
-      required this.imagePath,
-      required this.text,
-      this.textColor,
-      this.fontSize,
-      this.onPressed});
+  const CategoriesHeader({
+    super.key,
+    required this.imagePath,
+    required this.text,
+    this.textColor,
+    this.fontSize,
+    this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset(imagePath),
+        _buildImage(imagePath),
         Positioned(
             child: CustomAppbar(
           onPressed: onPressed,
@@ -31,12 +32,20 @@ class CategoriesHeader extends StatelessWidget {
               alignment: Alignment.bottomLeft,
               child: HeadText(
                 text: text,
-                fontSize: fontSize ?? 105,
+                fontSize: (text.length * 25).clamp(16, 40).toDouble(),
                 color: textColor ??
-                    ColorConstant.instance.neutral9.withOpacity(0.7),
+                    ColorConstant.instance.neutral9.withValues(alpha: 0.7),
               ),
             )),
       ],
     );
+  }
+
+  Widget _buildImage(String path) {
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      return Image.network(path);
+    } else {
+      return Image.asset(path);
+    }
   }
 }

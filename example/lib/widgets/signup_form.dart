@@ -2,21 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class SignUpForm extends StatefulWidget {
-  const SignUpForm({super.key});
+  final TextEditingController firstNameController;
+  final TextEditingController lastNameController;
+  final TextEditingController emailController;
+  final TextEditingController phoneController;
+  final TextEditingController passwordController;
+  final TextEditingController confirmPasswordController;
+
+  const SignUpForm({
+    super.key,
+    required this.firstNameController,
+    required this.lastNameController,
+    required this.emailController,
+    required this.phoneController,
+    required this.passwordController,
+    required this.confirmPasswordController,
+  });
 
   @override
   State<SignUpForm> createState() => _SignUpFormState();
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  final TextEditingController firstNameController = TextEditingController();
-  final TextEditingController lastNameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -30,44 +37,44 @@ class _SignUpFormState extends State<SignUpForm> {
               children: [
                 Expanded(
                   child: TextFieldInput(
-                    controller: firstNameController,
+                    controller: widget.firstNameController,
                     hintText: 'First Name',
                   ),
                 ),
-                SizedBox(width: 16),
+                context.emptySizedWidthBoxNormal,
                 Expanded(
                   child: TextFieldInput(
-                    controller: lastNameController,
+                    controller: widget.lastNameController,
                     hintText: 'Last Name',
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            context.emptySizedHeightBoxNormal,
             TextFieldInput(
-              controller: emailController,
+              controller: widget.emailController,
               hintText: 'Email',
               inputType: InputType.email,
             ),
-            const SizedBox(height: 20),
+            context.emptySizedHeightBoxNormal,
             TextFieldInput(
-              controller: phoneController,
+              controller: widget.phoneController,
               hintText: 'Phone Number',
               inputType: InputType.phone,
             ),
-            const SizedBox(height: 20),
+            context.emptySizedHeightBoxNormal,
             TextFieldInput(
-              controller: passwordController,
+              controller: widget.passwordController,
               hintText: 'Password',
               inputType: InputType.password,
             ),
-            const SizedBox(height: 20),
+            context.emptySizedHeightBoxNormal,
             TextFieldInput(
-              controller: confirmPasswordController,
+              controller: widget.confirmPasswordController,
               hintText: 'Confirm Password',
               inputType: InputType.password,
             ),
-            const SizedBox(height: 20),
+            context.emptySizedHeightBoxNormal,
           ],
         ),
       ),

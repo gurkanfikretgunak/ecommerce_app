@@ -9,46 +9,59 @@ class ProductCardModal extends StatelessWidget {
   final VoidCallback? onTap;
   final double? imageHeight;
 
-  const ProductCardModal(
-      {super.key,
-      required this.imagePath,
-      required this.productStock,
-      required this.productName,
-      this.imageHeight,
-      required this.productPrice,
-      this.onTap});
+  const ProductCardModal({
+    super.key,
+    required this.imagePath,
+    required this.productStock,
+    required this.productName,
+    this.imageHeight,
+    required this.productPrice,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
+    bool isNetworkImage = Uri.parse(imagePath).isAbsolute;
+
     return GestureDetector(
       onTap: onTap ?? () {},
       child: Padding(
         padding: context.horizontalPaddingLow,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               height: imageHeight ?? context.dynamicWidth(.47),
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.contain,
-              ),
+              child: isNetworkImage
+                  ? Image.network(
+                      imagePath,
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Center(child: Icon(Icons.error));
+                      },
+                    )
+                  : Image.asset(
+                      imagePath,
+                      fit: BoxFit.contain,
+                    ),
             ),
             context.emptySizedHeightBoxLow,
-            ProductText(
-              text: productStock,
+            ContentText(
+              text: 'Sold($productStock Products)',
               fontSize: 8,
               color: ColorConstant.instance.neutral4,
             ),
-            const SizedBox(height: 4),
-            ProductText(
+            context.emptySizedHeightBoxLow,
+            ContentText(
               text: productName,
               fontSize: 12,
               color: ColorConstant.instance.neutral1,
             ),
-            const SizedBox(height: 4),
-            ProductText(text: productPrice, fontSize: 16, color: ColorConstant.instance.primary_main)
+            context.emptySizedHeightBoxLow,
+            ContentText(
+                text: "\$$productPrice",
+                fontSize: 16,
+                color: ColorConstant.instance.primary_main)
           ],
         ),
       ),

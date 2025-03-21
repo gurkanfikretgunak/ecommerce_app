@@ -10,6 +10,7 @@ class OrderSuccessLabel extends StatelessWidget {
   final String secondaryButtonText;
   final VoidCallback onSecondaryButtonPressed;
   final Color? secondaryButtonColor;
+  final String succesiconPath;
   final Color? secondaryButtonTextColor;
   final double? buttonHeight;
   final double? titleFontSize;
@@ -29,39 +30,43 @@ class OrderSuccessLabel extends StatelessWidget {
     this.buttonHeight,
     this.titleFontSize,
     required this.iconPath,
+    required this.succesiconPath,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SuccessLabelRadius(iconPath: iconPath),
-        SizedBox(height: 10),
+        RadiusIconLabel(
+          iconPath: iconPath,
+          successIconPath: succesiconPath,
+          color: ColorConstant.instance.primary_main,
+        ),
+        context.emptySizedHeightBoxNormal,
         HeadText(
           fontSize: titleFontSize ?? 30,
           color: ColorConstant.instance.neutral1,
           text: title,
         ),
-        SizedBox(height: 10),
-        Container(
+        context.emptySizedHeightBoxNormal,
+        SizedBox(
           width: 300,
-          child: ProductText(
+          child: ContentText(
             fontSize: 14,
             softWrap: true,
             color: ColorConstant.instance.neutral4,
             text: description,
           ),
         ),
-        SizedBox(height: 30),
+        context.emptySizedHeightBoxNormal,
         CustomButton(
           onPressed: onPrimaryButtonPressed,
           color: primaryButtonColor ?? ColorConstant.instance.primary_main,
           height: buttonHeight ?? 40,
           text: primaryButtonText,
         ),
-        SizedBox(height: 20),
+        context.emptySizedHeightBoxNormal,
         CustomButton(
           onPressed: onSecondaryButtonPressed,
           color: secondaryButtonColor ?? ColorConstant.instance.neutral9,

@@ -10,7 +10,7 @@ class HorizontalProductCard extends StatelessWidget {
   final EdgeInsets? padding;
   final FontWeight? fontWeight;
   const HorizontalProductCard({
-    Key? key,
+    super.key,
     this.backgroundColor,
     this.width,
     this.height,
@@ -18,7 +18,7 @@ class HorizontalProductCard extends StatelessWidget {
     this.textColor = Colors.black,
     this.fontWeight,
     this.padding,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class HorizontalProductCard extends StatelessWidget {
       child: Center(
         child: Text(
           title ?? ' ',
-          style: TextStyle(color: textColor!),
+          style: TextStyle(color: textColor),
         ),
       ),
     );

@@ -25,18 +25,14 @@ class RatingText extends StatelessWidget {
           Icons.star,
           color: starColor ?? ColorConstant.instance.yellow1,
         ),
-        SizedBox(
-          width: 5,
-        ),
-        ProductText(
+        context.emptySizedWidthBoxLow,
+        ContentText(
           fontSize: 12,
           text: rating ?? "0,0",
           color: ratingColor ?? ColorConstant.instance.neutral1,
         ),
-        SizedBox(
-          width: 5,
-        ),
-        ProductText(
+        context.emptySizedWidthBoxLow,
+        ContentText(
           fontSize: 12,
           text: "(${reviewCount ?? "0"})",
           color: reviewColor ?? ColorConstant.instance.neutral5,

@@ -41,7 +41,7 @@ class _SizeBoxInputState extends State<SizeBoxInput> {
               : Border.all(color: ColorConstant.instance.neutral5),
         ),
         child: Center(
-          child: ProductText(
+          child: ContentText(
             text: widget.text,
             fontSize: 12,
             color: widget.isSelected

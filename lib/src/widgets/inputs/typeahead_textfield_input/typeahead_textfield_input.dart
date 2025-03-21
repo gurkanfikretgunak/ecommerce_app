@@ -6,10 +6,13 @@ class TypeaheadTextfieldInput extends StatefulWidget {
   final List<String> items;
   final TextEditingController controller;
   final String? labelText;
+  final Color? labelColor;
+  final Color? activeColor;
   final Widget? suffixIcon;
   final InputBorder? border;
   final TextStyle? labelStyle;
   final TextStyle? textStyle;
+
   const TypeaheadTextfieldInput({
     super.key,
     required this.items,
@@ -19,6 +22,8 @@ class TypeaheadTextfieldInput extends StatefulWidget {
     this.border,
     this.labelStyle,
     this.textStyle,
+    this.labelColor,
+    this.activeColor,
   });
 
   @override
@@ -27,25 +32,60 @@ class TypeaheadTextfieldInput extends StatefulWidget {
 }
 
 class _TypeaheadTextfieldInputState extends State<TypeaheadTextfieldInput> {
+  late FocusNode _focusNode;
+  late Color _labelColor;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode();
+    _labelColor = widget.labelColor ?? ColorConstant.instance.neutral4;
+
+    _focusNode.addListener(() {
+      setState(() {
+        _labelColor = _focusNode.hasFocus
+            ? widget.activeColor ?? ColorConstant.instance.primary_main
+            : widget.labelColor ?? ColorConstant.instance.neutral4;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return TypeAheadField<String>(
       textFieldConfiguration: TextFieldConfiguration(
         controller: widget.controller,
+        focusNode: _focusNode,
         decoration: InputDecoration(
           labelText: widget.labelText ?? 'Country / Region *',
           labelStyle: widget.labelStyle ??
               TextStyle(
                 fontSize: 15,
-                color: ColorConstant.instance.neutral4,
+                color: _labelColor,
               ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: widget.activeColor ?? ColorConstant.instance.primary_main,
+            ),
+          ),
+          focusedErrorBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: widget.activeColor ?? ColorConstant.instance.primary_main,
+            ),
+          ),
           border: widget.border ??
               UnderlineInputBorder(
                 borderSide: BorderSide(
                   color: ColorConstant.instance.neutral5,
                 ),
               ),
-          suffixIcon: widget.suffixIcon ?? Icon(Icons.expand_more),
+          suffixIcon: widget.suffixIcon ?? const Icon(Icons.expand_more),
         ),
       ),
       suggestionsCallback: (pattern) {
@@ -53,7 +93,7 @@ class _TypeaheadTextfieldInputState extends State<TypeaheadTextfieldInput> {
             (country) => country.toLowerCase().contains(pattern.toLowerCase()));
       },
       itemBuilder: (context, String suggestion) {
-        return Container(
+        return ColoredBox(
           color: ColorConstant.instance.neutral9,
           child: ListTile(
             hoverColor: ColorConstant.instance.neutral9,

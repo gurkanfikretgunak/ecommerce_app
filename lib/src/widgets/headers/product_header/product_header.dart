@@ -4,33 +4,34 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 class ProductHeader extends StatelessWidget {
   final VoidCallback? onPressed;
   final List<String> imagePaths;
-  final Widget? iconRow;
+  final List<Widget>? action;
 
   const ProductHeader({
     super.key,
     required this.imagePaths,
     this.onPressed,
-    this.iconRow,
+    this.action,
   });
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-    PageController _pageController = PageController();
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final PageController pageController = PageController();
 
     return Stack(
       children: [
-        Container(
+        SizedBox(
           width: screenWidth,
           height: screenHeight * 0.3,
           child: PageView.builder(
-            controller: _pageController,
+            controller: pageController,
             itemCount: imagePaths.length,
             itemBuilder: (context, index) {
-              return Image.asset(
-                imagePaths[index],
-                fit: BoxFit.cover,
+              return ProductHeaderImageLabel(
+                imagePath: imagePaths[index],
+                pageController: pageController,
+                count: imagePaths.length,
               );
             },
           ),
@@ -38,24 +39,11 @@ class ProductHeader extends StatelessWidget {
         Positioned(
           top: screenHeight * 0.02,
           left: 5,
-          right: 15,
-          child: Row(
-            children: [
-              CustomAppbar(
-                iconColor: ColorConstant.instance.neutral1,
-                onPressed: onPressed,
-              ),
-              Expanded(child: SizedBox()),
-              if (iconRow != null) iconRow!,
-            ],
-          ),
-        ),
-        Positioned(
-          bottom: 10,
-          right: 20,
-          child: SliderIndicator(
-            pageController: _pageController,
-            count: imagePaths.length,
+          right: 5,
+          child: CustomAppbar(
+            iconColor: ColorConstant.instance.neutral1,
+            onPressed: onPressed,
+            actions: action,
           ),
         ),
       ],

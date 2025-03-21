@@ -28,7 +28,6 @@ class _CardFormLabelState extends State<CardFormLabel> {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         PaymentCardModal(
             name: nameController.text,
@@ -37,27 +36,23 @@ class _CardFormLabelState extends State<CardFormLabel> {
             color: ColorConstant.instance.neutral4,
             expirationDate:
                 "${expMonthController.text}/${expDateController.text}"),
-        SizedBox(
-          height: 30,
-        ),
+        context.emptySizedHeightBoxNormal,
         TextFieldInput(
           hintText: "Name On Card",
-          inputType: InputType.text,
           onChanged: (value) {
             setState(() {});
           },
           controller: nameController,
         ),
-        SizedBox(height: 20),
+        context.emptySizedHeightBoxNormal,
         TextFieldInput(
           hintText: "Card Number",
           onChanged: (value) {
             setState(() {});
           },
-          inputType: InputType.text,
           controller: cardNumberController,
         ),
-        SizedBox(height: 20),
+        context.emptySizedHeightBoxNormal,
         Row(
           children: [
             Expanded(
@@ -69,7 +64,7 @@ class _CardFormLabelState extends State<CardFormLabel> {
                 hintText: 'Exp Month',
               ),
             ),
-            SizedBox(width: 20),
+            context.emptySizedWidthBoxNormal,
             Expanded(
               child: TextFieldInput(
                 controller: expDateController,
@@ -81,13 +76,12 @@ class _CardFormLabelState extends State<CardFormLabel> {
             ),
           ],
         ),
-        SizedBox(height: 20),
+        context.emptySizedHeightBoxNormal,
         TextFieldInput(
           hintText: "Cvv",
           onChanged: (value) {
             setState(() {});
           },
-          inputType: InputType.text,
           controller: cvvController,
         ),
       ],

@@ -40,7 +40,11 @@ class _SearchAppbarState extends State<SearchAppbar> {
               size: 15,
               onPressed: widget.onPressed,
             ),
-            SizedBox(height: 75, width: screenWidth * 0.65, child: SearchBarInput(hintText: widget.hintText ?? '')),
+            SizedBox(
+              height: 75,
+              width: screenWidth * 0.65,
+              child: SearchBarInput(hintText: widget.hintText ?? ''),
+            ),
             IconButton(
               onPressed: widget.iconOnPressed,
               icon: const Icon(Icons.tune),

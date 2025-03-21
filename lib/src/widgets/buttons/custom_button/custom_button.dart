@@ -39,8 +39,7 @@ class CustomButton extends StatelessWidget {
           onPressed: onPressed ?? () {},
           style: ElevatedButton.styleFrom(
               side: BorderSide(
-                  color: borderColor ?? ColorConstant.instance.neutral5,
-                  width: 1),
+                  color: borderColor ?? ColorConstant.instance.neutral5),
               backgroundColor: color ?? ColorConstant.instance.primary_main,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(radius ?? 25)),
@@ -49,11 +48,11 @@ class CustomButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                icon ?? null, // icon gelmiyorsa default icon atanacak.
+                icon ?? null,
                 color: iconColor ?? ColorConstant.instance.neutral9,
                 size: 15,
               ),
-              if (icon != null) SizedBox(width: 10),
+              if (icon != null) context.emptySizedWidthBoxNormal,
               Text(
                 text ?? "",
                 style: GoogleFonts.poppins(

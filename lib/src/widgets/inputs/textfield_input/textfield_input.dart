@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 enum InputType {
   text,
@@ -19,6 +19,7 @@ class TextFieldInput extends StatefulWidget {
   final double? hintFontSize;
   final FontWeight? hintFontWeight;
   final Function(String)? onChanged;
+  final bool isValid;
 
   const TextFieldInput({
     super.key,
@@ -31,6 +32,7 @@ class TextFieldInput extends StatefulWidget {
     this.hintFontSize,
     this.hintFontWeight,
     this.onChanged,
+    this.isValid = false,
   });
 
   @override
@@ -39,60 +41,90 @@ class TextFieldInput extends StatefulWidget {
 
 class _TextFieldInputState extends State<TextFieldInput> {
   bool isObscure = true;
-  bool isValidEmail = false;
-  String countryCode = '+1';
 
   @override
   void initState() {
     super.initState();
     isObscure = widget.inputType == InputType.password;
-    widget.controller.addListener(_validateInput);
   }
 
-  @override
-  void dispose() {
-    widget.controller.removeListener(_validateInput);
-    super.dispose();
+  Widget _buildPhoneNumberInput() {
+    return InternationalPhoneNumberInput(
+      onInputChanged: (PhoneNumber number) {},
+      selectorConfig: const SelectorConfig(
+        setSelectorButtonAsPrefixIcon: true,
+        leadingPadding: 0,
+        trailingSpace: false,
+      ),
+      countries: const ['US', 'CA', 'GB', 'DE', 'FR', 'TR'],
+      initialValue: PhoneNumber(isoCode: 'TR'),
+      selectorTextStyle: const TextStyle(color: Colors.black),
+      textFieldController: widget.controller,
+      inputDecoration: InputDecoration(
+        labelText: widget.hintText,
+        labelStyle: TextStyle(
+          color: widget.isValid ? ColorConstant.instance.neutral4 : Colors.red,
+          fontSize: widget.hintFontSize ?? 15,
+          fontWeight: widget.hintFontWeight ?? FontWeight.normal,
+        ),
+        border: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color:
+                widget.isValid ? ColorConstant.instance.neutral5 : Colors.red,
+          ),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color:
+                widget.isValid ? ColorConstant.instance.neutral5 : Colors.red,
+          ),
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color:
+                widget.isValid ? ColorConstant.instance.neutral5 : Colors.red,
+          ),
+        ),
+      ),
+    );
   }
 
-  void _validateInput() {
-    final input = widget.controller.text;
-    if (widget.inputType == InputType.email) {
-      final emailRegex =
-          RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zAZ0-9.-]+\.[a-zA-Z]{2,}$');
-      setState(() {
-        isValidEmail = emailRegex.hasMatch(input);
-      });
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildTextInput() {
     return TextField(
       onChanged: widget.onChanged,
       controller: widget.controller,
       obscureText: widget.inputType == InputType.password ? isObscure : false,
       keyboardType: widget.inputType == InputType.email
           ? TextInputType.emailAddress
-          : widget.inputType == InputType.phone
-              ? TextInputType.phone
-              : TextInputType.text,
+          : TextInputType.text,
+      style: TextStyle(
+        color: widget.isValid ? Colors.black : Colors.red,
+      ),
       decoration: InputDecoration(
-        label: ProductText(
-          text: widget.hintText,
+        labelText: widget.hintText,
+        labelStyle: TextStyle(
+          color: widget.isValid ? ColorConstant.instance.neutral4 : Colors.red,
           fontSize: widget.hintFontSize ?? 15,
-          color: widget.hintColor ?? ColorConstant.instance.neutral4,
+          fontWeight: widget.hintFontWeight ?? FontWeight.normal,
         ),
-        border: const UnderlineInputBorder(),
-        prefixIcon: widget.inputType == InputType.phone
-            ? Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  countryCode,
-                  style: TextStyle(fontSize: 16, color: Colors.grey),
-                ),
-              )
-            : widget.prefixIcon,
+        border: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color:
+                widget.isValid ? ColorConstant.instance.neutral5 : Colors.red,
+          ),
+        ),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color:
+                widget.isValid ? ColorConstant.instance.neutral5 : Colors.red,
+          ),
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color:
+                widget.isValid ? ColorConstant.instance.neutral5 : Colors.red,
+          ),
+        ),
         suffixIcon: widget.inputType == InputType.password
             ? IconButton(
                 icon: Icon(isObscure ? Icons.visibility_off : Icons.visibility),
@@ -102,16 +134,17 @@ class _TextFieldInputState extends State<TextFieldInput> {
                   });
                 },
               )
-            : widget.inputType == InputType.email && isValidEmail
-                ? Icon(Icons.check, color: ColorConstant.instance.primary_main)
-                : widget.suffixIcon,
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: ColorConstant.instance.neutral5),
-        ),
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: ColorConstant.instance.neutral5),
-        ),
+            : widget.suffixIcon,
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.inputType == InputType.phone) {
+      return _buildPhoneNumberInput();
+    } else {
+      return _buildTextInput();
+    }
   }
 }

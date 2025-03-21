@@ -38,24 +38,20 @@ class ProductInfoLabel extends StatelessWidget {
               reviewColor: reviewColor,
             ),
             Expanded(child: SizedBox()),
-            ProductText(
+            ContentText(
               fontSize: 12,
               text: "Sold ($soldCount products)",
               color: ColorConstant.instance.neutral5,
             ),
           ],
         ),
-        SizedBox(
-          height: 10,
-        ),
-        ProductText(
+        context.emptySizedHeightBoxLow,
+        ContentText(
           fontSize: 18,
           text: productName,
           color: ColorConstant.instance.neutral1,
         ),
-        SizedBox(
-          height: 10,
-        ),
+        context.emptySizedHeightBoxLow,
         Container(
             width: MediaQuery.of(context).size.width * 0.9,
             child: ProductDescriptionText(

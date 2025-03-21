@@ -5,8 +5,16 @@ import 'package:shopapp_widgets/src/widgets/appbar/custom_appbar/custom_appbar.d
 class SignInHeader extends StatelessWidget {
   final String imagePath;
   final VoidCallback? onPressed;
+  final double? borderBottomLeftRadius;
+  final double? borderBottomRightRadius;
 
-  const SignInHeader({super.key, required this.imagePath, this.onPressed});
+  const SignInHeader({
+    super.key,
+    required this.imagePath,
+    this.onPressed,
+    this.borderBottomLeftRadius,
+    this.borderBottomRightRadius,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +23,10 @@ class SignInHeader extends StatelessWidget {
     return Stack(
       children: [
         HeaderImage(
-            imagePath: imagePath,
-            borderBottomLeftRadius: 60,
-            borderBottomRightRadius: 60),
+          imagePath: imagePath,
+          borderBottomLeftRadius: borderBottomLeftRadius ?? 60,
+          borderBottomRightRadius: borderBottomRightRadius ?? 60,
+        ),
         Positioned(
           top: screenHeigth * 0.03,
           left: 20,

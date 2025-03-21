@@ -1,3 +1,4 @@
+import 'package:example/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -11,24 +12,23 @@ class OrderSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Column(
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.1,
-            ),
-            OrderSuccessLabel(
-                onPrimaryButtonPressed: onPrimaryButtonPressed,
-                title: "ORDER SUCCESS",
-                primaryButtonText: "MY ORDERS",
-                secondaryButtonText: "CONTINUE SHOPPING",
-                onSecondaryButtonPressed: onSecondaryButtonPressed,
-                iconPath: "assets/icons/truck.svg",
-                description:
-                    "Dolor magna eget est lorem ipsum dolor sit amet consectetur."),
-          ],
-        ),
+    return Center(
+      child: Column(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.1,
+          ),
+          OrderSuccessLabel(
+              onPrimaryButtonPressed: onPrimaryButtonPressed,
+              title: "ORDER SUCCESS",
+              primaryButtonText: "MY ORDERS",
+              secondaryButtonText: "CONTINUE SHOPPING",
+              onSecondaryButtonPressed: onSecondaryButtonPressed,
+              iconPath: Assets.icons.truck.path,
+              succesiconPath: Assets.icons.success.path,
+              description:
+                  "Dolor magna eget est lorem ipsum dolor sit amet consectetur."),
+        ],
       ),
     );
   }

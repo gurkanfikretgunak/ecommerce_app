@@ -13,26 +13,24 @@ class _CouponcodeTextfieldInputState extends State<CouponcodeTextfieldInput> {
   final TextEditingController cuoponCodeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: TextFieldInput(
-              hintText: "Coupon Code",
-              controller: cuoponCodeController,
-            ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Expanded(
+          child: TextFieldInput(
+            hintText: "Coupon Code",
+            controller: cuoponCodeController,
           ),
-          TextButton(
-            onPressed: () {},
-            child: ProductText(
-              fontSize: 12,
-              color: ColorConstant.instance.neutral1,
-              text: "Apply Coupon",
-            ),
+        ),
+        TextButton(
+          onPressed: () {},
+          child: ContentText(
+            fontSize: 12,
+            color: ColorConstant.instance.neutral1,
+            text: "Apply Coupon",
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

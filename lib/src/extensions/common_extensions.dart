@@ -6,7 +6,7 @@ extension ContextExtension on BuildContext {
   double get height => mediaQuery.size.height;
   double get width => mediaQuery.size.width;
 
-  double get lowValue => height * 0.01;
+  double get lowValue => height * 0.005;
   double get normalValue => height * 0.02;
   double get mediumValue => height * 0.04;
   double get highValue => height * 0.1;

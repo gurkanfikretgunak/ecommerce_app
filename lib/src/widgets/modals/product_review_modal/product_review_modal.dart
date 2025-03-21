@@ -7,14 +7,22 @@ class ProductReviewModal extends StatelessWidget {
   final String name;
   final String date;
   final String reviewText;
+  final double? imageWidth;
+  final double? imageHeight;
+  final double? spacing;
+  final double? reviewTextWidth;
 
   const ProductReviewModal({
     super.key,
     required this.imagePath,
     required this.rate,
     required this.name,
-    this.date = "Unknown Date", // Varsayılan değer
-    this.reviewText = "No review provided.", // Varsayılan değer
+    this.date = "Unknown Date",
+    this.reviewText = "No review provided.",
+    this.imageWidth,
+    this.imageHeight,
+    this.spacing,
+    this.reviewTextWidth,
   });
 
   @override
@@ -23,38 +31,38 @@ class ProductReviewModal extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ImageRadiusModal(
-          width: 54,
-          height: 54,
+          width: imageWidth ?? 54,
+          height: imageHeight ?? 54,
           text: "",
           imagePath: imagePath,
         ),
-        SizedBox(width: 5),
+        SizedBox(width: spacing ?? 5),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             RateRowLayout(rate: rate),
-            SizedBox(height: 5),
+            SizedBox(height: spacing ?? 5),
             Row(
               children: [
-                ProductText(
+                ContentText(
                   color: ColorConstant.instance.neutral1,
                   text: name,
                 ),
-                ProductText(
+                ContentText(
                   color: ColorConstant.instance.neutral4,
                   text: " - ",
                 ),
-                const SizedBox(width: 5),
-                ProductText(
+                SizedBox(width: spacing ?? 5),
+                ContentText(
                   color: ColorConstant.instance.neutral4,
                   text: date,
                 ),
               ],
             ),
-            SizedBox(height: 5),
+            SizedBox(height: spacing ?? 5),
             ProductDescriptionText(
               softWrap: true,
-              width: MediaQuery.of(context).size.width * 0.7,
+              width: reviewTextWidth ?? MediaQuery.of(context).size.width * 0.7,
               text: reviewText,
             ),
           ],

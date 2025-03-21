@@ -49,11 +49,11 @@ class PaymentMethodBoxModal extends StatelessWidget {
         color: backgroundColor ?? ColorConstant.instance.neutral7,
         child: Center(
           child: Padding(
-            padding: EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ProductText(
+                ContentText(
                   text: "Payment Method",
                   fontSize: fontSize ?? 10,
                   color: titleColor ?? ColorConstant.instance.neutral4,
@@ -64,10 +64,8 @@ class PaymentMethodBoxModal extends StatelessWidget {
                     Row(
                       children: [
                         Image.asset(logoPath),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        ProductText(
+                        context.emptySizedWidthBoxLow,
+                        ContentText(
                           text: text,
                           fontSize: fontSize ?? 14,
                           color: textColor ?? ColorConstant.instance.neutral1,

@@ -17,17 +17,18 @@ class _PaymentCardColumnLayoutState extends State<PaymentCardColumnLayout> {
     super.initState();
     paymentCardItems = widget.paymentCardItems ??
         [
-          PaymentCardModal(
+          const PaymentCardModal(
               cartNumber: "1234567891011121",
               name: "Kaan Çerkez",
               brand: CartBrand.mastercard,
               expirationDate: "09/29"),
           PaymentCardModal(
-              cartNumber: "99999999999999999999",
-              name: "Kaan Çerkez",
-              color: ColorConstant.instance.neutral1,
-              brand: CartBrand.mastercard,
-              expirationDate: "09/29"),
+            cartNumber: "99999999999999999999",
+            name: "Kaan Çerkez",
+            color: ColorConstant.instance.neutral1,
+            brand: CartBrand.mastercard,
+            expirationDate: "09/29",
+          ),
         ];
   }
 
@@ -37,7 +38,8 @@ class _PaymentCardColumnLayoutState extends State<PaymentCardColumnLayout> {
       children: [
         ListView.separated(
           shrinkWrap: true,
-          separatorBuilder: (context, index) => SizedBox(height: 20),
+          separatorBuilder: (context, index) =>
+              context.emptySizedHeightBoxNormal,
           itemCount: paymentCardItems.length,
           itemBuilder: (context, index) {
             return PaymentCardModal(

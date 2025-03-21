@@ -10,16 +10,17 @@ class PopupSuccesLabel extends StatelessWidget {
   final double? titleFontSize;
   final String iconPath;
   final VoidCallback buttonOnPressed;
-  const PopupSuccesLabel(
-      {super.key,
-      required this.title,
-      required this.description,
-      required this.buttonText,
-      this.buttonColor,
-      this.buttonHeight,
-      this.titleFontSize,
-      required this.iconPath,
-      required this.buttonOnPressed});
+  const PopupSuccesLabel({
+    super.key,
+    required this.title,
+    required this.description,
+    required this.buttonText,
+    this.buttonColor,
+    this.buttonHeight,
+    this.titleFontSize,
+    required this.iconPath,
+    required this.buttonOnPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,27 +37,27 @@ class PopupSuccesLabel extends StatelessWidget {
                 padding: const EdgeInsets.all(15),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SuccessLabelRadius(
+                    RadiusIconLabel(
                       iconPath: iconPath,
                     ),
-                    SizedBox(height: 10),
+                    context.emptySizedHeightBoxNormal,
                     HeadText(
                       fontSize: titleFontSize ?? 30,
                       color: ColorConstant.instance.neutral1,
                       text: title,
                     ),
-                    SizedBox(height: 10),
-                    Container(
+                    context.emptySizedHeightBoxNormal,
+                    SizedBox(
                       width: 300,
-                      child: ProductText(
-                          fontSize: 14,
-                          softWrap: true,
-                          color: ColorConstant.instance.neutral4,
-                          text: description),
+                      child: ContentText(
+                        fontSize: 14,
+                        softWrap: true,
+                        color: ColorConstant.instance.neutral4,
+                        text: description,
+                      ),
                     ),
-                    SizedBox(height: 30),
+                    context.emptySizedHeightBoxNormal,
                     CustomButton(
                       onPressed: buttonOnPressed,
                       color: buttonColor ?? ColorConstant.instance.primary_main,
@@ -69,17 +70,18 @@ class PopupSuccesLabel extends StatelessWidget {
             ),
           ),
           Positioned(
-              top: 5,
-              right: 10,
-              child: IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(
-                  Icons.close,
-                  color: ColorConstant.instance.neutral1,
-                ),
-              )),
+            top: 5,
+            right: 10,
+            child: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.close,
+                color: ColorConstant.instance.neutral1,
+              ),
+            ),
+          ),
         ],
       ),
     );

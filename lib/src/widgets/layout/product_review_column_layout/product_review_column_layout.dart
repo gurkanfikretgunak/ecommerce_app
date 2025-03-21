@@ -14,9 +14,9 @@ class ProductReviewColumnLayout extends StatelessWidget {
         HeadText(
           fontSize: 20,
           color: ColorConstant.instance.neutral1,
-          text: "${items.length} REVIEWS FOR SLIT DENIM SKIRT",
+          text: "${items.length} REVIEWS",
         ),
-        const SizedBox(height: 10),
+        context.emptySizedHeightBoxNormal,
         SizedBox(
           height: items.length * 100,
           child: ListView.builder(

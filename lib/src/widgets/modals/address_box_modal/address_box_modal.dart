@@ -42,7 +42,6 @@ class AddressBoxModal extends StatelessWidget {
           color: containerColor ?? ColorConstant.instance.neutral7,
           border: BorderDirectional(
             bottom: BorderSide(
-              width: 1,
               color: ColorConstant.instance.neutral7,
             ),
             start: isSelected == true
@@ -55,7 +54,7 @@ class AddressBoxModal extends StatelessWidget {
         ),
         child: Center(
           child: Padding(
-            padding: EdgeInsets.only(left: 10),
+            padding: const EdgeInsets.only(left: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -63,30 +62,30 @@ class AddressBoxModal extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ProductText(
+                    ContentText(
                       text: name,
                       color: nameColor ?? ColorConstant.instance.neutral1,
                       fontSize: 14,
                     ),
-                    ProductText(
+                    ContentText(
                       text: address,
                       color: addressColor ?? ColorConstant.instance.neutral4,
                       fontSize: 10,
                     ),
-                    ProductText(
+                    ContentText(
                       text: email,
                       color: emailColor ?? ColorConstant.instance.neutral4,
                       fontSize: 10,
                     ),
-                    ProductText(
+                    ContentText(
                       text: phone,
                       color: phoneColor ?? ColorConstant.instance.neutral4,
                       fontSize: 10,
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 10),
+                const Padding(
+                  padding: EdgeInsets.only(right: 10),
                   child: Icon(size: 15, Icons.arrow_forward_ios_rounded),
                 ),
               ],

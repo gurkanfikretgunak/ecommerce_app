@@ -1,31 +1,24 @@
-import 'package:example/pages/account.dart';
-import 'package:example/pages/newaddress.dart';
-import 'package:example/pages/newcard.dart';
-import 'package:example/widgets/ordersuccess.dart';
-import 'package:example/pages/payment.dart';
-import 'package:example/pages/categorie_products.dart';
-import 'package:example/pages/homepage.dart';
-import 'package:example/pages/onboarding.dart';
-import 'package:example/pages/paymentmethods.dart';
-import 'package:example/pages/product.dart';
-import 'package:example/pages/signin.dart';
-import 'package:example/pages/signup.dart';
-import 'package:example/pages/splash.dart';
-import 'package:example/pages/verification.dart';
-import 'package:example/pages/categories.dart';
-import 'package:example/widgets/cart.dart';
-import 'package:example/widgets/checkout.dart';
-import 'package:flutter/foundation.dart';
+import 'package:example/cubits/multi_bloc.dart';
+import 'package:example/route/route.dart';
+import 'package:example/services/auth/supabase_initialize.dart';
+// ignore: depend_on_referenced_packages
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:device_preview/device_preview.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+// ignore: depend_on_referenced_packages
+import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load();
-  runApp(DevicePreview(
-    enabled: !kReleaseMode,
-    builder: (context) => ExampleApp(),
-  ));
+  await Firebase.initializeApp();
+  SupabaseInitialize.initializeSupabase();
+  OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
+  OneSignal.initialize(dotenv.env['ONESIGNAL_APP_ID'] ?? "");
+  OneSignal.Notifications.requestPermission(true);
+  runApp(const MultiBloc());
 }
 
 class ExampleApp extends StatelessWidget {
@@ -33,16 +26,18 @@ class ExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        useInheritedMediaQuery: true,
-        locale: DevicePreview.locale(context),
-        builder: DevicePreview.appBuilder,
-        title: 'Example App',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: Account());
+    return MaterialApp.router(
+      useInheritedMediaQuery: true,
+      //locale: DevicePreview.locale(context),
+      // builder: DevicePreview.appBuilder,
+      title: 'Example App',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: ColorConstant.instance.neutral9),
+        useMaterial3: true,
+      ),
+      routerConfig: AppRouter().config(),
+    );
   }
 }

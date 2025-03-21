@@ -18,7 +18,7 @@ class _CheckoutListLayoutState extends State<CheckoutListLayout> {
 
   double calculateTotal() {
     double total = 0.0;
-    for (var item in widget.items) {
+    for (final item in widget.items) {
       total += item.total;
     }
     return total;
@@ -34,36 +34,36 @@ class _CheckoutListLayoutState extends State<CheckoutListLayout> {
           alignment: Alignment.center,
           child: ListView.builder(
             shrinkWrap: true,
-            physics: ScrollPhysics(),
+            physics: const ScrollPhysics(),
             itemCount: widget.items.length,
             itemBuilder: (context, index) {
               return Column(
                 children: [
                   ProductBoxRowLayout(
-                    item: ProductText(
+                    item: ContentText(
                       text: "${widget.items[index].quantity}",
                       fontSize: 14,
                       color: ColorConstant.instance.neutral1,
                     ),
                     productBox: widget.items[index],
                   ),
-                  SizedBox(height: 10),
+                  context.emptySizedHeightBoxNormal,
                 ],
               );
             },
           ),
         ),
-        CouponcodeTextfieldInput(),
-        SizedBox(height: 15),
+        const CouponcodeTextfieldInput(),
+        context.emptySizedHeightBoxNormal,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ProductText(
+            ContentText(
               color: ColorConstant.instance.neutral1,
               fontSize: 18,
               text: "Total",
             ),
-            ProductText(
+            ContentText(
               color: ColorConstant.instance.primary_main,
               fontSize: 18,
               text: "\$ ${calculateTotal().toStringAsFixed(2)}",

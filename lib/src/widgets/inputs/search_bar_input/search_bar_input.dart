@@ -40,13 +40,13 @@ class _SearchBarInputState extends State<SearchBarInput> {
         decoration: InputDecoration(
           hintText: widget.hintText,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(25.0)),
+            borderRadius: const BorderRadius.all(Radius.circular(25.0)),
             borderSide: BorderSide(
               color: widget.borderColor ?? ColorConstant.instance.neutral4,
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(25.0)),
+            borderRadius: const BorderRadius.all(Radius.circular(25.0)),
             borderSide: BorderSide(
               color: widget.focusedBorderColor ??
                   ColorConstant.instance.primary_main,
@@ -55,8 +55,8 @@ class _SearchBarInputState extends State<SearchBarInput> {
           ),
           filled: true,
           fillColor: widget.fillColor ?? ColorConstant.instance.neutral9,
-          contentPadding:
-              widget.contentPadding ?? EdgeInsets.symmetric(horizontal: 25.0),
+          contentPadding: widget.contentPadding ??
+              const EdgeInsets.symmetric(horizontal: 25.0),
         ),
       ),
     );

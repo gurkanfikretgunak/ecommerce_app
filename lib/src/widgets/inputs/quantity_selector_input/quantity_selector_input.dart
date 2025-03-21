@@ -18,17 +18,18 @@ class _QuantitySelectorInputState extends State<QuantitySelectorInput> {
     return Row(
       children: [
         IconButton(
-            onPressed: () {
-              if (count > 1) {
-                setState(() {
-                  count--;
-                  widget.onQuantityChanged?.call(count);
-                });
-              }
-            },
-            iconSize: widget.size ?? 14,
-            icon: Icon(Icons.remove)),
-        ProductText(
+          onPressed: () {
+            if (count > 1) {
+              setState(() {
+                count--;
+                widget.onQuantityChanged?.call(count);
+              });
+            }
+          },
+          iconSize: widget.size ?? 14,
+          icon: const Icon(Icons.remove),
+        ),
+        ContentText(
             fontSize: widget.size ?? 14,
             color: ColorConstant.instance.neutral1,
             text: "$count"),
@@ -39,7 +40,7 @@ class _QuantitySelectorInputState extends State<QuantitySelectorInput> {
               widget.onQuantityChanged?.call(count);
             });
           },
-          icon: Icon(Icons.add),
+          icon: const Icon(Icons.add),
           iconSize: widget.size ?? 14,
         ),
       ],

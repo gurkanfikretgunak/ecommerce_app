@@ -1,8 +1,12 @@
-import 'package:example/pages/addresses.dart';
-import 'package:example/pages/paymentmethods.dart';
+import 'package:example/gen/assets.gen.dart';
+import 'package:example/pages/addresses/addresses_view.dart';
+import 'package:example/pages/paymentmethods/paymentmethods_view.dart';
+import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class Checkout extends StatefulWidget {
   final VoidCallback? buttonCallBack;
   const Checkout({super.key, this.buttonCallBack});
@@ -14,15 +18,15 @@ class Checkout extends StatefulWidget {
 class _CheckoutState extends State<Checkout> {
   final List<ProductBoxModal> productBoxRowItems = [
     ProductBoxModal(
-        imagePath: "assets/images/productboximage.png",
+        imagePath: Assets.images.productboximage.path,
         name: "Basic T-shirt",
         price: 49.99),
     ProductBoxModal(
-        imagePath: "assets/images/productboximage.png",
+        imagePath: Assets.images.productboximage.path,
         name: "Basic T-shirt",
         price: 40.99),
     ProductBoxModal(
-        imagePath: "assets/images/productboximage.png",
+        imagePath: Assets.images.productboximage.path,
         name: "Basic T-shirt",
         price: 52.99),
   ];
@@ -31,34 +35,32 @@ class _CheckoutState extends State<Checkout> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
-            height: 20,
-          ),
+          context.emptySizedHeightBoxNormal,
           AddressBoxModal(
               name: "Theresa Webb",
               address: "3517 W. Gray St. Utica, Pennsylvania 57867",
               email: "willie.jennings@example.com",
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Addresses()));
+                AutoRouter.of(context).push(AddressesViewRoute());
+                /*Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AddressesView()));*/
               },
               phone: "(480) 555-0103"),
-          SizedBox(
-            height: 10,
-          ),
+          context.emptySizedHeightBoxNormal,
           PaymentMethodBoxModal(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => PaymentMethods()));
+                AutoRouter.of(context).push(const PaymentMethodsViewRoute());
+                /*Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PaymentMethodsView()));*/
               },
               text: "Master card Ending *****23"),
-          SizedBox(
-            height: 10,
-          ),
+          context.emptySizedHeightBoxNormal,
           CheckoutListLayout(items: productBoxRowItems),
-          SizedBox(
-            height: 20,
-          ),
+          context.emptySizedHeightBoxNormal,
           CustomButton(
               onPressed: widget.buttonCallBack ?? () {},
               height: 50,

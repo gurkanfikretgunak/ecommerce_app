@@ -14,10 +14,10 @@ class ProductRowLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
 
-    return Container(
+    return SizedBox(
       height: height ?? screenHeight * 0.4,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,

@@ -17,7 +17,7 @@ class PaymentCardModal extends StatelessWidget {
   final CardType? cardType;
   final String? validThru;
 
-  PaymentCardModal({
+  const PaymentCardModal({
     super.key,
     required this.cartNumber,
     required this.name,
@@ -61,7 +61,6 @@ class PaymentCardModal extends StatelessWidget {
       bottomRightColor: color ?? ColorConstant.instance.primary_darker,
       enableFlipping: enableFlipping ?? true,
       cardProviderLogo: brand != null ? Image.asset(logoPath) : null,
-      cardProviderLogoPosition: CardProviderLogoPosition.right,
       validThru: validThru ?? expirationDate,
     );
   }

@@ -21,9 +21,9 @@ class _MapLabelState extends State<MapLabel> {
     _loadMapStyle();
   }
 
-  @override
   Future<void> _loadMapStyle() async {
-    String style = await rootBundle.loadString('assets/mapstyle/mapstyle.json');
+    final String style =
+        await rootBundle.loadString('assets/mapstyle/mapstyle.json');
     if (!mounted) return;
     setState(() {
       _mapStyle = style;
@@ -33,7 +33,7 @@ class _MapLabelState extends State<MapLabel> {
   @override
   Widget build(BuildContext context) {
     return GoogleMap(
-      initialCameraPosition: CameraPosition(
+      initialCameraPosition: const CameraPosition(
         target: LatLng(41.0082, 28.9784),
         zoom: 5,
       ),
@@ -41,14 +41,14 @@ class _MapLabelState extends State<MapLabel> {
       onMapCreated: (GoogleMapController controller) {
         _mapController = controller;
         if (_mapStyle != null) {
-          _mapController.setMapStyle(_mapStyle!);
+          _mapController.setMapStyle(_mapStyle);
         }
       },
       onTap: (LatLng pos) {
         setState(() {
           _markers.add(Marker(
             position: pos,
-            markerId: MarkerId("Location"),
+            markerId: const MarkerId("Location"),
             icon: BitmapDescriptor.defaultMarkerWithHue(
                 BitmapDescriptor.hueOrange),
           ));

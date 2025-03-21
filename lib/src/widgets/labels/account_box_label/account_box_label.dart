@@ -24,18 +24,16 @@ class AccountBoxLabel extends StatelessWidget {
           imagePath: imagePath,
           icon: icon ?? Icons.photo_camera,
         ),
-        SizedBox(
-          width: 10,
-        ),
+        context.emptySizedWidthBoxLow,
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ProductText(
+            ContentText(
               text: name,
               fontSize: 18,
               color: ColorConstant.instance.neutral1,
             ),
-            ProductText(
+            ContentText(
               text: username,
               fontSize: 12,
               color: ColorConstant.instance.neutral4,

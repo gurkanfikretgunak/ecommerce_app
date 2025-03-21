@@ -23,7 +23,7 @@ class ProductDescriptionText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width ?? MediaQuery.of(context).size.width * 0.9,
-      child: ProductText(
+      child: ContentText(
         text: text,
         fontSize: fontSize ?? 12,
         color: color ?? ColorConstant.instance.neutral4,

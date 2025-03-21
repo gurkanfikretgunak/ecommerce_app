@@ -37,8 +37,8 @@ class SettingsBoxLabel extends StatelessWidget {
                 color: iconColor ?? ColorConstant.instance.neutral1,
                 size: iconSize ?? 24,
               ),
-              SizedBox(width: 5),
-              ProductText(
+              context.emptySizedWidthBoxNormal,
+              ContentText(
                 text: text,
                 color: textColor ?? ColorConstant.instance.neutral1,
                 fontSize: fontSize ?? 15,

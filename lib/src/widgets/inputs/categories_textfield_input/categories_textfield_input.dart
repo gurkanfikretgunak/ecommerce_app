@@ -37,7 +37,7 @@ class _CategoriesTextfieldInputState extends State<CategoriesTextfieldInput> {
         ),
         border: OutlineInputBorder(
           borderSide: BorderSide(color: widget.borderColor ?? Colors.grey),
-          borderRadius: BorderRadius.all(Radius.zero),
+          borderRadius: BorderRadius.zero,
         ),
       ),
       controller: widget.controller ??

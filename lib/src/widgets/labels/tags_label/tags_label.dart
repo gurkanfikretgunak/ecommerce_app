@@ -43,12 +43,12 @@ class _TagsLabelState extends State<TagsLabel> {
             color: widget.shadowColor ?? Colors.black.withOpacity(0.1),
             spreadRadius: widget.spreadRadius ?? 1,
             blurRadius: widget.blurRadius ?? 150,
-            offset: widget.offset ?? Offset(0, 1),
+            offset: widget.offset ?? const Offset(0, 1),
           ),
         ],
       ),
       child: ActionChip(
-        label: ProductText(
+        label: ContentText(
           text: widget.label,
           color: isSelected
               ? widget.selectedTextColor ?? ColorConstant.instance.primary_main

@@ -14,15 +14,15 @@ class _TimerLabelState extends State<TimerLabel> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TimerLabelBox(),
-        SizedBox(width: 3),
-        Text(":"),
-        SizedBox(width: 3),
-        TimerLabelBox(),
-        SizedBox(width: 3),
-        Text(":"),
-        SizedBox(width: 3),
-        TimerLabelBox(),
+        const TimerLabelBox(),
+        context.emptySizedWidthBoxLow,
+        const Text(":"),
+        context.emptySizedWidthBoxLow,
+        const TimerLabelBox(),
+        context.emptySizedWidthBoxLow,
+        const Text(":"),
+        context.emptySizedWidthBoxLow,
+        const TimerLabelBox(),
       ],
     );
   }

@@ -17,24 +17,23 @@ class _ProductBottomSheetLabelState extends State<ProductBottomSheetLabel> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    final double screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
       height: 80,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         color: ColorConstant.instance.neutral9,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(24),
           topRight: Radius.circular(24),
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           children: [
-            ProductText(
+            ContentText(
               fontSize: 20,
               color: ColorConstant.instance.neutral1,
               text: "\$ ${widget.price}",

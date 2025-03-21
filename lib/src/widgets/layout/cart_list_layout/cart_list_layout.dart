@@ -20,7 +20,7 @@ class _CartListLayoutState extends State<CartListLayout> {
 
   double calculateTotal() {
     double total = 0.0;
-    for (var item in widget.items) {
+    for (final item in widget.items) {
       total += item.total;
     }
     return total;
@@ -36,7 +36,7 @@ class _CartListLayoutState extends State<CartListLayout> {
           alignment: Alignment.center,
           child: ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: widget.items.length,
             itemBuilder: (context, index) {
               return Column(
@@ -51,7 +51,7 @@ class _CartListLayoutState extends State<CartListLayout> {
                     ),
                     productBox: widget.items[index],
                   ),
-                  SizedBox(height: 15),
+                  context.emptySizedHeightBoxNormal,
                 ],
               );
             },
@@ -60,12 +60,12 @@ class _CartListLayoutState extends State<CartListLayout> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ProductText(
+            ContentText(
               color: ColorConstant.instance.neutral1,
               fontSize: 18,
               text: "Total",
             ),
-            ProductText(
+            ContentText(
               color: ColorConstant.instance.primary_main,
               fontSize: 18,
               text: "\$ ${calculateTotal().toStringAsFixed(2)}",
