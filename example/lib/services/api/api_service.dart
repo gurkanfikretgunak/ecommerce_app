@@ -58,4 +58,12 @@ abstract class ApiService {
     @Query('select') String select = '*',
     @Body() required Map<String, dynamic> reviewModel,
   });
+
+  @POST('cart')
+  Future<void> postCart({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('select') String select = '*',
+    @Body() required Map<String, dynamic> cartModel,
+  });
 }

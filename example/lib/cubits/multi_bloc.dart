@@ -1,5 +1,6 @@
 import 'package:example/cubits/auth/auth_cubit.dart';
 import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
+import 'package:example/cubits/cart/cart_cubit.dart';
 import 'package:example/cubits/categorie_products/categorie_products_cubit.dart';
 import 'package:example/cubits/categories/categories_cubit.dart';
 import 'package:example/cubits/home/home_cubit.dart';
@@ -9,6 +10,7 @@ import 'package:example/cubits/product_detail/product_detail_cubit.dart';
 import 'package:example/cubits/review/review_cubit.dart';
 import 'package:example/cubits/validation/validation_cubit.dart';
 import 'package:example/main.dart';
+import 'package:example/models/cart_model/cart_model.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,6 +35,7 @@ class MultiBloc extends StatelessWidget {
       BlocProvider<PaymentStepCubit>(create: (_) => PaymentStepCubit()),
       BlocProvider<ProductDetailCubit>(create: (_) => ProductDetailCubit()),
       BlocProvider<ReviewCubit>(create: (_) => ReviewCubit()),
+      BlocProvider<CartCubit>(create: (_) => CartCubit()),
     ], child: const ExampleApp());
   }
 }

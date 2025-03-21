@@ -1,13 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:example/gen/assets.gen.dart';
+import 'package:example/cubits/categorie_products/categorie_products_cubit.dart';
+import 'package:example/cubits/categorie_products/categorie_products_state.dart';
 import 'package:example/models/categorie_model/categorie_model.dart';
-import 'package:example/pages/product/product_view.dart';
-import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
-import 'package:example/cubits/categorie_products/categorie_products_cubit.dart';
-import 'package:example/cubits/categorie_products/categorie_products_state.dart';
 
 @RoutePage()
 class CategorieProductsView extends StatefulWidget {

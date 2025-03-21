@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class SignInForm extends StatefulWidget {
-  const SignInForm({super.key});
+  final Function(String)? onChangedEmail;
+  final Function(String)? onChangedPassword;
+
+  const SignInForm({
+    super.key,
+    this.onChangedEmail,
+    this.onChangedPassword,
+  });
 
   @override
   State<SignInForm> createState() => _SignInFormState();
@@ -12,7 +19,6 @@ class _SignInFormState extends State<SignInForm> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  bool isPasswordVisible = false;
   bool rememberMe = false;
 
   @override
@@ -42,6 +48,7 @@ class _SignInFormState extends State<SignInForm> {
                 controller: emailController,
                 hintText: "Enter Email",
                 inputType: InputType.email,
+                onChanged: widget.onChangedEmail,
               ),
               context.emptySizedHeightBoxNormal,
               const Text(
@@ -53,6 +60,7 @@ class _SignInFormState extends State<SignInForm> {
                 hintText: "Enter Password",
                 controller: passwordController,
                 inputType: InputType.password,
+                onChanged: widget.onChangedPassword,
               ),
               context.emptySizedHeightBoxNormal,
               Row(

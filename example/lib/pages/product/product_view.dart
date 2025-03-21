@@ -1,12 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:example/cubits/auth/auth_cubit.dart';
 import 'package:example/cubits/auth/auth_state.dart';
+import 'package:example/cubits/cart/cart_cubit.dart';
 import 'package:example/cubits/product/product_cubit.dart';
 import 'package:example/cubits/product/product_state.dart';
 import 'package:example/cubits/product_detail/product_detail_cubit.dart';
 import 'package:example/cubits/product_detail/product_detail_state.dart';
 import 'package:example/cubits/review/review_cubit.dart';
 import 'package:example/cubits/review/review_state.dart';
+import 'package:example/models/cart_model/cart_model.dart';
 import 'package:example/models/product_model/product_model.dart';
 import 'package:example/models/review_model/review_model.dart';
 import 'package:example/route/route.gr.dart';
@@ -247,9 +249,28 @@ class _ProductViewState extends State<ProductView> {
       bottomSheet: BlocBuilder<ProductCubit, ProductState>(
         builder: (context, productState) {
           if (productState is ProductLoaded) {
-            return ProductBottomSheetLabel(
-              buttonOnPressed: _shopPopup,
-              price: productState.product.price.toString(),
+            return BlocBuilder<AuthCubit, AuthState>(
+              builder: (context, authState) {
+                if (authState is AuthAuthenticated) {
+                  return ProductBottomSheetLabel(
+                    buttonOnPressed: () {
+                      final cartModel = Cart(
+                        userId: authState.user.id,
+                        productId: productState.product.product_id,
+                        productName: productState.product.name,
+                        unitPrice: productState.product.price,
+                        productImage: productState.product.image,
+                        quantity: 1,
+                      );
+                      context.read<CartCubit>().postCart(cartModel);
+                      _shopPopup();
+                    },
+                    price: productState.product.price.toString(),
+                  );
+                } else {
+                  return Container();
+                }
+              },
             );
           } else {
             return Container();
