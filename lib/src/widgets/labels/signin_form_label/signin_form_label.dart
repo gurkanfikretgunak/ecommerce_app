@@ -8,6 +8,8 @@ class SignInFormLabel extends StatefulWidget {
   final Function(String)? onChangedPassword;
   final bool? isEmailValid;
   final bool? isPasswordValid;
+  final bool rememberMe;
+  final Function(bool)? checkBoxOnChanged;
 
   const SignInFormLabel({
     super.key,
@@ -17,6 +19,8 @@ class SignInFormLabel extends StatefulWidget {
     this.onChangedPassword,
     this.isEmailValid,
     this.isPasswordValid,
+    required this.rememberMe,
+    this.checkBoxOnChanged,
   });
 
   @override
@@ -25,7 +29,6 @@ class SignInFormLabel extends StatefulWidget {
 
 class _SignInFormLabelState extends State<SignInFormLabel> {
   bool isPasswordVisible = false;
-  bool rememberMe = false;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +50,7 @@ class _SignInFormLabelState extends State<SignInFormLabel> {
                 hintText: "Enter Email",
                 inputType: InputType.email,
                 onChanged: widget.onChangedEmail,
-                isValid: widget.isEmailValid ?? false,
+                isValid: widget.isEmailValid ?? true,
               ),
               context.emptySizedHeightBoxNormal,
               const Text(
@@ -60,7 +63,7 @@ class _SignInFormLabelState extends State<SignInFormLabel> {
                 hintText: "Enter Password",
                 inputType: InputType.password,
                 onChanged: widget.onChangedPassword,
-                isValid: widget.isPasswordValid ?? false,
+                isValid: widget.isPasswordValid ?? true,
               ),
               context.emptySizedHeightBoxNormal,
               Row(
@@ -69,11 +72,13 @@ class _SignInFormLabelState extends State<SignInFormLabel> {
                   Row(
                     children: [
                       Checkbox(
-                        value: rememberMe,
+                        activeColor: ColorConstant.instance.primary_main,
+                        value: widget.rememberMe,
                         onChanged: (value) {
-                          setState(() {
-                            rememberMe = value!;
-                          });
+                          if (value != null &&
+                              widget.checkBoxOnChanged != null) {
+                            widget.checkBoxOnChanged!(value);
+                          }
                         },
                       ),
                       Text(
