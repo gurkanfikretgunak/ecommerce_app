@@ -4,6 +4,7 @@ import 'package:example/cubits/auth/auth_state.dart';
 import 'package:example/models/user_model/user_model.dart';
 import 'package:example/respository/user_respository/user_respository.dart';
 import 'package:example/services/auth/auth_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // ignore: depend_on_referenced_packages
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
@@ -18,6 +19,22 @@ class AuthCubit extends Cubit<AuthState> {
       if (user != null) {
         final userModel = await UserRespository().getUser(user.id);
 
+        emit(AuthAuthenticated(userModel));
+      } else {
+        emit(AuthUnauthenticated());
+      }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> checkToken() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      String? userId = prefs.getString('user_id');
+
+      if (userId != null) {
+        final userModel = await UserRespository().getUser(userId);
         emit(AuthAuthenticated(userModel));
       } else {
         emit(AuthUnauthenticated());
@@ -52,11 +69,17 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> signIn(String email, String password) async {
+  Future<void> signIn(String email, String password, bool rememberMe) async {
     try {
       supabase.User? user = await _authService.signIn(email, password);
       if (user != null) {
         final userModel = await UserRespository().getUser(user.id);
+
+        if (rememberMe) {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setString('user_id', user.id);
+        }
+
         emit(AuthAuthenticated(userModel));
       } else {
         emit(AuthUnauthenticated());
@@ -85,6 +108,10 @@ class AuthCubit extends Cubit<AuthState> {
         if (!await UserRespository().isUUIDExist(user.id)) {
           await UserRespository().postUser(userModel);
         }
+
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('user_id', user.id);
+
         emit(AuthAuthenticated(userModel));
       } else {
         emit(AuthUnauthenticated());
@@ -114,6 +141,9 @@ class AuthCubit extends Cubit<AuthState> {
           await UserRespository().postUser(userModel);
         }
 
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString('user_id', user.id);
+
         emit(AuthAuthenticated(userModel));
       } else {
         emit(AuthUnauthenticated());
@@ -125,6 +155,8 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> signOut() async {
     try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove('user_id');
       await _authService.signOut();
       emit(AuthUnauthenticated());
     } catch (e) {

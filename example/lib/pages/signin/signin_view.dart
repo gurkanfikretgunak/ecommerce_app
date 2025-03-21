@@ -11,14 +11,30 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 @RoutePage()
-class SignInView extends StatelessWidget {
+class SignInView extends StatefulWidget {
   const SignInView({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
+  State<SignInView> createState() => _SignInViewState();
+}
 
+class _SignInViewState extends State<SignInView> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  bool rememberMe = false;
+
+  void showToast(
+      BuildContext context, String title, String description, ToastType type) {
+    final toast = ToastMessageLabel(
+      title: title,
+      description: description,
+      type: type,
+    );
+    toast.show(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => AuthCubit()),
@@ -30,8 +46,11 @@ class SignInView extends StatelessWidget {
             if (state is AuthAuthenticated) {
               AutoRouter.of(context).push(MainpageViewRoute());
             } else if (state is AuthError) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.error)),
+              showToast(
+                context,
+                'Error',
+                state.error,
+                ToastType.error,
               );
             }
           },
@@ -50,8 +69,11 @@ class SignInView extends StatelessWidget {
                   BlocListener<ValidationCubit, ValidationState>(
                     listener: (context, validationState) {
                       if (validationState is ValidationError) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(validationState.error)),
+                        showToast(
+                          context,
+                          'Validation Error',
+                          validationState.error,
+                          ToastType.error,
                         );
                       }
                     },
@@ -71,6 +93,12 @@ class SignInView extends StatelessWidget {
                         return SignInFormLabel(
                           emailController: emailController,
                           passwordController: passwordController,
+                          rememberMe: rememberMe,
+                          checkBoxOnChanged: (bool value) {
+                            setState(() {
+                              rememberMe = value;
+                            });
+                          },
                           onChangedEmail: (email) {
                             context
                                 .read<ValidationCubit>()
@@ -93,14 +121,19 @@ class SignInView extends StatelessWidget {
                       CustomButton(
                         text: "SIGN IN",
                         onPressed: () {
-                          if (context.read<ValidationCubit>().isFormValid()) {
+                          if (context
+                              .read<ValidationCubit>()
+                              .isSignInFormValid()) {
                             context.read<AuthCubit>().signIn(
-                                emailController.text, passwordController.text);
+                                emailController.text,
+                                passwordController.text,
+                                rememberMe);
                           } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                  content: Text(
-                                      'Please fix the errors in the form')),
+                            showToast(
+                              context,
+                              'Form Error',
+                              'Please fix the errors in the form',
+                              ToastType.error,
                             );
                           }
                         },
@@ -130,7 +163,7 @@ class SignInView extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text("Don’t have an account?"),
+                          const Text("Don't have an account?"),
                           TextButton(
                             onPressed: () {
                               AutoRouter.of(context)
