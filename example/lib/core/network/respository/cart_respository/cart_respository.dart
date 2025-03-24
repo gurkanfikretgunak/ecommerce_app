@@ -37,4 +37,16 @@ class CartRespository {
       rethrow;
     }
   }
+
+  Future<void> patchCart(String id, int quantity) async {
+    try {
+      await apiService.patchCart(
+          apikey: authToken,
+          authToken: 'Bearer $authToken',
+          id: 'eq.$id',
+          body: {"quantity": quantity});
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

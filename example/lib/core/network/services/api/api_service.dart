@@ -75,4 +75,13 @@ abstract class ApiService {
     @Query('user_id') String? user_id,
     @Query('select') String select = '*',
   });
+
+  @PATCH('cart')
+  Future<void> patchCart({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('id') String? id,
+    @Query('select') String select = "*",
+    @Body() required Map<String, dynamic> body,
+  });
 }

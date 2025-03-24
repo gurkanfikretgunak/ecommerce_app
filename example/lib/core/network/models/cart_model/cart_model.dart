@@ -10,9 +10,9 @@ class Cart {
   final int productId;
   final String productImage;
   final String productName;
-  final int quantity;
-  final double unitPrice;
-  final double? totalPrice;
+  int quantity;
+  double unitPrice;
+  double? totalPrice;
 
   Cart({
     this.id,
