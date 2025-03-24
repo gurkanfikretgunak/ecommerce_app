@@ -41,31 +41,49 @@ class _ProductBoxModalState extends State<ProductBoxModal> {
         SizedBox(
           width: widget.imageWidth ?? 60,
           height: widget.imageHeight ?? 80,
-          child: Image.asset(
-            widget.imagePath,
-            fit: BoxFit.cover,
-          ),
+          child: _buildImage(widget.imagePath),
         ),
         SizedBox(width: widget.spacing ?? 10),
-        Align(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ContentText(
-                text: widget.name,
-                fontSize: widget.fontSize ?? 15,
-                color: widget.textColor ?? ColorConstant.instance.neutral1,
-              ),
-              SizedBox(height: widget.spacing ?? 3),
-              ContentText(
-                text: "\$ ${widget.price}",
-                fontSize: widget.fontSize ?? 15,
-                color: widget.priceColor ?? ColorConstant.instance.primary_main,
-              ),
-            ],
+        SizedBox(
+          width: 150,
+          child: Align(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ContentText(
+                  textAlign: TextAlign.start,
+                  softWrap: true,
+                  text: widget.name,
+                  fontSize: widget.fontSize ?? 15,
+                  color: widget.textColor ?? ColorConstant.instance.neutral1,
+                ),
+                SizedBox(height: widget.spacing ?? 3),
+                ContentText(
+                  textAlign: TextAlign.start,
+                  text: "\$ ${widget.price}",
+                  fontSize: widget.fontSize ?? 15,
+                  color:
+                      widget.priceColor ?? ColorConstant.instance.primary_main,
+                ),
+              ],
+            ),
           ),
         )
       ],
     );
+  }
+
+  Widget _buildImage(String path) {
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      return Image.network(
+        path,
+        fit: BoxFit.cover,
+      );
+    } else {
+      return Image.asset(
+        path,
+        fit: BoxFit.cover,
+      );
+    }
   }
 }
