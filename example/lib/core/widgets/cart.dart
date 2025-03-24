@@ -22,6 +22,11 @@ class _CartState extends State<Cart> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   final List<ProductBoxModal> productBoxRowItems = [
     ProductBoxModal(
         imagePath: Assets.images.productboximage.path,
@@ -40,24 +45,24 @@ class _CartState extends State<Cart> {
   List<Widget> productCardItems = [
     ProductCardModal(
         imagePath: Assets.images.productcardimageFirst.path,
-        productStock: "Sold(50 Product)",
+        productStock: "50",
         productName: "Long-sleeved T-shirt",
-        productPrice: "\$49.00"),
+        productPrice: "49.00"),
     ProductCardModal(
         imagePath: Assets.images.productcardimageSecond.path,
-        productStock: "Sold(50 Product)",
+        productStock: "50",
         productName: "Printed Cotton Shirt",
-        productPrice: "\$45.00"),
+        productPrice: "45.00"),
     ProductCardModal(
         imagePath: Assets.images.productcardimageThird.path,
-        productStock: "Sold(50 Product)",
+        productStock: "50",
         productName: "Cotton T-shirt",
-        productPrice: "\$49.00"),
+        productPrice: "49.00"),
     ProductCardModal(
         imagePath: Assets.images.productcardimageFourth.path,
-        productStock: "Sold(50 Product)",
+        productStock: "50",
         productName: "Embroidered T-Shirt",
-        productPrice: "\$39.00"),
+        productPrice: "39.00"),
   ];
 
   @override
@@ -68,38 +73,55 @@ class _CartState extends State<Cart> {
           context.read<CartCubit>().getCart(authState.user.id);
           return BlocBuilder<CartCubit, CartState>(
             builder: (context, cartState) {
+              Widget cartContent;
+
               if (cartState is CartLoading) {
-                return const Center(child: CircularProgressIndicator());
+                context.read<CartCubit>().getCart(authState.user.id);
+                cartContent = const Center(child: CircularProgressIndicator());
               } else if (cartState is CartLoaded) {
-                return SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      context.emptySizedHeightBoxNormal,
-                      CartListLayout(
-                          items: cartState.cart.map((item) {
-                        return ProductBoxModal(
-                          imagePath: item.productImage,
-                          name: item.productName,
-                          price: item.unitPrice,
-                        );
-                      }).toList()),
-                      context.emptySizedHeightBoxNormal,
-                      SectionLayout(
-                        sectionText: "YOU ALSO VIEWED",
-                        layout:
-                            ProductGridLayout(productItems: productCardItems),
-                      ),
-                      CustomButton(
-                        onPressed: widget.buttonCallBack ?? () {},
-                        height: 50,
-                        text: "Proceed To Checkout",
-                      ),
-                    ],
-                  ),
+                cartContent = CartListLayout(
+                  onQuantityChanged: (index, newQuantity) {
+                    context
+                        .read<CartCubit>()
+                        .updateQuantity(index, newQuantity);
+                  },
+                  items: cartState.cart.map((item) {
+                    return ProductBoxModal(
+                      imagePath: item.productImage,
+                      name: item.productName,
+                      quantity: item.quantity,
+                      price: item.unitPrice,
+                    );
+                  }).toList(),
                 );
               } else {
-                return const Center(child: Text("Error loading cart"));
+                cartContent = SizedBox(
+                    height: 100,
+                    child: Center(
+                        child: HeadText(
+                      text: "Cart is Empty",
+                      color: ColorConstant.instance.neutral1,
+                    )));
               }
+
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    context.emptySizedHeightBoxNormal,
+                    cartContent,
+                    context.emptySizedHeightBoxNormal,
+                    SectionLayout(
+                      sectionText: "YOU ALSO VIEWED",
+                      layout: ProductGridLayout(productItems: productCardItems),
+                    ),
+                    CustomButton(
+                      onPressed: widget.buttonCallBack ?? () {},
+                      height: 50,
+                      text: "Proceed To Checkout",
+                    ),
+                  ],
+                ),
+              );
             },
           );
         } else {

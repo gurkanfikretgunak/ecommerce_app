@@ -25,4 +25,22 @@ class CartCubit extends Cubit<CartState> {
       emit(CartError("Failed to get cart:${e.toString()}"));
     }
   }
+
+  void updateQuantity(int index, int newQuantity) async {
+    if (state is CartLoaded) {
+      final cart = (state as CartLoaded).cart;
+      final id = cart[index].id;
+      try {
+        if (newQuantity < 1) {
+          await CartRespository().deleteCart('$id');
+          emit(CartLoading());
+        }
+        cart[index].quantity = newQuantity;
+        await CartRespository().patchCart('$id', newQuantity);
+      } catch (e) {
+        emit(CartError("Failed to patch cart:${e.toString()}"));
+      }
+      emit(CartLoaded(cart: List.from(cart)));
+    }
+  }
 }
