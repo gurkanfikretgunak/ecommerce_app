@@ -21,7 +21,6 @@ ProductDetail _$ProductDetailFromJson(Map<String, dynamic> json) =>
       description_image: (json['description_image'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
-      is_favorite: json['is_favorite'] as bool,
       reviews: (json['reviews'] as List<dynamic>?)
           ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -38,6 +37,5 @@ Map<String, dynamic> _$ProductDetailToJson(ProductDetail instance) =>
       'sizes': instance.sizes,
       'description': instance.description,
       'description_image': instance.description_image,
-      'is_favorite': instance.is_favorite,
       'reviews': instance.reviews,
     };
