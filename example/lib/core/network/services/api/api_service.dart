@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:example/core/network/models/cart_model/cart_model.dart';
 import 'package:example/core/network/models/categorie_model/categorie_model.dart';
 import 'package:example/core/network/models/product_detail_model/product_detail_model.dart';
 import 'package:example/core/network/models/product_model/product_model.dart';
@@ -65,5 +66,13 @@ abstract class ApiService {
     @Header('Authorization') String? authToken,
     @Query('select') String select = '*',
     @Body() required Map<String, dynamic> cartModel,
+  });
+
+  @GET('cart')
+  Future<List<Cart>> getCart({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('user_id') String? user_id,
+    @Query('select') String select = '*',
   });
 }

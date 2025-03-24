@@ -9,6 +9,23 @@ class CartRespository {
   final authToken = dotenv.env['SUPABASE_KEY'];
   CartRespository() : apiService = ApiService(Dio());
 
+  Future<List<Cart>> getCart(String userId) async {
+    try {
+      final response = await apiService.getCart(
+          apikey: authToken,
+          authToken: 'Bearer $authToken',
+          user_id: 'eq.$userId');
+
+      if (response.isNotEmpty) {
+        return response;
+      } else {
+        throw Exception('Products not found');
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<void> postCart(Cart cart) async {
     try {
       await apiService.postCart(
