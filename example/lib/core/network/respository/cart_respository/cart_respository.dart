@@ -49,4 +49,16 @@ class CartRespository {
       rethrow;
     }
   }
+
+  Future<void> deleteCart(String id) async {
+    try {
+      await apiService.deleteCart(
+        apikey: authToken,
+        authToken: 'Bearer $authToken',
+        id: 'eq.$id',
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
