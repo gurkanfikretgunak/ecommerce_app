@@ -12,7 +12,17 @@ class CartCubit extends Cubit<CartState> {
       await CartRespository().postCart(cart);
       emit(CartSucces("Cart posted successfully!"));
     } catch (e) {
-      emit(CartError("Failed to posrt cart:${e.toString()}"));
+      emit(CartError("Failed to post cart:${e.toString()}"));
+    }
+  }
+
+  Future<void> getCart(String userId) async {
+    emit(CartLoading());
+    try {
+      final cart = await CartRespository().getCart(userId);
+      emit(CartLoaded(cart: cart));
+    } catch (e) {
+      emit(CartError("Failed to get cart:${e.toString()}"));
     }
   }
 }
