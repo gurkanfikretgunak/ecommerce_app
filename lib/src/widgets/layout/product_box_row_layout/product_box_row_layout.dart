@@ -14,7 +14,7 @@ class _ProductBoxRowLayoutState extends State<ProductBoxRowLayout> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [widget.productBox, if (widget.item != null) widget.item!],
     );
   }
