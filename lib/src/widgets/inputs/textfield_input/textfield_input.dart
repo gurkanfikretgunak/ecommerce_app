@@ -20,6 +20,7 @@ class TextFieldInput extends StatefulWidget {
   final FontWeight? hintFontWeight;
   final Function(String)? onChanged;
   final bool isValid;
+  final String? errorMessage;
 
   const TextFieldInput({
     super.key,
@@ -33,6 +34,7 @@ class TextFieldInput extends StatefulWidget {
     this.hintFontWeight,
     this.onChanged,
     this.isValid = false,
+    this.errorMessage,
   });
 
   @override
@@ -125,6 +127,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
                 widget.isValid ? ColorConstant.instance.neutral5 : Colors.red,
           ),
         ),
+        errorText: widget.isValid ? null : widget.errorMessage,
         suffixIcon: widget.inputType == InputType.password
             ? IconButton(
                 icon: Icon(isObscure ? Icons.visibility_off : Icons.visibility),

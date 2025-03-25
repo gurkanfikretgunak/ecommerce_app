@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:example/views/auth/signup/models/auth_cubit.dart';
-import 'package:example/views/auth/signup/models/auth_state.dart';
+import 'package:example/views/auth/models/auth_cubit.dart';
+import 'package:example/views/auth/models/auth_state.dart';
 import 'package:example/cubits/validation/validation_cubit.dart';
 import 'package:example/cubits/validation/validation_state.dart';
 import 'package:example/route/route.gr.dart';
@@ -77,29 +77,37 @@ class _SignUpViewState extends State<SignUpView> {
                       bool isPhoneValid = true;
                       bool isPasswordValid = true;
                       bool isConfirmPasswordValid = true;
+                      String? firstNameErrorMessage;
+                      String? lastNameErrorMessage;
+                      String? emailErrorMessage;
+                      String? phoneErrorMessage;
+                      String? passwordErrorMessage;
+                      String? confirmPasswordErrorMessage;
 
                       if (validationState is FirstNameInvalid) {
                         isFirstNameValid = false;
+                        firstNameErrorMessage = validationState.error;
                       }
                       if (validationState is LastNameInvalid) {
                         isLastNameValid = false;
+                        lastNameErrorMessage = validationState.error;
                       }
                       if (validationState is EmailInvalid) {
                         isEmailValid = false;
+                        emailErrorMessage = validationState.error;
                       }
-
                       if (validationState is PhoneInvalid) {
-                        isPasswordValid = false;
+                        isPhoneValid = false;
+                        phoneErrorMessage = validationState.error;
                       }
-
                       if (validationState is PasswordInvalid) {
                         isPasswordValid = false;
+                        passwordErrorMessage = validationState.error;
                       }
-
                       if (validationState is ConfirmPasswordInvalid) {
                         isConfirmPasswordValid = false;
+                        confirmPasswordErrorMessage = validationState.error;
                       }
-
                       return SignUpForm(
                         firstNameController: firstNameController,
                         lastNameController: lastNameController,
@@ -107,6 +115,13 @@ class _SignUpViewState extends State<SignUpView> {
                         phoneController: phoneController,
                         passwordController: passwordController,
                         confirmPasswordController: confirmPasswordController,
+                        firstNameErrorMessage: firstNameErrorMessage,
+                        lastNameErrorMessage: lastNameErrorMessage,
+                        emailErrorMessage: emailErrorMessage,
+                        phoneErrorMessage: phoneErrorMessage,
+                        passwordErrorMessage: passwordErrorMessage,
+                        confirmPasswordErrorMessage:
+                            confirmPasswordErrorMessage,
                         onChangedFirstName: (value) {
                           context
                               .read<ValidationCubit>()

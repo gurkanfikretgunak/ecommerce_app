@@ -1,6 +1,6 @@
 import 'package:auto_route/annotations.dart';
-import 'package:example/views/auth/signup/models/auth_cubit.dart';
-import 'package:example/views/auth/signup/models/auth_state.dart';
+import 'package:example/views/auth/models/auth_cubit.dart';
+import 'package:example/views/auth/models/auth_state.dart';
 import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
 import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/views/account/account_view.dart';

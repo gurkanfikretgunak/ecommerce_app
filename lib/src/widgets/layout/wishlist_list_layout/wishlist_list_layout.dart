@@ -21,6 +21,7 @@ class _WishlistListLayoutState extends State<WishlistListLayout> {
         itemCount: widget.items.length,
         itemBuilder: (context, index) {
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ProductBoxRowLayout(
                 item: const CartAddRemoveButtonLabel(),

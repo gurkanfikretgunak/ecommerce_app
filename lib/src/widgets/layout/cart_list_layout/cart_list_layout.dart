@@ -55,7 +55,6 @@ class _CartListLayoutState extends State<CartListLayout> {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: widget.items.length,
             itemBuilder: (context, index) {
-              print(widget.items[index].quantity);
               return Column(
                 children: [
                   ProductBoxRowLayout(

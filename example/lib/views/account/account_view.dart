@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:example/views/auth/signup/models/auth_cubit.dart';
-import 'package:example/views/auth/signup/models/auth_state.dart';
+import 'package:example/views/auth/models/auth_cubit.dart';
+import 'package:example/views/auth/models/auth_state.dart';
 import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';

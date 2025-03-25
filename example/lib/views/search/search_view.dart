@@ -17,34 +17,34 @@ class _SearchViewState extends State<SearchView> {
   List<Widget> productCardItems = [
     ProductCardModal(
         imagePath: Assets.images.productcardimageSecond.path,
-        productStock: "Sold(50 Product)",
+        productStock: "50",
         productName: "Printed Cotton Shirt",
-        productPrice: "\$45.00"),
+        productPrice: "45.00"),
     ProductCardModal(
         imagePath: Assets.images.productcardimageThird.path,
-        productStock: "Sold(50 Product)",
+        productStock: "50",
         productName: "Cotton T-shirt",
-        productPrice: "\$49.00"),
+        productPrice: "49.00"),
     ProductCardModal(
         imagePath: Assets.images.productcardimageFourth.path,
-        productStock: "Sold(50 Product)",
+        productStock: "50",
         productName: "Embroidered T-Shirt",
-        productPrice: "\$39.00"),
+        productPrice: "39.00"),
     ProductCardModal(
         imagePath: Assets.images.productcardimageSecond.path,
-        productStock: "Sold(50 Product)",
+        productStock: "50",
         productName: "Printed Cotton Shirt",
-        productPrice: "\$45.00"),
+        productPrice: "45.00"),
     ProductCardModal(
         imagePath: Assets.images.productcardimageFourth.path,
-        productStock: "Sold(50 Product)",
+        productStock: "50",
         productName: "Embroidered T-Shirt",
-        productPrice: "\$39.00"),
+        productPrice: "39.00"),
     ProductCardModal(
         imagePath: Assets.images.productcardimageThird.path,
-        productStock: "Sold(50 Product)",
+        productStock: "50",
         productName: "Cotton T-shirt",
-        productPrice: "\$49.00"),
+        productPrice: "49.00"),
   ];
 
   List<TagsLabel> tags = [

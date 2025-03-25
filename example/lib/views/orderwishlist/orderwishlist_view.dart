@@ -1,9 +1,12 @@
 import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/core/widgets/order.dart';
 import 'package:example/core/widgets/wishlist.dart';
+import 'package:example/route/route.gr.dart';
+import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class OrderwishlistView extends StatefulWidget {
@@ -32,24 +35,24 @@ class _OrderwishlistViewState extends State<OrderwishlistView> {
   List<Widget> productCardItems = [
     ProductCardModal(
         imagePath: Assets.images.productcardimageFirst.path,
-        productStock: "Sold(50 Product)",
+        productStock: "50",
         productName: "Long-sleeved T-shirt",
-        productPrice: "\$49.00"),
+        productPrice: "49.00"),
     ProductCardModal(
         imagePath: Assets.images.productcardimageSecond.path,
-        productStock: "Sold(50 Product)",
+        productStock: "50",
         productName: "Printed Cotton Shirt",
-        productPrice: "\$45.00"),
+        productPrice: "45.00"),
     ProductCardModal(
         imagePath: Assets.images.productcardimageThird.path,
-        productStock: "Sold(50 Product)",
+        productStock: "50",
         productName: "Cotton T-shirt",
-        productPrice: "\$49.00"),
+        productPrice: "49.00"),
     ProductCardModal(
         imagePath: Assets.images.productcardimageFourth.path,
-        productStock: "Sold(50 Product)",
+        productStock: "50",
         productName: "Embroidered T-Shirt",
-        productPrice: "\$39.00"),
+        productPrice: "39.00"),
   ];
 
   bool _showOrder = false;
@@ -67,9 +70,7 @@ class _OrderwishlistViewState extends State<OrderwishlistView> {
         preferredSize: const Size.fromHeight(60),
         child: CustomAppbar(
           text: _showOrder ? "MY ORDER" : "WISHLIST",
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () {},
           iconColor: ColorConstant.instance.neutral1,
         ),
       ),

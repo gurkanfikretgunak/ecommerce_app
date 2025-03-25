@@ -1,4 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:example/core/network/models/product_model/product_model.dart';
+import 'package:example/cubits/product/product_cubit.dart';
+import 'package:example/route/route.gr.dart';
 import 'package:example/views/categorie_products/models/categorie_products_cubit.dart';
 import 'package:example/views/categorie_products/models/categorie_products_state.dart';
 import 'package:example/core/network/models/categorie_model/categorie_model.dart';
@@ -107,7 +110,10 @@ class _CategorieProductsViewState extends State<CategorieProductsView> {
                         productStock: product.sold_count.toString(),
                         productName: product.name,
                         productPrice: product.price.toString(),
-                        onTap: () {},
+                        onTap: () {
+                          context.read<ProductCubit>().changeProduct(product);
+                          AutoRouter.of(context).push(const ProductViewRoute());
+                        },
                       );
                     }).toList(),
                   );

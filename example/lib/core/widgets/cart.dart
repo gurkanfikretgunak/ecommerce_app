@@ -1,4 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:example/core/gen/assets.gen.dart';
+import 'package:example/cubits/product/product_cubit.dart';
+import 'package:example/route/route.gr.dart';
 import 'package:example/views/auth/models/auth_cubit.dart';
 import 'package:example/cubits/cart/cart_cubit.dart';
 import 'package:example/cubits/cart/cart_state.dart';
@@ -91,6 +94,7 @@ class _CartState extends State<Cart> {
                       name: item.productName,
                       quantity: item.quantity,
                       price: item.unitPrice,
+                      onTap: () {},
                     );
                   }).toList(),
                 );

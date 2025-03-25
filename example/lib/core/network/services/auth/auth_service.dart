@@ -1,9 +1,9 @@
-//import 'package:example/services/auth/supabase_auth_service.dart';
 import 'package:example/core/network/services/auth/supabase_initialize.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter/material.dart';
 
 class AuthService {
   final auth = SupabaseInitialize.client.auth;
@@ -38,7 +38,7 @@ class AuthService {
       final User? user = response.user;
 
       return user;
-    } catch (e) { 
+    } catch (e) {
       throw Exception("SignIn unsuccessful: $e");
     }
   }
@@ -76,7 +76,9 @@ class AuthService {
 
     final GoogleSignIn googleSignIn = GoogleSignIn(
       clientId: iosClientId,
-      serverClientId: webClientId,
+      serverClientId: !kIsWeb && defaultTargetPlatform == TargetPlatform.android
+          ? webClientId
+          : null,
     );
 
     try {

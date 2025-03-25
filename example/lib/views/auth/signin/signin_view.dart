@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:example/views/auth/signup/models/auth_cubit.dart';
-import 'package:example/views/auth/signup/models/auth_state.dart';
+import 'package:example/views/auth/models/auth_cubit.dart';
+import 'package:example/views/auth/models/auth_state.dart';
 import 'package:example/cubits/validation/validation_cubit.dart';
 import 'package:example/cubits/validation/validation_state.dart';
 import 'package:example/core/gen/assets.gen.dart';
@@ -44,7 +44,7 @@ class _SignInViewState extends State<SignInView> {
         body: BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
             if (state is AuthAuthenticated) {
-              AutoRouter.of(context).push(MainpageViewRoute());
+              AutoRouter.of(context).replace(MainpageViewRoute());
             } else if (state is AuthError) {
               showToast(
                 context,
@@ -81,6 +81,18 @@ class _SignInViewState extends State<SignInView> {
                       builder: (context, validationState) {
                         bool isEmailValid = true;
                         bool isPasswordValid = true;
+                        String? emailErrorMessage;
+                        String? passwordErrorMessage;
+
+                        if (validationState is EmailInvalid) {
+                          isEmailValid = false;
+                          emailErrorMessage = validationState.error;
+                        }
+
+                        if (validationState is PasswordInvalid) {
+                          isPasswordValid = false;
+                          passwordErrorMessage = validationState.error;
+                        }
 
                         if (validationState is EmailInvalid) {
                           isEmailValid = false;
@@ -93,6 +105,8 @@ class _SignInViewState extends State<SignInView> {
                         return SignInFormLabel(
                           emailController: emailController,
                           passwordController: passwordController,
+                          emailErrorMessage: emailErrorMessage,
+                          passwordErrorMessage: passwordErrorMessage,
                           rememberMe: rememberMe,
                           checkBoxOnChanged: (bool value) {
                             setState(() {
