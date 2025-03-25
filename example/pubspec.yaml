@@ -30,6 +30,35 @@ dev_dependencies:
   retrofit_generator: ^9.1.9
   auto_route_generator: ^9.0.0
   flutter_launcher_icons: ^0.14.3
+  flutter_flavorizr: ^2.3.0
+
+
+flavorizr:
+  android:
+    flavorDimensions: "flavor-type"
+    productFlavors:
+      dev:
+        applicationId: "com.example.app.dev"
+        versionNameSuffix: "-dev"
+        resValues:
+          strings:
+            app_name: "MyApp Dev"
+      prod:
+        applicationId: "com.example.app"
+        versionNameSuffix: "-prod"
+        resValues:
+          strings:
+            app_name: "MyApp"
+  web:
+    productFlavors:
+      dev:
+        buildConfig:
+          consts:
+            FLAVOR: "dev"
+      prod:
+        buildConfig:
+          consts:
+            FLAVOR: "prod"
 
 
 flutter_launcher_icons:
