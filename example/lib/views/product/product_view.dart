@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/views/auth/models/auth_cubit.dart';
 import 'package:example/views/auth/models/auth_state.dart';
 import 'package:example/cubits/cart/cart_cubit.dart';
@@ -42,6 +43,7 @@ class _ProductViewState extends State<ProductView> {
       context: context,
       builder: (BuildContext context) {
         return PopupSuccesLabel(
+          succesIconPath: Assets.icons.success.path,
           title: "SUCCESS",
           buttonOnPressed: () {
             AutoRouter.of(context).push(MainpageViewRoute(pageNo: 2));

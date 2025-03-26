@@ -1,9 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:example/core/gen/assets.gen.dart';
-import 'package:example/views/filter/filter_view.dart';
 import 'package:example/route/route.gr.dart';
+import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
-import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class SearchView extends StatefulWidget {
@@ -69,7 +70,7 @@ class _SearchViewState extends State<SearchView> {
         child: SearchAppbar(
           text: "Search Product ...",
           onPressed: () {
-            Navigator.pop(context);
+            context.read<BottomNavigationCubit>().setPage(0);
           },
           iconOnPressed: () {
             AutoRouter.of(context).push(FilterViewRoute());

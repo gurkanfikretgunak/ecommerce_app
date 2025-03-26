@@ -70,7 +70,9 @@ class _OrderwishlistViewState extends State<OrderwishlistView> {
         preferredSize: const Size.fromHeight(60),
         child: CustomAppbar(
           text: _showOrder ? "MY ORDER" : "WISHLIST",
-          onPressed: () {},
+          onPressed: () {
+            context.read<BottomNavigationCubit>().setPage(0);
+          },
           iconColor: ColorConstant.instance.neutral1,
         ),
       ),

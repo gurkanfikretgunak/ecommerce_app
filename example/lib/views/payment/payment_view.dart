@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
 import 'package:example/views/payment/models/payment_step_cubit.dart';
 import 'package:example/views/payment/models/payment_step_state.dart';
 import 'package:example/route/route.gr.dart';
@@ -55,7 +56,8 @@ class PaymentView extends StatelessWidget {
                 text: stepTitles[currentStep],
                 onPressed: () {
                   if (currentStep == 0) {
-                    Navigator.pop(context);
+                    context.read<BottomNavigationCubit>().setPage(0);
+
                     return;
                   }
                   context.read<PaymentStepCubit>().previousStep();
