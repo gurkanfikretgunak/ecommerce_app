@@ -55,7 +55,6 @@ class AuthCubit extends Cubit<AuthState> {
             email: email,
             phone_number: phone,
             created_at: user.createdAt,
-            profile_picture: user.userMetadata?['avatar_url'] ?? '',
             display_name: "$firstName $lastName",
             first_name: firstName,
             last_name: lastName);
