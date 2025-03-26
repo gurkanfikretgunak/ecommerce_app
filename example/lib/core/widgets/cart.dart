@@ -90,11 +90,16 @@ class _CartState extends State<Cart> {
                   },
                   items: cartState.cart.map((item) {
                     return ProductBoxModal(
-                      imagePath: item.productImage,
-                      name: item.productName,
+                      imagePath: item.product!.image,
+                      name: item.product!.name,
                       quantity: item.quantity,
-                      price: item.unitPrice,
-                      onTap: () {},
+                      price: item.product!.price,
+                      onTap: () {
+                        context
+                            .read<ProductCubit>()
+                            .changeProduct(item.product!);
+                        AutoRouter.of(context).push(const ProductViewRoute());
+                      },
                     );
                   }).toList(),
                 );

@@ -1,3 +1,4 @@
+import 'package:example/core/network/models/product_model/product_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'cart_model.g.dart';
@@ -13,6 +14,7 @@ class Cart {
   int quantity;
   double unitPrice;
   double? totalPrice;
+  Product? product;
 
   Cart({
     this.id,
@@ -24,6 +26,7 @@ class Cart {
     required this.quantity,
     required this.unitPrice,
     this.totalPrice,
+    this.product,
   });
 
   factory Cart.fromJson(Map<String, dynamic> json) {

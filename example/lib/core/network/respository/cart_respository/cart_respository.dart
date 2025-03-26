@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:example/core/network/models/cart_model/cart_model.dart';
+import 'package:example/core/network/respository/product_respository/product_respository.dart';
 import 'package:example/core/network/services/api/api_service.dart';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class CartRespository {
   ApiService apiService;
@@ -17,6 +19,12 @@ class CartRespository {
           user_id: 'eq.$userId');
 
       if (response.isNotEmpty) {
+        for (Cart item in response) {
+          final productResponse =
+              await ProductRespository().getProducts(id: item.userId);
+          item.product = productResponse.first;
+        }
+
         return response;
       } else {
         throw Exception('Products not found');

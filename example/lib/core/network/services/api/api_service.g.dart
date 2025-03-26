@@ -137,6 +137,7 @@ class _ApiService implements ApiService {
     String? titles,
     String? tags,
     String? categorie_id,
+    String? id,
     String select = '*',
   }) async {
     final _extra = <String, dynamic>{};
@@ -144,6 +145,7 @@ class _ApiService implements ApiService {
       r'titles': titles,
       r'tags': tags,
       r'categorie_id': categorie_id,
+      r'id': id,
       r'select': select,
     };
     queryParameters.removeWhere((k, v) => v == null);
