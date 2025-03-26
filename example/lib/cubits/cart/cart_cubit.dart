@@ -43,4 +43,11 @@ class CartCubit extends Cubit<CartState> {
       emit(CartLoaded(cart: List.from(cart)));
     }
   }
+
+  void clearCart(String userId) async {
+    if (state is CartLoaded) {
+      await CartRespository().deleteAllCart('$userId');
+      emit(CartLoading());
+    }
+  }
 }
