@@ -49,4 +49,22 @@ class ProductRespository {
       rethrow;
     }
   }
+
+  Future<List<Product>> getProductsById({String? id}) async {
+    try {
+      final response = await apiService.getProductsById(
+        apikey: authToken,
+        authToken: 'Bearer $authToken',
+        id: 'eq.$id',
+      );
+
+      if (response != null) {
+        return response;
+      } else {
+        throw Exception('Products not found');
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

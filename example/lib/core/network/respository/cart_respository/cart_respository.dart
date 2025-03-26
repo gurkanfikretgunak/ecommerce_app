@@ -2,9 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:example/core/network/models/cart_model/cart_model.dart';
 import 'package:example/core/network/respository/product_respository/product_respository.dart';
 import 'package:example/core/network/services/api/api_service.dart';
-
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class CartRespository {
   ApiService apiService;
@@ -20,8 +18,8 @@ class CartRespository {
 
       if (response.isNotEmpty) {
         for (Cart item in response) {
-          final productResponse =
-              await ProductRespository().getProducts(id: item.userId);
+          final productResponse = await ProductRespository()
+              .getProductsById(id: '${item.productId}');
           item.product = productResponse.first;
         }
 
@@ -64,6 +62,18 @@ class CartRespository {
         apikey: authToken,
         authToken: 'Bearer $authToken',
         id: 'eq.$id',
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> deleteAllCart(String userId) async {
+    try {
+      await apiService.deleteCart(
+        apikey: authToken,
+        authToken: 'Bearer $authToken',
+        user_id: 'eq.$userId',
       );
     } catch (e) {
       rethrow;

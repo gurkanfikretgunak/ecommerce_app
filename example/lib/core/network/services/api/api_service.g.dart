@@ -179,6 +179,45 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<List<Product>> getProductsById({
+    String? apikey,
+    String? authToken,
+    String? id,
+    String select = '*',
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'id': id, r'select': select};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{
+      r'apikey': apikey,
+      r'Authorization': authToken,
+    };
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<Product>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'product',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<Product> _value;
+    try {
+      _value = _result.data!
+          .map((dynamic i) => Product.fromJson(i as Map<String, dynamic>))
+          .toList();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<List<ProductDetail>> getProductDetail({
     String? apikey,
     String? authToken,
@@ -356,11 +395,16 @@ class _ApiService implements ApiService {
   Future<void> deleteCart({
     String? apikey,
     String? authToken,
+    String? user_id,
     String? id,
     String select = "*",
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'id': id, r'select': select};
+    final queryParameters = <String, dynamic>{
+      r'user_id': user_id,
+      r'id': id,
+      r'select': select,
+    };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{
       r'apikey': apikey,

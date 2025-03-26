@@ -45,6 +45,14 @@ abstract class ApiService {
     @Query('select') String select = '*',
   });
 
+  @GET('product')
+  Future<List<Product>> getProductsById({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('id') String? id,
+    @Query('select') String select = '*',
+  });
+
   @GET('product_detail')
   Future<List<ProductDetail>> getProductDetail({
     @Header('apikey') String? apikey,
@@ -90,6 +98,7 @@ abstract class ApiService {
   Future<void> deleteCart({
     @Header('apikey') String? apikey,
     @Header('Authorization') String? authToken,
+    @Query('user_id') String? user_id,
     @Query('id') String? id,
     @Query('select') String select = "*",
   });
