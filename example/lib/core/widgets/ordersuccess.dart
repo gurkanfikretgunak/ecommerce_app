@@ -26,6 +26,7 @@ class OrderSuccess extends StatelessWidget {
               onSecondaryButtonPressed: onSecondaryButtonPressed,
               iconPath: Assets.icons.truck.path,
               succesiconPath: Assets.icons.success.path,
+              radiusColor: ColorConstant.instance.green2,
               description:
                   "Dolor magna eget est lorem ipsum dolor sit amet consectetur."),
         ],

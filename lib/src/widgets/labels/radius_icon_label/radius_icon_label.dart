@@ -8,9 +8,10 @@ class RadiusIconLabel extends StatelessWidget {
   final double? height;
   final double? radius;
   final Color? color;
-  final double? successIconRadius;
-  final Color? successIconColor;
-  final String successIconPath;
+  final double? topRightRadius;
+  final Color? topRightIconColor;
+  final String? topRightIconPath;
+  final Color? radiusColor;
 
   const RadiusIconLabel({
     super.key,
@@ -19,9 +20,10 @@ class RadiusIconLabel extends StatelessWidget {
     this.height,
     this.radius,
     this.color,
-    this.successIconRadius,
-    this.successIconColor,
-    this.successIconPath = "assets/icons/success.svg",
+    this.topRightRadius,
+    this.topRightIconColor,
+    this.topRightIconPath,
+    this.radiusColor,
   });
 
   @override
@@ -44,11 +46,20 @@ class RadiusIconLabel extends StatelessWidget {
           top: 0,
           right: 0,
           child: CircleAvatar(
-            radius: successIconRadius ?? 15,
-            child: SvgPicture.asset(
-              successIconPath,
-              color: ColorConstant.instance.primary_main,
-            ),
+            backgroundColor: radiusColor ?? Colors.transparent,
+            radius: topRightRadius ?? 15,
+            child: topRightIconPath != null && topRightIconPath!.isNotEmpty
+                ? SvgPicture.asset(
+                    topRightIconPath!,
+                  )
+                : Container(
+                    decoration: BoxDecoration(
+                      color: topRightIconColor ??
+                          ColorConstant.instance.primary_main,
+                      borderRadius: BorderRadius.all(
+                          Radius.circular(topRightRadius ?? 15)),
+                    ),
+                  ),
           ),
         ),
       ],

@@ -40,6 +40,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/icons/logo.png');
 
+  /// File path: assets/icons/logo_background.png
+  AssetGenImage get logoBackground =>
+      const AssetGenImage('assets/icons/logo_background.png');
+
   /// File path: assets/icons/logotext.png
   AssetGenImage get logotext =>
       const AssetGenImage('assets/icons/logotext.png');
@@ -66,6 +70,7 @@ class $AssetsIconsGen {
     cart,
     homeIcon,
     logo,
+    logoBackground,
     logotext,
     sale,
     search,

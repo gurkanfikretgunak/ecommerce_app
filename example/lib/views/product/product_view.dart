@@ -1,23 +1,22 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:example/core/gen/assets.gen.dart';
-import 'package:example/views/auth/models/auth_cubit.dart';
-import 'package:example/views/auth/models/auth_state.dart';
+import 'package:example/core/network/models/cart_model/cart_model.dart';
+import 'package:example/core/network/models/review_model/review_model.dart';
 import 'package:example/cubits/cart/cart_cubit.dart';
 import 'package:example/cubits/product/product_cubit.dart';
 import 'package:example/cubits/product/product_state.dart';
-import 'package:example/views/product/models/product_detail_cubit.dart';
-import 'package:example/views/product/models/product_detail_state.dart';
 import 'package:example/cubits/review/review_cubit.dart';
 import 'package:example/cubits/review/review_state.dart';
-import 'package:example/core/network/models/cart_model/cart_model.dart';
-import 'package:example/core/network/models/product_model/product_model.dart';
-import 'package:example/core/network/models/review_model/review_model.dart';
 import 'package:example/route/route.gr.dart';
+import 'package:example/views/auth/models/auth_cubit.dart';
+import 'package:example/views/auth/models/auth_state.dart';
+import 'package:example/views/product/models/product_detail_cubit.dart';
+import 'package:example/views/product/models/product_detail_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:intl/intl.dart';
+import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 @RoutePage()
 class ProductView extends StatefulWidget {
@@ -83,7 +82,8 @@ class _ProductViewState extends State<ProductView> {
                           action: [
                             InkWell(
                               onTap: () {
-                                AutoRouter.of(context).push(PaymentViewRoute());
+                                AutoRouter.of(context)
+                                    .push(MainpageViewRoute(pageNo: 2));
                               },
                               child: SvgPicture.asset("assets/icons/cart.svg"),
                             ),
@@ -153,7 +153,7 @@ class _ProductViewState extends State<ProductView> {
                           child: ProductReviewColumnLayout(
                             items: state.productDetail.reviews!.map((review) {
                               return ProductReviewModal(
-                                imagePath: review.user!.profile_picture,
+                                imagePath: review.user!.profile_picture!,
                                 name: review.user!.display_name,
                                 rate: review.rate ?? 0,
                                 reviewText: review.text ?? '',

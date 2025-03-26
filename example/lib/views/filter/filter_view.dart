@@ -1,9 +1,8 @@
-import 'package:example/views/newaddress/newaddress_view.dart';
-import 'package:example/views/search/search_view.dart';
-import 'package:example/route/route.gr.dart';
-import 'package:flutter/material.dart';
-import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 @RoutePage()
 class FilterView extends StatefulWidget {
@@ -27,7 +26,7 @@ class _FilterViewState extends State<FilterView> {
               alignment: Alignment.bottomCenter,
               child: CustomButton(
                   onPressed: () {
-                    AutoRouter.of(context).push(const SearchViewRoute());
+                    context.read<BottomNavigationCubit>().setPage(3);
                     /*Navigator.push(
                             context,
                             MaterialPageRoute(

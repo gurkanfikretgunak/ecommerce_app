@@ -92,7 +92,7 @@ class _AccountViewState extends State<AccountView> {
                 child: Column(
                   children: [
                     AccountBoxLabel(
-                      imagePath: state.user.profile_picture,
+                      imagePath: state.user.profile_picture!,
                       name: user.display_name ?? "",
                       username: user.email ?? "",
                       icon: Icons.photo_camera,
@@ -106,8 +106,7 @@ class _AccountViewState extends State<AccountView> {
                           height: 40,
                           color: ColorConstant.instance.neutral9,
                           onPressed: () {
-                            AutoRouter.of(context)
-                                .push(OrderwishlistViewRoute(showOrder: true));
+                            context.read<BottomNavigationCubit>().setPage(1);
                           },
                           text: "My Order",
                           iconColor: ColorConstant.instance.neutral1,
@@ -121,8 +120,7 @@ class _AccountViewState extends State<AccountView> {
                           height: 40,
                           color: ColorConstant.instance.neutral9,
                           onPressed: () {
-                            AutoRouter.of(context)
-                                .push(OrderwishlistViewRoute());
+                            context.read<BottomNavigationCubit>().setPage(1);
                           },
                           text: "Wishlist",
                           iconColor: ColorConstant.instance.neutral1,

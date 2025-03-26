@@ -15,6 +15,7 @@ class OrderSuccessLabel extends StatelessWidget {
   final double? buttonHeight;
   final double? titleFontSize;
   final String iconPath;
+  final Color? radiusColor;
 
   const OrderSuccessLabel({
     super.key,
@@ -31,6 +32,7 @@ class OrderSuccessLabel extends StatelessWidget {
     this.titleFontSize,
     required this.iconPath,
     required this.succesiconPath,
+    this.radiusColor,
   });
 
   @override
@@ -40,8 +42,9 @@ class OrderSuccessLabel extends StatelessWidget {
       children: [
         RadiusIconLabel(
           iconPath: iconPath,
-          successIconPath: succesiconPath,
+          topRightIconPath: succesiconPath,
           color: ColorConstant.instance.primary_main,
+          radiusColor: radiusColor,
         ),
         context.emptySizedHeightBoxNormal,
         HeadText(
