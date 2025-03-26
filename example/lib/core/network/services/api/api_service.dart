@@ -41,6 +41,7 @@ abstract class ApiService {
     @Query('titles') String? titles,
     @Query('tags') String? tags,
     @Query('categorie_id') String? categorie_id,
+    @Query('id') String? id,
     @Query('select') String select = '*',
   });
 
