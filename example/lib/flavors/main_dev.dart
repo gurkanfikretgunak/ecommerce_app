@@ -1,4 +1,5 @@
 import 'package:example/cubits/multi_bloc.dart';
+import 'package:example/flavor.dart';
 import 'package:example/route/route.dart';
 import 'package:example/core/network/services/auth/supabase_initialize.dart';
 // ignore: depend_on_referenced_packages
@@ -18,6 +19,7 @@ void main() async {
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
   OneSignal.initialize(dotenv.env['ONESIGNAL_APP_ID'] ?? "");
   OneSignal.Notifications.requestPermission(true);
+  AppConfig(appName: "My App - Dev", flavor: Flavor.development);
   runApp(const MultiBloc());
 }
 
