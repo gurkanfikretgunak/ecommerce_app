@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:shopapp_widgets/src/widgets/inputs/size_box_input/size_box_input.dart';
 
 class ProductBoxModal extends StatefulWidget {
   final String imagePath;
@@ -13,6 +14,8 @@ class ProductBoxModal extends StatefulWidget {
   final double? spacing;
   final double? fontSize;
   final VoidCallback? onTap;
+  final Color? color;
+  final String? size;
 
   ProductBoxModal({
     super.key,
@@ -27,6 +30,8 @@ class ProductBoxModal extends StatefulWidget {
     this.spacing,
     this.fontSize,
     this.onTap,
+    this.color,
+    this.size,
   });
 
   double get total => quantity * price;
@@ -63,12 +68,25 @@ class _ProductBoxModalState extends State<ProductBoxModal> {
                     color: widget.textColor ?? ColorConstant.instance.neutral1,
                   ),
                   SizedBox(height: widget.spacing ?? 3),
-                  ContentText(
-                    textAlign: TextAlign.start,
-                    text: "\$ ${widget.price}",
-                    fontSize: widget.fontSize ?? 15,
-                    color: widget.priceColor ??
-                        ColorConstant.instance.primary_main,
+                  Row(
+                    children: [
+                      ContentText(
+                        textAlign: TextAlign.start,
+                        text: "\$ ${widget.price}",
+                        fontSize: widget.fontSize ?? 15,
+                        color: widget.priceColor ??
+                            ColorConstant.instance.primary_main,
+                      ),
+                      SizedBox(width: widget.spacing ?? 5),
+                      if (widget.size != null)
+                        SizeBoxInput(
+                            height: 25,
+                            width: 35,
+                            isSelected: false,
+                            inStock: true,
+                            text: widget.size!,
+                            onTap: () {})
+                    ],
                   ),
                 ],
               ),
