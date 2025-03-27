@@ -31,19 +31,23 @@ class ProductCardModal extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: imageHeight ?? context.dynamicWidth(.47),
-              child: isNetworkImage
-                  ? Image.network(
-                      imagePath,
-                      fit: BoxFit.contain,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Center(child: Icon(Icons.error));
-                      },
-                    )
-                  : Image.asset(
-                      imagePath,
-                      fit: BoxFit.contain,
-                    ),
+              width: context.dynamicWidth(.40),
+              height: imageHeight ?? context.dynamicWidth(.45),
+              child: Container(
+                color: Colors.grey.withOpacity(0.3),
+                child: isNetworkImage
+                    ? Image.network(
+                        imagePath,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Center(child: Icon(Icons.error));
+                        },
+                      )
+                    : Image.asset(
+                        imagePath,
+                        fit: BoxFit.contain,
+                      ),
+              ),
             ),
             context.emptySizedHeightBoxLow,
             ContentText(
@@ -52,10 +56,14 @@ class ProductCardModal extends StatelessWidget {
               color: ColorConstant.instance.neutral4,
             ),
             context.emptySizedHeightBoxLow,
-            ContentText(
-              text: productName,
-              fontSize: 12,
-              color: ColorConstant.instance.neutral1,
+            SizedBox(
+              child: ContentText(
+                textAlign: TextAlign.left,
+                text: productName,
+                fontSize: 12,
+                softWrap: true,
+                color: ColorConstant.instance.neutral1,
+              ),
             ),
             context.emptySizedHeightBoxLow,
             ContentText(

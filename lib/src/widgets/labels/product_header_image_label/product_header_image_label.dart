@@ -18,7 +18,9 @@ class ProductHeaderImageLabel extends StatelessWidget {
     return Stack(
       children: [
         Positioned.fill(
-          child: _buildImage(imagePath),
+          child: Container(
+              color: Colors.grey.withOpacity(0.3),
+              child: _buildImage(imagePath)),
         ),
         Positioned(
           bottom: 10,
@@ -34,7 +36,7 @@ class ProductHeaderImageLabel extends StatelessWidget {
 
   Widget _buildImage(String path) {
     if (path.startsWith('http://') || path.startsWith('https://')) {
-      return Image.network(path, fit: BoxFit.cover);
+      return Image.network(path, fit: BoxFit.contain);
     } else {
       return Image.asset(path, fit: BoxFit.cover);
     }
