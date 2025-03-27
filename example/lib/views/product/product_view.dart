@@ -34,7 +34,7 @@ class _ProductViewState extends State<ProductView> {
     super.initState();
     final product =
         (context.read<ProductCubit>().state as ProductLoaded).product;
-    context.read<ProductDetailCubit>().getProductDetail(product.id);
+    context.read<ProductDetailCubit>().getProductDetail(product.product_id);
   }
 
   void _shopPopup() {
@@ -115,8 +115,7 @@ class _ProductViewState extends State<ProductView> {
                             title: "Color:",
                             element: ColorsLabel(
                               colors: state.productDetail.colors
-                                  .map(
-                                      (color) => Color(int.parse("0xFF$color")))
+                                  .map((color) => Color(int.parse("0x$color")))
                                   .toList(),
                               selectedColor: state.selectedColor,
                               onColorSelected: (color) {
@@ -251,23 +250,34 @@ class _ProductViewState extends State<ProductView> {
       bottomSheet: BlocBuilder<ProductCubit, ProductState>(
         builder: (context, productState) {
           if (productState is ProductLoaded) {
-            return BlocBuilder<AuthCubit, AuthState>(
-              builder: (context, authState) {
-                if (authState is AuthAuthenticated) {
-                  return ProductBottomSheetLabel(
-                    buttonOnPressed: () {
-                      final cartModel = Cart(
-                        userId: authState.user.id,
-                        productId: productState.product.product_id,
-                        productName: productState.product.name,
-                        unitPrice: productState.product.price,
-                        productImage: productState.product.image,
-                        quantity: 1,
-                      );
-                      context.read<CartCubit>().postCart(cartModel);
-                      _shopPopup();
+            return BlocBuilder<ProductDetailCubit, ProductDetailState>(
+              builder: (context, productDetailState) {
+                if (productDetailState is ProductDetailLoaded) {
+                  return BlocBuilder<AuthCubit, AuthState>(
+                    builder: (context, authState) {
+                      if (authState is AuthAuthenticated) {
+                        return ProductBottomSheetLabel(
+                          buttonOnPressed: () {
+                            final cartModel = Cart(
+                              userId: authState.user.id,
+                              productId: productState.product.id,
+                              unitPrice: productState.product.price,
+                              quantity: 1,
+                              color: productDetailState.selectedColor.value
+                                  .toRadixString(16)
+                                  .padLeft(8, '0')
+                                  .toUpperCase(),
+                              size: productDetailState.selectedSize,
+                            );
+                            context.read<CartCubit>().postCart(cartModel);
+                            _shopPopup();
+                          },
+                          price: productState.product.price.toString(),
+                        );
+                      } else {
+                        return Container();
+                      }
                     },
-                    price: productState.product.price.toString(),
                   );
                 } else {
                   return Container();
