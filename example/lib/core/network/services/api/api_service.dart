@@ -102,4 +102,11 @@ abstract class ApiService {
     @Query('id') String? id,
     @Query('select') String select = "*",
   });
+
+  @POST('rpc/insert_order')
+  Future<bool> postOrder({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Body() required Map<String, dynamic> request,
+  });
 }
