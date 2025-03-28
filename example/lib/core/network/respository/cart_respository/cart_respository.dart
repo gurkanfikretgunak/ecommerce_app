@@ -44,6 +44,25 @@ class CartRespository {
     }
   }
 
+  Future<double> getCartTotal(String userId) async {
+    try {
+      final response = await apiService.getCartTotal(
+          apikey: authToken,
+          authToken: 'Bearer $authToken',
+          body: {
+            "p_user_id": userId,
+          });
+
+      if (response != null) {
+        return response;
+      } else {
+        throw Exception('Cart total not found');
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<void> patchCart(String id, int quantity) async {
     try {
       await apiService.patchCart(

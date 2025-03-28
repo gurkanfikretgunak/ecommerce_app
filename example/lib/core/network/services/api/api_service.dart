@@ -77,6 +77,13 @@ abstract class ApiService {
     @Body() required Map<String, dynamic> cartModel,
   });
 
+  @POST('rpc/get_cart_total')
+  Future<double> getCartTotal({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Body() required Map<String, dynamic> body,
+  });
+
   @GET('cart')
   Future<List<Cart>> getCart({
     @Header('apikey') String? apikey,

@@ -26,6 +26,19 @@ class CartCubit extends Cubit<CartState> {
     }
   }
 
+  Future<double?> getCartTotal(String userId) async {
+    try {
+      final total = await CartRespository().getCartTotal(userId);
+      if (total != null) {
+        return total;
+      } else {
+        emit(CartError("Failed to get cart total"));
+      }
+    } catch (e) {
+      emit(CartError("Failed to get cart total:${e.toString()}"));
+    }
+  }
+
   void updateQuantity(int index, int newQuantity) async {
     if (state is CartLoaded) {
       final cart = (state as CartLoaded).cart;
