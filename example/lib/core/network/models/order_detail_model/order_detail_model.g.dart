@@ -7,15 +7,15 @@ part of 'order_detail_model.dart';
 // **************************************************************************
 
 OrderDetail _$OrderDetailFromJson(Map<String, dynamic> json) => OrderDetail(
-      id: (json['id'] as num).toInt(),
-      created_at: json['created_at'] as String,
-      order_id: (json['order_id'] as num).toInt(),
-      product_id: (json['product_id'] as num).toInt(),
-      quantity: (json['quantity'] as num).toInt(),
-      unit_price: (json['unit_price'] as num).toDouble(),
-      total_price: (json['total_price'] as num).toDouble(),
-      size: json['size'] as String,
-      color: json['color'] as String,
+      id: (json['id'] as num?)?.toInt(),
+      created_at: json['created_at'] as String?,
+      order_id: (json['order_id'] as num?)?.toInt(),
+      product_id: (json['product_id'] as num?)?.toInt(),
+      quantity: (json['quantity'] as num?)?.toInt(),
+      unit_price: (json['unit_price'] as num?)?.toDouble(),
+      total_price: (json['total_price'] as num?)?.toDouble(),
+      size: json['size'] as String?,
+      color: json['color'] as String?,
     );
 
 Map<String, dynamic> _$OrderDetailToJson(OrderDetail instance) =>

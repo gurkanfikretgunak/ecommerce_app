@@ -4,20 +4,20 @@ part 'order_model.g.dart';
 
 @JsonSerializable()
 class Order {
-  final int id;
-  final double total_price;
-  final String created_at;
-  final String user_id;
-  final int billing_details_id;
-  final int payment_method_id;
+  int? id;
+  double? total_price;
+  String? created_at;
+  String? user_id;
+  int? billing_details_id;
+  int? payment_method_id;
 
   Order({
-    required this.id,
-    required this.total_price,
-    required this.created_at,
-    required this.user_id,
-    required this.billing_details_id,
-    required this.payment_method_id,
+    this.id,
+    this.total_price,
+    this.created_at,
+    this.user_id,
+    this.billing_details_id,
+    this.payment_method_id,
   });
 
   factory Order.fromJson(Map<String, dynamic> json) {
