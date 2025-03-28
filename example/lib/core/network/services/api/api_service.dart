@@ -123,7 +123,15 @@ abstract class ApiService {
     @Header('apikey') String? apikey,
     @Header('Authorization') String? authToken,
     @Query('user_id') String? user_id,
-    @Query('is_default') String? isSelected,
+    @Query('is_default') String? isdefault,
     @Query('select') String select = '*',
+  });
+  @PATCH("billing_details")
+  Future<void> patchBillingDetail({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('id') String? id,
+    @Query('select') String select = "*",
+    @Body() required Map<String, dynamic> body,
   });
 }

@@ -34,4 +34,17 @@ class BillingDetailRespository {
       rethrow;
     }
   }
+
+  Future<void> patchBillingDetail(int id) async {
+    try {
+      final response = await apiService.patchBillingDetail(
+        apikey: authToken,
+        authToken: 'Bearer $authToken',
+        id: 'eq.$id',
+        body: {'is_default': true},
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
