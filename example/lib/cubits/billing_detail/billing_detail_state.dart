@@ -19,6 +19,8 @@ class BillingDetailLoaded extends BillingDetailState {
   List<Object?> get props => [billingDetail];
 }
 
+class BillingDetailPatched extends BillingDetailState {}
+
 class BillingDetailSuccess extends BillingDetailState {
   final String message;
 

@@ -28,6 +28,7 @@ class Checkout extends StatefulWidget {
 
 class _CheckoutState extends State<Checkout> {
   late final userState;
+
   @override
   void initState() {
     super.initState();
@@ -80,6 +81,11 @@ class _CheckoutState extends State<Checkout> {
                             AutoRouter.of(context).push(AddressesViewRoute());
                           },
                         );
+                      } else if (billingDetailState is BillingDetailPatched) {
+                        context
+                            .read<BillingDetailCubit>()
+                            .getBillingDetail(userId: userState.user!.id);
+                        return const Center(child: CircularProgressIndicator());
                       } else if (billingDetailState is BillingDetailError) {
                         return Text('Error: ${billingDetailState.message}');
                       } else {

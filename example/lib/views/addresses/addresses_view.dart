@@ -58,6 +58,10 @@ class _AddressesViewState extends State<AddressesView> {
                   builder: (context, state) {
                     if (state is BillingDetailLoading) {
                       return const Center(child: CircularProgressIndicator());
+                    } else if (state is BillingDetailPatched) {
+                      context
+                          .read<BillingDetailCubit>()
+                          .getBillingDetail(userId: userState.user!.id);
                     } else if (state is BillingDetailLoaded) {
                       if (state.billingDetail.isEmpty) {
                         return Center(
@@ -77,15 +81,23 @@ class _AddressesViewState extends State<AddressesView> {
                               email: item.emailAddress!,
                               phone: item.phoneNumber!,
                               isSelected: item.isDefault!,
+                              onTap: () {
+                                context
+                                    .read<BillingDetailCubit>()
+                                    .patchBillingDetail(item.id!);
+                              },
                             );
                           }).toList(),
                         ),
                       );
-                    } else {
+                    } else if (state is BillingDetailError) {
                       return const Center(
-                        child: Text("Something went wrong!"),
+                        child: Text("Failed to load billing details."),
                       );
                     }
+                    return const Center(
+                      child: Text("Unexpected state."),
+                    );
                   },
                 ),
               ),

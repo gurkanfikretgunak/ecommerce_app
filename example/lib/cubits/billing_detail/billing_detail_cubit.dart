@@ -11,9 +11,21 @@ class BillingDetailCubit extends Cubit<BillingDetailState> {
     try {
       final billingDetail = await BillingDetailRespository()
           .getBillingDetail(userId: userId, isDefault: isDefault ?? null);
-      emit(BillingDetailLoaded(billingDetail: billingDetail));
+      emit(BillingDetailLoaded(
+        billingDetail: billingDetail,
+      ));
     } catch (e) {
       emit(BillingDetailError("Failed to get billing detail:${e.toString()}"));
+    }
+  }
+
+  Future<void> patchBillingDetail(int id) async {
+    try {
+      await BillingDetailRespository().patchBillingDetail(id);
+      emit(BillingDetailPatched());
+    } catch (e) {
+      emit(
+          BillingDetailError("Failed to patch billing detail:${e.toString()}"));
     }
   }
 }
