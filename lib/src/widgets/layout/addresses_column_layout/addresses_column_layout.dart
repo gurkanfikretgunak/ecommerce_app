@@ -4,9 +4,13 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 class AddressesColumnLayout extends StatefulWidget {
   final List<AddressBoxModal> addressItems;
   final Function(int)? patchBillingDetailCallBack;
+  final Function(int)? deleteBillingDetailCallBack;
 
   const AddressesColumnLayout(
-      {super.key, required this.addressItems, this.patchBillingDetailCallBack});
+      {super.key,
+      required this.addressItems,
+      this.patchBillingDetailCallBack,
+      this.deleteBillingDetailCallBack});
 
   @override
   State<AddressesColumnLayout> createState() => _AddressesColumnLayoutState();
@@ -57,6 +61,9 @@ class _AddressesColumnLayoutState extends State<AddressesColumnLayout> {
                 onDismissed: (direction) {
                   setState(() {
                     widget.addressItems.removeAt(index);
+                    if (widget.deleteBillingDetailCallBack != null) {
+                      widget.deleteBillingDetailCallBack!(index);
+                    }
                     if (widget.addressItems.isEmpty) {
                       Navigator.pop(context);
                     }

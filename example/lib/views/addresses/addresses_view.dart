@@ -74,6 +74,12 @@ class _AddressesViewState extends State<AddressesView> {
                       return Padding(
                         padding: const EdgeInsets.all(15),
                         child: AddressesColumnLayout(
+                          deleteBillingDetailCallBack: (index) {
+                            context
+                                .read<BillingDetailCubit>()
+                                .deleteBillingDetail(
+                                    state.billingDetail[index].id!);
+                          },
                           addressItems: state.billingDetail.map((item) {
                             return AddressBoxModal(
                               name: item.city!,

@@ -47,4 +47,16 @@ class BillingDetailRespository {
       rethrow;
     }
   }
+
+  Future<void> deleteBillingDetail(int id) async {
+    try {
+      final response = await apiService.deleteBillingDetail(
+        apikey: authToken,
+        authToken: 'Bearer $authToken',
+        id: 'eq.$id',
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
