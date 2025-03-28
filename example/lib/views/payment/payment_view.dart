@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:example/cubits/cart/cart_cubit.dart';
+import 'package:example/cubits/order/order_cubit.dart';
 import 'package:example/views/auth/models/auth_cubit.dart';
 import 'package:example/views/auth/models/auth_state.dart';
 import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
@@ -32,11 +33,11 @@ class PaymentView extends StatelessWidget {
         },
         userId: authState.user.id,
       ),
-      Checkout(
-        buttonCallBack: () {
+      const Checkout(
+          /* buttonCallBack: () {
           context.read<PaymentStepCubit>().nextStep();
-        },
-      ),
+        },*/
+          ),
       OrderSuccess(
         onPrimaryButtonPressed: () {},
         onSecondaryButtonPressed: () {
