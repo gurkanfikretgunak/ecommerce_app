@@ -1,17 +1,18 @@
-import 'package:example/views/auth/models/auth_cubit.dart';
-
+import 'package:example/core/network/models/billing_detail_model/billing_detail_model.dart';
+import 'package:example/cubits/billing_detail/billing_detail_cubit.dart';
 import 'package:example/cubits/cart/cart_cubit.dart';
+import 'package:example/cubits/order/order_cubit.dart';
+import 'package:example/cubits/product/product_cubit.dart';
+import 'package:example/cubits/review/review_cubit.dart';
+import 'package:example/cubits/validation/validation_cubit.dart';
+import 'package:example/main.dart';
+import 'package:example/views/auth/models/auth_cubit.dart';
 import 'package:example/views/categorie_products/models/categorie_products_cubit.dart';
 import 'package:example/views/categories/models/categories_cubit.dart';
 import 'package:example/views/home/models/home_cubit.dart';
 import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
 import 'package:example/views/payment/models/payment_step_cubit.dart';
-import 'package:example/cubits/product/product_cubit.dart';
 import 'package:example/views/product/models/product_detail_cubit.dart';
-import 'package:example/cubits/review/review_cubit.dart';
-import 'package:example/cubits/validation/validation_cubit.dart';
-import 'package:example/main.dart';
-import 'package:example/core/network/models/cart_model/cart_model.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,6 +38,8 @@ class MultiBloc extends StatelessWidget {
       BlocProvider<ProductDetailCubit>(create: (_) => ProductDetailCubit()),
       BlocProvider<ReviewCubit>(create: (_) => ReviewCubit()),
       BlocProvider<CartCubit>(create: (_) => CartCubit()),
+      BlocProvider<OrderCubit>(create: (_) => OrderCubit()),
+      BlocProvider<BillingDetailCubit>(create: (_) => BillingDetailCubit()),
     ], child: const ExampleApp());
   }
 }
