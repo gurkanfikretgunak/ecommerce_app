@@ -499,6 +499,52 @@ class _ApiService implements ApiService {
     return _value;
   }
 
+  @override
+  Future<List<BillingDetail>> getBillingDetail({
+    String? apikey,
+    String? authToken,
+    String? user_id,
+    String? isSelected,
+    String select = '*',
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'user_id': user_id,
+      r'is_default': isSelected,
+      r'select': select,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{
+      r'apikey': apikey,
+      r'Authorization': authToken,
+    };
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<BillingDetail>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'billing_details',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<BillingDetail> _value;
+    try {
+      _value = _result.data!
+          .map(
+            (dynamic i) => BillingDetail.fromJson(i as Map<String, dynamic>),
+          )
+          .toList();
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

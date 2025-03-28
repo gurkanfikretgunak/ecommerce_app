@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:example/core/network/models/billing_detail_model/billing_detail_model.dart';
 import 'package:example/core/network/models/cart_model/cart_model.dart';
 import 'package:example/core/network/models/categorie_model/categorie_model.dart';
 import 'package:example/core/network/models/product_detail_model/product_detail_model.dart';
@@ -115,5 +116,14 @@ abstract class ApiService {
     @Header('apikey') String? apikey,
     @Header('Authorization') String? authToken,
     @Body() required Map<String, dynamic> request,
+  });
+
+  @GET('billing_details')
+  Future<List<BillingDetail>> getBillingDetail({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('user_id') String? user_id,
+    @Query('is_default') String? isSelected,
+    @Query('select') String select = '*',
   });
 }
