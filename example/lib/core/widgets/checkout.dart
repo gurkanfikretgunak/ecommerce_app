@@ -78,7 +78,8 @@ class _CheckoutState extends State<Checkout> {
                           email: billingDetail.first.emailAddress!,
                           phone: billingDetail.first.phoneNumber!,
                           onTap: () {
-                            AutoRouter.of(context).push(AddressesViewRoute());
+                            AutoRouter.of(context)
+                                .push(const AddressesViewRoute());
                           },
                         );
                       } else if (billingDetailState is BillingDetailPatched) {

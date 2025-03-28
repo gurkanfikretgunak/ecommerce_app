@@ -28,4 +28,14 @@ class BillingDetailCubit extends Cubit<BillingDetailState> {
           BillingDetailError("Failed to patch billing detail:${e.toString()}"));
     }
   }
+
+  Future<void> deleteBillingDetail(int id) async {
+    try {
+      await BillingDetailRespository().deleteBillingDetail(id);
+      emit(BillingDetailLoading());
+    } catch (e) {
+      emit(BillingDetailError(
+          "Failed to delete billing detail:${e.toString()}"));
+    }
+  }
 }

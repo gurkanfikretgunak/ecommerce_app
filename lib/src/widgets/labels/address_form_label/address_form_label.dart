@@ -94,6 +94,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
           child: TextFieldInput(
             controller: streetAddressController,
             hintText: 'Street address*',
+            isValid: true,
           ),
         ),
         Padding(
@@ -101,6 +102,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
           child: TextFieldInput(
             controller: cityController,
             hintText: 'Town/City*',
+            isValid: true,
           ),
         ),
         Padding(
@@ -131,10 +133,10 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
                   color: ColorConstant.instance.neutral1,
                 ),
                 context.emptySizedHeightBoxLow,
-                const SizedBox(
+                /*const SizedBox(
                   height: 250,
                   child: MapLabel(),
-                ),
+                ),*/
                 context.emptySizedHeightBoxNormal,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

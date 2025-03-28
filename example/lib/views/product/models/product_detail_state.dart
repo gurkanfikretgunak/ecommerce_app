@@ -13,14 +13,14 @@ class ProductDetailLoading extends ProductDetailState {}
 class ProductDetailLoaded extends ProductDetailState {
   final ProductDetail productDetail;
   final Color selectedColor;
-  final String? selectedSize;
+  final String selectedSize;
   final int? selectedRate;
   final List<Product>? relatedProducts;
 
   ProductDetailLoaded(
       {this.relatedProducts,
       this.selectedRate,
-      this.selectedSize,
+      required this.selectedSize,
       required this.selectedColor,
       required this.productDetail});
 

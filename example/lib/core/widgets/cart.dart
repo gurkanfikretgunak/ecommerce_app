@@ -73,11 +73,13 @@ class _CartState extends State<Cart> {
     return BlocBuilder<CartCubit, CartState>(
       builder: (context, cartState) {
         Widget cartContent;
+        bool isCartEmpty = false;
 
         if (cartState is CartLoading) {
           context.read<CartCubit>().getCart(widget.userId);
           cartContent = const Center(child: CircularProgressIndicator());
         } else if (cartState is CartLoaded) {
+          isCartEmpty = cartState.cart.isEmpty;
           cartContent = CartListLayout(
             onQuantityChanged: (index, newQuantity) {
               context.read<CartCubit>().updateQuantity(index, newQuantity);
@@ -88,6 +90,8 @@ class _CartState extends State<Cart> {
                 name: item.product!.name,
                 quantity: item.quantity,
                 price: item.product!.price,
+                color: Color(int.parse("0x${item.color}")),
+                size: item.size,
                 onTap: () {
                   context.read<ProductCubit>().changeProduct(item.product!);
                   AutoRouter.of(context).push(const ProductViewRoute());
@@ -103,6 +107,7 @@ class _CartState extends State<Cart> {
                 text: "Cart is Empty",
                 color: ColorConstant.instance.neutral1,
               )));
+          isCartEmpty = true;
         }
 
         return SingleChildScrollView(
@@ -115,10 +120,22 @@ class _CartState extends State<Cart> {
                 sectionText: "YOU ALSO VIEWED",
                 layout: ProductGridLayout(productItems: productCardItems),
               ),
-              CustomButton(
-                onPressed: widget.buttonCallBack ?? () {},
-                height: 50,
-                text: "Proceed To Checkout",
+              Opacity(
+                opacity: isCartEmpty ? 0.5 : 1.0,
+                child: CustomButton(
+                  onPressed: isCartEmpty
+                      ? () {
+                          const ToastMessageLabel(
+                                  title: "Cart Is Empty",
+                                  type: ToastType.warning,
+                                  description:
+                                      "The cart is empty, you cannot proceed without products in your cart. ")
+                              .show(context);
+                        }
+                      : widget.buttonCallBack ?? () {},
+                  height: 50,
+                  text: "Proceed To Checkout",
+                ),
               ),
             ],
           ),

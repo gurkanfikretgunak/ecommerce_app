@@ -172,7 +172,7 @@ class _ProductViewState extends State<ProductView> {
                                     if (reviewState is ReviewSuccess) {
                                       context
                                           .read<ProductDetailCubit>()
-                                          .getProductDetail(product.id);
+                                          .getProductDetail(product.product_id);
                                       reviewTextController.clear();
                                     }
                                   },
