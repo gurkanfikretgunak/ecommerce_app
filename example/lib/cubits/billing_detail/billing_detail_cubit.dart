@@ -5,14 +5,15 @@ import 'package:example/cubits/billing_detail/billing_detail_state.dart';
 class BillingDetailCubit extends Cubit<BillingDetailState> {
   BillingDetailCubit() : super(BillingDetailInitial());
 
-  Future<void> getBillingDetail(String userId, bool? isDefault) async {
+  Future<void> getBillingDetail(
+      {required String userId, bool? isDefault}) async {
     emit(BillingDetailLoading());
     try {
       final billingDetail = await BillingDetailRespository()
-          .getBillingDetail(userId: userId, isDefault: isDefault);
+          .getBillingDetail(userId: userId, isDefault: isDefault ?? null);
       emit(BillingDetailLoaded(billingDetail: billingDetail));
     } catch (e) {
-      emit(BillingError("Failed to get billing detail:${e.toString()}"));
+      emit(BillingDetailError("Failed to get billing detail:${e.toString()}"));
     }
   }
 }

@@ -10,8 +10,6 @@ class AddressesColumnLayout extends StatefulWidget {
 }
 
 class _AddressesColumnLayoutState extends State<AddressesColumnLayout> {
-  int? selectedIndex;
-
   @override
   void initState() {
     super.initState();
@@ -57,11 +55,9 @@ class _AddressesColumnLayoutState extends State<AddressesColumnLayout> {
                     address: widget.addressItems[index].address,
                     email: widget.addressItems[index].email,
                     phone: widget.addressItems[index].phone,
-                    isSelected: selectedIndex == index,
+                    isSelected: widget.addressItems[index].isSelected,
                     onTap: () {
-                      setState(() {
-                        selectedIndex = index;
-                      });
+                      setState(() {});
                     },
                   ));
             },

@@ -14,17 +14,18 @@ class BillingDetailRespository {
       String? isDefaultquery;
 
       if (isDefault != null) {
-        isDefaultquery = 'eq.["$isDefault"]';
+        isDefaultquery = 'eq.$isDefault';
       }
 
       final response = await apiService.getBillingDetail(
         apikey: authToken,
         authToken: 'Bearer $authToken',
-        user_id: userId,
-        isSelected: isDefaultquery,
+        user_id: 'eq.$userId',
+        isdefault: isDefaultquery,
       );
 
       if (response.isNotEmpty) {
+        print(response.first.toJson());
         return response;
       } else {
         throw Exception('Billing Detail not found');

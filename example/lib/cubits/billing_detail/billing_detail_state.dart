@@ -19,19 +19,19 @@ class BillingDetailLoaded extends BillingDetailState {
   List<Object?> get props => [billingDetail];
 }
 
-class BillingSuccess extends BillingDetailState {
+class BillingDetailSuccess extends BillingDetailState {
   final String message;
 
-  BillingSuccess(this.message);
+  BillingDetailSuccess(this.message);
 
   @override
   List<Object?> get props => [message];
 }
 
-class BillingError extends BillingDetailState {
+class BillingDetailError extends BillingDetailState {
   final String message;
 
-  BillingError(this.message);
+  BillingDetailError(this.message);
 
   @override
   List<Object?> get props => [message];
