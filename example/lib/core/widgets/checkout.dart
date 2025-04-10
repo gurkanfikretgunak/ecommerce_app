@@ -68,6 +68,8 @@ class _CheckoutState extends State<Checkout> {
                   BlocBuilder<BillingDetailCubit, BillingDetailState>(
                     builder: (context, billingDetailState) {
                       if (billingDetailState is BillingDetailLoading) {
+                        context.read<BillingDetailCubit>().getBillingDetail(
+                            userId: userState.user!.id, isDefault: true);
                         return const Center(child: CircularProgressIndicator());
                       } else if (billingDetailState is BillingDetailLoaded) {
                         final billingDetail = billingDetailState.billingDetail;
@@ -96,7 +98,8 @@ class _CheckoutState extends State<Checkout> {
                           email: "No Email",
                           phone: "No Phone",
                           onTap: () {
-                            AutoRouter.of(context).push(AddressesViewRoute());
+                            AutoRouter.of(context)
+                                .push(const AddressesViewRoute());
                           },
                         );
                       }
