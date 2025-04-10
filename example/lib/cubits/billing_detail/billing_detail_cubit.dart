@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:example/core/network/models/billing_detail_model/billing_detail_model.dart';
 import 'package:example/core/network/respository/billing_detail_respository/billing_detail_respository.dart';
 import 'package:example/cubits/billing_detail/billing_detail_state.dart';
 
@@ -16,6 +17,15 @@ class BillingDetailCubit extends Cubit<BillingDetailState> {
       ));
     } catch (e) {
       emit(BillingDetailError("Failed to get billing detail:${e.toString()}"));
+    }
+  }
+
+  Future<void> postBillingDetail(BillingDetail billingDetail) async {
+    try {
+      await BillingDetailRespository().postBillingDetail(billingDetail);
+      emit(BillingDetailLoading());
+    } catch (e) {
+      emit(BillingDetailError("Failed to post billing detail:${e.toString()}"));
     }
   }
 
