@@ -44,18 +44,15 @@ class BillingDetail {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['created_at'] = this.createdAt;
-    data['user_id'] = this.userId;
-    data['first_name'] = this.firstName;
-    data['last_name'] = this.lastName;
-    data['country'] = this.country;
-    data['address'] = this.address;
-    data['city'] = this.city;
-    data['phone_number'] = this.phoneNumber;
-    data['email_address'] = this.emailAddress;
-    data['is_default'] = this.isDefault;
-    return data;
+    return {
+      'user_id': userId,
+      'first_name': firstName,
+      'last_name': lastName,
+      'country': country,
+      'address': address,
+      'city': city,
+      'phone_number': phoneNumber,
+      'email_address': emailAddress,
+    };
   }
 }
