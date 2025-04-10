@@ -10,7 +10,11 @@ class AddressFormLabel extends StatefulWidget {
   final TextEditingController cityController;
   final TextEditingController phoneController;
   final TextEditingController emailController;
+  final Function(String)? onChangedEmail;
+  final Function(String)? onChangedPhone;
   final bool isDefault;
+  final bool? isPhoneValid;
+  final bool? isEmailValid;
   final ValueChanged<bool> onDefaultChanged;
 
   const AddressFormLabel({
@@ -24,6 +28,10 @@ class AddressFormLabel extends StatefulWidget {
     required this.emailController,
     required this.isDefault,
     required this.onDefaultChanged,
+    this.isPhoneValid,
+    this.isEmailValid,
+    this.onChangedEmail,
+    this.onChangedPhone,
   });
 
   @override
@@ -81,6 +89,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
                 child: TextFieldInput(
                   controller: widget.firstNameController,
                   hintText: 'First Name*',
+                  isValid: true,
                 ),
               ),
               context.emptySizedWidthBoxNormal,
@@ -88,6 +97,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
                 child: TextFieldInput(
                   controller: widget.lastNameController,
                   hintText: 'Last Name*',
+                  isValid: true,
                 ),
               ),
             ],
@@ -122,6 +132,8 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
             controller: widget.phoneController,
             inputType: InputType.phone,
             hintText: 'Phone Number*',
+            onChanged: widget.onChangedPhone,
+            isValid: widget.isPhoneValid ?? true,
           ),
         ),
         Padding(
@@ -130,6 +142,8 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
             controller: widget.emailController,
             inputType: InputType.email,
             hintText: 'Email Address*',
+            onChanged: widget.onChangedEmail,
+            isValid: widget.isEmailValid ?? true,
           ),
         ),
         context.emptySizedHeightBoxNormal,

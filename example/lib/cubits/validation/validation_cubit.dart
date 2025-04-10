@@ -108,4 +108,11 @@ class ValidationCubit extends Cubit<ValidationState> {
         _isPasswordValid &&
         _isConfirmPasswordValid;
   }
+
+  bool isAddressFormValid() {
+    return _isFirstNameValid &&
+        _isLastNameValid &&
+        _isEmailValid &&
+        _isPhoneValid;
+  }
 }
