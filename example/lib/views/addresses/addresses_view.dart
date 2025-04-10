@@ -3,6 +3,7 @@ import 'package:example/cubits/billing_detail/billing_detail_cubit.dart';
 import 'package:example/cubits/billing_detail/billing_detail_state.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:example/views/auth/models/auth_cubit.dart';
+import 'package:example/views/payment/models/payment_step_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,7 +36,7 @@ class _AddressesViewState extends State<AddressesView> {
           child: CustomAppbar(
             text: "ADDRESS",
             onPressed: () {
-              Navigator.pop(context);
+              AutoRouter.of(context).push(PaymentViewRoute(initialStep: 1));
             },
             iconColor: ColorConstant.instance.neutral1,
           ),
@@ -57,6 +58,9 @@ class _AddressesViewState extends State<AddressesView> {
                 child: BlocBuilder<BillingDetailCubit, BillingDetailState>(
                   builder: (context, state) {
                     if (state is BillingDetailLoading) {
+                      context
+                          .read<BillingDetailCubit>()
+                          .getBillingDetail(userId: userState.user!.id);
                       return const Center(child: CircularProgressIndicator());
                     } else if (state is BillingDetailPatched) {
                       context
