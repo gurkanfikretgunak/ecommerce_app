@@ -35,6 +35,19 @@ class BillingDetailRespository {
     }
   }
 
+  Future<void> postBillingDetail(BillingDetail billingDetail) async {
+    try {
+      print(billingDetail.toJson());
+      final response = await apiService.postBillingDetail(
+        apikey: authToken,
+        authToken: 'Bearer $authToken',
+        body: billingDetail.toJson(),
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<void> patchBillingDetail(int id) async {
     try {
       final response = await apiService.patchBillingDetail(

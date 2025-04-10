@@ -546,6 +546,36 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<void> postBillingDetail({
+    String? apikey,
+    String? authToken,
+    String select = '*',
+    required Map<String, dynamic> body,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'select': select};
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{
+      r'apikey': apikey,
+      r'Authorization': authToken,
+    };
+    _headers.removeWhere((k, v) => v == null);
+    final _data = <String, dynamic>{};
+    _data.addAll(body);
+    final _options = _setStreamType<void>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            'billing_details',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    await _dio.fetch<void>(_options);
+  }
+
+  @override
   Future<void> patchBillingDetail({
     String? apikey,
     String? authToken,
