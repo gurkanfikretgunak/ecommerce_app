@@ -359,12 +359,15 @@ class PaymentMethodsViewRoute extends _i23.PageRouteInfo<void> {
 /// generated route for
 /// [_i15.PaymentView]
 class PaymentViewRoute extends _i23.PageRouteInfo<PaymentViewRouteArgs> {
-  PaymentViewRoute({_i24.Key? key, List<_i23.PageRouteInfo>? children})
-    : super(
-        PaymentViewRoute.name,
-        args: PaymentViewRouteArgs(key: key),
-        initialChildren: children,
-      );
+  PaymentViewRoute({
+    _i24.Key? key,
+    int? initialStep = 0,
+    List<_i23.PageRouteInfo>? children,
+  }) : super(
+         PaymentViewRoute.name,
+         args: PaymentViewRouteArgs(key: key, initialStep: initialStep),
+         initialChildren: children,
+       );
 
   static const String name = 'PaymentViewRoute';
 
@@ -374,19 +377,21 @@ class PaymentViewRoute extends _i23.PageRouteInfo<PaymentViewRouteArgs> {
       final args = data.argsAs<PaymentViewRouteArgs>(
         orElse: () => const PaymentViewRouteArgs(),
       );
-      return _i15.PaymentView(key: args.key);
+      return _i15.PaymentView(key: args.key, initialStep: args.initialStep);
     },
   );
 }
 
 class PaymentViewRouteArgs {
-  const PaymentViewRouteArgs({this.key});
+  const PaymentViewRouteArgs({this.key, this.initialStep = 0});
 
   final _i24.Key? key;
 
+  final int? initialStep;
+
   @override
   String toString() {
-    return 'PaymentViewRouteArgs{key: $key}';
+    return 'PaymentViewRouteArgs{key: $key, initialStep: $initialStep}';
   }
 }
 

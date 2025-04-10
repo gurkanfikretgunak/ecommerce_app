@@ -3,7 +3,7 @@ import 'package:example/views/payment/models/payment_step_state.dart';
 import 'package:flutter/material.dart';
 
 class PaymentStepCubit extends Cubit<PaymentStepState> {
-  PaymentStepCubit() : super(PaymentStepInitial());
+  PaymentStepCubit({int initialStep = 0}) : super(PaymentStepInitial());
 
   void changeStep(int step) {
     emit(PaymentStepChanged(step));

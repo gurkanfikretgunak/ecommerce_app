@@ -16,7 +16,9 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 @RoutePage()
 class PaymentView extends StatelessWidget {
-  PaymentView({super.key});
+  final int? initialStep;
+
+  PaymentView({super.key, this.initialStep = 0});
 
   final List<String> stepTitles = [
     "Cart",
@@ -50,7 +52,13 @@ class PaymentView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => PaymentStepCubit(),
+      create: (context) {
+        final cubit = PaymentStepCubit(initialStep: initialStep ?? 0);
+        if (initialStep != null) {
+          cubit.changeStep(initialStep!); // burası kritik
+        }
+        return cubit;
+      },
       child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, authState) {
           if (authState is! AuthAuthenticated) {
@@ -62,8 +70,9 @@ class PaymentView extends StatelessWidget {
 
           return BlocBuilder<PaymentStepCubit, PaymentStepState>(
             builder: (context, state) {
-              int currentStep =
-                  state is PaymentStepChanged ? state.currentStep : 0;
+              int currentStep = state is PaymentStepChanged
+                  ? state.currentStep
+                  : initialStep!;
 
               return Scaffold(
                 appBar: PreferredSize(
