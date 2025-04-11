@@ -6,6 +6,8 @@ import 'package:example/cubits/billing_detail/billing_detail_cubit.dart';
 import 'package:example/cubits/billing_detail/billing_detail_state.dart';
 import 'package:example/cubits/order/order_cubit.dart';
 import 'package:example/cubits/order/order_state.dart';
+import 'package:example/cubits/payment_method/payment_method_cubit.dart';
+import 'package:example/cubits/payment_method/payment_method_state.dart';
 import 'package:example/cubits/product/product_cubit.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:example/views/auth/models/auth_cubit.dart';
@@ -33,6 +35,16 @@ class _CheckoutState extends State<Checkout> {
   void initState() {
     super.initState();
     userState = context.read<AuthCubit>().state;
+
+    if (userState is AuthAuthenticated) {
+      final userId = userState.user!.id;
+      context
+          .read<BillingDetailCubit>()
+          .getBillingDetail(userId: userId, isDefault: true);
+      context
+          .read<PaymentMethodCubit>()
+          .getPaymentMethod(userId: userId, isDefault: true);
+    }
   }
 
   @override
@@ -75,10 +87,10 @@ class _CheckoutState extends State<Checkout> {
                         final billingDetail = billingDetailState.billingDetail;
 
                         return AddressBoxModal(
-                          name: billingDetail.first.city!,
-                          address: billingDetail.first.address!,
-                          email: billingDetail.first.emailAddress!,
-                          phone: billingDetail.first.phoneNumber!,
+                          name: billingDetail.first.city ?? "N/A",
+                          address: billingDetail.first.address ?? "N/A",
+                          email: billingDetail.first.emailAddress ?? "N/A",
+                          phone: billingDetail.first.phoneNumber ?? "N/A",
                           onTap: () {
                             AutoRouter.of(context)
                                 .push(const AddressesViewRoute());
@@ -106,12 +118,34 @@ class _CheckoutState extends State<Checkout> {
                     },
                   ),
                   context.emptySizedHeightBoxNormal,
-                  PaymentMethodBoxModal(
-                    onTap: () {
-                      AutoRouter.of(context)
-                          .push(const PaymentMethodsViewRoute());
+                  BlocBuilder<PaymentMethodCubit, PaymentMethodState>(
+                    builder: (context, paymentMethodState) {
+                      if (paymentMethodState is PaymentMethodLoading) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (paymentMethodState is PaymentMethodLoaded) {
+                        final card = paymentMethodState.paymentMethods.first;
+
+                        return PaymentMethodBoxModal(
+                          onTap: () {
+                            AutoRouter.of(context)
+                                .push(const PaymentMethodsViewRoute());
+                          },
+                          text:
+                              "${card.card_brand} Ending *****${card.card_last4}",
+                        );
+                      } else if (paymentMethodState is PaymentMethodError) {
+                        return Text(
+                            "Payment Method Error: ${paymentMethodState.message}");
+                      } else {
+                        return PaymentMethodBoxModal(
+                          onTap: () {
+                            AutoRouter.of(context)
+                                .push(const PaymentMethodsViewRoute());
+                          },
+                          text: "No Payment Method Found",
+                        );
+                      }
                     },
-                    text: "Master card Ending *****23",
                   ),
                   context.emptySizedHeightBoxNormal,
                   CheckoutListLayout(
@@ -136,30 +170,29 @@ class _CheckoutState extends State<Checkout> {
                     onPressed: widget.buttonCallBack ??
                         () async {
                           final cartState = context.read<CartCubit>().state;
-                          if (cartState is CartLoaded) {
-                            if (userState is AuthAuthenticated) {
-                              final cartItems = cartState.cart;
-                              if (cartItems.isNotEmpty) {
-                                final order = Order(
-                                  user_id: userState.user!.id,
-                                  total_price: await context
-                                      .read<CartCubit>()
-                                      .getCartTotal(userState.user.id),
+                          if (cartState is CartLoaded &&
+                              userState is AuthAuthenticated) {
+                            final cartItems = cartState.cart;
+                            if (cartItems.isNotEmpty) {
+                              final order = Order(
+                                user_id: userState.user!.id,
+                                total_price: await context
+                                    .read<CartCubit>()
+                                    .getCartTotal(userState.user.id),
+                              );
+                              final orderDetails = cartItems.map((item) {
+                                return OrderDetail(
+                                  product_id: item.productId,
+                                  quantity: item.quantity,
+                                  unit_price: item.unitPrice,
+                                  color: item.color,
+                                  size: item.size,
                                 );
-                                final orderDetails = cartItems.map((item) {
-                                  return OrderDetail(
-                                    product_id: item.productId,
-                                    quantity: item.quantity,
-                                    unit_price: item.unitPrice,
-                                    color: item.color,
-                                    size: item.size,
-                                  );
-                                }).toList();
+                              }).toList();
 
-                                context
-                                    .read<OrderCubit>()
-                                    .postOrder(order, orderDetails);
-                              }
+                              context
+                                  .read<OrderCubit>()
+                                  .postOrder(order, orderDetails);
                             }
                           }
                         },
