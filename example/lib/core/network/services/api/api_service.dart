@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:example/core/network/models/billing_detail_model/billing_detail_model.dart';
 import 'package:example/core/network/models/cart_model/cart_model.dart';
 import 'package:example/core/network/models/categorie_model/categorie_model.dart';
+import 'package:example/core/network/models/payment_method_model/payment_method_model.dart';
 import 'package:example/core/network/models/product_detail_model/product_detail_model.dart';
 import 'package:example/core/network/models/product_model/product_model.dart';
 import 'package:example/core/network/models/user_model/user_model.dart';
@@ -12,7 +13,6 @@ part 'api_service.g.dart';
 @RestApi(baseUrl: 'https://oqltumpjgdudytkfaoio.supabase.co/rest/v1/')
 abstract class ApiService {
   factory ApiService(Dio dio) = _ApiService;
-
   @GET('categories')
   Future<List<Categorie>> getCategories({
     @Header('apikey') String? apikey,
@@ -149,5 +149,14 @@ abstract class ApiService {
     @Header('Authorization') String? authToken,
     @Query('id') String? id,
     @Query('select') String select = "*",
+  });
+
+  @GET('payment_method')
+  Future<List<PaymentMethod>> getPaymentMethod({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('is_default') String? is_default,
+    @Query('user_id') String? user_id,
+    @Query('select') String select = '*',
   });
 }
