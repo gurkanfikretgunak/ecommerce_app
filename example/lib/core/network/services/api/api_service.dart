@@ -159,4 +159,11 @@ abstract class ApiService {
     @Query('user_id') String? user_id,
     @Query('select') String select = '*',
   });
+  @POST('payment_method')
+  Future<List<PaymentMethod>> postPaymentMethod({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('select') String select = '*',
+    @Body() required Map<String, dynamic> body,
+  });
 }
