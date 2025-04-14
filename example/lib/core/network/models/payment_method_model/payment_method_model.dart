@@ -10,9 +10,9 @@ class PaymentMethod {
   final String card_last4;
   final String card_brand;
   final String card_expiry_month;
-  final int card_expiry_year;
-  final String token;
-  final bool is_default;
+  final String card_expiry_year;
+  final String? token;
+  final bool? is_default;
   final String user_id;
 
   PaymentMethod({
@@ -23,8 +23,8 @@ class PaymentMethod {
     required this.card_brand,
     required this.card_expiry_month,
     required this.card_expiry_year,
-    required this.token,
-    required this.is_default,
+    this.token,
+    this.is_default = false,
     required this.user_id,
   });
 
@@ -50,7 +50,6 @@ class PaymentMethod {
       'card_brand': card_brand,
       'card_expiry_month': card_expiry_month,
       'card_expiry_year': card_expiry_year,
-      'token': token,
       'is_default': is_default,
       'user_id': user_id,
     };

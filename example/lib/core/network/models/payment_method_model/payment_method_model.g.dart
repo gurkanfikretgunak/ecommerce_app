@@ -14,9 +14,9 @@ PaymentMethod _$PaymentMethodFromJson(Map<String, dynamic> json) =>
       card_last4: json['card_last4'] as String,
       card_brand: json['card_brand'] as String,
       card_expiry_month: json['card_expiry_month'] as String,
-      card_expiry_year: (json['card_expiry_year'] as num).toInt(),
-      token: json['token'] as String,
-      is_default: json['is_default'] as bool,
+      card_expiry_year: json['card_expiry_year'] as String,
+      token: json['token'] as String?,
+      is_default: json['is_default'] as bool? ?? false,
       user_id: json['user_id'] as String,
     );
 
