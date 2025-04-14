@@ -70,6 +70,11 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
                         .read<PaymentMethodCubit>()
                         .getPaymentMethod(userId: userState.user!.id);
                     return const Center(child: CircularProgressIndicator());
+                  } else if (state is PaymentMethodDeleted) {
+                    context
+                        .read<PaymentMethodCubit>()
+                        .getPaymentMethod(userId: userState.user!.id);
+                    return const Center(child: CircularProgressIndicator());
                   } else if (state is PaymentMethodLoaded) {
                     if (state.paymentMethods.isEmpty) {
                       return Center(
@@ -84,6 +89,12 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
                       child: Padding(
                         padding: const EdgeInsets.all(15),
                         child: PaymentCardColumnLayout(
+                          deletePaymentCardCallBack: (index) {
+                            context
+                                .read<PaymentMethodCubit>()
+                                .deletePaymentMethod(
+                                    state.paymentMethods[index].id!);
+                          },
                           paymentCardItems: state.paymentMethods
                               .map((item) {
                                 return PaymentCardModal(
@@ -96,7 +107,6 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
                                   brand: item.card_brand,
                                   color: ColorConstant.instance.neutral4,
                                   onTap: () {
-                                    print("Payment method tapped: ${item.id}");
                                     context
                                         .read<PaymentMethodCubit>()
                                         .patchPaymentMethod(item.id!);
