@@ -101,8 +101,6 @@ class _CheckoutState extends State<Checkout> {
                             .read<BillingDetailCubit>()
                             .getBillingDetail(userId: userState.user!.id);
                         return const Center(child: CircularProgressIndicator());
-                      } else if (billingDetailState is BillingDetailError) {
-                        return Text('Error: ${billingDetailState.message}');
                       } else {
                         return AddressBoxModal(
                           name: "No Data",
@@ -122,6 +120,16 @@ class _CheckoutState extends State<Checkout> {
                     builder: (context, paymentMethodState) {
                       if (paymentMethodState is PaymentMethodLoading) {
                         return const Center(child: CircularProgressIndicator());
+                      } else if (paymentMethodState is PaymentMethodSuccess) {
+                        context
+                            .read<PaymentMethodCubit>()
+                            .getPaymentMethod(userId: userState.user!.id);
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (paymentMethodState is PaymentMethodPatched) {
+                        context
+                            .read<PaymentMethodCubit>()
+                            .getPaymentMethod(userId: userState.user!.id);
+                        return const Center(child: CircularProgressIndicator());
                       } else if (paymentMethodState is PaymentMethodLoaded) {
                         final card = paymentMethodState.paymentMethods.first;
 
@@ -130,12 +138,10 @@ class _CheckoutState extends State<Checkout> {
                             AutoRouter.of(context)
                                 .push(const PaymentMethodsViewRoute());
                           },
+                          brand: card.card_brand,
                           text:
                               "${card.card_brand} Ending *****${card.card_last4}",
                         );
-                      } else if (paymentMethodState is PaymentMethodError) {
-                        return Text(
-                            "Payment Method Error: ${paymentMethodState.message}");
                       } else {
                         return PaymentMethodBoxModal(
                           onTap: () {

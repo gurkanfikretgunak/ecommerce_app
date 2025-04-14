@@ -83,6 +83,16 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/Mastercard-Logo.wine.png
+  AssetGenImage get mastercardLogoWine =>
+      const AssetGenImage('assets/images/Mastercard-Logo.wine.png');
+
+  /// File path: assets/images/Visa.png
+  AssetGenImage get visa => const AssetGenImage('assets/images/Visa.png');
+
+  /// File path: assets/images/amex.png
+  AssetGenImage get amex => const AssetGenImage('assets/images/amex.png');
+
   /// File path: assets/images/blank_profile_picture.png
   AssetGenImage get blankProfilePicture =>
       const AssetGenImage('assets/images/blank_profile_picture.png');
@@ -217,6 +227,9 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    mastercardLogoWine,
+    visa,
+    amex,
     blankProfilePicture,
     categoriebannerFifth,
     categoriebannerFirst,

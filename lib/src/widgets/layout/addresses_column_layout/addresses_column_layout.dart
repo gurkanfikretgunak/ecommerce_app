@@ -43,7 +43,7 @@ class _AddressesColumnLayoutState extends State<AddressesColumnLayout> {
                 context.emptySizedHeightBoxNormal,
             itemBuilder: (context, index) {
               return Dismissible(
-                key: Key(widget.addressItems[index].name),
+                key: Key(index.toString()),
                 direction: DismissDirection.endToStart,
                 background: Container(),
                 secondaryBackground: Container(

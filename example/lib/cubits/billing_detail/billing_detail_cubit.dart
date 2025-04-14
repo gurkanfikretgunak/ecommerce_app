@@ -11,7 +11,7 @@ class BillingDetailCubit extends Cubit<BillingDetailState> {
     emit(BillingDetailLoading());
     try {
       final billingDetail = await BillingDetailRespository()
-          .getBillingDetail(userId: userId, isDefault: isDefault ?? null);
+          .getBillingDetail(userId: userId, isDefault: isDefault);
       emit(BillingDetailLoaded(
         billingDetail: billingDetail,
       ));
@@ -23,6 +23,7 @@ class BillingDetailCubit extends Cubit<BillingDetailState> {
   Future<void> postBillingDetail(BillingDetail billingDetail) async {
     try {
       await BillingDetailRespository().postBillingDetail(billingDetail);
+      emit(BillingDetailSuccess("Billing detail added successfully"));
       emit(BillingDetailLoading());
     } catch (e) {
       emit(BillingDetailError("Failed to post billing detail:${e.toString()}"));

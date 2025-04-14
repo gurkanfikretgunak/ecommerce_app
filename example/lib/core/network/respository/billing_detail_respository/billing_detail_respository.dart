@@ -25,7 +25,6 @@ class BillingDetailRespository {
       );
 
       if (response.isNotEmpty) {
-        print(response.first.toJson());
         return response;
       } else {
         throw Exception('Billing Detail not found');
@@ -37,7 +36,6 @@ class BillingDetailRespository {
 
   Future<void> postBillingDetail(BillingDetail billingDetail) async {
     try {
-      print(billingDetail.toJson());
       final response = await apiService.postBillingDetail(
         apikey: authToken,
         authToken: 'Bearer $authToken',
@@ -50,7 +48,7 @@ class BillingDetailRespository {
 
   Future<void> patchBillingDetail(int id) async {
     try {
-      final response = await apiService.patchBillingDetail(
+      await apiService.patchBillingDetail(
         apikey: authToken,
         authToken: 'Bearer $authToken',
         id: 'eq.$id',
@@ -63,7 +61,7 @@ class BillingDetailRespository {
 
   Future<void> deleteBillingDetail(int id) async {
     try {
-      final response = await apiService.deleteBillingDetail(
+      await apiService.deleteBillingDetail(
         apikey: authToken,
         authToken: 'Bearer $authToken',
         id: 'eq.$id',

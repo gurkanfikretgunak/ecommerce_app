@@ -28,10 +28,10 @@ class PaymentCardModal extends StatelessWidget {
     this.brand,
     this.color,
     this.cvvNumber,
-    this.doesSupportNfc = true,
-    this.placeNfcIconAtTheEnd = true,
-    this.autoHideBalance = true,
-    this.enableFlipping = true,
+    this.doesSupportNfc,
+    this.placeNfcIconAtTheEnd,
+    this.autoHideBalance,
+    this.enableFlipping,
     this.logoPath,
     this.cardType = CardType.credit,
     this.validThru,
@@ -66,20 +66,28 @@ class PaymentCardModal extends StatelessWidget {
       onTap: onTap ?? () {},
       child: DecoratedBox(
         decoration: BoxDecoration(
-          border: BorderDirectional(
-            bottom: BorderSide(
-              color: ColorConstant.instance.neutral7,
-            ),
-            start: isSelected == true
-                ? BorderSide(
-                    width: 3,
-                    color: ColorConstant.instance.primary_main,
-                  )
-                : BorderSide.none,
+          color: isSelected == true
+              ? ColorConstant.instance.primary_main.withOpacity(0.05)
+              : Colors.transparent,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: isSelected == true
+              ? [
+                  BoxShadow(
+                    color: ColorConstant.instance.primary_main.withOpacity(0.3),
+                    blurRadius: 8,
+                    offset: Offset(0, 4),
+                  ),
+                ]
+              : [],
+          border: Border.all(
+            width: 1.5,
+            color: isSelected == true
+                ? ColorConstant.instance.primary_main.withOpacity(0.4)
+                : Colors.transparent,
           ),
         ),
         child: CreditCardUi(
-          width: 320,
+          width: 250,
           cardHolderFullName: name.isNotEmpty ? name : "",
           cardNumber:
               cartNumber.isNotEmpty ? cartNumber : "???? ????? ????? ???",
@@ -90,7 +98,7 @@ class PaymentCardModal extends StatelessWidget {
           autoHideBalance: autoHideBalance ?? false,
           topLeftColor: color ?? ColorConstant.instance.primary_main,
           bottomRightColor: color ?? ColorConstant.instance.primary_darker,
-          enableFlipping: enableFlipping ?? true,
+          enableFlipping: enableFlipping ?? false,
           creditCardType: creditCardType ?? CreditCardType.none,
           cardProviderLogo: brand != null && logoPath.isNotEmpty
               ? Image.asset(logoPath)

@@ -84,20 +84,24 @@ class _AddressesViewState extends State<AddressesView> {
                                 .deleteBillingDetail(
                                     state.billingDetail[index].id!);
                           },
-                          addressItems: state.billingDetail.map((item) {
-                            return AddressBoxModal(
-                              name: item.city!,
-                              address: item.address!,
-                              email: item.emailAddress!,
-                              phone: item.phoneNumber!,
-                              isSelected: item.isDefault!,
-                              onTap: () {
-                                context
-                                    .read<BillingDetailCubit>()
-                                    .patchBillingDetail(item.id!);
-                              },
-                            );
-                          }).toList(),
+                          addressItems: state.billingDetail
+                              .map((item) {
+                                return AddressBoxModal(
+                                  name: item.city!,
+                                  address: item.address!,
+                                  email: item.emailAddress!,
+                                  phone: item.phoneNumber!,
+                                  isSelected: item.isDefault!,
+                                  onTap: () {
+                                    context
+                                        .read<BillingDetailCubit>()
+                                        .patchBillingDetail(item.id!);
+                                  },
+                                );
+                              })
+                              .toList()
+                              .reversed
+                              .toList(),
                         ),
                       );
                     } else if (state is BillingDetailError) {

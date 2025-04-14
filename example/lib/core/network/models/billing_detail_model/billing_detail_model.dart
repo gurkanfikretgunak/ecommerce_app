@@ -53,6 +53,7 @@ class BillingDetail {
       'city': city,
       'phone_number': phoneNumber,
       'email_address': emailAddress,
+      'is_default': isDefault,
     };
   }
 }

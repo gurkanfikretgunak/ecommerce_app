@@ -43,7 +43,7 @@ class PaymentView extends StatelessWidget {
       OrderSuccess(
         onPrimaryButtonPressed: () {},
         onSecondaryButtonPressed: () {
-          AutoRouter.of(context).push(MainpageViewRoute());
+          context.read<BottomNavigationCubit>().setPage(0);
         },
       ),
     ];
@@ -55,7 +55,7 @@ class PaymentView extends StatelessWidget {
       create: (context) {
         final cubit = PaymentStepCubit(initialStep: initialStep ?? 0);
         if (initialStep != null) {
-          cubit.changeStep(initialStep!); // burası kritik
+          cubit.changeStep(initialStep!);
         }
         return cubit;
       },
