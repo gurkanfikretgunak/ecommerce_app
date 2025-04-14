@@ -73,6 +73,17 @@ class ConfirmPasswordInvalid extends ValidationState {
   List<Object?> get props => [error];
 }
 
+class CardNumberValid extends ValidationState {}
+
+class CardNumberInvalid extends ValidationState {
+  final String error;
+
+  CardNumberInvalid(this.error);
+
+  @override
+  List<Object?> get props => [error];
+}
+
 class ValidationSuccess extends ValidationState {
   final bool isEmailValid;
   final bool isPasswordValid;
@@ -84,6 +95,50 @@ class ValidationSuccess extends ValidationState {
 
   @override
   List<Object?> get props => [isEmailValid, isPasswordValid];
+}
+
+class ExpMonthValid extends ValidationState {}
+
+class ExpMonthInvalid extends ValidationState {
+  final String error;
+
+  ExpMonthInvalid(this.error);
+
+  @override
+  List<Object?> get props => [error];
+}
+
+class ExpYearValid extends ValidationState {}
+
+class ExpYearInvalid extends ValidationState {
+  final String error;
+
+  ExpYearInvalid(this.error);
+
+  @override
+  List<Object?> get props => [error];
+}
+
+class CvvValid extends ValidationState {}
+
+class CvvInvalid extends ValidationState {
+  final String error;
+
+  CvvInvalid(this.error);
+
+  @override
+  List<Object?> get props => [error];
+}
+
+class CardNameValid extends ValidationState {}
+
+class CardNameInvalid extends ValidationState {
+  final String error;
+
+  CardNameInvalid(this.error);
+
+  @override
+  List<Object?> get props => [error];
 }
 
 class ValidationError extends ValidationState {

@@ -10,6 +10,10 @@ class ValidationCubit extends Cubit<ValidationState> {
   bool _isLastNameValid = false;
   bool _isPhoneValid = false;
   bool _isConfirmPasswordValid = false;
+  bool _isCardNumberValid = false;
+  bool _isExpMonthValid = false;
+  bool _isExpYearValid = false;
+  bool _isCvvValid = false;
 
   void validateEmail(String email) {
     if (email.isEmpty) {
@@ -97,6 +101,79 @@ class ValidationCubit extends Cubit<ValidationState> {
     }
   }
 
+  void validateCardHolderName(String name) {
+    if (name.isEmpty) {
+      _isFirstNameValid = false;
+      emit(FirstNameInvalid('Card holder name cannot be empty'));
+    } else if (!RegExp(r'^[a-zA-Z\s]+$').hasMatch(name)) {
+      _isFirstNameValid = false;
+      emit(FirstNameInvalid(
+          'Card holder name cannot contain special characters or numbers'));
+    } else {
+      _isFirstNameValid = true;
+      emit(FirstNameValid());
+    }
+  }
+
+  void validateCardNumber(String cardNumber) {
+    String cleanCardNumber = cardNumber.replaceAll(RegExp(r'\D'), '');
+
+    if (cleanCardNumber.isEmpty) {
+      _isCardNumberValid = false;
+      emit(CardNumberInvalid('Card number cannot be empty'));
+    } else if (cleanCardNumber.length != 16 ||
+        !RegExp(r'^\d+$').hasMatch(cleanCardNumber)) {
+      _isCardNumberValid = false;
+      emit(CardNumberInvalid(
+          'Card number must be 16 digits and contain only numbers'));
+    } else {
+      _isCardNumberValid = true;
+      emit(CardNumberValid());
+    }
+  }
+
+  void validateExpMonth(String month) {
+    if (month.isEmpty) {
+      _isExpMonthValid = false;
+      emit(ExpMonthInvalid('Expiration month cannot be empty'));
+    } else if (int.tryParse(month) == null ||
+        int.parse(month) < 1 ||
+        int.parse(month) > 12) {
+      _isExpMonthValid = false;
+      emit(ExpMonthInvalid('Expiration month must be between 01 and 12'));
+    } else {
+      _isExpMonthValid = true;
+      emit(ExpMonthValid());
+    }
+  }
+
+  void validateExpYear(String year) {
+    if (year.isEmpty) {
+      _isExpYearValid = false;
+      emit(ExpYearInvalid('Expiration year cannot be empty'));
+    } else if (int.tryParse(year) == null ||
+        int.parse(year) < DateTime.now().year % 100) {
+      _isExpYearValid = false;
+      emit(ExpYearInvalid('Expiration year must be in the future'));
+    } else {
+      _isExpYearValid = true;
+      emit(ExpYearValid());
+    }
+  }
+
+  void validateCVV(String cvv) {
+    if (cvv.isEmpty) {
+      _isCvvValid = false;
+      emit(CvvInvalid('CVV cannot be empty'));
+    } else if (!RegExp(r'^\d{3,4}$').hasMatch(cvv)) {
+      _isCvvValid = false;
+      emit(CvvInvalid('CVV must be 3 or 4 digits'));
+    } else {
+      _isCvvValid = true;
+      emit(CvvValid());
+    }
+  }
+
   bool isSignInFormValid() {
     return _isEmailValid && _isPasswordValid;
   }
@@ -114,5 +191,12 @@ class ValidationCubit extends Cubit<ValidationState> {
         _isLastNameValid &&
         _isEmailValid &&
         _isPhoneValid;
+  }
+
+  bool isCardFormValid() {
+    return _isCardNumberValid &&
+        _isExpMonthValid &&
+        _isExpYearValid &&
+        _isCvvValid;
   }
 }
