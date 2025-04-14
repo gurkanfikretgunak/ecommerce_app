@@ -166,4 +166,12 @@ abstract class ApiService {
     @Query('select') String select = '*',
     @Body() required Map<String, dynamic> body,
   });
+  @PATCH('payment_method')
+  Future<void> patchPaymentMethod({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('id') String? id,
+    @Query('select') String select = '*',
+    @Body() required Map<String, dynamic> body,
+  });
 }

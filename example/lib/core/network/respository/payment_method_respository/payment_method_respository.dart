@@ -46,4 +46,16 @@ class PaymentMethodRespository {
       rethrow;
     }
   }
+
+  Future<void> patchPaymentMethod(int id) async {
+    try {
+      await apiService.patchPaymentMethod(
+          apikey: authToken,
+          authToken: 'Bearer $authToken',
+          id: 'eq.$id',
+          body: {'is_default': true});
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
