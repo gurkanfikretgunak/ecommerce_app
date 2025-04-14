@@ -58,4 +58,16 @@ class PaymentMethodRespository {
       rethrow;
     }
   }
+
+  Future<void> deletePaymentMethod(int id) async {
+    try {
+      await apiService.deletePaymentMethod(
+        apikey: authToken,
+        authToken: 'Bearer $authToken',
+        id: 'eq.$id',
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

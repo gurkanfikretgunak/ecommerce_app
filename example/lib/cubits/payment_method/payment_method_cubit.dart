@@ -32,7 +32,16 @@ class PaymentMethodCubit extends Cubit<PaymentMethodState> {
       await PaymentMethodRespository().patchPaymentMethod(id);
       emit(PaymentMethodPatched());
     } catch (e) {
-      emit(PaymentMethodError('Failed to patch billing detail'));
+      emit(PaymentMethodError('Failed to patch payment method'));
+    }
+  }
+
+  Future<void> deletePaymentMethod(int id) async {
+    try {
+      await PaymentMethodRespository().deletePaymentMethod(id);
+      emit(PaymentMethodDeleted());
+    } catch (e) {
+      emit(PaymentMethodError('Failed to delete payment method'));
     }
   }
 

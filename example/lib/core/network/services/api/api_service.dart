@@ -174,4 +174,11 @@ abstract class ApiService {
     @Query('select') String select = '*',
     @Body() required Map<String, dynamic> body,
   });
+  @DELETE('payment_method')
+  Future<void> deletePaymentMethod({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('id') String? id,
+    @Query('select') String select = '*',
+  });
 }

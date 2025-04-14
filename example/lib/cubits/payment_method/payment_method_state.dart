@@ -22,6 +22,8 @@ class PaymentMethodLoaded extends PaymentMethodState {
 
 class PaymentMethodPatched extends PaymentMethodState {}
 
+class PaymentMethodDeleted extends PaymentMethodState {}
+
 class PaymentMethodSuccess extends PaymentMethodState {
   final String message;
 
