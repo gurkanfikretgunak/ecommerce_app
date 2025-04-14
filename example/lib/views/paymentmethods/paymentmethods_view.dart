@@ -1,5 +1,6 @@
 import 'package:example/cubits/payment_method/payment_method_cubit.dart';
 import 'package:example/cubits/payment_method/payment_method_state.dart';
+import 'dart:math';
 import 'package:example/views/auth/models/auth_cubit.dart';
 import 'package:example/views/newcard/newcard_view.dart';
 import 'package:example/route/route.gr.dart';
@@ -36,7 +37,7 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
         child: CustomAppbar(
           text: "PAYMENT METHOD",
           onPressed: () {
-            Navigator.pop(context);
+            AutoRouter.of(context).push(PaymentViewRoute(initialStep: 1));
           },
           iconColor: ColorConstant.instance.neutral1,
         ),
@@ -59,6 +60,16 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
                 builder: (context, state) {
                   if (state is PaymentMethodLoading) {
                     return const Center(child: CircularProgressIndicator());
+                  } else if (state is PaymentMethodSuccess) {
+                    context
+                        .read<PaymentMethodCubit>()
+                        .getPaymentMethod(userId: userState.user!.id);
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is PaymentMethodPatched) {
+                    context
+                        .read<PaymentMethodCubit>()
+                        .getPaymentMethod(userId: userState.user!.id);
+                    return const Center(child: CircularProgressIndicator());
                   } else if (state is PaymentMethodLoaded) {
                     if (state.paymentMethods.isEmpty) {
                       return Center(
@@ -73,16 +84,28 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
                       child: Padding(
                         padding: const EdgeInsets.all(15),
                         child: PaymentCardColumnLayout(
-                          paymentCardItems: state.paymentMethods.map((item) {
-                            return PaymentCardModal(
-                              name: item.name!,
-                              cartNumber: ("**** **** **** ${item.card_last4}"),
-                              expirationDate:
-                                  "${item.card_expiry_month}/${item.card_expiry_year.toString().substring(2)}",
-                              brand: CartBrand.mastercard,
-                              color: ColorConstant.instance.neutral1,
-                            );
-                          }).toList(),
+                          paymentCardItems: state.paymentMethods
+                              .map((item) {
+                                return PaymentCardModal(
+                                  name: item.name,
+                                  isSelected: item.is_default ?? false,
+                                  cartNumber:
+                                      ("**** **** **** ${item.card_last4}"),
+                                  expirationDate:
+                                      "${item.card_expiry_month}/${item.card_expiry_year.toString().substring(2)}",
+                                  brand: item.card_brand,
+                                  color: ColorConstant.instance.neutral4,
+                                  onTap: () {
+                                    print("Payment method tapped: ${item.id}");
+                                    context
+                                        .read<PaymentMethodCubit>()
+                                        .patchPaymentMethod(item.id!);
+                                  },
+                                );
+                              })
+                              .toList()
+                              .reversed
+                              .toList(),
                         ),
                       ),
                     );
@@ -99,7 +122,7 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
               padding: const EdgeInsets.all(15),
               child: CustomButton(
                 onPressed: () {
-                  AutoRouter.of(context).push(NewCardViewRoute());
+                  AutoRouter.of(context).push(const NewCardViewRoute());
                 },
                 height: 50,
                 text: "Add New Card",
@@ -110,4 +133,17 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
       ),
     );
   }
+
+  final List<Color> cardColors = [
+    Colors.blueGrey.shade700,
+    Colors.indigo.shade700,
+    Colors.deepPurple.shade600,
+    Colors.teal.shade700,
+    Colors.green.shade700,
+    Colors.brown.shade600,
+    Colors.grey.shade800,
+    Colors.deepOrange.shade700,
+    Colors.cyan.shade700,
+    Colors.purple.shade700,
+  ];
 }

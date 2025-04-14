@@ -27,8 +27,16 @@ class PaymentMethodCubit extends Cubit<PaymentMethodState> {
     }
   }
 
+  Future<void> patchPaymentMethod(int id) async {
+    try {
+      await PaymentMethodRespository().patchPaymentMethod(id);
+      emit(PaymentMethodPatched());
+    } catch (e) {
+      emit(PaymentMethodError('Failed to patch billing detail'));
+    }
+  }
+
   String getCardType(String cardFirstDigits) {
-    print(cardFirstDigits);
     switch (cardFirstDigits) {
       case '3':
         return 'American Express';
