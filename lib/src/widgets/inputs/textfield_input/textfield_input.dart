@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
@@ -21,6 +22,7 @@ class TextFieldInput extends StatefulWidget {
   final Function(String)? onChanged;
   final bool isValid;
   final String? errorMessage;
+  final List<TextInputFormatter>? inputFormatters;
 
   const TextFieldInput({
     super.key,
@@ -35,6 +37,7 @@ class TextFieldInput extends StatefulWidget {
     this.onChanged,
     this.isValid = false,
     this.errorMessage,
+    this.inputFormatters,
   });
 
   @override
@@ -102,6 +105,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
       style: TextStyle(
         color: widget.isValid ? Colors.black : Colors.red,
       ),
+      inputFormatters: widget.inputFormatters,
       decoration: InputDecoration(
         labelText: widget.hintText,
         labelStyle: TextStyle(
