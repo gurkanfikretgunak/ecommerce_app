@@ -7,7 +7,7 @@ class PaymentCardModal extends StatelessWidget {
   final String name;
   final String expirationDate;
   final Color? color;
-  final CartBrand? brand;
+  final String? brand;
   final String? cvvNumber;
   final bool? doesSupportNfc;
   final bool? placeNfcIconAtTheEnd;
@@ -41,17 +41,25 @@ class PaymentCardModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String logoPath;
+    String logoPath = "";
+    CreditCardType? creditCardType;
+
     switch (brand) {
-      case CartBrand.mastercard:
-        logoPath = 'assets/images/mastercard.png';
+      case "Visa":
+        logoPath = "assets/images/Visa.png";
+        creditCardType = CreditCardType.visa;
         break;
-      case CartBrand.visa:
-        logoPath = 'assets/images/visa.png';
+      case "MasterCard":
+        logoPath = "assets/images/mastercard.png";
+        creditCardType = CreditCardType.mastercard;
+        break;
+      case "American Express":
+        logoPath = "assets/images/amex.png";
+        creditCardType = CreditCardType.amex;
         break;
       default:
-        logoPath = 'assets/images/mastercard.png';
-        break;
+        logoPath = "";
+        creditCardType = CreditCardType.none;
     }
 
     return GestureDetector(
@@ -83,7 +91,10 @@ class PaymentCardModal extends StatelessWidget {
           topLeftColor: color ?? ColorConstant.instance.primary_main,
           bottomRightColor: color ?? ColorConstant.instance.primary_darker,
           enableFlipping: enableFlipping ?? true,
-          cardProviderLogo: brand != null ? Image.asset(logoPath) : null,
+          creditCardType: creditCardType ?? CreditCardType.none,
+          cardProviderLogo: brand != null && logoPath.isNotEmpty
+              ? Image.asset(logoPath)
+              : null,
           validThru: validThru ?? expirationDate,
         ),
       ),
