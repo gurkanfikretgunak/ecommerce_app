@@ -1,8 +1,11 @@
+import 'package:example/cubits/validation/validation_cubit.dart';
+import 'package:example/cubits/validation/validation_state.dart';
 import 'package:example/views/paymentmethods/paymentmethods_view.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class NewCardView extends StatefulWidget {
@@ -13,44 +16,174 @@ class NewCardView extends StatefulWidget {
 }
 
 class _NewCardViewState extends State<NewCardView> {
+  final TextEditingController cardHolderController = TextEditingController();
+  final TextEditingController cardNumberController = TextEditingController();
+  final TextEditingController expMonthController = TextEditingController();
+  final TextEditingController expYearController = TextEditingController();
+  final TextEditingController cvvController = TextEditingController();
+
+  void showToast(
+      BuildContext context, String title, String description, ToastType type) {
+    final toast = ToastMessageLabel(
+      title: title,
+      description: description,
+      type: type,
+    );
+    toast.show(context);
+  }
+
+  @override
+  void dispose() {
+    cardHolderController.dispose();
+    cardNumberController.dispose();
+    expMonthController.dispose();
+    expYearController.dispose();
+    cvvController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60),
-        child: CustomAppbar(
-          text: "ADD NEW CARD",
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          iconColor: ColorConstant.instance.neutral1,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => ValidationCubit()),
+      ],
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(60),
+          child: CustomAppbar(
+            text: "ADD NEW CARD",
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            iconColor: ColorConstant.instance.neutral1,
+          ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Column(
-            children: [
-              const CardFormLabel(),
-              const SizedBox(
-                height: 150,
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: CustomButton(
-                  onPressed: () {
-                    AutoRouter.of(context).push(PaymentMethodsViewRoute());
-                    /*Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const PaymentMethodsView()),
-                    );*/
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              children: [
+                BlocListener<ValidationCubit, ValidationState>(
+                  listener: (context, state) {
+                    if (state is ValidationError) {
+                      showToast(
+                        context,
+                        "Validation Error",
+                        state.error,
+                        ToastType.error,
+                      );
+                    }
                   },
-                  height: 50,
-                  text: "Add Card",
+                  child: BlocBuilder<ValidationCubit, ValidationState>(
+                    builder: (context, state) {
+                      bool isCardNameValid = true;
+                      bool isCardNumberValid = true;
+                      bool isExpMonthValid = true;
+                      bool isExpYearValid = true;
+                      bool isCVVValid = true;
+
+                      String? cardNameError;
+                      String? cardNumberError;
+                      String? expMonthError;
+                      String? expYearError;
+                      String? cvvError;
+
+                      if (state is CardNameInvalid) {
+                        isCardNameValid = false;
+                        cardNameError = state.error;
+                      }
+
+                      if (state is CardNumberInvalid) {
+                        isCardNumberValid = false;
+                        cardNumberError = state.error;
+                      }
+                      if (state is ExpMonthInvalid) {
+                        isExpMonthValid = false;
+                        expMonthError = state.error;
+                      }
+                      if (state is ExpYearInvalid) {
+                        isExpYearValid = false;
+                        expYearError = state.error;
+                      }
+                      if (state is CvvInvalid) {
+                        isCVVValid = false;
+                        cvvError = state.error;
+                      }
+
+                      return CardFormLabel(
+                        nameController: cardHolderController,
+                        cardNumberController: cardNumberController,
+                        expMonthController: expMonthController,
+                        expDateController: expYearController,
+                        cvvController: cvvController,
+                        onNameChanged: (val) {
+                          setState(() {
+                            context
+                                .read<ValidationCubit>()
+                                .validateCardHolderName(val);
+                          });
+                        },
+                        onCardNumberChanged: (val) {
+                          setState(() {
+                            context
+                                .read<ValidationCubit>()
+                                .validateCardNumber(val);
+                          });
+                        },
+                        onExpMonthChanged: (val) {
+                          setState(() {
+                            context
+                                .read<ValidationCubit>()
+                                .validateExpMonth(val);
+                          });
+                        },
+                        onExpDateChanged: (val) {
+                          setState(() {
+                            context
+                                .read<ValidationCubit>()
+                                .validateExpYear(val);
+                          });
+                        },
+                        onCvvChanged: (val) {
+                          setState(() {
+                            context.read<ValidationCubit>().validateCVV(val);
+                          });
+                        },
+                        isNameValid: isCardNameValid,
+                        isCardNumberValid: isCardNumberValid,
+                        isExpMonthValid: isExpMonthValid,
+                        isExpDateValid: isExpYearValid,
+                        isCvvValid: isCVVValid,
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 150),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: CustomButton(
+                    onPressed: () {
+                      final isValid =
+                          context.read<ValidationCubit>().isCardFormValid();
+                      if (isValid) {
+                        AutoRouter.of(context)
+                            .push(const PaymentMethodsViewRoute());
+                      } else {
+                        showToast(
+                          context,
+                          'Form Error',
+                          'Please fix the errors in the form',
+                          ToastType.error,
+                        );
+                      }
+                    },
+                    height: 50,
+                    text: "Add Card",
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

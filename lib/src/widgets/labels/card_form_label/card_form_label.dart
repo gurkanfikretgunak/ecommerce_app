@@ -1,27 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class CardFormLabel extends StatefulWidget {
-  const CardFormLabel({super.key});
+  final TextEditingController nameController;
+  final TextEditingController cardNumberController;
+  final TextEditingController expMonthController;
+  final TextEditingController expDateController;
+  final TextEditingController cvvController;
+
+  final bool isNameValid;
+  final bool isCardNumberValid;
+  final bool isExpMonthValid;
+  final bool isExpDateValid;
+  final bool isCvvValid;
+
+  final Function(String) onNameChanged;
+  final Function(String) onCardNumberChanged;
+  final Function(String) onExpMonthChanged;
+  final Function(String) onExpDateChanged;
+  final Function(String) onCvvChanged;
+
+  const CardFormLabel({
+    super.key,
+    required this.nameController,
+    required this.cardNumberController,
+    required this.expMonthController,
+    required this.expDateController,
+    required this.cvvController,
+    required this.isNameValid,
+    required this.isCardNumberValid,
+    required this.isExpMonthValid,
+    required this.isExpDateValid,
+    required this.isCvvValid,
+    required this.onNameChanged,
+    required this.onCardNumberChanged,
+    required this.onExpMonthChanged,
+    required this.onExpDateChanged,
+    required this.onCvvChanged,
+  });
 
   @override
   State<CardFormLabel> createState() => _CardFormLabelState();
 }
 
 class _CardFormLabelState extends State<CardFormLabel> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController cardNumberController = TextEditingController();
-  final TextEditingController expMonthController = TextEditingController();
-  final TextEditingController expDateController = TextEditingController();
-  final TextEditingController cvvController = TextEditingController();
+  String getFormattedExpDate() {
+    final month = widget.expMonthController.text;
+    final year = widget.expDateController.text;
 
-  @override
-  void dispose() {
-    nameController.dispose();
-    cardNumberController.dispose();
-    expMonthController.dispose();
-    expDateController.dispose();
-    super.dispose();
+    final formattedMonth = (month.length == 2) ? month : "XX";
+    final formattedYear = (year.length == 4) ? year.substring(2) : "YY";
+
+    return "$formattedMonth/$formattedYear";
   }
 
   @override
@@ -30,48 +61,48 @@ class _CardFormLabelState extends State<CardFormLabel> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         PaymentCardModal(
-            name: nameController.text,
-            cartNumber: cardNumberController.text,
-            cvvNumber: cvvController.text,
-            color: ColorConstant.instance.neutral4,
-            expirationDate:
-                "${expMonthController.text}/${expDateController.text}"),
+          name: widget.nameController.text,
+          cartNumber: widget.cardNumberController.text,
+          cvvNumber: widget.cvvController.text,
+          color: ColorConstant.instance.neutral4,
+          expirationDate: getFormattedExpDate(),
+        ),
         context.emptySizedHeightBoxNormal,
         TextFieldInput(
           hintText: "Name On Card",
-          onChanged: (value) {
-            setState(() {});
-          },
-          controller: nameController,
+          controller: widget.nameController,
+          isValid: widget.isNameValid,
+          onChanged: widget.onNameChanged,
         ),
         context.emptySizedHeightBoxNormal,
         TextFieldInput(
           hintText: "Card Number",
-          onChanged: (value) {
-            setState(() {});
-          },
-          controller: cardNumberController,
+          controller: widget.cardNumberController,
+          isValid: widget.isCardNumberValid,
+          onChanged: widget.onCardNumberChanged,
+          inputFormatters: [
+            LengthLimitingTextInputFormatter(16),
+            FilteringTextInputFormatter.digitsOnly,
+          ],
         ),
         context.emptySizedHeightBoxNormal,
         Row(
           children: [
             Expanded(
               child: TextFieldInput(
-                controller: expMonthController,
-                onChanged: (value) {
-                  setState(() {});
-                },
+                controller: widget.expMonthController,
                 hintText: 'Exp Month',
+                isValid: widget.isExpMonthValid,
+                onChanged: widget.onExpMonthChanged,
               ),
             ),
             context.emptySizedWidthBoxNormal,
             Expanded(
               child: TextFieldInput(
-                controller: expDateController,
-                onChanged: (value) {
-                  setState(() {});
-                },
+                controller: widget.expDateController,
                 hintText: 'Exp Date',
+                isValid: widget.isExpDateValid,
+                onChanged: widget.onExpDateChanged,
               ),
             ),
           ],
@@ -79,10 +110,9 @@ class _CardFormLabelState extends State<CardFormLabel> {
         context.emptySizedHeightBoxNormal,
         TextFieldInput(
           hintText: "Cvv",
-          onChanged: (value) {
-            setState(() {});
-          },
-          controller: cvvController,
+          controller: widget.cvvController,
+          isValid: widget.isCvvValid,
+          onChanged: widget.onCvvChanged,
         ),
       ],
     );
