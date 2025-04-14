@@ -34,4 +34,16 @@ class PaymentMethodRespository {
       rethrow;
     }
   }
+
+  Future<void> postPaymentMethod(PaymentMethod paymentMethod) async {
+    try {
+      await apiService.postPaymentMethod(
+        apikey: authToken,
+        authToken: 'Bearer $authToken',
+        body: paymentMethod.toJson(),
+      );
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
