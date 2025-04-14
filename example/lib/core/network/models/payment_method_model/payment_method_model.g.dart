@@ -18,7 +18,6 @@ PaymentMethod _$PaymentMethodFromJson(Map<String, dynamic> json) =>
       token: json['token'] as String,
       is_default: json['is_default'] as bool,
       user_id: json['user_id'] as String,
-      card_first4: json['card_first4'] as String,
     );
 
 Map<String, dynamic> _$PaymentMethodToJson(PaymentMethod instance) =>
@@ -33,5 +32,4 @@ Map<String, dynamic> _$PaymentMethodToJson(PaymentMethod instance) =>
       'token': instance.token,
       'is_default': instance.is_default,
       'user_id': instance.user_id,
-      'card_first4': instance.card_first4,
     };

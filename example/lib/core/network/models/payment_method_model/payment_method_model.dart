@@ -14,7 +14,6 @@ class PaymentMethod {
   final String token;
   final bool is_default;
   final String user_id;
-  final String card_first4;
 
   PaymentMethod({
     this.id,
@@ -27,7 +26,6 @@ class PaymentMethod {
     required this.token,
     required this.is_default,
     required this.user_id,
-    required this.card_first4,
   });
 
   factory PaymentMethod.fromJson(Map<String, dynamic> json) {
@@ -42,7 +40,6 @@ class PaymentMethod {
       token: json['token'],
       is_default: json['is_default'],
       user_id: json['user_id'],
-      card_first4: json['card_first4'],
     );
   }
 
@@ -56,7 +53,6 @@ class PaymentMethod {
       'token': token,
       'is_default': is_default,
       'user_id': user_id,
-      'card_first4': card_first4,
     };
   }
 }
