@@ -16,6 +16,9 @@ class PaymentCardModal extends StatelessWidget {
   final String? logoPath;
   final CardType? cardType;
   final String? validThru;
+  final bool isSelected;
+
+  final VoidCallback? onTap;
 
   const PaymentCardModal({
     super.key,
@@ -32,6 +35,8 @@ class PaymentCardModal extends StatelessWidget {
     this.logoPath,
     this.cardType = CardType.credit,
     this.validThru,
+    this.isSelected = false,
+    this.onTap,
   });
 
   @override
@@ -48,20 +53,40 @@ class PaymentCardModal extends StatelessWidget {
         logoPath = 'assets/images/mastercard.png';
         break;
     }
-    return CreditCardUi(
-      width: 320,
-      cardHolderFullName: name.isNotEmpty ? name : "",
-      cardNumber: cartNumber.isNotEmpty ? cartNumber : "???? ????? ????? ???",
-      doesSupportNfc: doesSupportNfc ?? true,
-      placeNfcIconAtTheEnd: placeNfcIconAtTheEnd ?? true,
-      cardType: cardType ?? CardType.credit,
-      cvvNumber: cvvNumber ?? "",
-      autoHideBalance: autoHideBalance ?? false,
-      topLeftColor: color ?? ColorConstant.instance.primary_main,
-      bottomRightColor: color ?? ColorConstant.instance.primary_darker,
-      enableFlipping: enableFlipping ?? true,
-      cardProviderLogo: brand != null ? Image.asset(logoPath) : null,
-      validThru: validThru ?? expirationDate,
+
+    return GestureDetector(
+      onTap: onTap ?? () {},
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          border: BorderDirectional(
+            bottom: BorderSide(
+              color: ColorConstant.instance.neutral7,
+            ),
+            start: isSelected == true
+                ? BorderSide(
+                    width: 3,
+                    color: ColorConstant.instance.primary_main,
+                  )
+                : BorderSide.none,
+          ),
+        ),
+        child: CreditCardUi(
+          width: 320,
+          cardHolderFullName: name.isNotEmpty ? name : "",
+          cardNumber:
+              cartNumber.isNotEmpty ? cartNumber : "???? ????? ????? ???",
+          doesSupportNfc: doesSupportNfc ?? true,
+          placeNfcIconAtTheEnd: placeNfcIconAtTheEnd ?? true,
+          cardType: cardType ?? CardType.credit,
+          cvvNumber: cvvNumber ?? "",
+          autoHideBalance: autoHideBalance ?? false,
+          topLeftColor: color ?? ColorConstant.instance.primary_main,
+          bottomRightColor: color ?? ColorConstant.instance.primary_darker,
+          enableFlipping: enableFlipping ?? true,
+          cardProviderLogo: brand != null ? Image.asset(logoPath) : null,
+          validThru: validThru ?? expirationDate,
+        ),
+      ),
     );
   }
 }
