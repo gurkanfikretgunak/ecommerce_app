@@ -1,7 +1,9 @@
 import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/core/widgets/order.dart';
 import 'package:example/core/widgets/wishlist.dart';
+import 'package:example/cubits/wishlist/wishlist_cubit.dart';
 import 'package:example/route/route.gr.dart';
+import 'package:example/views/auth/models/auth_state.dart';
 import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
@@ -26,6 +28,13 @@ class _OrderwishlistViewState extends State<OrderwishlistView> {
     ProductBoxModal(
         imagePath: Assets.images.productboximage.path,
         name: "Basic T-shirt",
+        sizeList: [
+          "XS",
+          "S",
+          "M",
+          "L",
+          "XL",
+        ],
         price: 40.99),
     ProductBoxModal(
         imagePath: Assets.images.productboximage.path,
