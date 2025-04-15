@@ -1,5 +1,7 @@
+import 'dart:ffi';
+
 import 'package:equatable/equatable.dart';
-import 'package:example/core/widgets/wishlist.dart';
+import 'package:example/core/network/models/wishlist_model/wishlist_model.dart';
 
 abstract class WishlistState extends Equatable {
   @override
@@ -17,6 +19,24 @@ class WishlistLoaded extends WishlistState {
 
   @override
   List<Object?> get props => [wishlist];
+}
+
+class WishlistChangeFavorite extends WishlistState {
+  final bool isFavorite;
+
+  WishlistChangeFavorite(this.isFavorite);
+
+  @override
+  List<Object?> get props => [isFavorite];
+}
+
+class WishlistIsFavorite extends WishlistState {
+  final bool isFavorite;
+
+  WishlistIsFavorite(this.isFavorite);
+
+  @override
+  List<Object?> get props => [isFavorite];
 }
 
 class WishlistSuccess extends WishlistState {
