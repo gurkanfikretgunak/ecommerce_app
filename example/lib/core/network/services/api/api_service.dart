@@ -181,4 +181,10 @@ abstract class ApiService {
     @Query('id') String? id,
     @Query('select') String select = '*',
   });
+  @POST("rpc/is_product_in_wishlist")
+  Future<bool> isProductInWishlist({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Body() required Map<String, dynamic> body,
+  });
 }
