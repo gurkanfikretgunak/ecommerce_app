@@ -17,9 +17,7 @@ class _ProductBoxRowLayoutState extends State<ProductBoxRowLayout> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Expanded(
-            child: widget
-                .productBox), // Bu, productBox'ın fazla alan kaplamasını engeller.
+        Expanded(child: widget.productBox),
         if (widget.item != null) widget.item!,
         const SizedBox.shrink()
       ],

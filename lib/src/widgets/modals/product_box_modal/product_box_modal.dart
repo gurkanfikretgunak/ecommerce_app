@@ -16,6 +16,7 @@ class ProductBoxModal extends StatefulWidget {
   final VoidCallback? onTap;
   final Color? color;
   final String? size;
+  final List<String>? sizeList;
 
   ProductBoxModal({
     super.key,
@@ -32,6 +33,7 @@ class ProductBoxModal extends StatefulWidget {
     this.onTap,
     this.color,
     this.size,
+    this.sizeList,
   });
 
   double get total => quantity * price;
@@ -41,7 +43,14 @@ class ProductBoxModal extends StatefulWidget {
 }
 
 class _ProductBoxModalState extends State<ProductBoxModal> {
+  late String selectedSize;
+
   @override
+  void initState() {
+    super.initState();
+    selectedSize = widget.sizeList != null ? widget.sizeList![0] : "S";
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -85,7 +94,17 @@ class _ProductBoxModalState extends State<ProductBoxModal> {
                             isSelected: false,
                             inStock: true,
                             text: widget.size!,
-                            onTap: () {})
+                            onTap: () {}),
+                      if (widget.sizeList != null)
+                        DropDownMenuInput(
+                          items: widget.sizeList!,
+                          selected: selectedSize,
+                          onSelected: (String value) {
+                            setState(() {
+                              selectedSize = value;
+                            });
+                          },
+                        ),
                     ],
                   ),
                 ],
