@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/core/network/models/cart_model/cart_model.dart';
 import 'package:example/core/network/models/review_model/review_model.dart';
+import 'package:example/core/network/models/wishlist_model/wishlist_model.dart';
 import 'package:example/cubits/cart/cart_cubit.dart';
 import 'package:example/cubits/product/product_cubit.dart';
 import 'package:example/cubits/product/product_state.dart';
@@ -39,7 +40,7 @@ class _ProductViewState extends State<ProductView> {
     final productCubit = context.read<ProductCubit>();
     if (productCubit.state is ProductLoaded) {
       final product = (productCubit.state as ProductLoaded).product;
-      context.read<ProductDetailCubit>().getProductDetail(product.id);
+      context.read<ProductDetailCubit>().getProductDetail(product.product_id);
 
       userState = context.read<AuthCubit>().state;
       if (userState is AuthAuthenticated) {
@@ -344,12 +345,21 @@ class _ProductViewState extends State<ProductView> {
 
           return BlocBuilder<WishlistCubit, WishlistState>(
             builder: (context, wishlistState) {
-              bool isFavorite = wishlistState is WishlistSuccess;
-
+              bool isFavorite = false;
+              if (wishlistState is WishlistIsFavorite) {
+                isFavorite = wishlistState.isFavorite;
+              } else if (wishlistState is WishlistChangeFavorite) {
+                context
+                    .read<WishlistCubit>()
+                    .isProductInWishlist(product.id, userId);
+                isFavorite = wishlistState.isFavorite;
+              } else if (wishlistState is WishlistLoading) {
+                return const Center(child: CircularProgressIndicator());
+              }
               return ProductBottomSheetLabel(
                 isFavorite: isFavorite,
                 favoriteOnPressed: () =>
-                    _toggleFavorite(isFavorite, productId, userId),
+                    _toggleFavorite(productId, state, userId),
                 buttonOnPressed: () => _addToCart(product, state, userId),
                 price: product.price.toString(),
               );
@@ -361,10 +371,23 @@ class _ProductViewState extends State<ProductView> {
     );
   }
 
-  void _toggleFavorite(bool isFavorite, int productId, String userId) {
+  void _toggleFavorite(
+      int productId, ProductDetailLoaded state, String userId) {
     final wishlistCubit = context.read<WishlistCubit>();
+    bool isFavorite = wishlistCubit.state is WishlistIsFavorite &&
+        (wishlistCubit.state as WishlistIsFavorite).isFavorite;
+
     if (isFavorite) {
-    } else {}
+      wishlistCubit.deleteWishlist(productId);
+    } else {
+      final wishlistModel = Wishlist(
+        product_id: productId,
+        user_id: userId,
+        sizes: state.productDetail.sizes,
+        colors: state.productDetail.colors,
+      );
+      wishlistCubit.postWishlist(wishlistModel);
+    }
   }
 
   void _addToCart(dynamic product, ProductDetailLoaded state, String userId) {
