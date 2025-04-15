@@ -6,6 +6,7 @@ import 'package:example/core/network/models/payment_method_model/payment_method_
 import 'package:example/core/network/models/product_detail_model/product_detail_model.dart';
 import 'package:example/core/network/models/product_model/product_model.dart';
 import 'package:example/core/network/models/user_model/user_model.dart';
+import 'package:example/core/network/models/wishlist_model/wishlist_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'api_service.g.dart';
@@ -181,10 +182,35 @@ abstract class ApiService {
     @Query('id') String? id,
     @Query('select') String select = '*',
   });
+
+  @GET("wishlist")
+  Future<List<Wishlist>> getWishlist({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('user_id') String? user_id,
+    @Query('select') String select = '*',
+  });
+
   @POST("rpc/is_product_in_wishlist")
   Future<bool> isProductInWishlist({
     @Header('apikey') String? apikey,
     @Header('Authorization') String? authToken,
     @Body() required Map<String, dynamic> body,
+  });
+
+  @POST("wishlist")
+  Future<void> postWishlist({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('select') String select = '*',
+    @Body() required Map<String, dynamic> body,
+  });
+
+  @DELETE("wishlist")
+  Future<void> deleteWishlist({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('product_id') String? product_id,
+    @Query('select') String select = '*',
   });
 }
