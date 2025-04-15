@@ -6,33 +6,41 @@ part 'wishlist_model.g.dart';
 @JsonSerializable()
 class Wishlist {
   final int? id;
-  final int productId;
-  final String? createdAt;
-  final int userId;
+  final String? created_at;
+  final int product_id;
+  final String user_id;
+  final List<String> sizes;
+  final List<String> colors;
 
   Product? product;
 
   Wishlist({
     this.id,
-    required this.productId,
-    this.createdAt,
-    required this.userId,
+    required this.product_id,
+    this.created_at,
+    required this.user_id,
     this.product,
+    required this.sizes,
+    required this.colors,
   });
 
   factory Wishlist.fromJson(Map<String, dynamic> json) {
     return Wishlist(
       id: json['id'],
-      productId: json['product_id'],
-      createdAt: json['created_at'],
-      userId: json['user_id'],
+      created_at: json['created_at'],
+      user_id: json['user_id'],
+      product_id: json['product_id'],
+      sizes: List<String>.from(json['sizes']),
+      colors: List<String>.from(json['colors']),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'product_id': productId,
-      'user_id': userId,
+      'product_id': product_id,
+      'user_id': user_id,
+      'sizes': sizes,
+      'colors': colors,
     };
   }
 }
