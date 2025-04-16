@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:example/core/network/models/order_detail_model/order_detail_model.dart';
@@ -8,6 +10,20 @@ import 'package:example/cubits/order/order_state.dart';
 
 class OrderCubit extends Cubit<OrderState> {
   OrderCubit() : super(OrderInitial());
+
+  Future<void> getOrder(String userId) async {
+    try {
+      emit(OrderLoading());
+      final response = await OrderRespository().getOrder(userId);
+      if (response.isNotEmpty) {
+        emit(OrderLoaded(response));
+      } else {
+        emit(OrderError("No orders found"));
+      }
+    } catch (e) {
+      emit(OrderError("Failed to get order:${e.toString()}"));
+    }
+  }
 
   Future<void> postOrder(Order order, List<OrderDetail> orderDetails) async {
     emit(OrderInitial());
