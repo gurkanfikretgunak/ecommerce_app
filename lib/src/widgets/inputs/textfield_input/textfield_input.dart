@@ -55,7 +55,10 @@ class _TextFieldInputState extends State<TextFieldInput> {
 
   Widget _buildPhoneNumberInput() {
     return InternationalPhoneNumberInput(
-      onInputChanged: (PhoneNumber number) {},
+      onInputChanged: widget.onChanged != null
+          ? (PhoneNumber phoneNumber) =>
+              widget.onChanged!(phoneNumber.phoneNumber ?? '')
+          : null,
       selectorConfig: const SelectorConfig(
         setSelectorButtonAsPrefixIcon: true,
         leadingPadding: 0,
