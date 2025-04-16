@@ -1,3 +1,5 @@
+import 'package:example/core/network/models/cart_model/cart_model.dart';
+import 'package:example/cubits/cart/cart_cubit.dart';
 import 'package:example/cubits/wishlist/wishlist_cubit.dart';
 import 'package:example/cubits/wishlist/wishlist_state.dart';
 import 'package:example/views/auth/models/auth_cubit.dart';
@@ -51,6 +53,22 @@ class _WishlistState extends State<Wishlist> {
                       )));
                 }
                 return WishlistListLayout(
+                  onCartAddPressed: (index) {
+                    context.read<CartCubit>().postCart(Cart(
+                          userId: userId,
+                          productId: state.wishlist[index].product_id!,
+                          quantity: 1,
+                          unitPrice: state.wishlist[index].product!.price,
+                          size: state.wishlist[index].selectedSize ??
+                              state.wishlist[index].sizes[0],
+                          color: state.wishlist[index].colors[0],
+                        ));
+                    const ToastMessageLabel(
+                            title: "Product Added to Cart",
+                            type: ToastType.success,
+                            description: "Product Added to Cart Successfully")
+                        .show(context);
+                  },
                   onRemovePressed: (index) {
                     context
                         .read<WishlistCubit>()
@@ -62,6 +80,9 @@ class _WishlistState extends State<Wishlist> {
                       name: item.product!.name,
                       price: item.product!.price,
                       sizeList: item.sizes,
+                      onSizeChange: (value) {
+                        item.selectedSize = value;
+                      },
                     );
                   }).toList(),
                 );
