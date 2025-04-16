@@ -176,12 +176,44 @@ class _CheckoutState extends State<Checkout> {
                     onPressed: widget.buttonCallBack ??
                         () async {
                           final cartState = context.read<CartCubit>().state;
+                          final billingState =
+                              context.read<BillingDetailCubit>().state;
+                          final paymentState =
+                              context.read<PaymentMethodCubit>().state;
+
                           if (cartState is CartLoaded &&
                               userState is AuthAuthenticated) {
                             final cartItems = cartState.cart;
+
                             if (cartItems.isNotEmpty) {
+                              if (billingState is! BillingDetailLoaded ||
+                                  billingState.billingDetail.isEmpty ||
+                                  (paymentState is! PaymentMethodLoaded ||
+                                      paymentState.paymentMethods.isEmpty)) {
+                                const ToastMessageLabel(
+                                  title: 'No Address Or Payment Method found',
+                                  description:
+                                      "Please add an address and payment method to proceed.",
+                                  type: ToastType.warning,
+                                ).show(context);
+
+                                return;
+                              }
+
+                              final billingDetail =
+                                  billingState.billingDetail.first;
+                              final paymentMethod =
+                                  paymentState.paymentMethods.first;
+
                               final order = Order(
                                 user_id: userState.user!.id,
+                                billing_name:
+                                    ' ${billingDetail.firstName} ${billingDetail.lastName}',
+                                billing_address: billingDetail.address,
+                                billing_email: billingDetail.emailAddress,
+                                billing_phone: billingDetail.phoneNumber,
+                                payment_method_name: paymentMethod.name,
+                                payment_method_token: paymentMethod.token,
                                 total_price: await context
                                     .read<CartCubit>()
                                     .getCartTotal(userState.user.id),
