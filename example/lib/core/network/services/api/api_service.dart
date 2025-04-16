@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:example/core/network/models/billing_detail_model/billing_detail_model.dart';
 import 'package:example/core/network/models/cart_model/cart_model.dart';
 import 'package:example/core/network/models/categorie_model/categorie_model.dart';
+import 'package:example/core/network/models/order_detail_model/order_detail_model.dart';
+import 'package:example/core/network/models/order_model/order_model.dart';
 import 'package:example/core/network/models/payment_method_model/payment_method_model.dart';
 import 'package:example/core/network/models/product_detail_model/product_detail_model.dart';
 import 'package:example/core/network/models/product_model/product_model.dart';
@@ -117,6 +119,22 @@ abstract class ApiService {
     @Header('apikey') String? apikey,
     @Header('Authorization') String? authToken,
     @Body() required Map<String, dynamic> request,
+  });
+
+  @GET('orders')
+  Future<List<Order>> getOrders({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('user_id') String? user_id,
+    @Query('select') String select = '*',
+  });
+
+  @GET('order_detail')
+  Future<List<OrderDetail>> getOrderDetail({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Query('order_id') String? order_id,
+    @Query('select') String select = '*',
   });
 
   @GET('billing_details')
