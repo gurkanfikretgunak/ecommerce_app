@@ -16,6 +16,8 @@ OrderDetail _$OrderDetailFromJson(Map<String, dynamic> json) => OrderDetail(
       total_price: (json['total_price'] as num?)?.toDouble(),
       size: json['size'] as String?,
       color: json['color'] as String?,
+      image: json['image'] as String?,
+      name: json['name'] as String?,
     );
 
 Map<String, dynamic> _$OrderDetailToJson(OrderDetail instance) =>
@@ -29,4 +31,6 @@ Map<String, dynamic> _$OrderDetailToJson(OrderDetail instance) =>
       'total_price': instance.total_price,
       'size': instance.size,
       'color': instance.color,
+      'image': instance.image,
+      'name': instance.name,
     };

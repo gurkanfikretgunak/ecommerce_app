@@ -13,6 +13,8 @@ class OrderDetail {
   double? total_price;
   String? size;
   String? color;
+  String? image;
+  String? name;
 
   OrderDetail({
     this.id,
@@ -24,6 +26,8 @@ class OrderDetail {
     this.total_price,
     this.size,
     this.color,
+    this.image,
+    this.name,
   });
 
   factory OrderDetail.fromJson(Map<String, dynamic> json) {
@@ -37,6 +41,8 @@ class OrderDetail {
       total_price: (json['total_price'] as num).toDouble(),
       size: json['size'] as String,
       color: json['color'] as String,
+      image: json['image'] as String,
+      name: json['name'] as String,
     );
   }
 
@@ -47,6 +53,8 @@ class OrderDetail {
       'unit_price': unit_price,
       'size': size,
       'color': color,
+      'image': image,
+      'name': name,
     };
   }
 }

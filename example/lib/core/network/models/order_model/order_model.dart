@@ -1,3 +1,4 @@
+import 'package:example/core/network/models/order_detail_model/order_detail_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'order_model.g.dart';
@@ -16,6 +17,8 @@ class Order {
   String? payment_method_name;
   String? payment_method_token;
 
+  OrderDetail? orderDetail;
+
   Order({
     this.id,
     this.total_price,
@@ -32,17 +35,17 @@ class Order {
 
   factory Order.fromJson(Map<String, dynamic> json) {
     return Order(
-      id: json['id'] as int,
-      total_price: json['total_price'] as double,
-      created_at: json['created_at'] as String,
-      user_id: json['user_id'] as String,
-      status: json['status'] as String,
-      billing_name: json['billing_name'] as String,
-      billing_address: json['billing_address'] as String,
-      billing_email: json['billing_email'] as String,
-      billing_phone: json['billing_phone'] as String,
-      payment_method_name: json['payment_method_name'] as String,
-      payment_method_token: json['payment_method_token'] as String,
+      id: json['id'],
+      total_price: json['total_price'],
+      created_at: json['created_at'],
+      user_id: json['user_id'],
+      status: json['status'],
+      billing_name: json['billing_name'],
+      billing_address: json['billing_address'],
+      billing_email: json['billing_email'],
+      billing_phone: json['billing_phone'],
+      payment_method_name: json['payment_method_name'],
+      payment_method_token: json['payment_method_token'],
     );
   }
 
