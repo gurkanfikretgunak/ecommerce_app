@@ -28,7 +28,7 @@ class WishlistRespository {
           item.product = product.first;
         }
       }
-      print("Wishlist response: $response");
+
       return response;
     } catch (e) {
       rethrow;

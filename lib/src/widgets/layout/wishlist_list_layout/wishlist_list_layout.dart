@@ -5,7 +5,7 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class WishlistListLayout extends StatefulWidget {
   final List<ProductBoxModal> items;
-  final VoidCallback? onCartAddPressed;
+  final Function(int)? onCartAddPressed;
   final Function(int)? onRemovePressed;
   const WishlistListLayout(
       {super.key,
@@ -33,6 +33,12 @@ class _WishlistListLayoutState extends State<WishlistListLayout> {
             children: [
               ProductBoxRowLayout(
                 item: CartAddRemoveButtonLabel(
+                  onCartAddPressed: (_) {
+                    if (widget.onCartAddPressed != null) {
+                      // ignore: prefer_null_aware_method_calls
+                      widget.onCartAddPressed!(index);
+                    }
+                  },
                   onRemovePressed: (_) {
                     if (widget.onRemovePressed != null) {
                       // ignore: prefer_null_aware_method_calls

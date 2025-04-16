@@ -225,6 +225,8 @@ class _CheckoutState extends State<Checkout> {
                                   unit_price: item.unitPrice,
                                   color: item.color,
                                   size: item.size,
+                                  image: item.product!.image,
+                                  name: item.product!.name,
                                 );
                               }).toList();
 

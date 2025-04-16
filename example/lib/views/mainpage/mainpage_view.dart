@@ -75,7 +75,7 @@ class _MainpageViewState extends State<MainpageView> {
       child: Scaffold(
         body: BlocBuilder<BottomNavigationCubit, int>(
           builder: (context, currentPage) {
-            return getPage(currentPage);
+            return getPage(index: currentPage);
           },
         ),
         bottomNavigationBar: BlocBuilder<BottomNavigationCubit, int>(
@@ -93,12 +93,14 @@ class _MainpageViewState extends State<MainpageView> {
     );
   }
 
-  Widget getPage(int index) {
+  Widget getPage({required int index, bool? isShowOrder}) {
     switch (index) {
       case 0:
         return const HomeView();
       case 1:
-        return const OrderwishlistView();
+        return OrderwishlistView(
+          showOrder: isShowOrder,
+        );
       case 2:
         return PaymentView();
       case 3:

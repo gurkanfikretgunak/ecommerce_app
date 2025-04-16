@@ -20,6 +20,7 @@ class ProductReviewColumnLayout extends StatelessWidget {
         SizedBox(
           height: items.length * 100,
           child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: items.length,
             itemBuilder: (context, index) {
               return Container(
