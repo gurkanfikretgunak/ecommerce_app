@@ -14,6 +14,7 @@ class ProductBoxModal extends StatefulWidget {
   final double? spacing;
   final double? fontSize;
   final VoidCallback? onTap;
+  final Function(String)? onSizeChange;
   final Color? color;
   final String? size;
   final List<String>? sizeList;
@@ -34,6 +35,7 @@ class ProductBoxModal extends StatefulWidget {
     this.color,
     this.size,
     this.sizeList,
+    this.onSizeChange,
   });
 
   double get total => quantity * price;
@@ -101,6 +103,9 @@ class _ProductBoxModalState extends State<ProductBoxModal> {
                           selected: selectedSize,
                           onSelected: (String value) {
                             setState(() {
+                              if (widget.onSizeChange != null) {
+                                widget.onSizeChange!(value);
+                              }
                               selectedSize = value;
                             });
                           },

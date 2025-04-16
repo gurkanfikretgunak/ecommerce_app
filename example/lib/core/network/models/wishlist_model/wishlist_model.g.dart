@@ -17,6 +17,8 @@ Wishlist _$WishlistFromJson(Map<String, dynamic> json) => Wishlist(
       sizes: (json['sizes'] as List<dynamic>).map((e) => e as String).toList(),
       colors:
           (json['colors'] as List<dynamic>).map((e) => e as String).toList(),
+      selectedSize: json['selectedSize'] as String?,
+      selectedColor: json['selectedColor'] as String?,
     );
 
 Map<String, dynamic> _$WishlistToJson(Wishlist instance) => <String, dynamic>{
@@ -26,5 +28,7 @@ Map<String, dynamic> _$WishlistToJson(Wishlist instance) => <String, dynamic>{
       'user_id': instance.user_id,
       'sizes': instance.sizes,
       'colors': instance.colors,
+      'selectedSize': instance.selectedSize,
+      'selectedColor': instance.selectedColor,
       'product': instance.product,
     };

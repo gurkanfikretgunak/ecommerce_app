@@ -12,6 +12,9 @@ class Wishlist {
   final List<String> sizes;
   final List<String> colors;
 
+  String? selectedSize;
+  String? selectedColor;
+
   Product? product;
 
   Wishlist({
@@ -22,6 +25,8 @@ class Wishlist {
     this.product,
     required this.sizes,
     required this.colors,
+    this.selectedSize,
+    this.selectedColor,
   });
 
   factory Wishlist.fromJson(Map<String, dynamic> json) {
