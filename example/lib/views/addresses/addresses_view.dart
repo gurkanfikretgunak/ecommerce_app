@@ -42,16 +42,7 @@ class _AddressesViewState extends State<AddressesView> {
           ),
         ),
         body: BlocListener<BillingDetailCubit, BillingDetailState>(
-          listener: (context, state) {
-            if (state is BillingDetailError) {
-              final toast = ToastMessageLabel(
-                title: 'Failed to get billing detail',
-                description: state.message,
-                type: ToastType.error,
-              );
-              toast.show(context);
-            }
-          },
+          listener: (context, state) {},
           child: Column(
             children: [
               Expanded(
@@ -70,7 +61,7 @@ class _AddressesViewState extends State<AddressesView> {
                       if (state.billingDetail.isEmpty) {
                         return Center(
                           child: HeadText(
-                            text: "Cart is Empty",
+                            text: "No Address Found",
                             color: ColorConstant.instance.neutral1,
                           ),
                         );
@@ -105,12 +96,14 @@ class _AddressesViewState extends State<AddressesView> {
                         ),
                       );
                     } else if (state is BillingDetailError) {
-                      return const Center(
-                        child: Text("Failed to load billing details."),
+                      return Center(
+                        child: ContentText(
+                            text: "Failed to load billing details.",
+                            color: ColorConstant.instance.neutral1),
                       );
                     }
                     return const Center(
-                      child: Text("Unexpected state."),
+                      child: ContentText(text: "Unexpected state."),
                     );
                   },
                 ),

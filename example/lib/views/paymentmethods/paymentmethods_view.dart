@@ -43,16 +43,7 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
         ),
       ),
       body: BlocListener<PaymentMethodCubit, PaymentMethodState>(
-        listener: (context, state) {
-          if (state is PaymentMethodError) {
-            final toast = ToastMessageLabel(
-              title: 'Failed to load payment methods',
-              description: state.message,
-              type: ToastType.error,
-            );
-            toast.show(context);
-          }
-        },
+        listener: (context, state) {},
         child: Column(
           children: [
             Expanded(
@@ -120,8 +111,10 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
                       ),
                     );
                   } else if (state is PaymentMethodError) {
-                    return const Center(
-                      child: Text("Failed to load payment methods."),
+                    return Center(
+                      child: ContentText(
+                          text: "Failed to load payment methods.",
+                          color: ColorConstant.instance.neutral1),
                     );
                   }
                   return const Center(child: Text("Loading..."));
