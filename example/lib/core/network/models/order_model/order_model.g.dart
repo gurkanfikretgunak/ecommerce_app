@@ -11,8 +11,13 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
       total_price: (json['total_price'] as num?)?.toDouble(),
       created_at: json['created_at'] as String?,
       user_id: json['user_id'] as String?,
-      billing_details_id: (json['billing_details_id'] as num?)?.toInt(),
-      payment_method_id: (json['payment_method_id'] as num?)?.toInt(),
+      status: json['status'] as String?,
+      billing_name: json['billing_name'] as String?,
+      billing_address: json['billing_address'] as String?,
+      billing_email: json['billing_email'] as String?,
+      billing_phone: json['billing_phone'] as String?,
+      payment_method_name: json['payment_method_name'] as String?,
+      payment_method_token: json['payment_method_token'] as String?,
     );
 
 Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
@@ -20,6 +25,11 @@ Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'total_price': instance.total_price,
       'created_at': instance.created_at,
       'user_id': instance.user_id,
-      'billing_details_id': instance.billing_details_id,
-      'payment_method_id': instance.payment_method_id,
+      'status': instance.status,
+      'billing_name': instance.billing_name,
+      'billing_address': instance.billing_address,
+      'billing_email': instance.billing_email,
+      'billing_phone': instance.billing_phone,
+      'payment_method_name': instance.payment_method_name,
+      'payment_method_token': instance.payment_method_token,
     };
