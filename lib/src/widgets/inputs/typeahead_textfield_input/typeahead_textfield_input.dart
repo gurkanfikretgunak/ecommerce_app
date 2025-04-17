@@ -12,6 +12,7 @@ class TypeaheadTextfieldInput extends StatefulWidget {
   final InputBorder? border;
   final TextStyle? labelStyle;
   final TextStyle? textStyle;
+  final Function(String)? onTextChanged;
 
   const TypeaheadTextfieldInput({
     super.key,
@@ -24,6 +25,7 @@ class TypeaheadTextfieldInput extends StatefulWidget {
     this.textStyle,
     this.labelColor,
     this.activeColor,
+    this.onTextChanged,
   });
 
   @override
@@ -101,8 +103,9 @@ class _TypeaheadTextfieldInputState extends State<TypeaheadTextfieldInput> {
           ),
         );
       },
-      onSuggestionSelected: (String selectedCountry) {
-        widget.controller.text = selectedCountry;
+      onSuggestionSelected: (String text) {
+        widget.controller.text = text;
+        widget.onTextChanged!(text);
       },
     );
   }
