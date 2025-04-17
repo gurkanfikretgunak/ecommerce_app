@@ -144,7 +144,7 @@ class _OrderwishlistViewState extends State<OrderwishlistView> {
                   : Wishlist(items: productBoxRowItems),
               SectionLayout(
                 sectionText: "YOU ALSO VIEWED",
-                layout: ProductGridLayout(productItems: productCardItems),
+                layout: ProductRowLayout(items: productCardItems),
               ),
             ],
           ),

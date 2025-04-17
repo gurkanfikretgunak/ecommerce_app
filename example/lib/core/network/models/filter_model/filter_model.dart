@@ -37,7 +37,7 @@ class Filter {
 
   Map<String, dynamic> toJson() {
     return {
-      'searchText': searchText,
+      'search_text': searchText,
       'tags': tags,
       'categorie': categorie,
       'color': color?.value.toRadixString(16).padLeft(8, '0').toUpperCase(),

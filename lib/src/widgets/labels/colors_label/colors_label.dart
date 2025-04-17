@@ -17,7 +17,7 @@ class ColorsLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Color> colorsList =
         colors ?? [Colors.red, Colors.blue, Colors.green, Colors.yellow];
-    final Color selected = selectedColor ?? colorsList[0];
+    final Color selected = selectedColor ?? Colors.white;
 
     return Row(
       children: colorsList.map((color) {

@@ -118,7 +118,7 @@ class _CartState extends State<Cart> {
               context.emptySizedHeightBoxNormal,
               SectionLayout(
                 sectionText: "YOU ALSO VIEWED",
-                layout: ProductGridLayout(productItems: productCardItems),
+                layout: ProductRowLayout(items: productCardItems),
               ),
               Opacity(
                 opacity: isCartEmpty ? 0.5 : 1.0,

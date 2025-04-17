@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:equatable/equatable.dart';
 import 'package:example/core/network/models/wishlist_model/wishlist_model.dart';
 
