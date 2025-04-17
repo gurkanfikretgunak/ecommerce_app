@@ -231,4 +231,11 @@ abstract class ApiService {
     @Query('product_id') String? product_id,
     @Query('select') String select = '*',
   });
+
+  @POST("rpc/search_products")
+  Future<List<Product>> getSearchProducts({
+    @Header('apikey') String? apikey,
+    @Header('Authorization') String? authToken,
+    @Body() required Map<String, dynamic> body,
+  });
 }
