@@ -10,6 +10,8 @@ class PopupSuccesLabel extends StatelessWidget {
   final double? titleFontSize;
   final String iconPath;
   final VoidCallback buttonOnPressed;
+  final String? succesIconPath;
+
   const PopupSuccesLabel({
     super.key,
     required this.title,
@@ -20,6 +22,7 @@ class PopupSuccesLabel extends StatelessWidget {
     this.titleFontSize,
     required this.iconPath,
     required this.buttonOnPressed,
+    this.succesIconPath,
   });
 
   @override
@@ -40,6 +43,9 @@ class PopupSuccesLabel extends StatelessWidget {
                   children: [
                     RadiusIconLabel(
                       iconPath: iconPath,
+                      topRightIconPath:
+                          succesIconPath ?? "assets/icons/success.svg",
+                      radiusColor: ColorConstant.instance.green2,
                     ),
                     context.emptySizedHeightBoxNormal,
                     HeadText(

@@ -3,23 +3,42 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class AddressFormLabel extends StatefulWidget {
-  const AddressFormLabel({super.key});
+  final TextEditingController firstNameController;
+  final TextEditingController lastNameController;
+  final TextEditingController countryController;
+  final TextEditingController streetAddressController;
+  final TextEditingController cityController;
+  final TextEditingController phoneController;
+  final TextEditingController emailController;
+  final Function(String)? onChangedEmail;
+  final Function(String)? onChangedPhone;
+  final bool isDefault;
+  final bool? isPhoneValid;
+  final bool? isEmailValid;
+  final ValueChanged<bool> onDefaultChanged;
+
+  const AddressFormLabel({
+    super.key,
+    required this.firstNameController,
+    required this.lastNameController,
+    required this.countryController,
+    required this.streetAddressController,
+    required this.cityController,
+    required this.phoneController,
+    required this.emailController,
+    required this.isDefault,
+    required this.onDefaultChanged,
+    this.isPhoneValid,
+    this.isEmailValid,
+    this.onChangedEmail,
+    this.onChangedPhone,
+  });
 
   @override
   State<AddressFormLabel> createState() => _AddressFormLabelState();
 }
 
 class _AddressFormLabelState extends State<AddressFormLabel> {
-  final TextEditingController firstNameController = TextEditingController();
-  final TextEditingController lastNameController = TextEditingController();
-  final TextEditingController countryController = TextEditingController();
-  final TextEditingController streetAddressController = TextEditingController();
-  final TextEditingController cityController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-
-  bool isDefault = false;
-
   final List<String> countries = [
     'Afghanistan',
     'Albania',
@@ -68,15 +87,17 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
             children: [
               Expanded(
                 child: TextFieldInput(
-                  controller: firstNameController,
+                  controller: widget.firstNameController,
                   hintText: 'First Name*',
+                  isValid: true,
                 ),
               ),
               context.emptySizedWidthBoxNormal,
               Expanded(
                 child: TextFieldInput(
-                  controller: lastNameController,
+                  controller: widget.lastNameController,
                   hintText: 'Last Name*',
+                  isValid: true,
                 ),
               ),
             ],
@@ -86,78 +107,72 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
           padding: const EdgeInsets.only(bottom: 10.0),
           child: TypeaheadTextfieldInput(
             items: countries,
-            controller: countryController,
+            controller: widget.countryController,
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
           child: TextFieldInput(
-            controller: streetAddressController,
+            controller: widget.streetAddressController,
             hintText: 'Street address*',
+            isValid: true,
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
           child: TextFieldInput(
-            controller: cityController,
+            controller: widget.cityController,
             hintText: 'Town/City*',
+            isValid: true,
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
           child: TextFieldInput(
-            controller: phoneController,
+            controller: widget.phoneController,
             inputType: InputType.phone,
             hintText: 'Phone Number*',
+            onChanged: widget.onChangedPhone,
+            isValid: widget.isPhoneValid ?? true,
           ),
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
           child: TextFieldInput(
-            controller: emailController,
+            controller: widget.emailController,
             inputType: InputType.email,
             hintText: 'Email Address*',
+            onChanged: widget.onChangedEmail,
+            isValid: widget.isEmailValid ?? true,
           ),
         ),
         context.emptySizedHeightBoxNormal,
         Padding(
-            padding: const EdgeInsets.only(bottom: 10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ContentText(
-                  text: "Choose Location",
-                  fontSize: 14,
-                  color: ColorConstant.instance.neutral1,
-                ),
-                context.emptySizedHeightBoxLow,
-                const SizedBox(
-                  height: 250,
-                  child: MapLabel(),
-                ),
-                context.emptySizedHeightBoxNormal,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ContentText(
-                      text: "Set Default Address",
-                      fontSize: 14,
-                      color: ColorConstant.instance.neutral1,
-                    ),
-                    Switch(
-                      value: isDefault,
-                      onChanged: (value) {
-                        setState(() {
-                          isDefault = value;
-                        });
-                      },
-                      activeTrackColor: ColorConstant.instance.primary_main,
-                      activeColor: ColorConstant.instance.neutral9,
-                    )
-                  ],
-                )
-              ],
-            )),
+          padding: const EdgeInsets.only(bottom: 10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              context.emptySizedHeightBoxLow,
+              context.emptySizedHeightBoxNormal,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ContentText(
+                    text: "Set Default Address",
+                    fontSize: 14,
+                    color: ColorConstant.instance.neutral1,
+                  ),
+                  Switch(
+                    value: widget.isDefault,
+                    onChanged: widget.onDefaultChanged,
+                    activeTrackColor: ColorConstant.instance.primary_main,
+                    activeColor: ColorConstant.instance.neutral9,
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
       ],
     );
   }

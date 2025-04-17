@@ -29,6 +29,15 @@ dev_dependencies:
   flutter_gen_runner: 
   retrofit_generator: ^9.1.9
   auto_route_generator: ^9.0.0
+  flutter_launcher_icons: ^0.14.3
+  flutter_flavor: ^3.1.4
+
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/logo_background.png"
+
 
 flutter_gen:
   output: lib/gen/ # Optional (default: lib/gen/)
@@ -41,6 +50,7 @@ flutter_gen:
 flutter:
   uses-material-design: true
   assets:
+    - assets/env/.env
     - .env
     - assets/images/
     - assets/icons/

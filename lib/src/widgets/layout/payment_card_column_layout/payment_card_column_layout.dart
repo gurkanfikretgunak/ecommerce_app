@@ -3,7 +3,9 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class PaymentCardColumnLayout extends StatefulWidget {
   final List<PaymentCardModal>? paymentCardItems;
-  const PaymentCardColumnLayout({super.key, this.paymentCardItems});
+  final Function(int)? deletePaymentCardCallBack;
+  const PaymentCardColumnLayout(
+      {super.key, this.paymentCardItems, this.deletePaymentCardCallBack});
 
   @override
   State<PaymentCardColumnLayout> createState() =>
@@ -15,21 +17,7 @@ class _PaymentCardColumnLayoutState extends State<PaymentCardColumnLayout> {
   @override
   void initState() {
     super.initState();
-    paymentCardItems = widget.paymentCardItems ??
-        [
-          const PaymentCardModal(
-              cartNumber: "1234567891011121",
-              name: "Kaan Çerkez",
-              brand: CartBrand.mastercard,
-              expirationDate: "09/29"),
-          PaymentCardModal(
-            cartNumber: "99999999999999999999",
-            name: "Kaan Çerkez",
-            color: ColorConstant.instance.neutral1,
-            brand: CartBrand.mastercard,
-            expirationDate: "09/29",
-          ),
-        ];
+    paymentCardItems = widget.paymentCardItems ?? [];
   }
 
   @override
@@ -38,16 +26,44 @@ class _PaymentCardColumnLayoutState extends State<PaymentCardColumnLayout> {
       children: [
         ListView.separated(
           shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
           separatorBuilder: (context, index) =>
               context.emptySizedHeightBoxNormal,
           itemCount: paymentCardItems.length,
           itemBuilder: (context, index) {
-            return PaymentCardModal(
-              cartNumber: paymentCardItems[index].cartNumber,
-              name: paymentCardItems[index].name,
-              color: paymentCardItems[index].color,
-              expirationDate: paymentCardItems[index].expirationDate,
-              brand: paymentCardItems[index].brand,
+            return Dismissible(
+              key: Key(paymentCardItems[index].cartNumber),
+              direction: DismissDirection.endToStart,
+              background: Container(),
+              secondaryBackground: Container(
+                color: ColorConstant.instance.secondary2,
+                alignment: Alignment.centerRight,
+                // padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: const Icon(Icons.delete, color: Colors.white),
+              ),
+              confirmDismiss: (direction) async {
+                if (direction == DismissDirection.endToStart) {
+                  return true;
+                }
+                return false;
+              },
+              onDismissed: (direction) {
+                setState(() {
+                  paymentCardItems.removeAt(index);
+                  if (widget.deletePaymentCardCallBack != null) {
+                    widget.deletePaymentCardCallBack!(index);
+                  }
+                });
+              },
+              child: PaymentCardModal(
+                cartNumber: paymentCardItems[index].cartNumber,
+                name: paymentCardItems[index].name,
+                isSelected: paymentCardItems[index].isSelected,
+                color: paymentCardItems[index].color,
+                expirationDate: paymentCardItems[index].expirationDate,
+                brand: paymentCardItems[index].brand,
+                onTap: paymentCardItems[index].onTap,
+              ),
             );
           },
         ),

@@ -22,8 +22,33 @@ def flutterVersionName = localProperties.getProperty("flutter.versionName")
 if (flutterVersionName == null) {
     flutterVersionName = "1.0"
 }
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 
 android {
+
+    flavorDimensions "flavor-type"
+
+    productFlavors{
+        dev
+        {
+        dimension "flavor-type"
+        applicationIdSuffix ".dev"
+        
+        versionNameSuffix "-dev"
+        resValue "string", "app_name_dev", "E-Commerce Example Dev"
+        }
+        prod
+        {
+            dimension "flavor-type"
+            resValue "string", "app_name_prod", "E-Commerce Example Prod"
+            
+        }
+    }
+
     namespace = "com.example.example"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
@@ -49,9 +74,18 @@ android {
         ]
     }
 
+    signingConfigs {
+        release {
+            storeFile file("upload-keystore.jks") 
+            storePassword localProperties.getProperty('STORE_PASSWORD', '')
+            keyAlias "upload"            
+            keyPassword localProperties.getProperty('KEY_PASSWORD', '')      
+        }
+    }
+
     buildTypes {
         release {
-            signingConfig = signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
 }

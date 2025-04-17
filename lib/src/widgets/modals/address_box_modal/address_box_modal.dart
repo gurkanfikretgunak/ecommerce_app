@@ -13,11 +13,11 @@ class AddressBoxModal extends StatelessWidget {
   final Color? emailColor;
   final Color? phoneColor;
 
-  final bool? isSelected;
+  bool? isSelected;
 
   final VoidCallback? onTap;
 
-  const AddressBoxModal({
+  AddressBoxModal({
     super.key,
     required this.name,
     required this.address,

@@ -1,3 +1,4 @@
+import 'package:example/core/network/models/product_model/product_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'cart_model.g.dart';
@@ -8,22 +9,25 @@ class Cart {
   final String? createdId;
   final String userId;
   final int productId;
-  final String productImage;
-  final String productName;
-  final int quantity;
-  final double unitPrice;
-  final double? totalPrice;
+  final String size;
+  final String color;
+
+  int quantity;
+  double unitPrice;
+  double? totalPrice;
+  Product? product;
 
   Cart({
     this.id,
     this.createdId,
     required this.userId,
     required this.productId,
-    required this.productImage,
-    required this.productName,
     required this.quantity,
     required this.unitPrice,
+    required this.size,
+    required this.color,
     this.totalPrice,
+    this.product,
   });
 
   factory Cart.fromJson(Map<String, dynamic> json) {
@@ -32,11 +36,11 @@ class Cart {
       createdId: json['created_id'],
       userId: json['user_id'],
       productId: json['product_id'],
-      productImage: json['product_image'],
-      productName: json['product_name'],
       quantity: json['quantity'],
       unitPrice: (json['unit_price'] as num).toDouble(),
       totalPrice: (json['total_price'] as num).toDouble(),
+      size: json['size'],
+      color: json['color'],
     );
   }
 
@@ -44,10 +48,10 @@ class Cart {
     return {
       'user_id': userId,
       'product_id': productId,
-      'product_image': productImage,
-      'product_name': productName,
       'quantity': quantity,
       'unit_price': unitPrice,
+      'size': size,
+      'color': color,
     };
   }
 }

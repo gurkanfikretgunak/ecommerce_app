@@ -4,8 +4,14 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 class ProductBottomSheetLabel extends StatefulWidget {
   final String price;
   final VoidCallback? buttonOnPressed;
+  final VoidCallback? favoriteOnPressed;
+  final bool isFavorite;
   const ProductBottomSheetLabel(
-      {super.key, required this.price, this.buttonOnPressed});
+      {super.key,
+      required this.price,
+      this.buttonOnPressed,
+      this.favoriteOnPressed,
+      required this.isFavorite});
 
   @override
   State<ProductBottomSheetLabel> createState() =>
@@ -13,7 +19,13 @@ class ProductBottomSheetLabel extends StatefulWidget {
 }
 
 class _ProductBottomSheetLabelState extends State<ProductBottomSheetLabel> {
-  bool isFavorite = false;
+  late bool isFavorite;
+
+  @override
+  void initState() {
+    super.initState();
+    isFavorite = widget.isFavorite;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +58,7 @@ class _ProductBottomSheetLabelState extends State<ProductBottomSheetLabel> {
             ),
             SizedBox(width: screenWidth * 0.05),
             InkWell(
-              onTap: () {
-                setState(() {
-                  isFavorite = !isFavorite;
-                });
-              },
+              onTap: widget.favoriteOnPressed,
               child: Icon(
                 size: 24,
                 isFavorite ? Icons.favorite : Icons.favorite_border,

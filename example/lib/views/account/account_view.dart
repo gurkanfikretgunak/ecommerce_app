@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:example/cubits/auth/auth_cubit.dart';
-import 'package:example/cubits/auth/auth_state.dart';
+import 'package:example/views/auth/models/auth_cubit.dart';
+import 'package:example/views/auth/models/auth_state.dart';
 import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/route/route.gr.dart';
+import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
@@ -74,9 +75,7 @@ class _AccountViewState extends State<AccountView> {
         child: CustomAppbar(
           text: "ACCOUNT",
           onPressed: () {
-            setState(() {
-              Navigator.pop(context);
-            });
+            context.read<BottomNavigationCubit>().setPage(0);
           },
           iconColor: ColorConstant.instance.neutral1,
         ),
@@ -93,7 +92,7 @@ class _AccountViewState extends State<AccountView> {
                 child: Column(
                   children: [
                     AccountBoxLabel(
-                      imagePath: state.user.profile_picture,
+                      imagePath: state.user.profile_picture!,
                       name: user.display_name ?? "",
                       username: user.email ?? "",
                       icon: Icons.photo_camera,
@@ -107,8 +106,7 @@ class _AccountViewState extends State<AccountView> {
                           height: 40,
                           color: ColorConstant.instance.neutral9,
                           onPressed: () {
-                            AutoRouter.of(context)
-                                .push(OrderwishlistViewRoute(showOrder: true));
+                            context.read<BottomNavigationCubit>().setPage(1);
                           },
                           text: "My Order",
                           iconColor: ColorConstant.instance.neutral1,
@@ -122,8 +120,7 @@ class _AccountViewState extends State<AccountView> {
                           height: 40,
                           color: ColorConstant.instance.neutral9,
                           onPressed: () {
-                            AutoRouter.of(context)
-                                .push(OrderwishlistViewRoute());
+                            context.read<BottomNavigationCubit>().setPage(1);
                           },
                           text: "Wishlist",
                           iconColor: ColorConstant.instance.neutral1,

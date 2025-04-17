@@ -4,7 +4,7 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 enum CartBrand { mastercard, visa }
 
 class PaymentMethodBoxModal extends StatelessWidget {
-  final CartBrand? brand;
+  final String? brand;
   final String text;
   final Color? textColor;
   final Color? backgroundColor;
@@ -31,15 +31,20 @@ class PaymentMethodBoxModal extends StatelessWidget {
     String logoPath;
 
     switch (brand) {
-      case CartBrand.mastercard:
-        logoPath = 'assets/images/mastercard.png';
+      case "Visa":
+        logoPath = "assets/images/Visa.png";
+
         break;
-      case CartBrand.visa:
-        logoPath = 'assets/images/visa.png';
+      case "MasterCard":
+        logoPath = "assets/images/mastercard.png";
+
+        break;
+      case "American Express":
+        logoPath = "assets/images/amex.png";
+
         break;
       default:
-        logoPath = 'assets/images/mastercard.png';
-        break;
+        logoPath = "";
     }
 
     return GestureDetector(
@@ -63,11 +68,19 @@ class PaymentMethodBoxModal extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Image.asset(logoPath),
+                        if (logoPath.isNotEmpty)
+                          Image.asset(
+                            logoPath,
+                            width: 40,
+                          ),
+                        if (logoPath.isNotEmpty)
+                          const SizedBox(
+                            width: 5,
+                          ),
                         context.emptySizedWidthBoxLow,
                         ContentText(
                           text: text,
-                          fontSize: fontSize ?? 14,
+                          fontSize: fontSize ?? 12,
                           color: textColor ?? ColorConstant.instance.neutral1,
                         ),
                       ],

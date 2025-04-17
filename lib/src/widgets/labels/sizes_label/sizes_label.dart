@@ -16,8 +16,8 @@ class SizesLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> sizesList = sizes ?? ["S", "M", "L", "XL"];
-    final String selected = selectedSize ?? sizesList[0];
+    final List<String> sizesList = sizes ?? ["XS", "S", "M", "L", "XL"];
+    final String selected = selectedSize ?? "";
 
     return Row(
       children: sizesList.map((size) {

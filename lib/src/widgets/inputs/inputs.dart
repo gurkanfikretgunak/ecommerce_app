@@ -1,6 +1,7 @@
 export 'package:shopapp_widgets/src/widgets/inputs/categories_textfield_input/categories_textfield_input.dart';
 export 'package:shopapp_widgets/src/widgets/inputs/color_radius_input/color_radius_input.dart';
 export 'package:shopapp_widgets/src/widgets/inputs/couponcode_textfield_input/couponcode_textfield_input.dart';
+export 'package:shopapp_widgets/src/widgets/inputs/dropdown_menu_input/dropdown_menu_input.dart';
 export 'package:shopapp_widgets/src/widgets/inputs/otp_textfield_input/otp_textfield_input.dart';
 export 'package:shopapp_widgets/src/widgets/inputs/quantity_selector_input/quantity_selector_input.dart';
 export 'package:shopapp_widgets/src/widgets/inputs/range_slider_input/range_slider_input.dart';

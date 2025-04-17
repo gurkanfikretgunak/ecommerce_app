@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:example/core/gen/assets.gen.dart';
-import 'package:example/views/signin/signin_view.dart';
+import 'package:example/views/auth/signin/signin_view.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';

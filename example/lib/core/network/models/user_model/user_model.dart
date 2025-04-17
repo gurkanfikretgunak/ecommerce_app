@@ -8,7 +8,7 @@ class User {
   final String email;
   final String phone_number;
   final String created_at;
-  final String profile_picture;
+  final String? profile_picture;
   final String display_name;
   final String first_name;
   final String last_name;
@@ -18,7 +18,7 @@ class User {
       required this.email,
       required this.phone_number,
       required this.created_at,
-      required this.profile_picture,
+      this.profile_picture,
       required this.display_name,
       required this.first_name,
       required this.last_name});
@@ -36,15 +36,20 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    return {
+    final Map<String, dynamic> data = {
       'id': id,
       'email': email,
       'phone_number': phone_number,
       'created_at': created_at,
-      'profile_picture': profile_picture,
       'display_name': display_name,
       'first_name': first_name,
       'last_name': last_name,
     };
+
+    if (profile_picture != null) {
+      data['profile_picture'] = profile_picture;
+    }
+
+    return data;
   }
 }

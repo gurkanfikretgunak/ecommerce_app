@@ -40,6 +40,7 @@ class _ReviewFormLabelState extends State<ReviewFormLabel> {
         TextFieldInput(
           hintText: "Your Review * ",
           controller: widget.reviewTextController,
+          isValid: true,
         ),
         context.emptySizedHeightBoxLow,
         /*TextFieldInput(

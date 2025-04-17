@@ -1,6 +1,11 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:example/cubits/payment_step/payment_step_cubit.dart';
-import 'package:example/cubits/payment_step/payment_step_state.dart';
+import 'package:example/cubits/cart/cart_cubit.dart';
+import 'package:example/cubits/order/order_cubit.dart';
+import 'package:example/views/auth/models/auth_cubit.dart';
+import 'package:example/views/auth/models/auth_state.dart';
+import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
+import 'package:example/views/payment/models/payment_step_cubit.dart';
+import 'package:example/views/payment/models/payment_step_state.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:example/core/widgets/cart.dart';
 import 'package:example/core/widgets/checkout.dart';
@@ -11,28 +16,9 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 @RoutePage()
 class PaymentView extends StatelessWidget {
-  PaymentView({super.key});
+  final int? initialStep;
 
-  List<Widget> getStepContents(BuildContext context) {
-    return [
-      Cart(
-        buttonCallBack: () {
-          context.read<PaymentStepCubit>().nextStep();
-        },
-      ),
-      Checkout(
-        buttonCallBack: () {
-          context.read<PaymentStepCubit>().nextStep();
-        },
-      ),
-      OrderSuccess(
-        onPrimaryButtonPressed: () {},
-        onSecondaryButtonPressed: () {
-          AutoRouter.of(context).push(MainpageViewRoute());
-        },
-      ),
-    ];
-  }
+  PaymentView({super.key, this.initialStep = 0});
 
   final List<String> stepTitles = [
     "Cart",
@@ -40,40 +26,96 @@ class PaymentView extends StatelessWidget {
     "Payment",
   ];
 
+  List<Widget> getStepContents(
+      BuildContext context, AuthAuthenticated authState) {
+    return [
+      Cart(
+        buttonCallBack: () {
+          context.read<PaymentStepCubit>().nextStep();
+        },
+        userId: authState.user.id,
+      ),
+      const Checkout(
+          /* buttonCallBack: () {
+          context.read<PaymentStepCubit>().nextStep();
+        },*/
+          ),
+      OrderSuccess(
+        onPrimaryButtonPressed: () {
+          context.read<BottomNavigationCubit>().setPage(1);
+        },
+        onSecondaryButtonPressed: () {
+          context.read<BottomNavigationCubit>().setPage(0);
+        },
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => PaymentStepCubit(),
-      child: BlocBuilder<PaymentStepCubit, PaymentStepState>(
-        builder: (context, state) {
-          int currentStep = state is PaymentStepChanged ? state.currentStep : 0;
+      create: (context) {
+        final cubit = PaymentStepCubit(initialStep: initialStep ?? 0);
+        if (initialStep != null) {
+          cubit.changeStep(initialStep!);
+        }
+        return cubit;
+      },
+      child: BlocBuilder<AuthCubit, AuthState>(
+        builder: (context, authState) {
+          if (authState is! AuthAuthenticated) {
+            return Scaffold(
+              appBar: AppBar(title: const Text("Payment")),
+              body: const Center(child: Text("Please log in to continue.")),
+            );
+          }
 
-          return Scaffold(
-            appBar: PreferredSize(
-              preferredSize: const Size.fromHeight(60),
-              child: CustomAppbar(
-                text: stepTitles[currentStep],
-                onPressed: () {
-                  if (currentStep == 0) {
-                    Navigator.pop(context);
-                    return;
-                  }
-                  context.read<PaymentStepCubit>().previousStep();
-                },
-                iconColor: ColorConstant.instance.neutral1,
-              ),
-            ),
-            body: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(15),
-                child: Column(
-                  children: [
-                    StepperLabel(currentStep: currentStep),
-                    Center(child: getStepContents(context)[currentStep]),
-                  ],
+          return BlocBuilder<PaymentStepCubit, PaymentStepState>(
+            builder: (context, state) {
+              int currentStep = state is PaymentStepChanged
+                  ? state.currentStep
+                  : initialStep!;
+
+              return Scaffold(
+                appBar: PreferredSize(
+                  preferredSize: const Size.fromHeight(60),
+                  child: CustomAppbar(
+                    text: stepTitles[currentStep],
+                    onPressed: () {
+                      if (currentStep == 0) {
+                        context.read<BottomNavigationCubit>().setPage(0);
+                        return;
+                      }
+                      context.read<PaymentStepCubit>().previousStep();
+                    },
+                    iconColor: ColorConstant.instance.neutral1,
+                  ),
                 ),
-              ),
-            ),
+                body: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Column(
+                      children: [
+                        StepperLabel(currentStep: currentStep),
+                        Center(
+                            child: getStepContents(
+                                context, authState)[currentStep]),
+                      ],
+                    ),
+                  ),
+                ),
+                floatingActionButton: currentStep == 0
+                    ? CustomFloatingActionButton(
+                        icon: Icons.delete,
+                        onPressed: () {
+                          context
+                              .read<CartCubit>()
+                              .clearCart(authState.user.id);
+                        },
+                      )
+                    : null,
+              );
+            },
           );
         },
       ),

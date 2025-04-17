@@ -50,9 +50,9 @@ class _NofiticationBoxModalState extends State<NofiticationBoxModal> {
           radius: widget.radius ?? 30,
           width: widget.width ?? 20,
           height: widget.height ?? 20,
-          successIconRadius: widget.successIconRadius ?? 5,
+          topRightRadius: widget.successIconRadius ?? 5,
           iconPath: widget.iconPath,
-          successIconColor: widget.isSeen
+          topRightIconColor: widget.isSeen
               ? ColorConstant.instance.neutral5
               : widget.successIconColor ?? ColorConstant.instance.primary_main,
           color: widget.isSeen

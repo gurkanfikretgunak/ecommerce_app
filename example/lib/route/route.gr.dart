@@ -10,9 +10,13 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i23;
-import 'package:example/core/network/models/categorie_model/categorie_model.dart' as _i26;
+import 'package:example/core/network/models/categorie_model/categorie_model.dart'
+    as _i25;
+import 'package:example/core/widgets/checkout.dart' as _i5;
 import 'package:example/views/account/account_view.dart' as _i1;
 import 'package:example/views/addresses/addresses_view.dart' as _i2;
+import 'package:example/views/auth/signin/signin_view.dart' as _i19;
+import 'package:example/views/auth/signup/signup_view.dart' as _i20;
 import 'package:example/views/categorie_products/categorie_products_view.dart'
     as _i3;
 import 'package:example/views/categories/categories_view.dart' as _i4;
@@ -29,13 +33,9 @@ import 'package:example/views/paymentmethods/paymentmethods_view.dart' as _i14;
 import 'package:example/views/product/product_view.dart' as _i16;
 import 'package:example/views/profile/profile_view.dart' as _i17;
 import 'package:example/views/search/search_view.dart' as _i18;
-import 'package:example/views/signin/signin_view.dart' as _i19;
-import 'package:example/views/signup/signup_view.dart' as _i20;
 import 'package:example/views/splash/splash_view.dart' as _i21;
 import 'package:example/views/verifiticion/verification_view.dart' as _i22;
-import 'package:example/core/widgets/checkout.dart' as _i5;
 import 'package:flutter/material.dart' as _i24;
-import 'package:shopapp_widgets/shoapp_ui_kit.dart' as _i25;
 
 /// generated route for
 /// [_i1.AccountView]
@@ -55,41 +55,18 @@ class AccountViewRoute extends _i23.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.AddressesView]
-class AddressesViewRoute extends _i23.PageRouteInfo<AddressesViewRouteArgs> {
-  AddressesViewRoute({
-    _i24.Key? key,
-    List<_i25.AddressBoxModal>? addressItems,
-    List<_i23.PageRouteInfo>? children,
-  }) : super(
-         AddressesViewRoute.name,
-         args: AddressesViewRouteArgs(key: key, addressItems: addressItems),
-         initialChildren: children,
-       );
+class AddressesViewRoute extends _i23.PageRouteInfo<void> {
+  const AddressesViewRoute({List<_i23.PageRouteInfo>? children})
+    : super(AddressesViewRoute.name, initialChildren: children);
 
   static const String name = 'AddressesViewRoute';
 
   static _i23.PageInfo page = _i23.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<AddressesViewRouteArgs>(
-        orElse: () => const AddressesViewRouteArgs(),
-      );
-      return _i2.AddressesView(key: args.key, addressItems: args.addressItems);
+      return const _i2.AddressesView();
     },
   );
-}
-
-class AddressesViewRouteArgs {
-  const AddressesViewRouteArgs({this.key, this.addressItems});
-
-  final _i24.Key? key;
-
-  final List<_i25.AddressBoxModal>? addressItems;
-
-  @override
-  String toString() {
-    return 'AddressesViewRouteArgs{key: $key, addressItems: $addressItems}';
-  }
 }
 
 /// generated route for
@@ -98,7 +75,7 @@ class CategorieProductsViewRoute
     extends _i23.PageRouteInfo<CategorieProductsViewRouteArgs> {
   CategorieProductsViewRoute({
     _i24.Key? key,
-    required _i26.Categorie categorie,
+    required _i25.Categorie categorie,
     List<_i23.PageRouteInfo>? children,
   }) : super(
          CategorieProductsViewRoute.name,
@@ -125,7 +102,7 @@ class CategorieProductsViewRouteArgs {
 
   final _i24.Key? key;
 
-  final _i26.Categorie categorie;
+  final _i25.Categorie categorie;
 
   @override
   String toString() {
@@ -382,12 +359,15 @@ class PaymentMethodsViewRoute extends _i23.PageRouteInfo<void> {
 /// generated route for
 /// [_i15.PaymentView]
 class PaymentViewRoute extends _i23.PageRouteInfo<PaymentViewRouteArgs> {
-  PaymentViewRoute({_i24.Key? key, List<_i23.PageRouteInfo>? children})
-    : super(
-        PaymentViewRoute.name,
-        args: PaymentViewRouteArgs(key: key),
-        initialChildren: children,
-      );
+  PaymentViewRoute({
+    _i24.Key? key,
+    int? initialStep = 0,
+    List<_i23.PageRouteInfo>? children,
+  }) : super(
+         PaymentViewRoute.name,
+         args: PaymentViewRouteArgs(key: key, initialStep: initialStep),
+         initialChildren: children,
+       );
 
   static const String name = 'PaymentViewRoute';
 
@@ -397,19 +377,21 @@ class PaymentViewRoute extends _i23.PageRouteInfo<PaymentViewRouteArgs> {
       final args = data.argsAs<PaymentViewRouteArgs>(
         orElse: () => const PaymentViewRouteArgs(),
       );
-      return _i15.PaymentView(key: args.key);
+      return _i15.PaymentView(key: args.key, initialStep: args.initialStep);
     },
   );
 }
 
 class PaymentViewRouteArgs {
-  const PaymentViewRouteArgs({this.key});
+  const PaymentViewRouteArgs({this.key, this.initialStep = 0});
 
   final _i24.Key? key;
 
+  final int? initialStep;
+
   @override
   String toString() {
-    return 'PaymentViewRouteArgs{key: $key}';
+    return 'PaymentViewRouteArgs{key: $key, initialStep: $initialStep}';
   }
 }
 

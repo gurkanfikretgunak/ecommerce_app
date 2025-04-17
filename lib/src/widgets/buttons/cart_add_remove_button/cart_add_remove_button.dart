@@ -5,7 +5,7 @@ class CartAddRemoveButton extends StatelessWidget {
   final Color? color;
   final IconData icon;
   final Color? iconColor;
-  final VoidCallback? onPressed;
+  final Function(int)? onPressed;
   const CartAddRemoveButton(
       {super.key,
       this.color,
@@ -16,7 +16,7 @@ class CartAddRemoveButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed ?? () {},
+      onPressed: onPressed != null ? () => onPressed!(0) : () {},
       style: ElevatedButton.styleFrom(
         backgroundColor: color ?? ColorConstant.instance.neutral1,
         shape: CircleBorder(),

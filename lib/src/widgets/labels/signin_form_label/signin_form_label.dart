@@ -6,6 +6,8 @@ class SignInFormLabel extends StatefulWidget {
   final TextEditingController passwordController;
   final Function(String)? onChangedEmail;
   final Function(String)? onChangedPassword;
+  final String? emailErrorMessage;
+  final String? passwordErrorMessage;
   final bool? isEmailValid;
   final bool? isPasswordValid;
   final bool rememberMe;
@@ -17,6 +19,8 @@ class SignInFormLabel extends StatefulWidget {
     required this.passwordController,
     this.onChangedEmail,
     this.onChangedPassword,
+    this.emailErrorMessage,
+    this.passwordErrorMessage,
     this.isEmailValid,
     this.isPasswordValid,
     required this.rememberMe,
@@ -46,6 +50,7 @@ class _SignInFormLabelState extends State<SignInFormLabel> {
               ),
               context.emptySizedHeightBoxLow,
               TextFieldInput(
+                errorMessage: widget.emailErrorMessage,
                 controller: widget.emailController,
                 hintText: "Enter Email",
                 inputType: InputType.email,
@@ -59,6 +64,7 @@ class _SignInFormLabelState extends State<SignInFormLabel> {
               ),
               context.emptySizedHeightBoxNormal,
               TextFieldInput(
+                errorMessage: widget.passwordErrorMessage,
                 controller: widget.passwordController,
                 hintText: "Enter Password",
                 inputType: InputType.password,

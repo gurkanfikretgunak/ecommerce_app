@@ -53,7 +53,7 @@ class _CheckoutListLayoutState extends State<CheckoutListLayout> {
             },
           ),
         ),
-        const CouponcodeTextfieldInput(),
+        //const CouponcodeTextfieldInput(),
         context.emptySizedHeightBoxNormal,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -3,7 +3,9 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class MyorderListLayout extends StatefulWidget {
   final List<ProductBoxModal> items;
-  const MyorderListLayout({super.key, required this.items});
+  final List<OrderDetailBoxLabel>? rightItem;
+
+  const MyorderListLayout({super.key, required this.items, this.rightItem});
 
   @override
   State<MyorderListLayout> createState() => _MyorderListLayoutState();
@@ -22,7 +24,10 @@ class _MyorderListLayoutState extends State<MyorderListLayout> {
         itemBuilder: (context, index) {
           return Column(
             children: [
-              ProductBoxRowLayout(productBox: widget.items[index]),
+              ProductBoxRowLayout(
+                productBox: widget.items[index],
+                item: widget.rightItem![index],
+              ),
               context.emptySizedHeightBoxNormal,
             ],
           );

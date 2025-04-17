@@ -14,7 +14,7 @@ class ProductDetail {
   final List<String> sizes;
   final String description;
   final List<String> description_image;
-  final bool is_favorite;
+
   List<Review>? reviews;
 
   ProductDetail({
@@ -27,7 +27,6 @@ class ProductDetail {
     required this.sizes,
     required this.description,
     required this.description_image,
-    required this.is_favorite,
     this.reviews,
   });
 
@@ -42,7 +41,6 @@ class ProductDetail {
       sizes: List<String>.from(json['sizes']),
       description: json['description'],
       description_image: List<String>.from(json['description_image']),
-      is_favorite: json['is_favorite'],
       reviews: (json['reviews'] as List<dynamic>?)
               ?.map((reviewJson) => Review.fromJson(reviewJson))
               .toList() ??
@@ -61,7 +59,6 @@ class ProductDetail {
       'sizes': sizes,
       'description': description,
       'description_image': description_image,
-      'is_favorite': is_favorite,
     };
   }
 }

@@ -12,10 +12,15 @@ class ProductBoxRowLayout extends StatefulWidget {
 
 class _ProductBoxRowLayoutState extends State<ProductBoxRowLayout> {
   @override
+  @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [widget.productBox, if (widget.item != null) widget.item!],
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(child: widget.productBox),
+        if (widget.item != null) widget.item!,
+        const SizedBox.shrink()
+      ],
     );
   }
 }

@@ -3,7 +3,14 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class AddressesColumnLayout extends StatefulWidget {
   final List<AddressBoxModal> addressItems;
-  const AddressesColumnLayout({super.key, required this.addressItems});
+  final Function(int)? patchBillingDetailCallBack;
+  final Function(int)? deleteBillingDetailCallBack;
+
+  const AddressesColumnLayout(
+      {super.key,
+      required this.addressItems,
+      this.patchBillingDetailCallBack,
+      this.deleteBillingDetailCallBack});
 
   @override
   State<AddressesColumnLayout> createState() => _AddressesColumnLayoutState();
@@ -11,10 +18,17 @@ class AddressesColumnLayout extends StatefulWidget {
 
 class _AddressesColumnLayoutState extends State<AddressesColumnLayout> {
   int? selectedIndex;
-
   @override
   void initState() {
     super.initState();
+    for (int i = 0; i < widget.addressItems.length; i++) {
+      if (widget.addressItems[i].isSelected!) {
+        setState(() {
+          selectedIndex = i;
+        });
+        break;
+      }
+    }
   }
 
   @override
@@ -29,41 +43,41 @@ class _AddressesColumnLayoutState extends State<AddressesColumnLayout> {
                 context.emptySizedHeightBoxNormal,
             itemBuilder: (context, index) {
               return Dismissible(
-                  key: Key(widget.addressItems[index].name),
-                  direction: DismissDirection.endToStart,
-                  background: Container(),
-                  secondaryBackground: Container(
-                    color: ColorConstant.instance.secondary2,
-                    alignment: Alignment.centerRight,
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: const Icon(Icons.delete, color: Colors.white),
-                  ),
-                  confirmDismiss: (direction) async {
-                    if (direction == DismissDirection.endToStart) {
-                      return true;
+                key: Key(index.toString()),
+                direction: DismissDirection.endToStart,
+                background: Container(),
+                secondaryBackground: Container(
+                  color: ColorConstant.instance.secondary2,
+                  alignment: Alignment.centerRight,
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: const Icon(Icons.delete, color: Colors.white),
+                ),
+                confirmDismiss: (direction) async {
+                  if (direction == DismissDirection.endToStart) {
+                    return true;
+                  }
+                  return false;
+                },
+                onDismissed: (direction) {
+                  setState(() {
+                    widget.addressItems.removeAt(index);
+                    if (widget.deleteBillingDetailCallBack != null) {
+                      widget.deleteBillingDetailCallBack!(index);
                     }
-                    return false;
-                  },
-                  onDismissed: (direction) {
-                    setState(() {
-                      widget.addressItems.removeAt(index);
-                      if (widget.addressItems.isEmpty) {
-                        Navigator.pop(context);
-                      }
-                    });
-                  },
-                  child: AddressBoxModal(
-                    name: widget.addressItems[index].name,
-                    address: widget.addressItems[index].address,
-                    email: widget.addressItems[index].email,
-                    phone: widget.addressItems[index].phone,
-                    isSelected: selectedIndex == index,
-                    onTap: () {
-                      setState(() {
-                        selectedIndex = index;
-                      });
-                    },
-                  ));
+                    if (widget.addressItems.isEmpty) {
+                      Navigator.pop(context);
+                    }
+                  });
+                },
+                child: AddressBoxModal(
+                  name: widget.addressItems[index].name,
+                  address: widget.addressItems[index].address,
+                  email: widget.addressItems[index].email,
+                  phone: widget.addressItems[index].phone,
+                  isSelected: selectedIndex == index,
+                  onTap: widget.addressItems[index].onTap!,
+                ),
+              );
             },
           ),
         ),

@@ -20,6 +20,12 @@ class SignUpForm extends StatefulWidget {
   final bool? isPhoneValid;
   final bool? isPasswordValid;
   final bool? isConfirmPasswordValid;
+  final String? firstNameErrorMessage;
+  final String? lastNameErrorMessage;
+  final String? emailErrorMessage;
+  final String? phoneErrorMessage;
+  final String? passwordErrorMessage;
+  final String? confirmPasswordErrorMessage;
 
   const SignUpForm({
     super.key,
@@ -41,6 +47,12 @@ class SignUpForm extends StatefulWidget {
     this.isPhoneValid,
     this.isPasswordValid,
     this.isConfirmPasswordValid,
+    this.firstNameErrorMessage,
+    this.lastNameErrorMessage,
+    this.emailErrorMessage,
+    this.phoneErrorMessage,
+    this.passwordErrorMessage,
+    this.confirmPasswordErrorMessage,
   });
 
   @override
@@ -64,6 +76,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     controller: widget.firstNameController,
                     hintText: 'First Name',
                     onChanged: widget.onChangedFirstName,
+                    errorMessage: widget.firstNameErrorMessage,
                     isValid: widget.isFirstNameValid ?? false,
                   ),
                 ),
@@ -73,6 +86,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     controller: widget.lastNameController,
                     hintText: 'Last Name',
                     onChanged: widget.onChangedLastName,
+                    errorMessage: widget.lastNameErrorMessage,
                     isValid: widget.isLastNameValid ?? false,
                   ),
                 ),
@@ -84,6 +98,7 @@ class _SignUpFormState extends State<SignUpForm> {
               hintText: 'Email',
               inputType: InputType.email,
               onChanged: widget.onChangedEmail,
+              errorMessage: widget.emailErrorMessage,
               isValid: widget.isEmailValid ?? false,
             ),
             context.emptySizedHeightBoxNormal,
@@ -92,6 +107,7 @@ class _SignUpFormState extends State<SignUpForm> {
               hintText: 'Phone Number',
               inputType: InputType.phone,
               onChanged: widget.onChangedPhone,
+              errorMessage: widget.phoneErrorMessage,
               isValid: widget.isPhoneValid ?? false,
             ),
             context.emptySizedHeightBoxNormal,
@@ -99,6 +115,7 @@ class _SignUpFormState extends State<SignUpForm> {
               controller: widget.passwordController,
               hintText: 'Password',
               inputType: InputType.password,
+              errorMessage: widget.passwordErrorMessage,
               onChanged: widget.onChangedPassword,
               isValid: widget.isPasswordValid ?? false,
             ),
@@ -107,6 +124,7 @@ class _SignUpFormState extends State<SignUpForm> {
               controller: widget.confirmPasswordController,
               hintText: 'Confirm Password',
               inputType: InputType.password,
+              errorMessage: widget.confirmPasswordErrorMessage,
               onChanged: widget.onChangedConfirmPassword,
               isValid: widget.isConfirmPasswordValid ?? false,
             ),

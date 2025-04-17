@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
-import 'package:shopapp_widgets/src/widgets/layout/product_box_row_layout/product_box_row_layout.dart';
 
 class CartListLayout extends StatefulWidget {
   final List<ProductBoxModal> items;
+  final Function(int, int)? onQuantityChanged;
 
-  const CartListLayout({super.key, required this.items});
+  const CartListLayout({
+    super.key,
+    required this.items,
+    this.onQuantityChanged,
+  });
 
   @override
   State<CartListLayout> createState() => _CartListLayoutState();
 }
 
 class _CartListLayoutState extends State<CartListLayout> {
+  double total = 0.0;
+
   @override
   void initState() {
     super.initState();
-    calculateTotal();
+    total = calculateTotal();
   }
 
   double calculateTotal() {
@@ -24,6 +30,16 @@ class _CartListLayoutState extends State<CartListLayout> {
       total += item.total;
     }
     return total;
+  }
+
+  void _onQuantityChanged(int index, int newQuantity) {
+    if (widget.onQuantityChanged != null) {
+      widget.onQuantityChanged!(index, newQuantity);
+    }
+    setState(() {
+      widget.items[index].quantity = newQuantity;
+      total = calculateTotal();
+    });
   }
 
   @override
@@ -43,10 +59,9 @@ class _CartListLayoutState extends State<CartListLayout> {
                 children: [
                   ProductBoxRowLayout(
                     item: QuantitySelectorInput(
+                      count: widget.items[index].quantity,
                       onQuantityChanged: (newQuantity) {
-                        setState(() {
-                          widget.items[index].quantity = newQuantity;
-                        });
+                        _onQuantityChanged(index, newQuantity);
                       },
                     ),
                     productBox: widget.items[index],
@@ -68,7 +83,7 @@ class _CartListLayoutState extends State<CartListLayout> {
             ContentText(
               color: ColorConstant.instance.primary_main,
               fontSize: 18,
-              text: "\$ ${calculateTotal().toStringAsFixed(2)}",
+              text: "\$ ${total.toStringAsFixed(2)}",
             ),
           ],
         ),

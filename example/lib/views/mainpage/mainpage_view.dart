@@ -1,10 +1,9 @@
 import 'package:auto_route/annotations.dart';
-import 'package:example/cubits/auth/auth_cubit.dart';
-import 'package:example/cubits/auth/auth_state.dart';
-import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
-import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/views/account/account_view.dart';
+import 'package:example/views/auth/models/auth_cubit.dart';
+import 'package:example/views/auth/models/auth_state.dart';
 import 'package:example/views/home/home_view.dart';
+import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
 import 'package:example/views/orderwishlist/orderwishlist_view.dart';
 import 'package:example/views/payment/payment_view.dart';
 import 'package:example/views/search/search_view.dart';
@@ -52,7 +51,7 @@ class _MainpageViewState extends State<MainpageView> {
             return AccountPictureLabel(
               imageWidth: 24,
               imageHeight: 24,
-              imagePath: state.user.profile_picture,
+              imagePath: state.user!.profile_picture!,
             );
           }
           return const SizedBox();
@@ -76,7 +75,7 @@ class _MainpageViewState extends State<MainpageView> {
       child: Scaffold(
         body: BlocBuilder<BottomNavigationCubit, int>(
           builder: (context, currentPage) {
-            return getPage(currentPage);
+            return getPage(index: currentPage);
           },
         ),
         bottomNavigationBar: BlocBuilder<BottomNavigationCubit, int>(
@@ -94,12 +93,14 @@ class _MainpageViewState extends State<MainpageView> {
     );
   }
 
-  Widget getPage(int index) {
+  Widget getPage({required int index, bool? isShowOrder}) {
     switch (index) {
       case 0:
         return const HomeView();
       case 1:
-        return const OrderwishlistView();
+        return OrderwishlistView(
+          showOrder: isShowOrder,
+        );
       case 2:
         return PaymentView();
       case 3:

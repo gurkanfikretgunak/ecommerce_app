@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:shopapp_widgets/src/widgets/inputs/size_box_input/size_box_input.dart';
 
 class ProductBoxModal extends StatefulWidget {
   final String imagePath;
@@ -12,19 +13,29 @@ class ProductBoxModal extends StatefulWidget {
   final double? imageHeight;
   final double? spacing;
   final double? fontSize;
+  final VoidCallback? onTap;
+  final Function(String)? onSizeChange;
+  final Color? color;
+  final String? size;
+  final List<String>? sizeList;
 
   ProductBoxModal({
     super.key,
     required this.imagePath,
     required this.name,
     required this.price,
-    this.quantity = 1,
+    this.quantity = 0,
     this.textColor,
     this.priceColor,
     this.imageWidth,
     this.imageHeight,
     this.spacing,
     this.fontSize,
+    this.onTap,
+    this.color,
+    this.size,
+    this.sizeList,
+    this.onSizeChange,
   });
 
   double get total => quantity * price;
@@ -34,38 +45,93 @@ class ProductBoxModal extends StatefulWidget {
 }
 
 class _ProductBoxModalState extends State<ProductBoxModal> {
+  late String selectedSize;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedSize = widget.sizeList != null ? widget.sizeList![0] : "S";
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(
-          width: widget.imageWidth ?? 60,
-          height: widget.imageHeight ?? 80,
-          child: Image.asset(
-            widget.imagePath,
-            fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: Row(
+        children: [
+          SizedBox(
+            width: widget.imageWidth ?? 60,
+            height: widget.imageHeight ?? 80,
+            child: _buildImage(widget.imagePath),
           ),
-        ),
-        SizedBox(width: widget.spacing ?? 10),
-        Align(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ContentText(
-                text: widget.name,
-                fontSize: widget.fontSize ?? 15,
-                color: widget.textColor ?? ColorConstant.instance.neutral1,
+          SizedBox(width: widget.spacing ?? 10),
+          Flexible(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ContentText(
+                    textAlign: TextAlign.start,
+                    softWrap: true,
+                    text: widget.name,
+                    fontSize: widget.fontSize ?? 15,
+                    color: widget.textColor ?? ColorConstant.instance.neutral1,
+                  ),
+                  SizedBox(height: widget.spacing ?? 3),
+                  Row(
+                    children: [
+                      ContentText(
+                        textAlign: TextAlign.start,
+                        text: "\$ ${widget.price}",
+                        fontSize: widget.fontSize ?? 15,
+                        color: widget.priceColor ??
+                            ColorConstant.instance.primary_main,
+                      ),
+                      SizedBox(width: widget.spacing ?? 5),
+                      if (widget.size != null)
+                        SizeBoxInput(
+                            height: 25,
+                            width: 35,
+                            isSelected: false,
+                            inStock: true,
+                            text: widget.size!,
+                            onTap: () {}),
+                      if (widget.sizeList != null)
+                        DropDownMenuInput(
+                          items: widget.sizeList!,
+                          selected: selectedSize,
+                          onSelected: (String value) {
+                            setState(() {
+                              if (widget.onSizeChange != null) {
+                                widget.onSizeChange!(value);
+                              }
+                              selectedSize = value;
+                            });
+                          },
+                        ),
+                    ],
+                  ),
+                ],
               ),
-              SizedBox(height: widget.spacing ?? 3),
-              ContentText(
-                text: "\$ ${widget.price}",
-                fontSize: widget.fontSize ?? 15,
-                color: widget.priceColor ?? ColorConstant.instance.primary_main,
-              ),
-            ],
-          ),
-        )
-      ],
+            ),
+          )
+        ],
+      ),
     );
+  }
+
+  Widget _buildImage(String path) {
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+      return Image.network(
+        path,
+        fit: BoxFit.cover,
+      );
+    } else {
+      return Image.asset(
+        path,
+        fit: BoxFit.cover,
+      );
+    }
   }
 }

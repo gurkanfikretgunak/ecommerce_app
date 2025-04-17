@@ -1,9 +1,12 @@
-import 'package:example/core/gen/assets.gen.dart';
-import 'package:example/views/filter/filter_view.dart';
-import 'package:example/route/route.gr.dart';
-import 'package:flutter/material.dart';
-import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:example/core/gen/assets.gen.dart';
+import 'package:example/cubits/search_cubit/search_cubit.dart';
+import 'package:example/cubits/search_cubit/search_state.dart';
+import 'package:example/route/route.gr.dart';
+import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 @RoutePage()
 class SearchView extends StatefulWidget {
@@ -14,39 +17,6 @@ class SearchView extends StatefulWidget {
 }
 
 class _SearchViewState extends State<SearchView> {
-  List<Widget> productCardItems = [
-    ProductCardModal(
-        imagePath: Assets.images.productcardimageSecond.path,
-        productStock: "Sold(50 Product)",
-        productName: "Printed Cotton Shirt",
-        productPrice: "\$45.00"),
-    ProductCardModal(
-        imagePath: Assets.images.productcardimageThird.path,
-        productStock: "Sold(50 Product)",
-        productName: "Cotton T-shirt",
-        productPrice: "\$49.00"),
-    ProductCardModal(
-        imagePath: Assets.images.productcardimageFourth.path,
-        productStock: "Sold(50 Product)",
-        productName: "Embroidered T-Shirt",
-        productPrice: "\$39.00"),
-    ProductCardModal(
-        imagePath: Assets.images.productcardimageSecond.path,
-        productStock: "Sold(50 Product)",
-        productName: "Printed Cotton Shirt",
-        productPrice: "\$45.00"),
-    ProductCardModal(
-        imagePath: Assets.images.productcardimageFourth.path,
-        productStock: "Sold(50 Product)",
-        productName: "Embroidered T-Shirt",
-        productPrice: "\$39.00"),
-    ProductCardModal(
-        imagePath: Assets.images.productcardimageThird.path,
-        productStock: "Sold(50 Product)",
-        productName: "Cotton T-shirt",
-        productPrice: "\$49.00"),
-  ];
-
   List<TagsLabel> tags = [
     const TagsLabel(label: "Shoes"),
     const TagsLabel(label: "Dresses"),
@@ -61,20 +31,25 @@ class _SearchViewState extends State<SearchView> {
     const TagsLabel(label: "Jacket"),
     const TagsLabel(label: "Top"),
   ];
+
+  final TextEditingController searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: SearchAppbar(
+          textOnChanged: (text) {
+            context.read<SearchCubit>().changeSearchText(text);
+          },
+          textEditingController: searchController,
           text: "Search Product ...",
           onPressed: () {
-            Navigator.pop(context);
+            context.read<BottomNavigationCubit>().setPage(0);
           },
           iconOnPressed: () {
-            AutoRouter.of(context).push(FilterViewRoute());
-            /*Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const FilterView()));*/
+            AutoRouter.of(context).push(const FilterViewRoute());
           },
           iconColor: ColorConstant.instance.neutral1,
         ),
@@ -92,12 +67,34 @@ class _SearchViewState extends State<SearchView> {
                 children: tags,
               ),
               context.emptySizedHeightBoxNormal,
-              SectionLayout(
-                  sectionText: "YOU ALSO VIEWED",
-                  layout: ProductGridLayout(
-                    productItems: productCardItems,
-                    mainAxisSpacing: 17,
-                  ))
+              BlocBuilder<SearchCubit, SearchState>(
+                builder: (context, state) {
+                  if (state is SearchApply) {
+                    return Column(
+                      children: [
+                        SectionLayout(
+                          sectionText: "Search Result",
+                          layout: ProductGridLayout(
+                              productItems: state.products
+                                  .map((e) => ProductCardModal(
+                                        imagePath: e.image,
+                                        productStock: e.sold_count.toString(),
+                                        productName: e.name,
+                                        productPrice: e.price.toString(),
+                                      ))
+                                  .toList()),
+                        ),
+                      ],
+                    );
+                  } else if (state is SearchError) {
+                    return Center(child: Text(state.message));
+                  } else if (state is SearchApply) {
+                    return Center(child: Text("Lütfen filtre seçiniz"));
+                  } else {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                },
+              ),
             ],
           ),
         ),

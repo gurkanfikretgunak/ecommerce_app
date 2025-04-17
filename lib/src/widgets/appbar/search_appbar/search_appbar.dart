@@ -7,6 +7,9 @@ class SearchAppbar extends StatefulWidget implements PreferredSizeWidget {
   final String? hintText;
   final VoidCallback? onPressed;
   final VoidCallback? iconOnPressed;
+  final TextEditingController? textEditingController;
+  final Function(String)? textOnChanged;
+
   const SearchAppbar({
     super.key,
     this.iconColor,
@@ -14,6 +17,8 @@ class SearchAppbar extends StatefulWidget implements PreferredSizeWidget {
     this.onPressed,
     this.hintText = 'Search Product...',
     required this.iconOnPressed,
+    this.textEditingController,
+    this.textOnChanged,
   });
 
   @override
@@ -43,7 +48,11 @@ class _SearchAppbarState extends State<SearchAppbar> {
             SizedBox(
               height: 75,
               width: screenWidth * 0.65,
-              child: SearchBarInput(hintText: widget.hintText ?? ''),
+              child: SearchBarInput(
+                textEditingController: widget.textEditingController,
+                hintText: widget.hintText ?? '',
+                textOnChanged: widget.textOnChanged,
+              ),
             ),
             IconButton(
               onPressed: widget.iconOnPressed,

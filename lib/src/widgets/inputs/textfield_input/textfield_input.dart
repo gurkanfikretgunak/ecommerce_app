@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
@@ -20,6 +21,8 @@ class TextFieldInput extends StatefulWidget {
   final FontWeight? hintFontWeight;
   final Function(String)? onChanged;
   final bool isValid;
+  final String? errorMessage;
+  final List<TextInputFormatter>? inputFormatters;
 
   const TextFieldInput({
     super.key,
@@ -33,6 +36,8 @@ class TextFieldInput extends StatefulWidget {
     this.hintFontWeight,
     this.onChanged,
     this.isValid = false,
+    this.errorMessage,
+    this.inputFormatters,
   });
 
   @override
@@ -50,7 +55,10 @@ class _TextFieldInputState extends State<TextFieldInput> {
 
   Widget _buildPhoneNumberInput() {
     return InternationalPhoneNumberInput(
-      onInputChanged: (PhoneNumber number) {},
+      onInputChanged: widget.onChanged != null
+          ? (PhoneNumber phoneNumber) =>
+              widget.onChanged!(phoneNumber.phoneNumber ?? '')
+          : null,
       selectorConfig: const SelectorConfig(
         setSelectorButtonAsPrefixIcon: true,
         leadingPadding: 0,
@@ -100,6 +108,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
       style: TextStyle(
         color: widget.isValid ? Colors.black : Colors.red,
       ),
+      inputFormatters: widget.inputFormatters,
       decoration: InputDecoration(
         labelText: widget.hintText,
         labelStyle: TextStyle(
@@ -125,6 +134,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
                 widget.isValid ? ColorConstant.instance.neutral5 : Colors.red,
           ),
         ),
+        errorText: widget.isValid ? null : widget.errorMessage,
         suffixIcon: widget.inputType == InputType.password
             ? IconButton(
                 icon: Icon(isObscure ? Icons.visibility_off : Icons.visibility),

@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:example/cubits/categories/categories_cubit.dart';
-import 'package:example/cubits/categories/categories_state.dart';
-import 'package:example/cubits/home/home_cubit.dart';
-import 'package:example/cubits/home/home_state.dart';
+import 'package:example/views/categories/models/categories_cubit.dart';
+import 'package:example/views/categories/models/categories_state.dart';
+import 'package:example/views/home/models/home_cubit.dart';
+import 'package:example/views/home/models/home_state.dart';
 import 'package:example/cubits/product/product_cubit.dart';
 import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/route/route.gr.dart';
