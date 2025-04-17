@@ -49,6 +49,7 @@ class _FilterViewState extends State<FilterView> {
       body: BlocBuilder<SearchCubit, SearchState>(
         builder: (context, state) {
           if (state is SearchApply) {
+            categorieController.text = state.filter.categorie ?? "";
             return SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(15),
@@ -70,13 +71,20 @@ class _FilterViewState extends State<FilterView> {
                       onPriceChanged: (price) {
                         context.read<SearchCubit>().changePrice(price);
                       },
+                      iconCallBack: () {
+                        context.read<SearchCubit>().clearFilters();
+                      },
+                      onCategorieChanged: (categorie) {
+                        context.read<SearchCubit>().changeCategorie(categorie);
+                      },
                     ),
                     const SizedBox(height: 20),
                     CustomButton(
                       height: 50,
                       text: "Apply Filter",
                       onPressed: () {
-                        context.read<BottomNavigationCubit>().setPage(3);
+                        print(state.filter.toJson());
+                        Navigator.pop(context);
                       },
                     ),
                   ],
