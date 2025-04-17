@@ -5,7 +5,7 @@ class RangeSliderInput extends StatefulWidget {
   final double? min;
   final double? max;
   final RangeValues? initialRange;
-  final ValueChanged<RangeValues>? onChanged;
+  final Function(double)? onChanged;
   final double? trackHeight;
   final Color? activeTrackColor;
   final Color? inactiveTrackColor;
@@ -90,7 +90,7 @@ class _RangeSliderInputState extends State<RangeSliderInput> {
                     RangeValues(_currentRangeValues.start, values.end);
               });
               if (widget.onChanged != null) {
-                widget.onChanged!(values);
+                widget.onChanged!(values.end.round().toDouble());
               }
             },
           ),
