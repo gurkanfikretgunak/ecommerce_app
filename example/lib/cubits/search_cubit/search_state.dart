@@ -12,34 +12,18 @@ class SearchInitial extends SearchState {}
 
 class SearchApply extends SearchState {
   final Filter filter;
-
-  List<Object?> get props => [
-        filter,
-      ];
-
-  SearchApply({required this.filter});
-  SearchApply copyWith({final Filter? filter}) {
-    return SearchApply(
-      filter: filter ?? this.filter,
-    );
-  }
-}
-
-class SearchLoaded extends SearchState {
   final List<Product> products;
 
-  SearchLoaded({required this.products});
-  @override
-  List<Object?> get props => [products];
-}
+  SearchApply({required this.filter, required this.products});
 
-class SearchSuccess extends SearchState {
-  final String message;
+  List<Object?> get props => [filter, products];
 
-  SearchSuccess(this.message);
-
-  @override
-  List<Object?> get props => [message];
+  SearchApply copyWith({Filter? filter, List<Product>? products}) {
+    return SearchApply(
+      filter: filter ?? this.filter,
+      products: products ?? this.products,
+    );
+  }
 }
 
 class SearchError extends SearchState {
