@@ -10,6 +10,9 @@ class FilterFormLabel extends StatefulWidget {
   final String? selectedSize;
   final Function(String)? onSizeSelected;
   final Function(double)? onPriceChanged;
+  final Function(String)? onCategorieChanged;
+
+  final VoidCallback? iconCallBack;
 
   final List<String>? sizes;
   const FilterFormLabel(
@@ -22,7 +25,9 @@ class FilterFormLabel extends StatefulWidget {
       this.sizes,
       this.selectedSize,
       this.onSizeSelected,
-      this.onPriceChanged});
+      this.onPriceChanged,
+      this.iconCallBack,
+      this.onCategorieChanged});
 
   @override
   State<FilterFormLabel> createState() => _FilterFormLabelState();
@@ -53,9 +58,7 @@ class _FilterFormLabelState extends State<FilterFormLabel> {
                   textAlign: TextAlign.center,
                 ),
                 IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+                  onPressed: widget.iconCallBack,
                   icon: Icon(
                     Icons.close,
                     color: ColorConstant.instance.neutral1,
@@ -69,6 +72,7 @@ class _FilterFormLabelState extends State<FilterFormLabel> {
             child: TypeaheadTextfieldInput(
               items: widget.categories,
               labelText: "Categorie",
+              onTextChanged: widget.onCategorieChanged,
               controller: widget.categorieController,
             ),
           ),

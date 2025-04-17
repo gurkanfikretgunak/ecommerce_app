@@ -6,6 +6,10 @@ class SearchBarInput extends StatefulWidget {
   final Color? borderColor;
   final Color? focusedBorderColor;
   final Color? fillColor;
+
+  final TextEditingController? textEditingController;
+  final Function(String)? textOnChanged;
+
   final EdgeInsetsGeometry? contentPadding;
 
   const SearchBarInput({
@@ -15,6 +19,8 @@ class SearchBarInput extends StatefulWidget {
     this.focusedBorderColor,
     this.fillColor,
     this.contentPadding,
+    this.textEditingController,
+    this.textOnChanged,
   });
 
   @override
@@ -37,6 +43,8 @@ class _SearchBarInputState extends State<SearchBarInput> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextField(
+        controller: widget.textEditingController,
+        onChanged: widget.textOnChanged,
         decoration: InputDecoration(
           hintText: widget.hintText,
           border: OutlineInputBorder(
