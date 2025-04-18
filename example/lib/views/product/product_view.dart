@@ -83,6 +83,11 @@ class _ProductViewState extends State<ProductView> {
         if (productState is ProductLoading) {
           return const Center(child: CircularProgressIndicator());
         } else if (productState is ProductLoaded) {
+          final product = (productState as ProductLoaded).product;
+
+          context
+              .read<ProductDetailCubit>()
+              .getProductDetail(product.product_id);
           return _buildProductDetail(productState.product);
         } else if (productState is ProductError) {
           return _buildErrorView(productState.message);
@@ -258,7 +263,7 @@ class _ProductViewState extends State<ProductView> {
                         (productCubit.state as ProductLoaded).product;
                     context
                         .read<ProductDetailCubit>()
-                        .getProductDetail(product.id);
+                        .getProductDetail(product.product_id);
                   }
                   reviewTextController.clear();
                 }
