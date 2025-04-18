@@ -1,14 +1,13 @@
 import 'package:example/core/gen/assets.gen.dart';
+import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class OrderSuccess extends StatelessWidget {
-  final VoidCallback onSecondaryButtonPressed;
-  final VoidCallback onPrimaryButtonPressed;
-  const OrderSuccess(
-      {super.key,
-      required this.onSecondaryButtonPressed,
-      required this.onPrimaryButtonPressed});
+  const OrderSuccess({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +18,15 @@ class OrderSuccess extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.1,
           ),
           OrderSuccessLabel(
-              onPrimaryButtonPressed: onPrimaryButtonPressed,
+              onPrimaryButtonPressed: () {
+                context.read<BottomNavigationCubit>().setPage(1);
+              },
+              onSecondaryButtonPressed: () {
+                context.read<BottomNavigationCubit>().setPage(0);
+              },
               title: "ORDER SUCCESS",
               primaryButtonText: "MY ORDERS",
               secondaryButtonText: "CONTINUE SHOPPING",
-              onSecondaryButtonPressed: onSecondaryButtonPressed,
               iconPath: Assets.icons.truck.path,
               succesiconPath: Assets.icons.success.path,
               radiusColor: ColorConstant.instance.green2,

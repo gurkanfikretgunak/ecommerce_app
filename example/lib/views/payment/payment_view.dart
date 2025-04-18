@@ -40,14 +40,7 @@ class PaymentView extends StatelessWidget {
           context.read<PaymentStepCubit>().nextStep();
         },*/
           ),
-      OrderSuccess(
-        onPrimaryButtonPressed: () {
-          context.read<BottomNavigationCubit>().setPage(1);
-        },
-        onSecondaryButtonPressed: () {
-          context.read<BottomNavigationCubit>().setPage(0);
-        },
-      ),
+      OrderSuccess(),
     ];
   }
 
