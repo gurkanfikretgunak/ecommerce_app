@@ -44,11 +44,17 @@ class _FilterViewState extends State<FilterView> {
   }
 
   @override
+  void dispose() {
+    categorieController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<SearchCubit, SearchState>(
         builder: (context, state) {
-          if (state is SearchApply) {
+          if (state is SearchState) {
             categorieController.text = state.filter.categorie ?? "";
             return SingleChildScrollView(
               child: Padding(
@@ -83,7 +89,7 @@ class _FilterViewState extends State<FilterView> {
                       height: 50,
                       text: "Apply Filter",
                       onPressed: () {
-                        print(state.filter.toJson());
+                        context.read<SearchCubit>().applyFilters();
                         Navigator.pop(context);
                       },
                     ),
