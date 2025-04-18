@@ -38,8 +38,8 @@ class _ProductViewState extends State<ProductView> {
     super.initState();
 
     final productCubit = context.read<ProductCubit>();
-    if (productCubit.state is ProductLoaded) {
-      final product = (productCubit.state as ProductLoaded).product;
+    if (productCubit.state is ProductChanged) {
+      final product = (productCubit.state as ProductChanged).product;
       context.read<ProductDetailCubit>().getProductDetail(product.product_id);
 
       userState = context.read<AuthCubit>().state;
@@ -82,12 +82,9 @@ class _ProductViewState extends State<ProductView> {
       builder: (context, productState) {
         if (productState is ProductLoading) {
           return const Center(child: CircularProgressIndicator());
-        } else if (productState is ProductLoaded) {
-          final product = (productState as ProductLoaded).product;
+        } else if (productState is ProductChanged) {
+          final product = (productState as ProductChanged).product;
 
-          context
-              .read<ProductDetailCubit>()
-              .getProductDetail(product.product_id);
           return _buildProductDetail(productState.product);
         } else if (productState is ProductError) {
           return _buildErrorView(productState.message);
@@ -258,9 +255,9 @@ class _ProductViewState extends State<ProductView> {
               listener: (context, reviewState) {
                 if (reviewState is ReviewSuccess) {
                   final productCubit = context.read<ProductCubit>();
-                  if (productCubit.state is ProductLoaded) {
+                  if (productCubit.state is ProductChanged) {
                     final product =
-                        (productCubit.state as ProductLoaded).product;
+                        (productCubit.state as ProductChanged).product;
                     context
                         .read<ProductDetailCubit>()
                         .getProductDetail(product.product_id);
@@ -313,6 +310,9 @@ class _ProductViewState extends State<ProductView> {
               productStock: relatedProduct.sold_count.toString(),
               onTap: () {
                 context.read<ProductCubit>().changeProduct(relatedProduct);
+                context
+                    .read<ProductDetailCubit>()
+                    .getProductDetail(relatedProduct.product_id);
               },
             );
           }).toList(),
@@ -324,7 +324,7 @@ class _ProductViewState extends State<ProductView> {
   Widget _buildBottomSheet() {
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, productState) {
-        if (productState is ProductLoaded) {
+        if (productState is ProductChanged) {
           return BlocBuilder<ProductDetailCubit, ProductDetailState>(
             builder: (context, productDetailState) {
               if (productDetailState is ProductDetailLoaded) {
