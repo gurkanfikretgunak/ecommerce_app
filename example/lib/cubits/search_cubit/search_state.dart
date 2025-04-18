@@ -3,34 +3,33 @@ import 'package:example/core/network/models/filter_model/filter_model.dart';
 import 'package:example/core/network/models/product_model/product_model.dart';
 import 'package:flutter/material.dart';
 
-abstract class SearchState extends Equatable {
-  @override
-  List<Object?> get props => [];
-}
-
-class SearchInitial extends SearchState {}
-
-class SearchApply extends SearchState {
+class SearchState extends Equatable {
   final Filter filter;
   final List<Product> products;
+  final bool isLoading;
+  final String? errorMessage;
 
-  SearchApply({required this.filter, required this.products});
-
-  List<Object?> get props => [filter, products];
-
-  SearchApply copyWith({Filter? filter, List<Product>? products}) {
-    return SearchApply(
-      filter: filter ?? this.filter,
-      products: products ?? this.products,
-    );
-  }
-}
-
-class SearchError extends SearchState {
-  final String message;
-
-  SearchError(this.message);
+  const SearchState({
+    required this.filter,
+    required this.products,
+    this.isLoading = false,
+    this.errorMessage,
+  });
 
   @override
-  List<Object?> get props => [message];
+  List<Object?> get props => [filter, products, isLoading, errorMessage];
+
+  SearchState copyWith({
+    Filter? filter,
+    List<Product>? products,
+    bool? isLoading,
+    String? errorMessage,
+  }) {
+    return SearchState(
+      filter: filter ?? this.filter,
+      products: products ?? this.products,
+      isLoading: isLoading ?? this.isLoading,
+      errorMessage: errorMessage, // null geçilirse değer null olur
+    );
+  }
 }
