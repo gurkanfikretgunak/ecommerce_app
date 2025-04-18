@@ -5,4 +5,5 @@ export 'package:shopapp_widgets/src/widgets/modals/payment_card_modal/payment_ca
 export 'package:shopapp_widgets/src/widgets/modals/payment_method_box_modal/payment_method_box_modal.dart';
 export 'package:shopapp_widgets/src/widgets/modals/product_box_modal/product_box_modal.dart';
 export 'package:shopapp_widgets/src/widgets/modals/product_card_modal/product_card_modal.dart';
+export 'package:shopapp_widgets/src/widgets/modals/product_order_box_modal/product_order_box_modal.dart';
 export 'package:shopapp_widgets/src/widgets/modals/product_review_modal/product_review_modal.dart';
