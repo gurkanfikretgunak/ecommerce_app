@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Filter {
   final String? searchText;
-  final List<String>? tags;
+  List<String>? tags;
   final String? categorie;
   final Color? color;
   final String? size;
@@ -10,7 +10,7 @@ class Filter {
 
   Filter({
     this.searchText,
-    this.tags,
+    this.tags = const [],
     this.categorie,
     this.color,
     this.size,
