@@ -4,6 +4,7 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 class TagsLabel extends StatefulWidget {
   final String label;
   final Function(String)? onChanged;
+  bool? isSelected;
   final Color? selectedColor;
   final Color? unselectedColor;
   final Color? selectedTextColor;
@@ -14,7 +15,7 @@ class TagsLabel extends StatefulWidget {
   final double? blurRadius;
   final Offset? offset;
 
-  const TagsLabel({
+  TagsLabel({
     super.key,
     required this.label,
     this.selectedColor,
@@ -27,6 +28,7 @@ class TagsLabel extends StatefulWidget {
     this.blurRadius,
     this.offset,
     this.onChanged,
+    this.isSelected,
   });
 
   @override
@@ -34,8 +36,6 @@ class TagsLabel extends StatefulWidget {
 }
 
 class _TagsLabelState extends State<TagsLabel> {
-  bool isSelected = false;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -53,28 +53,25 @@ class _TagsLabelState extends State<TagsLabel> {
         child: ActionChip(
           label: ContentText(
             text: widget.label,
-            color: isSelected
+            color: widget.isSelected!
                 ? widget.selectedTextColor ??
                     ColorConstant.instance.primary_main
                 : widget.unselectedTextColor ?? ColorConstant.instance.neutral4,
             fontSize: widget.fontSize ?? 12,
           ),
-          backgroundColor: isSelected
+          backgroundColor: widget.isSelected!
               ? widget.selectedColor ?? ColorConstant.instance.neutral9
               : widget.unselectedColor ?? ColorConstant.instance.neutral9,
           shape: StadiumBorder(
             side: BorderSide(
-              color: isSelected
+              color: widget.isSelected!
                   ? widget.selectedColor ?? ColorConstant.instance.primary_main
                   : widget.unselectedColor ?? ColorConstant.instance.neutral9,
             ),
           ),
           onPressed: () {
             setState(() {
-              isSelected = !isSelected;
-              if (isSelected) {
-                // widget.onChanged!(widget.label);
-              }
+              widget.onChanged!(widget.label);
             });
           },
         ),
