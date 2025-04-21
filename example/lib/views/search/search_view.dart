@@ -8,6 +8,7 @@ import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class SearchView extends StatefulWidget {
@@ -59,7 +60,7 @@ class _SearchViewState extends State<SearchView> {
             context.read<SearchCubit>().changeSearchText(text);
           },
           textEditingController: searchController,
-          text: "Search Product ...",
+          text: L10n.of(context)!.searchProduct,
           onPressed: () {
             context.read<BottomNavigationCubit>().setPage(0);
           },
@@ -117,13 +118,12 @@ class _SearchViewState extends State<SearchView> {
                           ),
                           const SizedBox(height: 16),
                           HeadText(
-                            text: "No Products Found",
+                            text: L10n.of(context)!.noProductsFound,
                             color: ColorConstant.instance.neutral1,
                           ),
                           const SizedBox(height: 8),
                           ContentText(
-                            text:
-                                "Please select filters or change your search term",
+                            text: L10n.of(context)!.changeSearchTerm,
                             textAlign: TextAlign.center,
                             color: ColorConstant.instance.neutral4,
                           ),
@@ -134,7 +134,7 @@ class _SearchViewState extends State<SearchView> {
                     return Column(
                       children: [
                         SectionLayout(
-                          sectionText: "Search Result",
+                          sectionText: L10n.of(context)!.searchResult,
                           layout: ProductGridLayout(
                               productItems: state.products
                                   .map((e) => ProductCardModal(
