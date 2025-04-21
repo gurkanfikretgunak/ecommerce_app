@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class MainpageView extends StatefulWidget {
@@ -23,25 +24,25 @@ class MainpageView extends StatefulWidget {
 }
 
 class _MainpageViewState extends State<MainpageView> {
-  final List<BottomNavigationBarItem> items = [
+  late final List<BottomNavigationBarItem> items = [
     BottomNavigationBarItem(
       icon: const Icon(Icons.home),
-      label: "Home",
+      label: L10n.of(context)!.home,
       backgroundColor: ColorConstant.instance.neutral9,
     ),
     BottomNavigationBarItem(
       icon: const Icon(Icons.favorite),
-      label: "Wishlist",
+      label: L10n.of(context)!.wishlist,
       backgroundColor: ColorConstant.instance.neutral9,
     ),
     BottomNavigationBarItem(
       icon: const Icon(Icons.local_mall),
-      label: "Cart",
+      label: L10n.of(context)!.cart,
       backgroundColor: ColorConstant.instance.neutral9,
     ),
     BottomNavigationBarItem(
       icon: const Icon(Icons.search),
-      label: "Search",
+      label: L10n.of(context)!.search,
       backgroundColor: ColorConstant.instance.neutral9,
     ),
     BottomNavigationBarItem(
@@ -57,7 +58,7 @@ class _MainpageViewState extends State<MainpageView> {
           return const SizedBox();
         },
       ),
-      label: "Account",
+      label: L10n.of(context)!.account,
       backgroundColor: ColorConstant.instance.neutral9,
     ),
   ];
