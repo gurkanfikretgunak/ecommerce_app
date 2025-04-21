@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:example/cubits/multi_bloc.dart';
 import 'package:example/flavor.dart';
+import 'package:example/l10n/app_l10n.dart';
 import 'package:example/route/route.dart';
 import 'package:example/core/network/services/auth/supabase_initialize.dart';
 // ignore: depend_on_referenced_packages
@@ -41,6 +42,8 @@ class ExampleApp extends StatelessWidget {
       // builder: DevicePreview.appBuilder,
       title: 'Example App',
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: L10n.localizationsDelegates,
+      supportedLocales: L10n.supportedLocales,
       theme: ThemeData(
         colorScheme:
             ColorScheme.fromSeed(seedColor: ColorConstant.instance.neutral9),
