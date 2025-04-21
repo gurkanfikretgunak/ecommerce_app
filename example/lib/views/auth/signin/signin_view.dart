@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class SignInView extends StatefulWidget {
@@ -48,7 +49,7 @@ class _SignInViewState extends State<SignInView> {
             } else if (state is AuthError) {
               showToast(
                 context,
-                'Error',
+                L10n.of(context)!.errorPrefix(''),
                 state.error,
                 ToastType.error,
               );
@@ -71,7 +72,7 @@ class _SignInViewState extends State<SignInView> {
                       if (validationState is ValidationError) {
                         showToast(
                           context,
-                          'Validation Error',
+                          L10n.of(context)!.validationError,
                           validationState.error,
                           ToastType.error,
                         );
@@ -133,7 +134,7 @@ class _SignInViewState extends State<SignInView> {
                   Column(
                     children: [
                       CustomButton(
-                        text: "SIGN IN",
+                        text: L10n.of(context)!.signIn,
                         onPressed: () {
                           if (context
                               .read<ValidationCubit>()
@@ -145,8 +146,8 @@ class _SignInViewState extends State<SignInView> {
                           } else {
                             showToast(
                               context,
-                              'Form Error',
-                              'Please fix the errors in the form',
+                              L10n.of(context)!.formError,
+                              L10n.of(context)!.pleaseFixErrors,
                               ToastType.error,
                             );
                           }
@@ -155,7 +156,7 @@ class _SignInViewState extends State<SignInView> {
                       context.emptySizedHeightBoxLow,
                       CustomButton(
                         icon: FontAwesomeIcons.google,
-                        text: "SIGN IN WITH GOOGLE",
+                        text: L10n.of(context)!.signInWithGoogle,
                         color: ColorConstant.instance.neutral9,
                         textColor: ColorConstant.instance.neutral1,
                         iconColor: ColorConstant.instance.neutral1,
@@ -166,7 +167,7 @@ class _SignInViewState extends State<SignInView> {
                       context.emptySizedHeightBoxLow,
                       CustomButton(
                         icon: FontAwesomeIcons.facebook,
-                        text: "SIGN IN WITH FACEBOOK",
+                        text: L10n.of(context)!.signInWithFacebook,
                         color: ColorConstant.instance.neutral9,
                         textColor: ColorConstant.instance.neutral1,
                         iconColor: ColorConstant.instance.neutral1,
@@ -177,14 +178,16 @@ class _SignInViewState extends State<SignInView> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text("Don't have an account?"),
+                          Text(
+                            L10n.of(context)!.haventAnAccount,
+                          ),
                           TextButton(
                             onPressed: () {
                               AutoRouter.of(context)
                                   .push(const SignUpViewRoute());
                             },
                             child: Text(
-                              "Register",
+                              L10n.of(context)!.register,
                               style: TextStyle(
                                 color: ColorConstant.instance.primary_main,
                               ),

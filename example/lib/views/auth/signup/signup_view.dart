@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class SignUpView extends StatefulWidget {
@@ -39,7 +40,7 @@ class _SignUpViewState extends State<SignUpView> {
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: CustomAppbar(
-            text: "CREATE YOUR ACCOUNT",
+            text: L10n.of(context)!.createYourAccount,
             onPressed: () {
               Navigator.pop(context);
             },
@@ -159,7 +160,7 @@ class _SignUpViewState extends State<SignUpView> {
                     },
                   ),
                   CustomButton(
-                    text: "SIGN UP",
+                    text: L10n.of(context)!.signUp,
                     onPressed: () {
                       if (context.read<ValidationCubit>().isSignUpFormValid()) {
                         context.read<AuthCubit>().signUp(
@@ -171,9 +172,8 @@ class _SignUpViewState extends State<SignUpView> {
                             );
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content:
-                                  Text('Please fix the errors in the form')),
+                          SnackBar(
+                              content: Text(L10n.of(context)!.pleaseFixErrors)),
                         );
                       }
                     },
@@ -181,7 +181,7 @@ class _SignUpViewState extends State<SignUpView> {
                   context.emptySizedHeightBoxLow,
                   CustomButton(
                     icon: FontAwesomeIcons.google,
-                    text: "SIGN UP WITH GOOGLE",
+                    text: L10n.of(context)!.signInWithGoogle,
                     color: ColorConstant.instance.neutral9,
                     textColor: ColorConstant.instance.neutral1,
                     iconColor: ColorConstant.instance.neutral1,
@@ -192,7 +192,7 @@ class _SignUpViewState extends State<SignUpView> {
                   context.emptySizedHeightBoxLow,
                   CustomButton(
                     icon: FontAwesomeIcons.facebook,
-                    text: "SIGN UP WITH FACEBOOK",
+                    text: L10n.of(context)!.signInWithFacebook,
                     color: ColorConstant.instance.neutral9,
                     textColor: ColorConstant.instance.neutral1,
                     iconColor: ColorConstant.instance.neutral1,
