@@ -103,7 +103,7 @@ class _PopupSaleBannerState extends State<PopupSaleBanner> {
                   textAlign: TextAlign.start,
                   softWrap: true,
                   text: widget.saleTitle,
-                  fontSize: 28,
+                  fontSize: 23,
                 ),
               ),
             ),

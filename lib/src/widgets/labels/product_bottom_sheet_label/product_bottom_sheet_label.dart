@@ -6,12 +6,14 @@ class ProductBottomSheetLabel extends StatefulWidget {
   final VoidCallback? buttonOnPressed;
   final VoidCallback? favoriteOnPressed;
   final bool isFavorite;
+  final String buttonText;
   const ProductBottomSheetLabel(
       {super.key,
       required this.price,
       this.buttonOnPressed,
       this.favoriteOnPressed,
-      required this.isFavorite});
+      required this.isFavorite,
+      required this.buttonText});
 
   @override
   State<ProductBottomSheetLabel> createState() =>
@@ -71,7 +73,7 @@ class _ProductBottomSheetLabelState extends State<ProductBottomSheetLabel> {
               width: 160,
               height: 40,
               borderColor: ColorConstant.instance.neutral9,
-              text: "Add to Cart",
+              text: widget.buttonText,
             ),
           ],
         ),

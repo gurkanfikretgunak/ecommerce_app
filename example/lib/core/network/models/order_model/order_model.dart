@@ -19,6 +19,8 @@ class Order {
 
   OrderDetail? orderDetail;
 
+  List<OrderDetail?>? orderDetails;
+
   Order({
     this.id,
     this.total_price,

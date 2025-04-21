@@ -73,6 +73,7 @@ class SearchCubit extends Cubit<SearchState> {
     }
 
     emit(state.copyWith(filter: state.filter.copyWith(tags: updatedTags)));
+    _debouncedSearch();
   }
 
   bool isAdded(String label) {

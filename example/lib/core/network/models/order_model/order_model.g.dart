@@ -18,9 +18,15 @@ Order _$OrderFromJson(Map<String, dynamic> json) => Order(
       billing_phone: json['billing_phone'] as String?,
       payment_method_name: json['payment_method_name'] as String?,
       payment_method_token: json['payment_method_token'] as String?,
-    )..orderDetail = json['orderDetail'] == null
-        ? null
-        : OrderDetail.fromJson(json['orderDetail'] as Map<String, dynamic>);
+    )
+      ..orderDetail = json['orderDetail'] == null
+          ? null
+          : OrderDetail.fromJson(json['orderDetail'] as Map<String, dynamic>)
+      ..orderDetails = (json['orderDetails'] as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : OrderDetail.fromJson(e as Map<String, dynamic>))
+          .toList();
 
 Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'id': instance.id,
@@ -35,4 +41,5 @@ Map<String, dynamic> _$OrderToJson(Order instance) => <String, dynamic>{
       'payment_method_name': instance.payment_method_name,
       'payment_method_token': instance.payment_method_token,
       'orderDetail': instance.orderDetail,
+      'orderDetails': instance.orderDetails,
     };

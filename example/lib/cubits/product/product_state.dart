@@ -10,20 +10,20 @@ abstract class ProductState extends Equatable {
 
 class ProductLoading extends ProductState {}
 
-class ProductLoaded extends ProductState {
+class ProductChanged extends ProductState {
   final Product product;
 
-  ProductLoaded({
+  ProductChanged({
     required this.product,
   });
 
   @override
   List<Object?> get props => [product];
 
-  ProductLoaded copyWith({
+  ProductChanged copyWith({
     Product? product,
   }) {
-    return ProductLoaded(product: product ?? this.product);
+    return ProductChanged(product: product ?? this.product);
   }
 }
 

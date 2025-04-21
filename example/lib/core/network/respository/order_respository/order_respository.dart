@@ -22,6 +22,7 @@ class OrderRespository {
           final orderDetailResponse =
               await OrderDetailRespository().getOrderDetail(item.id.toString());
           item.orderDetail = orderDetailResponse.first;
+          item.orderDetails = orderDetailResponse;
         }
         return response;
       } else {

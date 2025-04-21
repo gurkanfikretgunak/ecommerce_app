@@ -15,13 +15,9 @@ class OrderCubit extends Cubit<OrderState> {
     try {
       emit(OrderLoading());
       final response = await OrderRespository().getOrder(userId);
-      if (response.isNotEmpty) {
-        emit(OrderLoaded(response));
-      } else {
-        emit(OrderError("No orders found"));
-      }
+      emit(OrderLoaded(response));
     } catch (e) {
-      emit(OrderError("Failed to get order:${e.toString()}"));
+      emit(OrderError("${e.toString()}"));
     }
   }
 
