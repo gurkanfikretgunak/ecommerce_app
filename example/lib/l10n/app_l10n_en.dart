@@ -37,7 +37,13 @@ class L10nEn extends L10n {
   String get email => 'Email';
 
   @override
+  String get enterEmail => 'Enter Email';
+
+  @override
   String get password => 'Password';
+
+  @override
+  String get enterPassword => 'Enter Password';
 
   @override
   String get rememberMe => 'Remember Me';

@@ -37,7 +37,13 @@ class L10nTr extends L10n {
   String get email => 'E-posta';
 
   @override
+  String get enterEmail => 'E-postanızı girin';
+
+  @override
   String get password => 'Şifre';
+
+  @override
+  String get enterPassword => 'Şifrenizi girin';
 
   @override
   String get rememberMe => 'Beni Hatırla';
