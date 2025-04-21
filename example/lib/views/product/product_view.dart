@@ -20,6 +20,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class ProductView extends StatefulWidget {
@@ -56,14 +57,13 @@ class _ProductViewState extends State<ProductView> {
       builder: (BuildContext context) {
         return PopupSuccesLabel(
           succesIconPath: Assets.icons.success.path,
-          title: "SUCCESS",
+          title: L10n.of(context)!.success,
           buttonOnPressed: () {
             AutoRouter.of(context).push(MainpageViewRoute(pageNo: 2));
           },
-          description:
-              "Dolor magna eget est lorem ipsum dolor sit amet consectetur.",
+          description: L10n.of(context)!.orderSuccessDescription,
           iconPath: "assets/icons/cart.svg",
-          buttonText: "VIEW CART",
+          buttonText: L10n.of(context)!.viewCart,
         );
       },
     );
@@ -187,7 +187,7 @@ class _ProductViewState extends State<ProductView> {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: ProductSectionLabel(
-        title: "Color:",
+        title: L10n.of(context)!.color,
         element: ColorsLabel(
           colors: state.productDetail.colors
               .map((color) => Color(int.parse("0x$color")))
@@ -205,7 +205,7 @@ class _ProductViewState extends State<ProductView> {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: ProductSectionLabel(
-        title: "Size:",
+        title: L10n.of(context)!.size,
         element: SizesLabel(
           sizes: state.productDetail.sizes,
           selectedSize: state.selectedSize,
@@ -300,7 +300,7 @@ class _ProductViewState extends State<ProductView> {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: SectionLayout(
-        sectionText: "RELATED PRODUCT",
+        sectionText: L10n.of(context)!.relatedProduct,
         layout: ProductRowLayout(
           items: state.relatedProducts!.map((relatedProduct) {
             return ProductCardModal(
@@ -366,6 +366,7 @@ class _ProductViewState extends State<ProductView> {
                 favoriteOnPressed: () =>
                     _toggleFavorite(productId, state, userId),
                 buttonOnPressed: () => _addToCart(product, state, userId),
+                buttonText: L10n.of(context)!.addToCard,
                 price: product.price.toString(),
               );
             },

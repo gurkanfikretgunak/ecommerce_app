@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class HomeView extends StatefulWidget {
@@ -48,8 +49,8 @@ class _HomeViewState extends State<HomeView> {
       builder: (BuildContext context) {
         return PopupSaleBanner(
           imagePath: Assets.images.popupbannerimage.path,
-          saleTitle: "WINTER SALE",
-          subTitle: "SALE OFF",
+          saleTitle: L10n.of(context)!.winterSale,
+          subTitle: L10n.of(context)!.saleOff,
           discount: "50",
           button: BannerButton(
             icon: Icons.arrow_forward,
@@ -125,9 +126,9 @@ class _HomeViewState extends State<HomeView> {
 
                       if (categoriesState is CategoriesLoaded) {
                         return SectionLayout(
-                          sectionText: "CATEGORIES",
+                          sectionText: L10n.of(context)!.categories,
                           rightWidget: SectionActionText(
-                            text: "All Categories",
+                            text: L10n.of(context)!.allCategories,
                             onTap: () {
                               AutoRouter.of(context)
                                   .push(const CategoriesViewRoute());
@@ -156,7 +157,7 @@ class _HomeViewState extends State<HomeView> {
                 Padding(
                   padding: const EdgeInsets.all(15),
                   child: SectionLayout(
-                    sectionText: "HOT DEAL",
+                    sectionText: L10n.of(context)!.hotDeal,
                     layout: ProductGridLayout(
                       productItems: state.hotDeals.map((product) {
                         return ProductCardModal(
@@ -180,16 +181,16 @@ class _HomeViewState extends State<HomeView> {
                     children: [
                       HomepageBanner(
                         imagePath: Assets.images.homepagebannerimageFirst.path,
-                        titleText: "The Collection",
-                        subTitleText: "NEW SEASON",
-                        descriptionText: "Lorem ipsum dolor sit amet",
+                        titleText: L10n.of(context)!.theCollection,
+                        subTitleText: L10n.of(context)!.newSeason,
+                        descriptionText: L10n.of(context)!.loremIpsum,
                       ),
                       context.emptySizedHeightBoxLow,
                       HomepageBanner(
                         imagePath: Assets.images.homepagebannerimageSecond.path,
-                        titleText: "50% Off",
-                        subTitleText: "WINTER SALE",
-                        descriptionText: "Lorem ipsum dolor sit amet",
+                        titleText: L10n.of(context)!.percentOff(50),
+                        subTitleText: L10n.of(context)!.winterSale,
+                        descriptionText: L10n.of(context)!.loremIpsum,
                       ),
                     ],
                   ),
@@ -197,7 +198,7 @@ class _HomeViewState extends State<HomeView> {
                 Padding(
                   padding: const EdgeInsets.all(15),
                   child: SectionLayout(
-                    sectionText: "NEW ARRIVAL",
+                    sectionText: L10n.of(context)!.newArrival,
                     layout: ProductRowLayout(
                       items: state.hotDeals.map((product) {
                         return ProductCardModal(
@@ -218,7 +219,7 @@ class _HomeViewState extends State<HomeView> {
                 Padding(
                   padding: const EdgeInsets.all(15),
                   child: SectionLayout(
-                    sectionText: "ON SALE",
+                    sectionText: L10n.of(context)!.onSale,
                     rightWidget: const TimerLabel(),
                     layout: ProductRowLayout(
                       items: state.hotDeals.map((product) {
