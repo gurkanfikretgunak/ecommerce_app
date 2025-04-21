@@ -1,5 +1,6 @@
 import 'package:example/core/network/models/cart_model/cart_model.dart';
 import 'package:example/cubits/cart/cart_cubit.dart';
+import 'package:example/cubits/product/product_cubit.dart';
 import 'package:example/cubits/wishlist/wishlist_cubit.dart';
 import 'package:example/cubits/wishlist/wishlist_state.dart';
 import 'package:example/views/auth/models/auth_cubit.dart';
@@ -7,22 +8,18 @@ import 'package:example/views/auth/models/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 class Wishlist extends StatefulWidget {
-  final List<ProductBoxModal> items;
-
-  const Wishlist({super.key, required this.items});
+  const Wishlist({
+    super.key,
+  });
 
   @override
   State<Wishlist> createState() => _WishlistState();
 }
 
 class _WishlistState extends State<Wishlist> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthState>(
@@ -48,7 +45,7 @@ class _WishlistState extends State<Wishlist> {
                       height: 100,
                       child: Center(
                           child: HeadText(
-                        text: "Wishlist is Empty",
+                        text: L10n.of(context)!.wishlistEmpty,
                         color: ColorConstant.instance.neutral1,
                       )));
                 }
@@ -63,10 +60,11 @@ class _WishlistState extends State<Wishlist> {
                               state.wishlist[index].sizes[0],
                           color: state.wishlist[index].colors[0],
                         ));
-                    const ToastMessageLabel(
-                            title: "Product Added to Cart",
+                    ToastMessageLabel(
+                            title: L10n.of(context)!.productAddedToCart,
                             type: ToastType.success,
-                            description: "Product Added to Cart Successfully")
+                            description:
+                                L10n.of(context)!.productAddedToCartSuccess)
                         .show(context);
                   },
                   onRemovePressed: (index) {
@@ -93,7 +91,7 @@ class _WishlistState extends State<Wishlist> {
                     height: 100,
                     child: Center(
                         child: HeadText(
-                      text: "Wishlist is Empty",
+                      text: L10n.of(context)!.wishlistEmpty,
                       color: ColorConstant.instance.neutral1,
                     )));
               }

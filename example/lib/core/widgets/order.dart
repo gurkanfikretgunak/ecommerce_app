@@ -1,15 +1,18 @@
 import 'package:example/cubits/order/order_cubit.dart';
 import 'package:example/cubits/order/order_state.dart';
+import 'package:example/cubits/wishlist/wishlist_cubit.dart';
 import 'package:example/views/auth/models/auth_cubit.dart';
 import 'package:example/views/auth/models/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 class Order extends StatefulWidget {
-  final List<ProductBoxModal> items;
-  const Order({super.key, required this.items});
+  const Order({
+    super.key,
+  });
 
   @override
   State<Order> createState() => _OrderState();
@@ -17,8 +20,13 @@ class Order extends StatefulWidget {
 
 class _OrderState extends State<Order> {
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final authState = context.read<AuthCubit>().state;
+    if (authState is AuthAuthenticated) {
+      final userId = authState.user.id;
+      context.read<WishlistCubit>().getWishlist(userId);
+    }
   }
 
   @override
@@ -34,6 +42,18 @@ class _OrderState extends State<Order> {
             if (state is OrderLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is OrderLoaded) {
+              bool isOrdersEmpty = state.orders.isEmpty;
+
+              if (isOrdersEmpty) {
+                return SizedBox(
+                    height: 100,
+                    child: Center(
+                        child: HeadText(
+                      text: L10n.of(context)!.ordersEmpty,
+                      color: ColorConstant.instance.neutral1,
+                    )));
+              }
+
               return MyorderListLayout(
                 rightItem: state.orders
                     .map((item) => OrderDetailBoxLabel(
@@ -53,9 +73,21 @@ class _OrderState extends State<Order> {
                     .toList(),
               );
             } else if (state is OrderError) {
-              return Center(child: Text(state.message));
+              return SizedBox(
+                  height: 100,
+                  child: Center(
+                      child: HeadText(
+                    text: state.message,
+                    color: ColorConstant.instance.neutral1,
+                  )));
             } else {
-              return const Center(child: Text("Unknown state"));
+              return SizedBox(
+                  height: 100,
+                  child: Center(
+                      child: HeadText(
+                    text: L10n.of(context)!.orderFailed,
+                    color: ColorConstant.instance.neutral1,
+                  )));
             }
           },
         );
