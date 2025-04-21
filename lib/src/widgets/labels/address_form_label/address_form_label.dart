@@ -17,6 +17,17 @@ class AddressFormLabel extends StatefulWidget {
   final bool? isEmailValid;
   final ValueChanged<bool> onDefaultChanged;
 
+  // Eklenen özelleştirilebilir metin parametreleri
+  final String titleText;
+  final String firstNameHintText;
+  final String lastNameHintText;
+  final String countryHintText;
+  final String streetAddressHintText;
+  final String cityHintText;
+  final String phoneHintText;
+  final String emailHintText;
+  final String setDefaultAddressText;
+
   const AddressFormLabel({
     super.key,
     required this.firstNameController,
@@ -32,6 +43,16 @@ class AddressFormLabel extends StatefulWidget {
     this.isEmailValid,
     this.onChangedEmail,
     this.onChangedPhone,
+    // Metin parametreleri için varsayılan değerler
+    this.titleText = "BILLING DETAILS",
+    this.firstNameHintText = 'First Name*',
+    this.lastNameHintText = 'Last Name*',
+    this.countryHintText = 'Country*',
+    this.streetAddressHintText = 'Street address*',
+    this.cityHintText = 'Town/City*',
+    this.phoneHintText = 'Phone Number*',
+    this.emailHintText = 'Email Address*',
+    this.setDefaultAddressText = 'Set Default Address',
   });
 
   @override
@@ -80,7 +101,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
         HeadText(
             fontSize: 30,
             color: ColorConstant.instance.neutral1,
-            text: "BILLING DETAILS"),
+            text: widget.titleText),
         Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
           child: Row(
@@ -88,7 +109,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
               Expanded(
                 child: TextFieldInput(
                   controller: widget.firstNameController,
-                  hintText: 'First Name*',
+                  hintText: widget.firstNameHintText,
                   isValid: true,
                 ),
               ),
@@ -96,7 +117,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
               Expanded(
                 child: TextFieldInput(
                   controller: widget.lastNameController,
-                  hintText: 'Last Name*',
+                  hintText: widget.lastNameHintText,
                   isValid: true,
                 ),
               ),
@@ -114,7 +135,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
           padding: const EdgeInsets.only(bottom: 10.0),
           child: TextFieldInput(
             controller: widget.streetAddressController,
-            hintText: 'Street address*',
+            hintText: widget.streetAddressHintText,
             isValid: true,
           ),
         ),
@@ -122,7 +143,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
           padding: const EdgeInsets.only(bottom: 10.0),
           child: TextFieldInput(
             controller: widget.cityController,
-            hintText: 'Town/City*',
+            hintText: widget.cityHintText,
             isValid: true,
           ),
         ),
@@ -131,7 +152,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
           child: TextFieldInput(
             controller: widget.phoneController,
             inputType: InputType.phone,
-            hintText: 'Phone Number*',
+            hintText: widget.phoneHintText,
             onChanged: widget.onChangedPhone,
             isValid: widget.isPhoneValid ?? true,
           ),
@@ -141,7 +162,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
           child: TextFieldInput(
             controller: widget.emailController,
             inputType: InputType.email,
-            hintText: 'Email Address*',
+            hintText: widget.emailHintText,
             onChanged: widget.onChangedEmail,
             isValid: widget.isEmailValid ?? true,
           ),
@@ -158,7 +179,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   ContentText(
-                    text: "Set Default Address",
+                    text: widget.setDefaultAddressText,
                     fontSize: 14,
                     color: ColorConstant.instance.neutral1,
                   ),

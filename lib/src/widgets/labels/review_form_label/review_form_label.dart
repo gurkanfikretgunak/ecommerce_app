@@ -3,20 +3,24 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class ReviewFormLabel extends StatefulWidget {
   final TextEditingController reviewTextController;
-  //final TextEditingController nameTextController;
-  // final TextEditingController emailTextController;
   final int selectedStarCount;
   final Function(int) onStarSelected;
   final VoidCallback? onSubmit;
+  final String titleText;
+  final String reviewHintText;
+  final String ratingLabelText;
+  final String submitButtonText;
 
   const ReviewFormLabel({
     Key? key,
     required this.reviewTextController,
-    //required this.nameTextController,
-    //required this.emailTextController,
     required this.selectedStarCount,
     required this.onStarSelected,
     this.onSubmit,
+    this.titleText = "ADD A REVIEW",
+    this.reviewHintText = "Your Review * ",
+    this.ratingLabelText = "Your Rating * ",
+    this.submitButtonText = "SUBMIT",
   }) : super(key: key);
 
   @override
@@ -32,13 +36,13 @@ class _ReviewFormLabelState extends State<ReviewFormLabel> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         HeadText(
-          text: "ADD A REVIEW",
+          text: widget.titleText,
           fontSize: 20,
           color: ColorConstant.instance.neutral1,
         ),
         context.emptySizedHeightBoxLow,
         TextFieldInput(
-          hintText: "Your Review * ",
+          hintText: widget.reviewHintText,
           controller: widget.reviewTextController,
           isValid: true,
         ),
@@ -59,7 +63,7 @@ class _ReviewFormLabelState extends State<ReviewFormLabel> {
             ContentText(
               color: ColorConstant.instance.neutral4,
               fontSize: 10,
-              text: "Your Rating * ",
+              text: widget.ratingLabelText,
             ),
             context.emptySizedWidthBoxLow,
             RateInputRowLayout(
@@ -100,7 +104,7 @@ class _ReviewFormLabelState extends State<ReviewFormLabel> {
           height: 40,
           color: ColorConstant.instance.neutral9,
           textColor: ColorConstant.instance.neutral1,
-          text: "SUBMIT",
+          text: widget.submitButtonText,
           borderColor: ColorConstant.instance.neutral4,
           onPressed: widget.onSubmit,
         ),

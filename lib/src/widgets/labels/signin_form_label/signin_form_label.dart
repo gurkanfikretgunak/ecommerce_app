@@ -13,6 +13,15 @@ class SignInFormLabel extends StatefulWidget {
   final bool rememberMe;
   final Function(bool)? checkBoxOnChanged;
 
+  // Added customizable text parameters
+  final String emailLabelText;
+  final String passwordLabelText;
+  final String emailHintText;
+  final String passwordHintText;
+  final String rememberMeText;
+  final String forgotPasswordText;
+  final VoidCallback? onForgotPasswordPressed;
+
   const SignInFormLabel({
     super.key,
     required this.emailController,
@@ -25,6 +34,14 @@ class SignInFormLabel extends StatefulWidget {
     this.isPasswordValid,
     required this.rememberMe,
     this.checkBoxOnChanged,
+    // Default values for the new parameters
+    this.emailLabelText = "Email",
+    this.passwordLabelText = "Password",
+    this.emailHintText = "Enter Email",
+    this.passwordHintText = "Enter Password",
+    this.rememberMeText = "Remember Me",
+    this.forgotPasswordText = "Forgot Password?",
+    this.onForgotPasswordPressed,
   });
 
   @override
@@ -44,29 +61,31 @@ class _SignInFormLabelState extends State<SignInFormLabel> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Email",
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+              Text(
+                widget.emailLabelText,
+                style:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
               ),
               context.emptySizedHeightBoxLow,
               TextFieldInput(
                 errorMessage: widget.emailErrorMessage,
                 controller: widget.emailController,
-                hintText: "Enter Email",
+                hintText: widget.emailHintText,
                 inputType: InputType.email,
                 onChanged: widget.onChangedEmail,
                 isValid: widget.isEmailValid ?? true,
               ),
               context.emptySizedHeightBoxNormal,
-              const Text(
-                "Password",
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+              Text(
+                widget.passwordLabelText,
+                style:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
               ),
               context.emptySizedHeightBoxNormal,
               TextFieldInput(
                 errorMessage: widget.passwordErrorMessage,
                 controller: widget.passwordController,
-                hintText: "Enter Password",
+                hintText: widget.passwordHintText,
                 inputType: InputType.password,
                 onChanged: widget.onChangedPassword,
                 isValid: widget.isPasswordValid ?? true,
@@ -88,16 +107,16 @@ class _SignInFormLabelState extends State<SignInFormLabel> {
                         },
                       ),
                       Text(
-                        "Remember Me",
+                        widget.rememberMeText,
                         style:
                             TextStyle(color: ColorConstant.instance.neutral4),
                       ),
                     ],
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: widget.onForgotPasswordPressed ?? () {},
                     child: Text(
-                      "Forgot Password?",
+                      widget.forgotPasswordText,
                       style:
                           TextStyle(color: ColorConstant.instance.primary_main),
                     ),
