@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class NewAddressView extends StatefulWidget {
@@ -65,7 +66,7 @@ class _NewAddressViewState extends State<NewAddressView> {
               appBar: PreferredSize(
                 preferredSize: const Size.fromHeight(60),
                 child: CustomAppbar(
-                  text: "NEW ADDRESS",
+                  text: L10n.of(context)!.newAddress,
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -82,7 +83,7 @@ class _NewAddressViewState extends State<NewAddressView> {
                           if (validationState is ValidationError) {
                             showToast(
                               context,
-                              'Validation Error',
+                              L10n.of(context)!.validationError,
                               validationState.error,
                               ToastType.error,
                             );
@@ -125,6 +126,17 @@ class _NewAddressViewState extends State<NewAddressView> {
                               cityController: cityController,
                               phoneController: phoneController,
                               emailController: emailController,
+                              titleText: L10n.of(context)!.billingDetails,
+                              firstNameHintText: L10n.of(context)!.firstName,
+                              lastNameHintText: L10n.of(context)!.lastName,
+                              countryHintText: L10n.of(context)!.country,
+                              streetAddressHintText:
+                                  L10n.of(context)!.streetAddress,
+                              cityHintText: L10n.of(context)!.townCity,
+                              phoneHintText: L10n.of(context)!.phoneNumber,
+                              emailHintText: L10n.of(context)!.email,
+                              setDefaultAddressText:
+                                  L10n.of(context)!.setDefaultAddress,
                               isDefault: isDefault,
                               onDefaultChanged: (value) {
                                 setState(() {
@@ -175,14 +187,14 @@ class _NewAddressViewState extends State<NewAddressView> {
                             } else {
                               showToast(
                                 context,
-                                'Form Error',
-                                'Please fix the errors in the form',
+                                L10n.of(context)!.formError,
+                                L10n.of(context)!.confirm,
                                 ToastType.error,
                               );
                             }
                           },
                           height: 50,
-                          text: "Confirm",
+                          text: L10n.of(context)!.confirm,
                         ),
                       ),
                     ],

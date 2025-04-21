@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class PaymentMethodsView extends StatefulWidget {
@@ -35,7 +36,7 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: CustomAppbar(
-          text: "PAYMENT METHOD",
+          text: L10n.of(context)!.paymentMethod,
           onPressed: () {
             AutoRouter.of(context).push(PaymentViewRoute(initialStep: 1));
           },
@@ -70,7 +71,7 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
                     if (state.paymentMethods.isEmpty) {
                       return Center(
                         child: HeadText(
-                          text: "No payment methods found",
+                          text: L10n.of(context)!.noPaymentMethodFound,
                           color: ColorConstant.instance.neutral1,
                         ),
                       );
@@ -113,11 +114,11 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
                   } else if (state is PaymentMethodError) {
                     return Center(
                       child: ContentText(
-                          text: "Failed to load payment methods.",
+                          text: L10n.of(context)!.failedToLoadPaymentMethods,
                           color: ColorConstant.instance.neutral1),
                     );
                   }
-                  return const Center(child: Text("Loading..."));
+                  return Center(child: Text(L10n.of(context)!.loading));
                 },
               ),
             ),
@@ -128,7 +129,7 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
                   AutoRouter.of(context).push(const NewCardViewRoute());
                 },
                 height: 50,
-                text: "Add New Card",
+                text: L10n.of(context)!.addNewCard,
               ),
             ),
           ],

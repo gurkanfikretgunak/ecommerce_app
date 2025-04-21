@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 class SignInForm extends StatefulWidget {
   final Function(String)? onChangedEmail;
@@ -39,25 +40,27 @@ class _SignInFormState extends State<SignInForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Email",
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+              ContentText(
+                text: L10n.of(context)!.email,
+                fontWeight: FontWeight.w500,
+                fontSize: 14,
               ),
               context.emptySizedHeightBoxLow,
               TextFieldInput(
                 controller: emailController,
-                hintText: "Enter Email",
+                hintText: L10n.of(context)!.enterEmail,
                 inputType: InputType.email,
                 onChanged: widget.onChangedEmail,
               ),
               context.emptySizedHeightBoxNormal,
-              const Text(
-                "Password",
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+              ContentText(
+                text: L10n.of(context)!.password,
+                fontWeight: FontWeight.w500,
+                fontSize: 14,
               ),
               context.emptySizedHeightBoxNormal,
               TextFieldInput(
-                hintText: "Enter Password",
+                hintText: L10n.of(context)!.enterPassword,
                 controller: passwordController,
                 inputType: InputType.password,
                 onChanged: widget.onChangedPassword,
@@ -77,7 +80,7 @@ class _SignInFormState extends State<SignInForm> {
                         },
                       ),
                       Text(
-                        "Remember Me",
+                        L10n.of(context)!.rememberMe,
                         style:
                             TextStyle(color: ColorConstant.instance.neutral4),
                       ),
@@ -86,7 +89,7 @@ class _SignInFormState extends State<SignInForm> {
                   TextButton(
                     onPressed: () {},
                     child: Text(
-                      "Forgot Password?",
+                      L10n.of(context)!.forgotPassword,
                       style:
                           TextStyle(color: ColorConstant.instance.primary_main),
                     ),

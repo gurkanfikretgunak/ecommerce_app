@@ -17,7 +17,6 @@ class AddressFormLabel extends StatefulWidget {
   final bool? isEmailValid;
   final ValueChanged<bool> onDefaultChanged;
 
-  // Eklenen özelleştirilebilir metin parametreleri
   final String titleText;
   final String firstNameHintText;
   final String lastNameHintText;
@@ -43,7 +42,6 @@ class AddressFormLabel extends StatefulWidget {
     this.isEmailValid,
     this.onChangedEmail,
     this.onChangedPhone,
-    // Metin parametreleri için varsayılan değerler
     this.titleText = "BILLING DETAILS",
     this.firstNameHintText = 'First Name*',
     this.lastNameHintText = 'Last Name*',
@@ -129,6 +127,7 @@ class _AddressFormLabelState extends State<AddressFormLabel> {
           child: TypeaheadTextfieldInput(
             items: countries,
             controller: widget.countryController,
+            labelText: widget.countryHintText,
           ),
         ),
         Padding(

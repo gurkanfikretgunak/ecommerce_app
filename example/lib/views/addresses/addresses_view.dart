@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:example/cubits/billing_detail/billing_detail_cubit.dart';
 import 'package:example/cubits/billing_detail/billing_detail_state.dart';
+import 'package:example/l10n/app_l10n.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:example/views/auth/models/auth_cubit.dart';
 import 'package:example/views/payment/models/payment_step_cubit.dart';
@@ -34,7 +35,7 @@ class _AddressesViewState extends State<AddressesView> {
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: CustomAppbar(
-            text: "ADDRESS",
+            text: L10n.of(context)!.address,
             onPressed: () {
               AutoRouter.of(context).push(PaymentViewRoute(initialStep: 1));
             },
@@ -111,12 +112,11 @@ class _AddressesViewState extends State<AddressesView> {
               Padding(
                 padding: const EdgeInsets.all(15),
                 child: CustomButton(
-                  onPressed: () {
-                    AutoRouter.of(context).push(const NewAddressViewRoute());
-                  },
-                  height: 50,
-                  text: "Add New Address",
-                ),
+                    onPressed: () {
+                      AutoRouter.of(context).push(const NewAddressViewRoute());
+                    },
+                    height: 50,
+                    text: L10n.of(context)!.addNewAddress),
               ),
             ],
           ),

@@ -110,6 +110,13 @@ class _SignUpViewState extends State<SignUpView> {
                         confirmPasswordErrorMessage = validationState.error;
                       }
                       return SignUpForm(
+                        firstNameHintText: L10n.of(context)!.firstName,
+                        lastNameHintText: L10n.of(context)!.lastName,
+                        emailHintText: L10n.of(context)!.email,
+                        phoneHintText: L10n.of(context)!.phoneNumber,
+                        passwordHintText: L10n.of(context)!.password,
+                        confirmPasswordHintText:
+                            L10n.of(context)!.confirmPassword,
                         firstNameController: firstNameController,
                         lastNameController: lastNameController,
                         emailController: emailController,

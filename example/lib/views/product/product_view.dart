@@ -267,18 +267,23 @@ class _ProductViewState extends State<ProductView> {
               },
               builder: (context, reviewState) {
                 return ReviewFormLabel(
-                  onStarSelected: (rate) {
-                    context.read<ProductDetailCubit>().changeSelectedRate(rate);
-                  },
-                  onSubmit: () => _submitReview(authState, state),
-                  selectedStarCount: state.selectedRate ?? 0,
-                  reviewTextController: reviewTextController,
-                );
+                    onStarSelected: (rate) {
+                      context
+                          .read<ProductDetailCubit>()
+                          .changeSelectedRate(rate);
+                    },
+                    onSubmit: () => _submitReview(authState, state),
+                    selectedStarCount: state.selectedRate ?? 0,
+                    reviewTextController: reviewTextController,
+                    titleText: L10n.of(context)!.addReview,
+                    reviewHintText: L10n.of(context)!.yourReview,
+                    ratingLabelText: L10n.of(context)!.yourRating,
+                    submitButtonText: L10n.of(context)!.submit);
               },
             );
           } else {
-            return const Center(
-              child: Text('Please sign in to leave a review.'),
+            return Center(
+              child: Text(L10n.of(context)!.pleaseSignInReview),
             );
           }
         },

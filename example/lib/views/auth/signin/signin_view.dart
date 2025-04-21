@@ -104,6 +104,12 @@ class _SignInViewState extends State<SignInView> {
                         }
 
                         return SignInFormLabel(
+                          emailLabelText: L10n.of(context)!.email,
+                          passwordLabelText: L10n.of(context)!.password,
+                          emailHintText: L10n.of(context)!.enterEmail,
+                          passwordHintText: L10n.of(context)!.enterPassword,
+                          rememberMeText: L10n.of(context)!.rememberMe,
+                          forgotPasswordText: L10n.of(context)!.forgotPassword,
                           emailController: emailController,
                           passwordController: passwordController,
                           emailErrorMessage: emailErrorMessage,

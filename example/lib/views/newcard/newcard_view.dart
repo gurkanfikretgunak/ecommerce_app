@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class NewCardView extends StatefulWidget {
@@ -64,7 +65,7 @@ class _NewCardViewState extends State<NewCardView> {
             appBar: PreferredSize(
               preferredSize: const Size.fromHeight(60),
               child: CustomAppbar(
-                text: "ADD NEW CARD",
+                text: L10n.of(context)!.addNewCard,
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -81,7 +82,7 @@ class _NewCardViewState extends State<NewCardView> {
                         if (state is ValidationError) {
                           showToast(
                             context,
-                            "Validation Error",
+                            L10n.of(context)!.validationError,
                             state.error,
                             ToastType.error,
                           );
@@ -128,6 +129,11 @@ class _NewCardViewState extends State<NewCardView> {
                             expMonthController: expMonthController,
                             expDateController: expYearController,
                             cvvController: cvvController,
+                            nameOnCardHintText: L10n.of(context)!.nameOnCard,
+                            cardNumberHintText: L10n.of(context)!.cardNumber,
+                            expMonthHintText: L10n.of(context)!.expMonth,
+                            expDateHintText: L10n.of(context)!.expDate,
+                            cvvHintText: L10n.of(context)!.cvv,
                             onNameChanged: (val) {
                               setState(() {
                                 context
@@ -203,14 +209,14 @@ class _NewCardViewState extends State<NewCardView> {
                           } else {
                             showToast(
                               context,
-                              'Form Error',
-                              'Please fix the errors in the form',
+                              L10n.of(context)!.formError,
+                              L10n.of(context)!.pleaseFixErrors,
                               ToastType.error,
                             );
                           }
                         },
                         height: 50,
-                        text: "Add Card",
+                        text: L10n.of(context)!.addNewCard,
                       ),
                     ),
                   ],
