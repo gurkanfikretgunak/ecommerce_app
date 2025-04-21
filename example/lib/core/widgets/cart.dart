@@ -1,12 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/cubits/product/product_cubit.dart';
+import 'package:example/cubits/product/product_state.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:example/cubits/cart/cart_cubit.dart';
 import 'package:example/cubits/cart/cart_state.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 class Cart extends StatefulWidget {
   final VoidCallback? buttonCallBack;
@@ -23,50 +25,13 @@ class _CartState extends State<Cart> {
   void initState() {
     super.initState();
     context.read<CartCubit>().getCart(widget.userId);
+    // context.read<ProductCubit>().getProducts("you also viewed");
   }
 
   @override
   void dispose() {
     super.dispose();
   }
-
-  final List<ProductBoxModal> productBoxRowItems = [
-    ProductBoxModal(
-        imagePath: Assets.images.productboximage.path,
-        name: "Basic T-shirt",
-        price: 49.99),
-    ProductBoxModal(
-        imagePath: Assets.images.productboximage.path,
-        name: "Basic T-shirt",
-        price: 40.99),
-    ProductBoxModal(
-        imagePath: Assets.images.productboximage.path,
-        name: "Basic T-shirt",
-        price: 52.99),
-  ];
-
-  List<Widget> productCardItems = [
-    ProductCardModal(
-        imagePath: Assets.images.productcardimageFirst.path,
-        productStock: "50",
-        productName: "Long-sleeved T-shirt",
-        productPrice: "49.00"),
-    ProductCardModal(
-        imagePath: Assets.images.productcardimageSecond.path,
-        productStock: "50",
-        productName: "Printed Cotton Shirt",
-        productPrice: "45.00"),
-    ProductCardModal(
-        imagePath: Assets.images.productcardimageThird.path,
-        productStock: "50",
-        productName: "Cotton T-shirt",
-        productPrice: "49.00"),
-    ProductCardModal(
-        imagePath: Assets.images.productcardimageFourth.path,
-        productStock: "50",
-        productName: "Embroidered T-Shirt",
-        productPrice: "39.00"),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +69,7 @@ class _CartState extends State<Cart> {
               height: 100,
               child: Center(
                   child: HeadText(
-                text: "Cart is Empty",
+                text: L10n.of(context)!.cartIsEmpty,
                 color: ColorConstant.instance.neutral1,
               )));
           isCartEmpty = true;
@@ -116,25 +81,53 @@ class _CartState extends State<Cart> {
               context.emptySizedHeightBoxNormal,
               cartContent,
               context.emptySizedHeightBoxNormal,
-              SectionLayout(
-                sectionText: "YOU ALSO VIEWED",
-                layout: ProductRowLayout(items: productCardItems),
-              ),
+              /*  BlocBuilder<ProductCubit, ProductState>(
+                builder: (context, state) {
+                  if (state is ProductLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is ProductChanged) {
+                    //context.read<ProductCubit>().getProducts("you also viewed");
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is ProductLoaded) {
+                    return SectionLayout(
+                      sectionText: "YOU ALSO VIEWED",
+                      layout: ProductRowLayout(
+                        items: state.product!.map((product) {
+                          return ProductCardModal(
+                            imagePath: product.image,
+                            productName: product.name,
+                            productPrice: product.price.toString(),
+                            productStock: product.sold_count.toString(),
+                            onTap: () {
+                              context
+                                  .read<ProductCubit>()
+                                  .changeProduct(product);
+                              AutoRouter.of(context)
+                                  .push(const ProductViewRoute());
+                            },
+                          );
+                        }).toList(),
+                      ),
+                    );
+                  } else {
+                    return const SizedBox.shrink();
+                  }
+                },
+              )*/
               Opacity(
                 opacity: isCartEmpty ? 0.5 : 1.0,
                 child: CustomButton(
                   onPressed: isCartEmpty
                       ? () {
-                          const ToastMessageLabel(
-                                  title: "Cart Is Empty",
-                                  type: ToastType.warning,
-                                  description:
-                                      "The cart is empty, you cannot proceed without products in your cart. ")
-                              .show(context);
+                          ToastMessageLabel(
+                            title: L10n.of(context)!.cartIsEmpty,
+                            type: ToastType.warning,
+                            description: L10n.of(context)!.emptyCartWarningDesc,
+                          ).show(context);
                         }
                       : widget.buttonCallBack ?? () {},
                   height: 50,
-                  text: "Proceed To Checkout",
+                  text: L10n.of(context)!.proceedToCheckout,
                 ),
               ),
             ],

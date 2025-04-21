@@ -3,6 +3,7 @@ import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 class OrderSuccess extends StatelessWidget {
   const OrderSuccess({
@@ -18,20 +19,20 @@ class OrderSuccess extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.1,
           ),
           OrderSuccessLabel(
-              onPrimaryButtonPressed: () {
-                context.read<BottomNavigationCubit>().setPage(1);
-              },
-              onSecondaryButtonPressed: () {
-                context.read<BottomNavigationCubit>().setPage(0);
-              },
-              title: "ORDER SUCCESS",
-              primaryButtonText: "MY ORDERS",
-              secondaryButtonText: "CONTINUE SHOPPING",
-              iconPath: Assets.icons.truck.path,
-              succesiconPath: Assets.icons.success.path,
-              radiusColor: ColorConstant.instance.green2,
-              description:
-                  "Dolor magna eget est lorem ipsum dolor sit amet consectetur."),
+            onPrimaryButtonPressed: () {
+              context.read<BottomNavigationCubit>().setPage(1);
+            },
+            onSecondaryButtonPressed: () {
+              context.read<BottomNavigationCubit>().setPage(0);
+            },
+            title: L10n.of(context)!.orderSuccess,
+            primaryButtonText: L10n.of(context)!.myOrders,
+            secondaryButtonText: L10n.of(context)!.continueShopping,
+            iconPath: Assets.icons.truck.path,
+            succesiconPath: Assets.icons.success.path,
+            radiusColor: ColorConstant.instance.green2,
+            description: L10n.of(context)!.orderSuccessDescription,
+          ),
         ],
       ),
     );

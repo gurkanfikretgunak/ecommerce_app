@@ -13,18 +13,13 @@ import 'package:example/core/widgets/ordersuccess.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class PaymentView extends StatelessWidget {
   final int? initialStep;
 
   PaymentView({super.key, this.initialStep = 0});
-
-  final List<String> stepTitles = [
-    "Cart",
-    "Checkout",
-    "Payment",
-  ];
 
   List<Widget> getStepContents(
       BuildContext context, AuthAuthenticated authState) {
@@ -46,6 +41,12 @@ class PaymentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> stepTitles = [
+      L10n.of(context)!.cart,
+      L10n.of(context)!.checkout,
+      L10n.of(context)!.successfully
+    ];
+
     return BlocProvider(
       create: (context) {
         final cubit = PaymentStepCubit(initialStep: initialStep ?? 0);
@@ -58,8 +59,8 @@ class PaymentView extends StatelessWidget {
         builder: (context, authState) {
           if (authState is! AuthAuthenticated) {
             return Scaffold(
-              appBar: AppBar(title: const Text("Payment")),
-              body: const Center(child: Text("Please log in to continue.")),
+              appBar: AppBar(title: const Text("")),
+              body: const Center(child: Text("Please login to continue.")),
             );
           }
 
@@ -89,7 +90,8 @@ class PaymentView extends StatelessWidget {
                     padding: const EdgeInsets.all(15),
                     child: Column(
                       children: [
-                        StepperLabel(currentStep: currentStep),
+                        StepperLabel(
+                            steps: stepTitles, currentStep: currentStep),
                         Center(
                             child: getStepContents(
                                 context, authState)[currentStep]),

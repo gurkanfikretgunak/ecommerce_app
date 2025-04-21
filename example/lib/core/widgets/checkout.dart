@@ -18,6 +18,7 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:example/cubits/cart/cart_cubit.dart';
 import 'package:example/cubits/cart/cart_state.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class Checkout extends StatefulWidget {
@@ -55,7 +56,7 @@ class _CheckoutState extends State<Checkout> {
           context.read<PaymentStepCubit>().nextStep();
         } else if (orderState is OrderError) {
           final toast = ToastMessageLabel(
-            title: 'Order Failed',
+            title: L10n.of(context)!.orderFailed,
             description: orderState.message,
             type: ToastType.error,
           );
@@ -103,10 +104,10 @@ class _CheckoutState extends State<Checkout> {
                         return const Center(child: CircularProgressIndicator());
                       } else {
                         return AddressBoxModal(
-                          name: "No Data",
-                          address: "Please update your address",
-                          email: "No Email",
-                          phone: "No Phone",
+                          name: L10n.of(context)!.noData,
+                          address: L10n.of(context)!.pleaseUpdateAddress,
+                          email: L10n.of(context)!.noEmail,
+                          phone: L10n.of(context)!.noPhone,
                           onTap: () {
                             AutoRouter.of(context)
                                 .push(const AddressesViewRoute());
@@ -148,7 +149,7 @@ class _CheckoutState extends State<Checkout> {
                             AutoRouter.of(context)
                                 .push(const PaymentMethodsViewRoute());
                           },
-                          text: "No Payment Method Found",
+                          text: L10n.of(context)!.noPaymentMethodFound,
                         );
                       }
                     },
@@ -190,10 +191,11 @@ class _CheckoutState extends State<Checkout> {
                                   billingState.billingDetail.isEmpty ||
                                   (paymentState is! PaymentMethodLoaded ||
                                       paymentState.paymentMethods.isEmpty)) {
-                                const ToastMessageLabel(
-                                  title: 'No Address Or Payment Method found',
-                                  description:
-                                      "Please add an address and payment method to proceed.",
+                                ToastMessageLabel(
+                                  title: L10n.of(context)!
+                                      .noAddressOrPaymentMethod,
+                                  description: L10n.of(context)!
+                                      .addAddressAndPaymentMethod,
                                   type: ToastType.warning,
                                 ).show(context);
 
@@ -237,7 +239,7 @@ class _CheckoutState extends State<Checkout> {
                           }
                         },
                     height: 50,
-                    text: "Order Now",
+                    text: L10n.of(context)!.orderNow,
                   ),
                 ],
               );
@@ -246,7 +248,7 @@ class _CheckoutState extends State<Checkout> {
                 height: 100,
                 child: Center(
                   child: HeadText(
-                    text: "Cart is Empty",
+                    text: L10n.of(context)!.cartIsEmpty,
                     color: ColorConstant.instance.neutral1,
                   ),
                 ),
