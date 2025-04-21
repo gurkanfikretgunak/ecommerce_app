@@ -70,7 +70,12 @@
     "color": "Color:",
     "size": "Size:",
     "pleaseSignInReview": "Please sign in to leave a review.",
+    "addReview": "ADD A REVIEW",
+    "yourReview": "Your Review * ",
+    "yourRating": "Your Rating * ",
+    "submit": "SUBMIT",
     "relatedProduct": "RELATED PRODUCT",
+    "addToCard":"Add to Card",
     "errorPrefix": "Error: {message}",
     "@errorPrefix": {
         "placeholders": {
@@ -80,7 +85,14 @@
         }
         }
     },
+    "wishlistEmpty": "Wishlist is Empty",
+    "productAddedToCart": "Product Added to Cart",
+    "productAddedToCartSuccess": "Product Added to Cart Successfully",
+    "wishlistError": "An error occurred while loading your wishlist",
+    "ordersEmpty": "Orders is Empty",
+    "orderError": "An error occurred while loading your orders",
     "checkout": "Checkout",
+    "successfully":"Successfully",
     "payment": "Payment",
     "paymentPageTitle": "Payment",
     "pleaseLoginToContinue": "Please log in to continue.",

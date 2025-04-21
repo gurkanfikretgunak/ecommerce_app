@@ -467,11 +467,41 @@ abstract class L10n {
   /// **'Please sign in to leave a review.'**
   String get pleaseSignInReview;
 
+  /// No description provided for @addReview.
+  ///
+  /// In en, this message translates to:
+  /// **'ADD A REVIEW'**
+  String get addReview;
+
+  /// No description provided for @yourReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Review * '**
+  String get yourReview;
+
+  /// No description provided for @yourRating.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Rating * '**
+  String get yourRating;
+
+  /// No description provided for @submit.
+  ///
+  /// In en, this message translates to:
+  /// **'SUBMIT'**
+  String get submit;
+
   /// No description provided for @relatedProduct.
   ///
   /// In en, this message translates to:
   /// **'RELATED PRODUCT'**
   String get relatedProduct;
+
+  /// No description provided for @addToCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to Card'**
+  String get addToCard;
 
   /// No description provided for @errorPrefix.
   ///
@@ -479,11 +509,53 @@ abstract class L10n {
   /// **'Error: {message}'**
   String errorPrefix(String message);
 
+  /// No description provided for @wishlistEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Wishlist is Empty'**
+  String get wishlistEmpty;
+
+  /// No description provided for @productAddedToCart.
+  ///
+  /// In en, this message translates to:
+  /// **'Product Added to Cart'**
+  String get productAddedToCart;
+
+  /// No description provided for @productAddedToCartSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Product Added to Cart Successfully'**
+  String get productAddedToCartSuccess;
+
+  /// No description provided for @wishlistError.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred while loading your wishlist'**
+  String get wishlistError;
+
+  /// No description provided for @ordersEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Orders is Empty'**
+  String get ordersEmpty;
+
+  /// No description provided for @orderError.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred while loading your orders'**
+  String get orderError;
+
   /// No description provided for @checkout.
   ///
   /// In en, this message translates to:
   /// **'Checkout'**
   String get checkout;
+
+  /// No description provided for @successfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully'**
+  String get successfully;
 
   /// No description provided for @payment.
   ///

@@ -195,7 +195,22 @@ class L10nEn extends L10n {
   String get pleaseSignInReview => 'Please sign in to leave a review.';
 
   @override
+  String get addReview => 'ADD A REVIEW';
+
+  @override
+  String get yourReview => 'Your Review * ';
+
+  @override
+  String get yourRating => 'Your Rating * ';
+
+  @override
+  String get submit => 'SUBMIT';
+
+  @override
   String get relatedProduct => 'RELATED PRODUCT';
+
+  @override
+  String get addToCard => 'Add to Card';
 
   @override
   String errorPrefix(String message) {
@@ -203,7 +218,28 @@ class L10nEn extends L10n {
   }
 
   @override
+  String get wishlistEmpty => 'Wishlist is Empty';
+
+  @override
+  String get productAddedToCart => 'Product Added to Cart';
+
+  @override
+  String get productAddedToCartSuccess => 'Product Added to Cart Successfully';
+
+  @override
+  String get wishlistError => 'An error occurred while loading your wishlist';
+
+  @override
+  String get ordersEmpty => 'Orders is Empty';
+
+  @override
+  String get orderError => 'An error occurred while loading your orders';
+
+  @override
   String get checkout => 'Checkout';
+
+  @override
+  String get successfully => 'Successfully';
 
   @override
   String get payment => 'Payment';

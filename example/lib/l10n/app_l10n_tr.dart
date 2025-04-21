@@ -195,7 +195,22 @@ class L10nTr extends L10n {
   String get pleaseSignInReview => 'Yorum yapmak için lütfen giriş yapın.';
 
   @override
+  String get addReview => 'YORUM EKLE';
+
+  @override
+  String get yourReview => 'Yorumunuz * ';
+
+  @override
+  String get yourRating => 'Puanınız * ';
+
+  @override
+  String get submit => 'GÖNDER';
+
+  @override
   String get relatedProduct => 'İLGİLİ ÜRÜNLER';
+
+  @override
+  String get addToCard => 'Sepete Ekle';
 
   @override
   String errorPrefix(String message) {
@@ -203,7 +218,28 @@ class L10nTr extends L10n {
   }
 
   @override
+  String get wishlistEmpty => 'Favoriler Listesi Boş';
+
+  @override
+  String get productAddedToCart => 'Ürün Sepete Eklendi';
+
+  @override
+  String get productAddedToCartSuccess => 'Ürün Sepete Başarıyla Eklendi';
+
+  @override
+  String get wishlistError => 'Favoriler listeniz yüklenirken bir hata oluştu';
+
+  @override
+  String get ordersEmpty => 'Siparişler Boş';
+
+  @override
+  String get orderError => 'Siparişleriniz yüklenirken bir hata oluştu';
+
+  @override
   String get checkout => 'Ödeme';
+
+  @override
+  String get successfully => 'Başarılı';
 
   @override
   String get payment => 'Ödeme';
@@ -233,7 +269,7 @@ class L10nTr extends L10n {
   String get orderFailed => 'Sipariş Başarısız';
 
   @override
-  String get noData => 'Veri Yok';
+  String get noData => 'Kayıtlı Adres Yok';
 
   @override
   String get pleaseUpdateAddress => 'Lütfen adresinizi güncelleyin';
