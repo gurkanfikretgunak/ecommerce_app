@@ -4,7 +4,9 @@ import 'package:example/route/route.gr.dart';
 import 'package:example/cubits/auth/auth_cubit.dart';
 import 'package:example/cubits/auth/auth_state.dart';
 import 'package:flutter/material.dart';
+import 'package:example/cubits/locale/locale_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 @RoutePage()
@@ -22,9 +24,18 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 3), () async {
+      if (!mounted) return;
+      loadLanguage();
       context.read<AuthCubit>().checkToken();
     });
+  }
+
+  Future<void> loadLanguage() async {
+    var box = await Hive.openBox('settings');
+    String languageCode = box.get('language', defaultValue: 'en');
+
+    context.read<LocaleCubit>().changeLocale(Locale(languageCode));
   }
 
   @override

@@ -30,7 +30,7 @@ class LanguageView extends StatelessWidget {
           children: [
             ListTile(
               title: ContentText(
-                text: 'Turkish',
+                text: L10n.of(context)!.turkish,
                 fontSize: 18,
                 textAlign: TextAlign.start,
                 color: ColorConstant.instance.neutral1,
@@ -46,7 +46,7 @@ class LanguageView extends StatelessWidget {
             const Divider(),
             ListTile(
               title: ContentText(
-                text: 'English',
+                text: L10n.of(context)!.english,
                 fontSize: 18,
                 textAlign: TextAlign.start,
                 color: ColorConstant.instance.neutral1,
