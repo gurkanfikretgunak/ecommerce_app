@@ -8,6 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 // ignore: depend_on_referenced_packages
 import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
@@ -18,6 +19,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load();
+  await Hive.initFlutter();
   await Firebase.initializeApp();
   SupabaseInitialize.initializeSupabase();
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
