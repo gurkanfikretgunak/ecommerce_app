@@ -3,12 +3,14 @@ import 'package:example/cubits/auth/auth_cubit.dart';
 import 'package:example/cubits/auth/auth_state.dart';
 import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
+import 'package:example/cubits/locale/locale_cubit.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:example/core/network/models/user_model/user_model.dart';
 import 'package:example/l10n/app_l10n.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class AccountView extends StatefulWidget {
@@ -41,6 +43,13 @@ class _AccountViewState extends State<AccountView> {
           text: L10n.of(context)!.paymentInformation,
           suffixIcon: Icons.arrow_forward_ios),
       SettingsBoxLabel(
+          icon: Icons.language,
+          text: L10n.of(context)!.language,
+          onTap: () {
+            AutoRouter.of(context).push(const LanguageViewRoute());
+          },
+          suffixIcon: Icons.arrow_forward_ios),
+      /*SettingsBoxLabel(
           icon: Icons.lock_outline,
           text: L10n.of(context)!.privacySetting,
           suffixIcon: Icons.arrow_forward_ios),
@@ -48,14 +57,11 @@ class _AccountViewState extends State<AccountView> {
           icon: Icons.settings,
           text: L10n.of(context)!.generalSetting,
           suffixIcon: Icons.arrow_forward_ios),
-      SettingsBoxLabel(
-          icon: Icons.language,
-          text: L10n.of(context)!.language,
-          suffixIcon: Icons.arrow_forward_ios),
+    
       SettingsBoxLabel(
           icon: Icons.person,
           text: L10n.of(context)!.changeAccount,
-          suffixIcon: Icons.arrow_forward_ios),
+          suffixIcon: Icons.arrow_forward_ios),*/
       SettingsBoxLabel(
         icon: Icons.logout,
         text: L10n.of(context)!.signOut,
