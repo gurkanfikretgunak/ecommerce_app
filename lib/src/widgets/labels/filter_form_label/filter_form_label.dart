@@ -11,23 +11,34 @@ class FilterFormLabel extends StatefulWidget {
   final Function(String)? onSizeSelected;
   final Function(double)? onPriceChanged;
   final Function(String)? onCategorieChanged;
-
   final VoidCallback? iconCallBack;
-
   final List<String>? sizes;
-  const FilterFormLabel(
-      {super.key,
-      required this.categorieController,
-      this.onColorSelected,
-      this.selectedColor,
-      required this.colors,
-      required this.categories,
-      this.sizes,
-      this.selectedSize,
-      this.onSizeSelected,
-      this.onPriceChanged,
-      this.iconCallBack,
-      this.onCategorieChanged});
+
+  final String filterText;
+  final String categoryText;
+  final String colorText;
+  final String sizeText;
+  final String priceText;
+
+  const FilterFormLabel({
+    super.key,
+    required this.categorieController,
+    this.onColorSelected,
+    this.selectedColor,
+    required this.colors,
+    required this.categories,
+    this.sizes,
+    this.selectedSize,
+    this.onSizeSelected,
+    this.onPriceChanged,
+    this.iconCallBack,
+    this.onCategorieChanged,
+    this.filterText = "FILTER",
+    this.categoryText = "Categorie",
+    this.colorText = "COLOR",
+    this.sizeText = "SIZE",
+    this.priceText = "PRICE",
+  });
 
   @override
   State<FilterFormLabel> createState() => _FilterFormLabelState();
@@ -54,7 +65,7 @@ class _FilterFormLabelState extends State<FilterFormLabel> {
                 HeadText(
                   fontSize: 30,
                   color: ColorConstant.instance.neutral1,
-                  text: "FILTER",
+                  text: widget.filterText,
                   textAlign: TextAlign.center,
                 ),
                 IconButton(
@@ -71,7 +82,7 @@ class _FilterFormLabelState extends State<FilterFormLabel> {
             padding: const EdgeInsets.only(bottom: 20.0),
             child: TypeaheadTextfieldInput(
               items: widget.categories,
-              labelText: "Categorie",
+              labelText: widget.categoryText,
               onTextChanged: widget.onCategorieChanged,
               controller: widget.categorieController,
             ),
@@ -79,7 +90,7 @@ class _FilterFormLabelState extends State<FilterFormLabel> {
           Padding(
             padding: const EdgeInsets.only(bottom: 30.0),
             child: FilterSectionLabel(
-                title: "COLOR",
+                title: widget.colorText,
                 element: ColorsLabel(
                   selectedColor: widget.selectedColor,
                   onColorSelected: widget.onColorSelected,
@@ -89,7 +100,7 @@ class _FilterFormLabelState extends State<FilterFormLabel> {
           Padding(
             padding: const EdgeInsets.only(bottom: 30.0),
             child: FilterSectionLabel(
-              title: "SIZE",
+              title: widget.sizeText,
               element: SizesLabel(
                 sizes: widget.sizes,
                 onSizeSelected: widget.onSizeSelected,
@@ -100,7 +111,7 @@ class _FilterFormLabelState extends State<FilterFormLabel> {
           Padding(
             padding: const EdgeInsets.only(bottom: 30.0),
             child: FilterSectionLabel(
-              title: "PRICE",
+              title: widget.priceText,
               element: RangeSliderInput(
                 onChanged: widget.onPriceChanged,
               ),
