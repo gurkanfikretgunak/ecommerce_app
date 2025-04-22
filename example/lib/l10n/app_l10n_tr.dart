@@ -441,4 +441,13 @@ class L10nTr extends L10n {
 
   @override
   String get markAsRead => 'Okundu Olarak İşaretle';
+
+  @override
+  String get filter => 'FİLTRELE';
+
+  @override
+  String get category => 'Kategori';
+
+  @override
+  String get price => 'FİYAT';
 }

@@ -958,6 +958,24 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'Mark As Read'**
   String get markAsRead;
+
+  /// No description provided for @filter.
+  ///
+  /// In en, this message translates to:
+  /// **'FILTER'**
+  String get filter;
+
+  /// No description provided for @category.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get category;
+
+  /// No description provided for @price.
+  ///
+  /// In en, this message translates to:
+  /// **'PRICE'**
+  String get price;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

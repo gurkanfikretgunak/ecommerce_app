@@ -144,5 +144,8 @@
   "changeSearchTerm": "Lütfen filtre seçin veya arama terimini değiştirin",
   "searchResult": "Arama Sonucu",
   "applyFilter": "Filtreyi Uygula",
-  "markAsRead":"Okundu Olarak İşaretle"
+  "markAsRead":"Okundu Olarak İşaretle",
+  "filter": "FİLTRELE",
+  "category": "Kategori",
+  "price": "FİYAT"
 }

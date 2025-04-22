@@ -441,4 +441,13 @@ class L10nEn extends L10n {
 
   @override
   String get markAsRead => 'Mark As Read';
+
+  @override
+  String get filter => 'FILTER';
+
+  @override
+  String get category => 'Category';
+
+  @override
+  String get price => 'PRICE';
 }
