@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:example/core/network/models/user_model/user_model.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class AccountView extends StatefulWidget {
@@ -23,41 +24,41 @@ class _AccountViewState extends State<AccountView> {
     final List<SettingsBoxLabel> settingsBoxItem = [
       SettingsBoxLabel(
           icon: Icons.person_outlined,
-          text: 'Account',
+          text: L10n.of(context)!.account,
           onTap: () {
             AutoRouter.of(context).push(ProfileViewRoute());
           },
           suffixIcon: Icons.arrow_forward_ios),
       SettingsBoxLabel(
           icon: Icons.notifications_outlined,
-          text: 'Notification',
+          text: L10n.of(context)!.notification,
           onTap: () {
             AutoRouter.of(context).push(const NotificationViewRoute());
           },
           suffixIcon: Icons.arrow_forward_ios),
-      const SettingsBoxLabel(
+      SettingsBoxLabel(
           icon: Icons.payment,
-          text: 'Payment Information',
+          text: L10n.of(context)!.paymentInformation,
           suffixIcon: Icons.arrow_forward_ios),
-      const SettingsBoxLabel(
+      SettingsBoxLabel(
           icon: Icons.lock_outline,
-          text: 'Privacy Setting',
+          text: L10n.of(context)!.privacySetting,
           suffixIcon: Icons.arrow_forward_ios),
-      const SettingsBoxLabel(
+      SettingsBoxLabel(
           icon: Icons.settings,
-          text: 'General Setting',
+          text: L10n.of(context)!.generalSetting,
           suffixIcon: Icons.arrow_forward_ios),
-      const SettingsBoxLabel(
+      SettingsBoxLabel(
           icon: Icons.language,
-          text: 'Language',
+          text: L10n.of(context)!.language,
           suffixIcon: Icons.arrow_forward_ios),
-      const SettingsBoxLabel(
+      SettingsBoxLabel(
           icon: Icons.person,
-          text: 'Change Account',
+          text: L10n.of(context)!.changeAccount,
           suffixIcon: Icons.arrow_forward_ios),
       SettingsBoxLabel(
         icon: Icons.logout,
-        text: 'Sign Out',
+        text: L10n.of(context)!.signOut,
         onTap: () async {
           context.read<AuthCubit>().signOut();
         },
@@ -73,7 +74,7 @@ class _AccountViewState extends State<AccountView> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
         child: CustomAppbar(
-          text: "ACCOUNT",
+          text: L10n.of(context)!.account,
           onPressed: () {
             context.read<BottomNavigationCubit>().setPage(0);
           },
@@ -108,7 +109,7 @@ class _AccountViewState extends State<AccountView> {
                           onPressed: () {
                             context.read<BottomNavigationCubit>().setPage(1);
                           },
-                          text: "My Order",
+                          text: L10n.of(context)!.myOrder,
                           iconColor: ColorConstant.instance.neutral1,
                           textColor: ColorConstant.instance.neutral1,
                           icon: Icons.local_mall,
@@ -122,7 +123,7 @@ class _AccountViewState extends State<AccountView> {
                           onPressed: () {
                             context.read<BottomNavigationCubit>().setPage(1);
                           },
-                          text: "Wishlist",
+                          text: L10n.of(context)!.wishlist,
                           iconColor: ColorConstant.instance.neutral1,
                           textColor: ColorConstant.instance.neutral1,
                           icon: Icons.favorite,

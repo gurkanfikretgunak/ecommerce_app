@@ -2,6 +2,7 @@ import 'package:example/core/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class NotificationView extends StatefulWidget {
@@ -46,7 +47,7 @@ class _NotificationViewState extends State<NotificationView> {
             onPressed: () {
               Navigator.pop(context);
             },
-            text: "notification",
+            text: L10n.of(context)!.notification,
             iconColor: ColorConstant.instance.neutral1,
             actions: [
               if (isSelectView)
@@ -72,13 +73,14 @@ class _NotificationViewState extends State<NotificationView> {
               NotificationBoxColumnLayout(
                   isSelectView: isSelectView,
                   nofiticationItems: nofiticationItems),
+              context.emptySizedHeightBoxNormal,
               if (isSelectView)
                 Align(
                     alignment: Alignment.bottomCenter,
                     child: CustomButton(
                       onPressed: () {},
                       height: 50,
-                      text: "Mark As Read",
+                      text: L10n.of(context)!.markAsRead,
                     )),
             ],
           ),
