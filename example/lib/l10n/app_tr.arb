@@ -143,5 +143,6 @@
   "noProductsFound": "Ürün Bulunamadı",
   "changeSearchTerm": "Lütfen filtre seçin veya arama terimini değiştirin",
   "searchResult": "Arama Sonucu",
-  "applyFilter": "Filtreyi Uygula"
+  "applyFilter": "Filtreyi Uygula",
+  "markAsRead":"Okundu Olarak İşaretle"
 }

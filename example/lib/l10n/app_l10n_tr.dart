@@ -438,4 +438,7 @@ class L10nTr extends L10n {
 
   @override
   String get applyFilter => 'Filtreyi Uygula';
+
+  @override
+  String get markAsRead => 'Okundu Olarak İşaretle';
 }

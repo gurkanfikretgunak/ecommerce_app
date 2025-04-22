@@ -163,7 +163,8 @@
     "noProductsFound": "No Products Found",
     "changeSearchTerm": "Please select filters or change your search term",
     "searchResult": "Search Result",
-    "applyFilter": "Apply Filter"
+    "applyFilter": "Apply Filter",
+    "markAsRead":"Mark As Read"
 
 
  }

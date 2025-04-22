@@ -438,4 +438,7 @@ class L10nEn extends L10n {
 
   @override
   String get applyFilter => 'Apply Filter';
+
+  @override
+  String get markAsRead => 'Mark As Read';
 }
