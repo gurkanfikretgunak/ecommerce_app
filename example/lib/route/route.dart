@@ -28,6 +28,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: ProfileViewRoute.page),
         AutoRoute(page: OrderwishlistViewRoute.page),
         AutoRoute(page: NotificationViewRoute.page),
+        AutoRoute(page: LanguageViewRoute.page),
       ];
 }
 
