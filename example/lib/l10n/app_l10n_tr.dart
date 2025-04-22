@@ -450,4 +450,13 @@ class L10nTr extends L10n {
 
   @override
   String get price => 'FİYAT';
+
+  @override
+  String get turkish => 'Türkçe';
+
+  @override
+  String get english => 'İngilizce';
+
+  @override
+  String get german => 'Almanca';
 }

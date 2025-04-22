@@ -290,7 +290,7 @@ abstract class L10n {
   /// No description provided for @account.
   ///
   /// In en, this message translates to:
-  /// **'ACCOUNT'**
+  /// **'Account'**
   String get account;
 
   /// No description provided for @winterSale.
@@ -976,6 +976,24 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'PRICE'**
   String get price;
+
+  /// No description provided for @turkish.
+  ///
+  /// In en, this message translates to:
+  /// **'Turkish'**
+  String get turkish;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @german.
+  ///
+  /// In en, this message translates to:
+  /// **'German'**
+  String get german;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

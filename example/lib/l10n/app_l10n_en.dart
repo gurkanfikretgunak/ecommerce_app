@@ -103,7 +103,7 @@ class L10nEn extends L10n {
   String get search => 'Search';
 
   @override
-  String get account => 'ACCOUNT';
+  String get account => 'Account';
 
   @override
   String get winterSale => 'WINTER SALE';
@@ -450,4 +450,13 @@ class L10nEn extends L10n {
 
   @override
   String get price => 'PRICE';
+
+  @override
+  String get turkish => 'Turkish';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get german => 'German';
 }

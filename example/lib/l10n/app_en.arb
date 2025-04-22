@@ -140,7 +140,6 @@
     "myOrders": "MY ORDERS",
     "continueShopping": "CONTINUE SHOPPING",
     "orderSuccessDescription": "Dolor magna eget est lorem ipsum dolor sit amet consectetur.",
-    "account": "ACCOUNT",
     "myOrder": "My Order",
     "wishlist": "Wishlist",
     "accountSettings": "Account",
@@ -167,7 +166,11 @@
     "markAsRead":"Mark As Read",
     "filter": "FILTER",
     "category": "Category",
-    "price": "PRICE"
+    "price": "PRICE",
+    "turkish":"Turkish",
+    "english":"English",
+    "german":"German"
+
 
 
  }

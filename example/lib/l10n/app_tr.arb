@@ -147,5 +147,8 @@
   "markAsRead":"Okundu Olarak İşaretle",
   "filter": "FİLTRELE",
   "category": "Kategori",
-  "price": "FİYAT"
+  "price": "FİYAT",
+  "turkish":"Türkçe",
+  "english":"İngilizce",
+  "german":"Almanca"
 }
