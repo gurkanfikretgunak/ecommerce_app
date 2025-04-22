@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
 import 'package:example/cubits/cart/cart_cubit.dart';
 import 'package:example/cubits/order/order_cubit.dart';
-import 'package:example/views/auth/models/auth_cubit.dart';
-import 'package:example/views/auth/models/auth_state.dart';
-import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
-import 'package:example/views/payment/models/payment_step_cubit.dart';
-import 'package:example/views/payment/models/payment_step_state.dart';
+import 'package:example/cubits/auth/auth_cubit.dart';
+import 'package:example/cubits/auth/auth_state.dart';
+import 'package:example/cubits/payment_step/payment_step_cubit.dart';
+import 'package:example/cubits/payment_step/payment_step_state.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:example/core/widgets/cart.dart';
 import 'package:example/core/widgets/checkout.dart';
@@ -76,7 +76,7 @@ class PaymentView extends StatelessWidget {
                   child: CustomAppbar(
                     text: stepTitles[currentStep],
                     onPressed: () {
-                      if (currentStep == 0) {
+                      if (currentStep == 0 || currentStep == 2) {
                         context.read<BottomNavigationCubit>().setPage(0);
                         return;
                       }

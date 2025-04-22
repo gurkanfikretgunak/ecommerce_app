@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/route/route.gr.dart';
-import 'package:example/views/auth/models/auth_cubit.dart';
-import 'package:example/views/auth/models/auth_state.dart';
+import 'package:example/cubits/auth/auth_cubit.dart';
+import 'package:example/cubits/auth/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';

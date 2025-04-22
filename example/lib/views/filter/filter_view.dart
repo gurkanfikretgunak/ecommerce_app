@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:example/core/network/models/filter_model/filter_model.dart';
 import 'package:example/cubits/search_cubit/search_cubit.dart';
 import 'package:example/cubits/search_cubit/search_state.dart';
-import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';

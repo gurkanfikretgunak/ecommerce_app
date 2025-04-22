@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:example/core/network/models/product_model/product_model.dart';
+import 'package:example/cubits/categorie_products/categorie_products_cubit.dart';
+import 'package:example/cubits/categorie_products/categorie_products_state.dart';
 import 'package:example/cubits/product/product_cubit.dart';
 import 'package:example/route/route.gr.dart';
-import 'package:example/views/categorie_products/models/categorie_products_cubit.dart';
-import 'package:example/views/categorie_products/models/categorie_products_state.dart';
 import 'package:example/core/network/models/categorie_model/categorie_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

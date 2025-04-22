@@ -1,8 +1,8 @@
 import 'package:example/cubits/order/order_cubit.dart';
 import 'package:example/cubits/order/order_state.dart';
 import 'package:example/cubits/wishlist/wishlist_cubit.dart';
-import 'package:example/views/auth/models/auth_cubit.dart';
-import 'package:example/views/auth/models/auth_state.dart';
+import 'package:example/cubits/auth/auth_cubit.dart';
+import 'package:example/cubits/auth/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';

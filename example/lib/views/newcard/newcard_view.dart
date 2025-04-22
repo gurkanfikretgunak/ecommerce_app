@@ -1,11 +1,11 @@
 import 'package:example/core/network/models/payment_method_model/payment_method_model.dart';
+import 'package:example/cubits/auth/auth_cubit.dart';
+import 'package:example/cubits/auth/auth_state.dart';
 import 'package:example/cubits/payment_method/payment_method_cubit.dart';
 import 'package:example/cubits/validation/validation_cubit.dart';
 import 'package:example/cubits/validation/validation_state.dart';
 import 'package:example/views/paymentmethods/paymentmethods_view.dart';
 import 'package:example/route/route.gr.dart';
-import 'package:example/views/auth/models/auth_cubit.dart';
-import 'package:example/views/auth/models/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:auto_route/auto_route.dart';

@@ -1,7 +1,8 @@
 import 'package:example/cubits/payment_method/payment_method_cubit.dart';
 import 'package:example/cubits/payment_method/payment_method_state.dart';
 import 'dart:math';
-import 'package:example/views/auth/models/auth_cubit.dart';
+import 'package:example/cubits/auth/auth_cubit.dart';
+import 'package:example/cubits/auth/auth_state.dart';
 import 'package:example/views/newcard/newcard_view.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';

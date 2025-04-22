@@ -1,13 +1,13 @@
 import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/core/widgets/order.dart';
 import 'package:example/core/widgets/wishlist.dart';
+import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
 import 'package:example/cubits/product/product_cubit.dart';
 import 'package:example/cubits/product/product_state.dart';
 import 'package:example/cubits/wishlist/wishlist_cubit.dart';
 import 'package:example/route/route.gr.dart';
-import 'package:example/views/auth/models/auth_cubit.dart';
-import 'package:example/views/auth/models/auth_state.dart';
-import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
+import 'package:example/cubits/auth/auth_cubit.dart';
+import 'package:example/cubits/auth/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:auto_route/auto_route.dart';

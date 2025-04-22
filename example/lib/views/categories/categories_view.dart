@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:example/views/categories/models/categories_cubit.dart';
-import 'package:example/views/categories/models/categories_state.dart';
 import 'package:example/core/gen/assets.gen.dart';
+import 'package:example/cubits/categories/categories_cubit.dart';
+import 'package:example/cubits/categories/categories_state.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

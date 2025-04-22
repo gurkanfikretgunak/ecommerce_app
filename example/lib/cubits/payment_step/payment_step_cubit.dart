@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:example/views/payment/models/payment_step_state.dart';
+import 'package:example/cubits/payment_step/payment_step_state.dart';
 import 'package:flutter/material.dart';
 
 class PaymentStepCubit extends Cubit<PaymentStepState> {

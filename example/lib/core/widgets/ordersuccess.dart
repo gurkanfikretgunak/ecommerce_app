@@ -1,5 +1,5 @@
 import 'package:example/core/gen/assets.gen.dart';
-import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
+import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
