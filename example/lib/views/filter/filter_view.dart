@@ -5,6 +5,7 @@ import 'package:example/cubits/search_cubit/search_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class FilterView extends StatefulWidget {
@@ -61,6 +62,11 @@ class _FilterViewState extends State<FilterView> {
                 child: Column(
                   children: [
                     FilterFormLabel(
+                      filterText: L10n.of(context)!.filter,
+                      categoryText: L10n.of(context)!.category,
+                      colorText: L10n.of(context)!.color,
+                      sizeText: L10n.of(context)!.size,
+                      priceText: L10n.of(context)!.price,
                       categorieController: categorieController,
                       selectedColor: state.filter.color,
                       categories: categories,
@@ -86,7 +92,7 @@ class _FilterViewState extends State<FilterView> {
                     const SizedBox(height: 20),
                     CustomButton(
                       height: 50,
-                      text: "Apply Filter",
+                      text: L10n.of(context)!.applyFilter,
                       onPressed: () {
                         context.read<SearchCubit>().applyFilters();
                         Navigator.pop(context);
