@@ -7,7 +7,7 @@ class LocaleCubit extends Cubit<Locale> {
     loadLanguage();
   }
 
-  void changeLocale(Locale locale) async {
+  Future<void> changeLocale(Locale locale) async {
     await saveLanguage(locale.languageCode);
     emit(locale);
   }

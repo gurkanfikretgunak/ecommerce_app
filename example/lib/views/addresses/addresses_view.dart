@@ -36,7 +36,8 @@ class _AddressesViewState extends State<AddressesView> {
           child: CustomAppbar(
             text: L10n.of(context)!.address,
             onPressed: () {
-              AutoRouter.of(context).push(PaymentViewRoute(initialStep: 1));
+              Navigator.pop(context);
+              //AutoRouter.of(context).push(PaymentViewRoute(initialStep: 1));
             },
             iconColor: ColorConstant.instance.neutral1,
           ),

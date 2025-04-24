@@ -43,7 +43,7 @@ class ExampleApp extends StatelessWidget {
       builder: (context, locale) {
         return MaterialApp.router(
           useInheritedMediaQuery: true,
-          locale: locale, // 💥 DİL DESTEĞİ BURAYA GELDİ
+          locale: locale,
           title: 'Example App',
           debugShowCheckedModeBanner: false,
           localizationsDelegates: L10n.localizationsDelegates,

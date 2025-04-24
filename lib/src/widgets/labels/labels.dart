@@ -34,3 +34,4 @@ export 'package:shopapp_widgets/src/widgets/labels/tags_label/tags_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/timer_label/timer_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/timer_label_box/timer_label_box.dart';
 export 'package:shopapp_widgets/src/widgets/labels/toast_message_label/toast_message_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/reset_password_form_label/reset_password_form_label.dart';

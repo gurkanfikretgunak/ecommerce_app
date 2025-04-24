@@ -13,7 +13,6 @@ class SignInFormLabel extends StatefulWidget {
   final bool rememberMe;
   final Function(bool)? checkBoxOnChanged;
 
-  // Added customizable text parameters
   final String emailLabelText;
   final String passwordLabelText;
   final String emailHintText;
@@ -34,7 +33,6 @@ class SignInFormLabel extends StatefulWidget {
     this.isPasswordValid,
     required this.rememberMe,
     this.checkBoxOnChanged,
-    // Default values for the new parameters
     this.emailLabelText = "Email",
     this.passwordLabelText = "Password",
     this.emailHintText = "Enter Email",

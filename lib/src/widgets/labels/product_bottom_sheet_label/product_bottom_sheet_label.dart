@@ -70,7 +70,7 @@ class _ProductBottomSheetLabelState extends State<ProductBottomSheetLabel> {
             SizedBox(width: screenWidth * 0.05),
             CustomButton(
               onPressed: widget.buttonOnPressed,
-              width: 160,
+              width: 165,
               height: 40,
               borderColor: ColorConstant.instance.neutral9,
               text: widget.buttonText,
