@@ -39,9 +39,13 @@ class _AccountViewState extends State<AccountView> {
           },
           suffixIcon: Icons.arrow_forward_ios),
       SettingsBoxLabel(
-          icon: Icons.payment,
-          text: L10n.of(context)!.paymentInformation,
-          suffixIcon: Icons.arrow_forward_ios),
+        icon: Icons.payment,
+        text: L10n.of(context)!.paymentInformation,
+        suffixIcon: Icons.arrow_forward_ios,
+        onTap: () {
+          AutoRouter.of(context).push(const PaymentMethodsViewRoute());
+        },
+      ),
       SettingsBoxLabel(
           icon: Icons.language,
           text: L10n.of(context)!.language,

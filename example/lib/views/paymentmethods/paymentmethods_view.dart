@@ -39,7 +39,8 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
         child: CustomAppbar(
           text: L10n.of(context)!.paymentMethod,
           onPressed: () {
-            AutoRouter.of(context).push(PaymentViewRoute(initialStep: 1));
+            Navigator.pop(context);
+            //AutoRouter.of(context).push(PaymentViewRoute(initialStep: 1));
           },
           iconColor: ColorConstant.instance.neutral1,
         ),
