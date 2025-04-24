@@ -191,6 +191,10 @@ class ValidationCubit extends Cubit<ValidationState> {
     ;
   }
 
+  bool isResetPasswordFormValid() {
+    return _isEmailValid;
+  }
+
   bool isCardFormValid() {
     return _isCardNumberValid &&
         _isExpMonthValid &&
