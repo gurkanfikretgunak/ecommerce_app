@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:example/core/network/models/cart_model/cart_model.dart';
 import 'package:example/cubits/cart/cart_cubit.dart';
 import 'package:example/cubits/product/product_cubit.dart';
@@ -5,6 +6,7 @@ import 'package:example/cubits/wishlist/wishlist_cubit.dart';
 import 'package:example/cubits/wishlist/wishlist_state.dart';
 import 'package:example/cubits/auth/auth_cubit.dart';
 import 'package:example/cubits/auth/auth_state.dart';
+import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
@@ -27,9 +29,7 @@ class _WishlistState extends State<Wishlist> {
         if (authState is AuthAuthenticated) {
           final userId = authState.user.id;
           bool isWishlistEmpty = false;
-
           context.read<WishlistCubit>().getWishlist(userId);
-
           return BlocBuilder<WishlistCubit, WishlistState>(
             builder: (context, state) {
               if (state is WishlistLoading) {
@@ -78,6 +78,12 @@ class _WishlistState extends State<Wishlist> {
                       name: item.product!.name,
                       price: item.product!.price,
                       sizeList: item.sizes,
+                      onTap: () {
+                        context
+                            .read<ProductCubit>()
+                            .changeProduct(item.product!);
+                        AutoRouter.of(context).push(const ProductViewRoute());
+                      },
                       onSizeChange: (value) {
                         item.selectedSize = value;
                       },
@@ -87,13 +93,8 @@ class _WishlistState extends State<Wishlist> {
               } else if (state is WishlistError) {
                 return Center(child: Text('Error: ${state.message}'));
               } else {
-                return SizedBox(
-                    height: 100,
-                    child: Center(
-                        child: HeadText(
-                      text: L10n.of(context)!.wishlistEmpty,
-                      color: ColorConstant.instance.neutral1,
-                    )));
+                context.read<WishlistCubit>().getWishlist(userId);
+                return const Center(child: CircularProgressIndicator());
               }
             },
           );
