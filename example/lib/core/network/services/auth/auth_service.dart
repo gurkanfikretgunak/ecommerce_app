@@ -43,6 +43,14 @@ class AuthService {
     }
   }
 
+  Future<void>? resetPassword(email) async {
+    try {
+      auth.resetPasswordForEmail(email);
+    } catch (e) {
+      throw Exception("Reset Password unsuccessful:$e");
+    }
+  }
+
   Future<User?> signInWithFacebook() async {
     try {
       final success = await auth.signInWithOAuth(

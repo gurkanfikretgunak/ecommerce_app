@@ -88,6 +88,14 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  Future<void> resetPassword(String email) async {
+    try {
+      _authService.resetPassword(email);
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
   Future<void> signUpWithFacebook() async {
     try {
       supabase.User? user = await _authService.signInWithFacebook();
