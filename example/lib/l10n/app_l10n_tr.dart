@@ -85,6 +85,12 @@ class L10nTr extends L10n {
   String get signUp => 'KAYIT OL';
 
   @override
+  String get resetPassword => 'Şifreyi Sıfırla';
+
+  @override
+  String get resetPasswordDescription => 'Hesabınıza erişmek için e-posta adresinizi yazın, size bir şifre sıfırlama bağlantısı gönderelim.';
+
+  @override
   String get signUpWithGoogle => 'GOOGLE İLE KAYIT OL';
 
   @override
@@ -456,7 +462,4 @@ class L10nTr extends L10n {
 
   @override
   String get english => 'İngilizce';
-
-  @override
-  String get german => 'Almanca';
 }

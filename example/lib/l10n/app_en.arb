@@ -26,6 +26,8 @@
     "phoneNumber": "Phone Number",
     "confirmPassword": "Confirm Password",
     "signUp": "SIGN UP",
+    "resetPassword": "Reset Password",
+    "resetPasswordDescription": "Enter your email address to access your account. We'll send you a password reset link.",
     "signUpWithGoogle": "SIGN UP WITH GOOGLE",
     "signUpWithFacebook": "SIGN UP WITH FACEBOOK",
     "home": "Home",
@@ -168,8 +170,8 @@
     "category": "Category",
     "price": "PRICE",
     "turkish":"Turkish",
-    "english":"English",
-    "german":"German"
+    "english":"English"
+   
 
 
 

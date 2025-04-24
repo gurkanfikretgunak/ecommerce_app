@@ -85,6 +85,12 @@ class L10nEn extends L10n {
   String get signUp => 'SIGN UP';
 
   @override
+  String get resetPassword => 'Reset Password';
+
+  @override
+  String get resetPasswordDescription => 'Enter your email address to access your account. We\'ll send you a password reset link.';
+
+  @override
   String get signUpWithGoogle => 'SIGN UP WITH GOOGLE';
 
   @override
@@ -456,7 +462,4 @@ class L10nEn extends L10n {
 
   @override
   String get english => 'English';
-
-  @override
-  String get german => 'German';
 }

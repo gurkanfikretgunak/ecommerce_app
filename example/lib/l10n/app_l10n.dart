@@ -251,6 +251,18 @@ abstract class L10n {
   /// **'SIGN UP'**
   String get signUp;
 
+  /// No description provided for @resetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get resetPassword;
+
+  /// No description provided for @resetPasswordDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email address to access your account. We\'ll send you a password reset link.'**
+  String get resetPasswordDescription;
+
   /// No description provided for @signUpWithGoogle.
   ///
   /// In en, this message translates to:
@@ -988,12 +1000,6 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'English'**
   String get english;
-
-  /// No description provided for @german.
-  ///
-  /// In en, this message translates to:
-  /// **'German'**
-  String get german;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

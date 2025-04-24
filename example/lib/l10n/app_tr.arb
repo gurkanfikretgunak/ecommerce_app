@@ -28,6 +28,8 @@
   "signUp": "KAYIT OL",
   "signUpWithGoogle": "GOOGLE İLE KAYIT OL",
   "signUpWithFacebook": "FACEBOOK İLE KAYIT OL",
+  "resetPassword":"Şifreyi Sıfırla",
+  "resetPasswordDescription":"Hesabınıza erişmek için e-posta adresinizi yazın, size bir şifre sıfırlama bağlantısı gönderelim.",
   "home": "Ana Sayfa",
   "wishlist": "Favoriler",
   "cart": "Sepet",
@@ -149,6 +151,6 @@
   "category": "Kategori",
   "price": "FİYAT",
   "turkish":"Türkçe",
-  "english":"İngilizce",
-  "german":"Almanca"
+  "english":"İngilizce"
+
 }
