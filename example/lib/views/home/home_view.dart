@@ -3,6 +3,7 @@ import 'package:example/cubits/categories/categories_cubit.dart';
 import 'package:example/cubits/categories/categories_state.dart';
 import 'package:example/cubits/home/home_cubit.dart';
 import 'package:example/cubits/home/home_state.dart';
+import 'package:example/cubits/pop-up/pop-up_cubit.dart';
 import 'package:example/cubits/product/product_cubit.dart';
 import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/route/route.gr.dart';
@@ -32,10 +33,10 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Future<void> _checkPopup() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    bool hidePopup = preferences.getBool('hidePopUp') ?? false;
+    context.read<PopUpCubit>().loadBannerPreference();
+    final bool isPopupVisible = context.read<PopUpCubit>().state;
 
-    if (!hidePopup) {
+    if (isPopupVisible) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         _showPopup();
       });
@@ -52,12 +53,9 @@ class _HomeViewState extends State<HomeView> {
           saleTitle: L10n.of(context)!.winterSale,
           subTitle: L10n.of(context)!.saleOff,
           discount: "50",
-          button: BannerButton(
-            icon: Icons.arrow_forward,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
+          checkBoxPressed: (visible) {
+            context.read<PopUpCubit>().changeBannerVisible(visible);
+          },
         );
       },
     );
