@@ -100,9 +100,20 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                   CustomButton(
                     text: L10n.of(context)!.resetPassword,
                     onPressed: () {
-                      print(context
+                      context
                           .read<ValidationCubit>()
-                          .isResetPasswordFormValid());
+                          .validateEmail(emailController.text);
+                      if (context
+                          .read<ValidationCubit>()
+                          .isResetPasswordFormValid()) {
+                      } else {
+                        showToast(
+                          context,
+                          L10n.of(context)!.formError,
+                          L10n.of(context)!.pleaseFixErrors,
+                          ToastType.error,
+                        );
+                      }
                     },
                   ),
                 ],
