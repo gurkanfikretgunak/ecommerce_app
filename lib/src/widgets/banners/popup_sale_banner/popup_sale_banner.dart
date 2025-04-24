@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PopupSaleBanner extends StatefulWidget {
   final String imagePath;
@@ -8,6 +7,7 @@ class PopupSaleBanner extends StatefulWidget {
   final String subTitle;
   final String discount;
   final BannerButton? button;
+  final Function(bool)? checkBoxPressed;
 
   const PopupSaleBanner({
     super.key,
@@ -16,6 +16,7 @@ class PopupSaleBanner extends StatefulWidget {
     required this.subTitle,
     required this.discount,
     this.button,
+    this.checkBoxPressed,
   });
 
   @override
@@ -25,18 +26,13 @@ class PopupSaleBanner extends StatefulWidget {
 class _PopupSaleBannerState extends State<PopupSaleBanner> {
   bool isChecked = false;
 
-  Future<void> _setNotShowAgain() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setBool('hidePopup', true);
-  }
-
   @override
   @override
   Widget build(BuildContext context) {
     return Dialog(
       insetPadding: const EdgeInsets.all(15),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      child: Container(
+      child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.8,
         height: MediaQuery.of(context).size.height * 0.7,
         child: Stack(
@@ -65,7 +61,12 @@ class _PopupSaleBannerState extends State<PopupSaleBanner> {
                       fontSize: 80,
                       color: ColorConstant.instance.neutral9,
                     ),
-                    if (widget.button != null) widget.button!,
+                    BannerButton(
+                      icon: Icons.arrow_forward,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
                     context.emptySizedHeightBoxLow,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -78,8 +79,8 @@ class _PopupSaleBannerState extends State<PopupSaleBanner> {
                           onChanged: (value) {
                             setState(() {
                               isChecked = value!;
+                              widget.checkBoxPressed!(!isChecked);
                             });
-                            if (value!) _setNotShowAgain();
                           },
                         ),
                         ContentText(
@@ -97,7 +98,7 @@ class _PopupSaleBannerState extends State<PopupSaleBanner> {
             Positioned(
               top: 5,
               left: 10,
-              child: Container(
+              child: SizedBox(
                 width: 67,
                 child: HeadText(
                   textAlign: TextAlign.start,
