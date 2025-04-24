@@ -33,7 +33,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Future<void> _checkPopup() async {
-    context.read<PopUpCubit>().loadBannerPreference();
+    await context.read<PopUpCubit>().loadBannerPreference();
     final bool isPopupVisible = context.read<PopUpCubit>().state;
 
     if (isPopupVisible) {
