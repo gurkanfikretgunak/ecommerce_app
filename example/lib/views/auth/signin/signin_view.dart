@@ -95,14 +95,6 @@ class _SignInViewState extends State<SignInView> {
                           passwordErrorMessage = validationState.error;
                         }
 
-                        if (validationState is EmailInvalid) {
-                          isEmailValid = false;
-                        }
-
-                        if (validationState is PasswordInvalid) {
-                          isPasswordValid = false;
-                        }
-
                         return SignInFormLabel(
                           emailLabelText: L10n.of(context)!.email,
                           passwordLabelText: L10n.of(context)!.password,
@@ -124,6 +116,10 @@ class _SignInViewState extends State<SignInView> {
                             context
                                 .read<ValidationCubit>()
                                 .validateEmail(email);
+                          },
+                          onForgotPasswordPressed: () {
+                            AutoRouter.of(context)
+                                .push(const ResetPasswordViewRoute());
                           },
                           onChangedPassword: (password) {
                             context

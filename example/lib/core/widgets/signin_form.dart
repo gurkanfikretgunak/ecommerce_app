@@ -5,11 +5,13 @@ import 'package:example/l10n/app_l10n.dart';
 class SignInForm extends StatefulWidget {
   final Function(String)? onChangedEmail;
   final Function(String)? onChangedPassword;
+  final VoidCallback? onPressedForgotPassword;
 
   const SignInForm({
     super.key,
     this.onChangedEmail,
     this.onChangedPassword,
+    this.onPressedForgotPassword,
   });
 
   @override
@@ -87,7 +89,7 @@ class _SignInFormState extends State<SignInForm> {
                     ],
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: widget.onPressedForgotPassword,
                     child: Text(
                       L10n.of(context)!.forgotPassword,
                       style:
