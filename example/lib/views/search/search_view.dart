@@ -62,7 +62,10 @@ class _SearchViewState extends State<SearchView> {
           textEditingController: searchController,
           text: L10n.of(context)!.searchProduct,
           onPressed: () {
-            context.read<BottomNavigationCubit>().setPage(0);
+            if (AutoRouter.of(context).stack.isEmpty) {
+              context.read<BottomNavigationCubit>().setPage(0);
+            }
+            Navigator.pop(context);
           },
           iconOnPressed: () {
             AutoRouter.of(context).push(const FilterViewRoute());
