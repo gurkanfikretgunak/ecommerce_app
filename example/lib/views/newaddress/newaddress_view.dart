@@ -188,7 +188,7 @@ class _NewAddressViewState extends State<NewAddressView> {
                               showToast(
                                 context,
                                 L10n.of(context)!.formError,
-                                L10n.of(context)!.confirm,
+                                L10n.of(context)!.pleaseFixErrors,
                                 ToastType.error,
                               );
                             }

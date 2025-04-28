@@ -24,7 +24,6 @@ class BillingDetailCubit extends Cubit<BillingDetailState> {
     try {
       await BillingDetailRespository().postBillingDetail(billingDetail);
       emit(BillingDetailSuccess("Billing detail added successfully"));
-      emit(BillingDetailLoading());
     } catch (e) {
       emit(BillingDetailError("Failed to post billing detail:${e.toString()}"));
     }
@@ -43,7 +42,7 @@ class BillingDetailCubit extends Cubit<BillingDetailState> {
   Future<void> deleteBillingDetail(int id) async {
     try {
       await BillingDetailRespository().deleteBillingDetail(id);
-      emit(BillingDetailLoading());
+      emit(BillingDetailDeleted());
     } catch (e) {
       emit(BillingDetailError(
           "Failed to delete billing detail:${e.toString()}"));

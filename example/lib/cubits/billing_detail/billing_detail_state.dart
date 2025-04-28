@@ -21,6 +21,8 @@ class BillingDetailLoaded extends BillingDetailState {
 
 class BillingDetailPatched extends BillingDetailState {}
 
+class BillingDetailDeleted extends BillingDetailState {}
+
 class BillingDetailSuccess extends BillingDetailState {
   final String message;
 
