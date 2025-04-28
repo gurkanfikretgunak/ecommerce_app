@@ -100,10 +100,11 @@ class _ReviewFormLabelState extends State<ReviewFormLabel> {
         ),*/
         context.emptySizedHeightBoxLow,
         CustomButton(
-          width: 130,
-          height: 40,
+          width: 135,
+          height: 35,
           color: ColorConstant.instance.neutral9,
           textColor: ColorConstant.instance.neutral1,
+          fontSize: 12,
           text: widget.submitButtonText,
           borderColor: ColorConstant.instance.neutral4,
           onPressed: widget.onSubmit,

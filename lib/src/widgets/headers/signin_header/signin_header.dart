@@ -29,7 +29,6 @@ class SignInHeader extends StatelessWidget {
         ),
         Positioned(
           top: screenHeigth * 0.03,
-          left: 20,
           child: CustomAppbar(
             onPressed: onPressed,
           ),

@@ -88,7 +88,7 @@ class _ProductBoxModalState extends State<ProductBoxModal> {
                         color: widget.priceColor ??
                             ColorConstant.instance.primary_main,
                       ),
-                      SizedBox(width: widget.spacing ?? 5),
+                      SizedBox(width: widget.spacing ?? 6),
                       if (widget.size != null)
                         SizeBoxInput(
                             height: 25,

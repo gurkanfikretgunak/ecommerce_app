@@ -383,7 +383,7 @@ class L10nTr extends L10n {
   String get orderSuccess => 'SİPARİŞ BAŞARILI';
 
   @override
-  String get myOrders => 'SİPARİŞLERİM';
+  String get myOrders => 'SİPARİŞLER';
 
   @override
   String get continueShopping => 'ALIŞVERİŞE DEVAM ET';
@@ -392,7 +392,7 @@ class L10nTr extends L10n {
   String get orderSuccessDescription => 'Siparişiniz başarıyla alındı ve en kısa sürede kargoya verilecektir.';
 
   @override
-  String get myOrder => 'Siparişlerim';
+  String get myOrder => 'Siparişler';
 
   @override
   String get accountSettings => 'Hesap';

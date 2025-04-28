@@ -59,21 +59,27 @@ class _ProductBottomSheetLabelState extends State<ProductBottomSheetLabel> {
               color: ColorConstant.instance.neutral5,
             ),
             SizedBox(width: screenWidth * 0.05),
-            InkWell(
-              onTap: widget.favoriteOnPressed,
-              child: Icon(
-                size: 24,
-                isFavorite ? Icons.favorite : Icons.favorite_border,
-                color: ColorConstant.instance.secondary2,
-              ),
-            ),
-            SizedBox(width: screenWidth * 0.05),
-            CustomButton(
-              onPressed: widget.buttonOnPressed,
-              width: 165,
-              height: 40,
-              borderColor: ColorConstant.instance.neutral9,
-              text: widget.buttonText,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                InkWell(
+                  onTap: widget.favoriteOnPressed,
+                  child: Icon(
+                    size: 24,
+                    isFavorite ? Icons.favorite : Icons.favorite_border,
+                    color: ColorConstant.instance.secondary2,
+                  ),
+                ),
+                SizedBox(width: screenWidth * 0.09),
+                CustomButton(
+                  onPressed: widget.buttonOnPressed,
+                  width: 165,
+                  fontSize: 12,
+                  height: 40,
+                  borderColor: ColorConstant.instance.neutral9,
+                  text: widget.buttonText,
+                ),
+              ],
             ),
           ],
         ),
