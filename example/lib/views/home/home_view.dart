@@ -128,11 +128,7 @@ class _HomeViewState extends State<HomeView> {
             ),
             Padding(
               padding: const EdgeInsets.all(15),
-              child: _buildProductSection(
-                state.hotDeals,
-                l10n.onSale,
-                const TimerLabel(),
-              ),
+              child: _buildProductSection(state.hotDeals, l10n.onSale, null),
             ),
           ],
         ),
@@ -226,7 +222,7 @@ class _HomeViewState extends State<HomeView> {
       List products, String title, Widget? rightWidget) {
     return SectionLayout(
       sectionText: title,
-      rightWidget: rightWidget,
+      // rightWidget: rightWidget,
       layout: ProductRowLayout(
         items: _buildProductItems(products),
       ),
