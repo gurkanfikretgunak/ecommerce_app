@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:example/cubits/auth/auth_cubit.dart';
 import 'package:example/cubits/validation/validation_cubit.dart';
 import 'package:example/cubits/validation/validation_state.dart';
 import 'package:example/route/route.gr.dart';
@@ -106,6 +107,15 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                       if (context
                           .read<ValidationCubit>()
                           .isResetPasswordFormValid()) {
+                        context
+                            .read<AuthCubit>()
+                            .resetPassword(emailController.text);
+                        showToast(
+                          context,
+                          L10n.of(context)!.resetPasswordMailSent,
+                          L10n.of(context)!.checkYourInbox,
+                          ToastType.success,
+                        );
                       } else {
                         showToast(
                           context,
