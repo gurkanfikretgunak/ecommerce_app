@@ -13,6 +13,12 @@ dependencies:
   shopapp_widgets:  
     path: ../
   auto_route: ^9.3.0+1
+  firebase_core: 
+  firebase_messaging: 
+  onesignal_flutter: ^5.1.2
+  firebase_auth: 
+  google_sign_in: ^5.2.1
+  flutter_bloc: ^9.1.0
   supabase_flutter: ^2.8.2
   dio: ^5.0.0
   retrofit: ^4.4.2
