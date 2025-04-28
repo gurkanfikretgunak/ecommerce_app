@@ -263,6 +263,18 @@ abstract class L10n {
   /// **'Enter your email address to access your account. We\'ll send you a password reset link.'**
   String get resetPasswordDescription;
 
+  /// No description provided for @resetPasswordMailSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset email has been sent.'**
+  String get resetPasswordMailSent;
+
+  /// No description provided for @checkYourInbox.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check your inbox.'**
+  String get checkYourInbox;
+
   /// No description provided for @signUpWithGoogle.
   ///
   /// In en, this message translates to:

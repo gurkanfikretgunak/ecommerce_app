@@ -91,6 +91,12 @@ class L10nEn extends L10n {
   String get resetPasswordDescription => 'Enter your email address to access your account. We\'ll send you a password reset link.';
 
   @override
+  String get resetPasswordMailSent => 'Password reset email has been sent.';
+
+  @override
+  String get checkYourInbox => 'Please check your inbox.';
+
+  @override
   String get signUpWithGoogle => 'SIGN UP WITH GOOGLE';
 
   @override

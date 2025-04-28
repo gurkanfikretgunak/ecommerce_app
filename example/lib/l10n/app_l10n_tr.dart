@@ -91,6 +91,12 @@ class L10nTr extends L10n {
   String get resetPasswordDescription => 'Hesabınıza erişmek için e-posta adresinizi yazın, size bir şifre sıfırlama bağlantısı gönderelim.';
 
   @override
+  String get resetPasswordMailSent => 'Şifre sıfırlama e-postası gönderildi.';
+
+  @override
+  String get checkYourInbox => 'Lütfen e-posta kutunuzu kontrol edin.';
+
+  @override
   String get signUpWithGoogle => 'GOOGLE İLE KAYIT OL';
 
   @override

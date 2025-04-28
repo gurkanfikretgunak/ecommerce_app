@@ -28,6 +28,8 @@
     "signUp": "SIGN UP",
     "resetPassword": "Reset Password",
     "resetPasswordDescription": "Enter your email address to access your account. We'll send you a password reset link.",
+    "resetPasswordMailSent": "Password reset email has been sent.",
+    "checkYourInbox": "Please check your inbox.",
     "signUpWithGoogle": "SIGN UP WITH GOOGLE",
     "signUpWithFacebook": "SIGN UP WITH FACEBOOK",
     "home": "Home",
@@ -171,6 +173,8 @@
     "price": "PRICE",
     "turkish":"Turkish",
     "english":"English"
+   
+
    
 
 
