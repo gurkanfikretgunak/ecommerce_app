@@ -27,7 +27,7 @@ class ProductDescriptionLabel extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.9,
             imagePath: imagePath),
         context.emptySizedHeightBoxLow,
-        Align(
+        /*Align(
           child: Column(
             children: [
               ContentText(
@@ -41,7 +41,7 @@ class ProductDescriptionLabel extends StatelessWidget {
               )
             ],
           ),
-        )
+        )*/
       ],
     );
   }
