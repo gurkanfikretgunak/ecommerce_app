@@ -6,6 +6,8 @@ class SearchBarInput extends StatefulWidget {
   final Color? borderColor;
   final Color? focusedBorderColor;
   final Color? fillColor;
+  final IconData? suffixIcon;
+  final Color? suffixIconColor;
 
   final TextEditingController? textEditingController;
   final Function(String)? textOnChanged;
@@ -21,6 +23,8 @@ class SearchBarInput extends StatefulWidget {
     this.contentPadding,
     this.textEditingController,
     this.textOnChanged,
+    this.suffixIcon,
+    this.suffixIconColor,
   });
 
   @override
@@ -65,6 +69,10 @@ class _SearchBarInputState extends State<SearchBarInput> {
           fillColor: widget.fillColor ?? ColorConstant.instance.neutral9,
           contentPadding: widget.contentPadding ??
               const EdgeInsets.symmetric(horizontal: 25.0),
+          suffixIcon: Icon(
+            widget.suffixIcon ?? Icons.search,
+            color: widget.suffixIconColor ?? ColorConstant.instance.neutral4,
+          ),
         ),
       ),
     );
