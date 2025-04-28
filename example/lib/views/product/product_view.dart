@@ -162,7 +162,7 @@ class _ProductViewState extends State<ProductView> {
         context.emptySizedWidthBoxNormal,
         InkWell(
           onTap: () {
-            AutoRouter.of(context).push(const SearchViewRoute());
+            AutoRouter.of(context).push(MainpageViewRoute(pageNo: 3));
           },
           child: SvgPicture.asset("assets/icons/search.svg"),
         ),

@@ -1,3 +1,4 @@
+import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
 import 'package:example/cubits/payment_method/payment_method_cubit.dart';
 import 'package:example/cubits/payment_method/payment_method_state.dart';
 import 'dart:math';
@@ -39,8 +40,11 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
         child: CustomAppbar(
           text: L10n.of(context)!.paymentMethod,
           onPressed: () {
-            Navigator.pop(context);
-            //AutoRouter.of(context).push(PaymentViewRoute(initialStep: 1));
+            if (AutoRouter.of(context).canPop()) {
+              Navigator.of(context).pop();
+            } else {
+              AutoRouter.of(context).push(PaymentViewRoute(initialStep: 1));
+            }
           },
           iconColor: ColorConstant.instance.neutral1,
         ),

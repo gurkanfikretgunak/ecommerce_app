@@ -36,8 +36,7 @@ class _AddressesViewState extends State<AddressesView> {
           child: CustomAppbar(
             text: L10n.of(context)!.address,
             onPressed: () {
-              Navigator.pop(context);
-              //AutoRouter.of(context).push(PaymentViewRoute(initialStep: 1));
+              AutoRouter.of(context).push(PaymentViewRoute(initialStep: 1));
             },
             iconColor: ColorConstant.instance.neutral1,
           ),
@@ -50,6 +49,13 @@ class _AddressesViewState extends State<AddressesView> {
                 child: BlocBuilder<BillingDetailCubit, BillingDetailState>(
                   builder: (context, state) {
                     if (state is BillingDetailLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is BillingDetailSuccess) {
+                      context
+                          .read<BillingDetailCubit>()
+                          .getBillingDetail(userId: userState.user!.id);
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state is BillingDetailDeleted) {
                       context
                           .read<BillingDetailCubit>()
                           .getBillingDetail(userId: userState.user!.id);
@@ -71,6 +77,7 @@ class _AddressesViewState extends State<AddressesView> {
                         padding: const EdgeInsets.all(15),
                         child: AddressesColumnLayout(
                           deleteBillingDetailCallBack: (index) {
+                            print("Delete Address: ${index}");
                             context
                                 .read<BillingDetailCubit>()
                                 .deleteBillingDetail(
