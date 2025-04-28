@@ -93,17 +93,23 @@ class _SignInFormLabelState extends State<SignInFormLabel> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Checkbox(
-                        activeColor: ColorConstant.instance.primary_main,
-                        value: widget.rememberMe,
-                        onChanged: (value) {
-                          if (value != null &&
-                              widget.checkBoxOnChanged != null) {
-                            widget.checkBoxOnChanged!(value);
-                          }
-                        },
+                      SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: Checkbox(
+                          activeColor: ColorConstant.instance.primary_main,
+                          value: widget.rememberMe,
+                          onChanged: (value) {
+                            if (value != null &&
+                                widget.checkBoxOnChanged != null) {
+                              widget.checkBoxOnChanged!(value);
+                            }
+                          },
+                        ),
                       ),
+                      const SizedBox(width: 4),
                       Text(
                         widget.rememberMeText,
                         style:
@@ -113,10 +119,16 @@ class _SignInFormLabelState extends State<SignInFormLabel> {
                   ),
                   TextButton(
                     onPressed: widget.onForgotPasswordPressed ?? () {},
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      minimumSize: Size.zero,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    ),
                     child: Text(
                       widget.forgotPasswordText,
-                      style:
-                          TextStyle(color: ColorConstant.instance.primary_main),
+                      style: TextStyle(
+                        color: ColorConstant.instance.primary_main,
+                      ),
                     ),
                   ),
                 ],
