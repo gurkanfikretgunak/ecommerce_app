@@ -192,7 +192,7 @@ class L10nTr extends L10n {
   String get viewCart => 'SEPETİ GÖRÜNTÜLE';
 
   @override
-  String get cartSuccessDescription => 'Ürün sepetinize başarıyla eklendi.';
+  String get cartSuccessDescription => 'Ürün sepetinize başarıyla eklendi. Alışverişe devam edebilir veya ödemeye geçebilirsiniz';
 
   @override
   String get goBack => 'Geri Dön';
@@ -236,7 +236,7 @@ class L10nTr extends L10n {
   String get productAddedToCart => 'Ürün Sepete Eklendi';
 
   @override
-  String get productAddedToCartSuccess => 'Ürün Sepete Başarıyla Eklendi';
+  String get productAddedToCartSuccess => 'Ürün sepetinize başarıyla eklendi. Alışverişe devam edebilir veya ödemeye geçebilirsiniz';
 
   @override
   String get wishlistError => 'Favoriler listeniz yüklenirken bir hata oluştu';
@@ -389,7 +389,7 @@ class L10nTr extends L10n {
   String get continueShopping => 'ALIŞVERİŞE DEVAM ET';
 
   @override
-  String get orderSuccessDescription => 'Siparişiniz başarıyla alındı ve en kısa sürede kargoya verilecektir.';
+  String get orderSuccessDescription => 'Siparişiniz başarıyla alındı. Siparişlerinizi görüntüleyebilir veya alışverişe devam edebilirsiniz.';
 
   @override
   String get myOrder => 'Siparişler';

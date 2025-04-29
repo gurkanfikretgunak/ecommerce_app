@@ -548,7 +548,7 @@ abstract class L10n {
   /// No description provided for @productAddedToCartSuccess.
   ///
   /// In en, this message translates to:
-  /// **'Product Added to Cart Successfully'**
+  /// **'Product successfully added to your cart. You can continue shopping or proceed to checkout. '**
   String get productAddedToCartSuccess;
 
   /// No description provided for @wishlistError.
@@ -854,7 +854,7 @@ abstract class L10n {
   /// No description provided for @orderSuccessDescription.
   ///
   /// In en, this message translates to:
-  /// **'Dolor magna eget est lorem ipsum dolor sit amet consectetur.'**
+  /// **'Your order has been successfully placed. You can view your orders or continue shopping'**
   String get orderSuccessDescription;
 
   /// No description provided for @myOrder.

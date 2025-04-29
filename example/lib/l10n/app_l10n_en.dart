@@ -236,7 +236,7 @@ class L10nEn extends L10n {
   String get productAddedToCart => 'Product Added to Cart';
 
   @override
-  String get productAddedToCartSuccess => 'Product Added to Cart Successfully';
+  String get productAddedToCartSuccess => 'Product successfully added to your cart. You can continue shopping or proceed to checkout. ';
 
   @override
   String get wishlistError => 'An error occurred while loading your wishlist';
@@ -389,7 +389,7 @@ class L10nEn extends L10n {
   String get continueShopping => 'CONTINUE SHOPPING';
 
   @override
-  String get orderSuccessDescription => 'Dolor magna eget est lorem ipsum dolor sit amet consectetur.';
+  String get orderSuccessDescription => 'Your order has been successfully placed. You can view your orders or continue shopping';
 
   @override
   String get myOrder => 'My Order';
