@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:example/cubits/billing_detail/billing_detail_cubit.dart';
 import 'package:example/cubits/billing_detail/billing_detail_state.dart';
+import 'package:example/cubits/payment_step/payment_step_cubit.dart';
 import 'package:example/l10n/app_l10n.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:example/cubits/auth/auth_cubit.dart';
@@ -36,7 +37,11 @@ class _AddressesViewState extends State<AddressesView> {
           child: CustomAppbar(
             text: L10n.of(context)!.address,
             onPressed: () {
-              AutoRouter.of(context).push(PaymentViewRoute(initialStep: 1));
+              if (AutoRouter.of(context).canPop()) {
+                Navigator.of(context).pop();
+              } else {
+                AutoRouter.of(context).push(PaymentViewRoute(initialStep: 1));
+              }
             },
             iconColor: ColorConstant.instance.neutral1,
           ),
