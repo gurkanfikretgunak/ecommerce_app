@@ -81,7 +81,7 @@ class _ProductViewState extends State<ProductView> {
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, productState) {
         if (productState is ProductLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressAnimation());
         } else if (productState is ProductChanged) {
           final product = (productState as ProductChanged).product;
 
@@ -117,7 +117,7 @@ class _ProductViewState extends State<ProductView> {
     return BlocBuilder<ProductDetailCubit, ProductDetailState>(
       builder: (context, state) {
         if (state is ProductDetailLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressAnimation());
         } else if (state is ProductDetailLoaded) {
           return _buildProductContent(state, product);
         } else if (state is ProductDetailError) {
@@ -365,7 +365,7 @@ class _ProductViewState extends State<ProductView> {
                     .isProductInWishlist(product.id, userId);
                 isFavorite = wishlistState.isFavorite;
               } else if (wishlistState is WishlistLoading) {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressAnimation());
               }
               return ProductBottomSheetLabel(
                 isFavorite: isFavorite,

@@ -57,22 +57,22 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
               child: BlocBuilder<PaymentMethodCubit, PaymentMethodState>(
                 builder: (context, state) {
                   if (state is PaymentMethodLoading) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressAnimation());
                   } else if (state is PaymentMethodSuccess) {
                     context
                         .read<PaymentMethodCubit>()
                         .getPaymentMethod(userId: userState.user!.id);
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressAnimation());
                   } else if (state is PaymentMethodPatched) {
                     context
                         .read<PaymentMethodCubit>()
                         .getPaymentMethod(userId: userState.user!.id);
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressAnimation());
                   } else if (state is PaymentMethodDeleted) {
                     context
                         .read<PaymentMethodCubit>()
                         .getPaymentMethod(userId: userState.user!.id);
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressAnimation());
                   } else if (state is PaymentMethodLoaded) {
                     if (state.paymentMethods.isEmpty) {
                       return Center(

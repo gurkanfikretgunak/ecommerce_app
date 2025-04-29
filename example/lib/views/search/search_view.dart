@@ -102,7 +102,7 @@ class _SearchViewState extends State<SearchView> {
                 builder: (context, state) {
                   if (state.isLoading) {
                     return const Center(
-                      child: CircularProgressIndicator(),
+                      child: CircularProgressAnimation(),
                     );
                   } else if (state.errorMessage != null) {
                     return Center(

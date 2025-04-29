@@ -40,7 +40,7 @@ class _OrderState extends State<Order> {
         return BlocBuilder<OrderCubit, OrderState>(
           builder: (context, state) {
             if (state is OrderLoading) {
-              return const Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressAnimation());
             } else if (state is OrderLoaded) {
               bool isOrdersEmpty = state.orders.isEmpty;
 

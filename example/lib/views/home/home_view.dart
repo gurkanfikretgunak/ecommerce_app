@@ -178,7 +178,7 @@ class _HomeViewState extends State<HomeView> {
     return BlocBuilder<CategoriesCubit, CategoriesState>(
       builder: (context, categoriesState) {
         if (categoriesState is CategoriesLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressAnimation());
         } else if (categoriesState is CategoriesError) {
           return Center(child: Text(categoriesState.message));
         } else if (categoriesState is CategoriesLoaded) {
@@ -273,7 +273,7 @@ class _LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(child: CircularProgressIndicator()),
+      body: Center(child: CircularProgressAnimation()),
     );
   }
 }

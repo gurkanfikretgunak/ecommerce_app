@@ -2,6 +2,7 @@ import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/core/widgets/order.dart';
 import 'package:example/core/widgets/wishlist.dart';
 import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
+import 'package:example/cubits/orderwishlist/orderwishlist_cubit.dart';
 import 'package:example/cubits/product/product_cubit.dart';
 import 'package:example/cubits/product/product_state.dart';
 import 'package:example/cubits/wishlist/wishlist_cubit.dart';
@@ -52,7 +53,7 @@ class _OrderwishlistViewState extends State<OrderwishlistView> {
   @override
   void initState() {
     super.initState();
-    _showOrder = widget.showOrder ?? false;
+    _showOrder = context.read<OrderwishlistCubit>().state;
 
     //context.read<ProductCubit>().getProducts("you also viewed");
     final authState = context.read<AuthCubit>().state;
@@ -137,7 +138,7 @@ class _OrderwishlistViewState extends State<OrderwishlistView> {
                 builder: (context, state) {
                   if (state is ProductLoading) {
                     context.read<ProductCubit>().getProducts("you also viewed");
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressAnimation());
                   } else if (state is ProductLoaded) {
                     return SectionLayout(
                       sectionText: "YOU ALSO VIEWED",

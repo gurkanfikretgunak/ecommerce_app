@@ -198,7 +198,7 @@ class _SignInViewState extends State<SignInView> {
                         ],
                       ),
                       if (state is AuthLoading)
-                        const CircularProgressIndicator(),
+                        const CircularProgressAnimation(),
                     ],
                   ),
                 ],

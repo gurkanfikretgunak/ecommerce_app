@@ -42,7 +42,7 @@ class _CartState extends State<Cart> {
 
         if (cartState is CartLoading) {
           context.read<CartCubit>().getCart(widget.userId);
-          cartContent = const Center(child: CircularProgressIndicator());
+          cartContent = const Center(child: CircularProgressAnimation());
         } else if (cartState is CartLoaded) {
           isCartEmpty = cartState.cart.isEmpty;
           cartContent = CartListLayout(
@@ -84,10 +84,10 @@ class _CartState extends State<Cart> {
               /*  BlocBuilder<ProductCubit, ProductState>(
                 builder: (context, state) {
                   if (state is ProductLoading) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressAnimation());
                   } else if (state is ProductChanged) {
                     //context.read<ProductCubit>().getProducts("you also viewed");
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressAnimation());
                   } else if (state is ProductLoaded) {
                     return SectionLayout(
                       sectionText: "YOU ALSO VIEWED",

@@ -32,7 +32,7 @@ class ProfileView extends StatelessWidget {
       body: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
           if (state is AuthLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressAnimation());
           } else if (state is AuthAuthenticated) {
             User user = state.user;
             return SingleChildScrollView(

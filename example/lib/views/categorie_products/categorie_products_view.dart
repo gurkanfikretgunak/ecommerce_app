@@ -100,7 +100,7 @@ class _CategorieProductsViewState extends State<CategorieProductsView> {
             child: BlocBuilder<CategorieProductsCubit, CategorieProductsState>(
               builder: (context, state) {
                 if (state is CategorieProductsLoading) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressAnimation());
                 } else if (state is CategorieProductsLoaded) {
                   return ProductGridLayout(
                     crossAxisSpacing: 3,

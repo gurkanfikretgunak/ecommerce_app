@@ -33,10 +33,10 @@ class _WishlistState extends State<Wishlist> {
           return BlocBuilder<WishlistCubit, WishlistState>(
             builder: (context, state) {
               if (state is WishlistLoading) {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressAnimation());
               } else if (state is WishlistChangeFavorite) {
                 context.read<WishlistCubit>().getWishlist(userId);
-                return const Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressAnimation());
               } else if (state is WishlistLoaded) {
                 isWishlistEmpty = state.wishlist.isEmpty;
 
@@ -74,6 +74,7 @@ class _WishlistState extends State<Wishlist> {
                   },
                   items: state.wishlist.map((item) {
                     return ProductBoxModal(
+                      fontSize: 15,
                       imagePath: item.product!.image,
                       name: item.product!.name,
                       price: item.product!.price,
@@ -94,12 +95,12 @@ class _WishlistState extends State<Wishlist> {
                 return Center(child: Text('Error: ${state.message}'));
               } else {
                 context.read<WishlistCubit>().getWishlist(userId);
-                return const Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressAnimation());
               }
             },
           );
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressAnimation());
         }
       },
     );

@@ -37,7 +37,7 @@ class _CategoriesViewState extends State<CategoriesView> {
       body: BlocBuilder<CategoriesCubit, CategoriesState>(
           builder: (context, state) {
         if (state is CategoriesLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressAnimation());
         } else if (state is CategoriesError) {
           return const Center(child: Text(""));
         } else if (state is CategoriesLoaded) {

@@ -103,7 +103,7 @@ class _FilterViewState extends State<FilterView> {
               ),
             );
           } else {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressAnimation());
           }
         },
       ),

@@ -54,17 +54,17 @@ class _AddressesViewState extends State<AddressesView> {
                 child: BlocBuilder<BillingDetailCubit, BillingDetailState>(
                   builder: (context, state) {
                     if (state is BillingDetailLoading) {
-                      return const Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressAnimation());
                     } else if (state is BillingDetailSuccess) {
                       context
                           .read<BillingDetailCubit>()
                           .getBillingDetail(userId: userState.user!.id);
-                      return const Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressAnimation());
                     } else if (state is BillingDetailDeleted) {
                       context
                           .read<BillingDetailCubit>()
                           .getBillingDetail(userId: userState.user!.id);
-                      return const Center(child: CircularProgressIndicator());
+                      return const Center(child: CircularProgressAnimation());
                     } else if (state is BillingDetailPatched) {
                       context
                           .read<BillingDetailCubit>()

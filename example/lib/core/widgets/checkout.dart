@@ -86,7 +86,7 @@ class _CheckoutState extends State<Checkout> {
 
   Widget _buildCheckoutContent(BuildContext context, CartState cartState) {
     if (cartState is CartLoading) {
-      return const Center(child: CircularProgressIndicator());
+      return const CircularProgressAnimation();
     } else if (cartState is CartLoaded) {
       return _buildCheckoutForm(context, cartState);
     } else {
@@ -127,7 +127,7 @@ class _CheckoutState extends State<Checkout> {
     return BlocBuilder<BillingDetailCubit, BillingDetailState>(
       builder: (context, billingDetailState) {
         if (billingDetailState is BillingDetailLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressAnimation());
         } else if (billingDetailState is BillingDetailLoaded &&
             billingDetailState.billingDetail.isNotEmpty) {
           final billingDetail = billingDetailState.billingDetail.first;
@@ -150,7 +150,7 @@ class _CheckoutState extends State<Checkout> {
         } else if (billingDetailState is BillingDetailSuccess ||
             billingDetailState is BillingDetailPatched) {
           _refreshBillingData();
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressAnimation());
         } else {
           return _buildNoAddressBox(context);
         }
@@ -191,7 +191,7 @@ class _CheckoutState extends State<Checkout> {
     return BlocBuilder<PaymentMethodCubit, PaymentMethodState>(
       builder: (context, paymentMethodState) {
         if (paymentMethodState is PaymentMethodLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressAnimation());
         } else if (paymentMethodState is PaymentMethodLoaded &&
             paymentMethodState.paymentMethods.isNotEmpty) {
           final card = paymentMethodState.paymentMethods.first;
@@ -212,7 +212,7 @@ class _CheckoutState extends State<Checkout> {
         } else if (paymentMethodState is PaymentMethodSuccess ||
             paymentMethodState is PaymentMethodPatched) {
           _refreshPaymentData();
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressAnimation());
         } else {
           return _buildNoPaymentMethodBox(context);
         }

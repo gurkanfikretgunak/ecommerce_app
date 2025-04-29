@@ -203,7 +203,7 @@ class _NewAddressViewState extends State<NewAddressView> {
               ),
             );
           } else {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressAnimation());
           }
         },
       ),

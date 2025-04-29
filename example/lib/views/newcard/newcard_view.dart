@@ -56,7 +56,7 @@ class _NewCardViewState extends State<NewCardView> {
       child: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, authState) {
           if (authState is! AuthAuthenticated) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressAnimation());
           }
 
           final userId = authState.user.id;

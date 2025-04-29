@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class CircularProgressAnimation extends StatelessWidget {
+class CircularProgressAnimation extends StatefulWidget {
   final Color? color;
   final double? strokeWidth;
   final String? semanticsLabel;
@@ -22,15 +22,21 @@ class CircularProgressAnimation extends StatelessWidget {
   });
 
   @override
+  State<CircularProgressAnimation> createState() =>
+      _CircularProgressAnimationState();
+}
+
+class _CircularProgressAnimationState extends State<CircularProgressAnimation> {
+  @override
   Widget build(BuildContext context) {
     return CircularProgressIndicator(
-      color: color ?? ColorConstant.instance.primary_main,
-      strokeWidth: strokeWidth ?? 4.0,
-      semanticsLabel: semanticsLabel,
-      semanticsValue: semanticsValue,
-      valueColor: valueColor,
-      value: value,
-      backgroundColor: backgroundColor,
+      color: widget.color ?? ColorConstant.instance.primary_main,
+      strokeWidth: widget.strokeWidth ?? 4.0,
+      semanticsLabel: widget.semanticsLabel,
+      semanticsValue: widget.semanticsValue,
+      valueColor: widget.valueColor,
+      value: widget.value,
+      backgroundColor: widget.backgroundColor,
     );
   }
 }

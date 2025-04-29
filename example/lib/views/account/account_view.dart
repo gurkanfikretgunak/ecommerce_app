@@ -4,6 +4,7 @@ import 'package:example/cubits/auth/auth_state.dart';
 import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
 import 'package:example/cubits/locale/locale_cubit.dart';
+import 'package:example/cubits/orderwishlist/orderwishlist_cubit.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -94,7 +95,7 @@ class _AccountViewState extends State<AccountView> {
       body: BlocBuilder<AuthCubit, AuthState>(
         builder: (context, state) {
           if (state is AuthLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressAnimation());
           } else if (state is AuthAuthenticated) {
             User user = state.user;
             return SingleChildScrollView(
@@ -117,6 +118,7 @@ class _AccountViewState extends State<AccountView> {
                           height: 40,
                           color: ColorConstant.instance.neutral9,
                           onPressed: () {
+                            context.read<OrderwishlistCubit>().showOrder(true);
                             context.read<BottomNavigationCubit>().setPage(1);
                           },
                           text: L10n.of(context)!.myOrder,
@@ -131,6 +133,7 @@ class _AccountViewState extends State<AccountView> {
                           height: 40,
                           color: ColorConstant.instance.neutral9,
                           onPressed: () {
+                            context.read<OrderwishlistCubit>().showOrder(false);
                             context.read<BottomNavigationCubit>().setPage(1);
                           },
                           text: L10n.of(context)!.wishlist,
