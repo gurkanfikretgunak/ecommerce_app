@@ -52,7 +52,7 @@ class _SearchBarInputState extends State<SearchBarInput> {
         decoration: InputDecoration(
           hintText: widget.hintText,
           border: OutlineInputBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(25.0)),
+            borderRadius: const BorderRadius.all(Radius.circular(20.0)),
             borderSide: BorderSide(
               color: widget.borderColor ?? ColorConstant.instance.neutral4,
             ),
