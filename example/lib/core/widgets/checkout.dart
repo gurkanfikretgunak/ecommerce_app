@@ -31,23 +31,26 @@ class Checkout extends StatefulWidget {
 
 class _CheckoutState extends State<Checkout> {
   late final AuthState userState;
+  String? userId;
 
   @override
   void initState() {
     super.initState();
     userState = context.read<AuthCubit>().state;
-    _loadUserData();
+    if (userState is AuthAuthenticated) {
+      userId = (userState as AuthAuthenticated).user!.id;
+      _loadUserData();
+    }
   }
 
   void _loadUserData() {
-    if (userState is AuthAuthenticated) {
-      final userId = (userState as AuthAuthenticated).user!.id;
+    if (userId != null) {
       context.read<BillingDetailCubit>().getBillingDetail(
-            userId: userId,
+            userId: userId!,
             isDefault: true,
           );
       context.read<PaymentMethodCubit>().getPaymentMethod(
-            userId: userId,
+            userId: userId!,
             isDefault: true,
           );
     }
@@ -57,12 +60,9 @@ class _CheckoutState extends State<Checkout> {
   Widget build(BuildContext context) {
     return BlocListener<OrderCubit, OrderState>(
       listener: _handleOrderState,
-      child: BlocProvider(
-        create: (_) => BillingDetailCubit(),
-        child: BlocBuilder<CartCubit, CartState>(
-          builder: (context, cartState) =>
-              _buildCheckoutContent(context, cartState),
-        ),
+      child: BlocBuilder<CartCubit, CartState>(
+        builder: (context, cartState) =>
+            _buildCheckoutContent(context, cartState),
       ),
     );
   }
@@ -88,12 +88,6 @@ class _CheckoutState extends State<Checkout> {
     if (cartState is CartLoading) {
       return const Center(child: CircularProgressIndicator());
     } else if (cartState is CartLoaded) {
-      if (userState is AuthAuthenticated) {
-        context.read<BillingDetailCubit>().getBillingDetail(
-              userId: (userState as AuthAuthenticated).user!.id,
-              isDefault: true,
-            );
-      }
       return _buildCheckoutForm(context, cartState);
     } else {
       return _buildEmptyCart(context);
@@ -134,23 +128,28 @@ class _CheckoutState extends State<Checkout> {
       builder: (context, billingDetailState) {
         if (billingDetailState is BillingDetailLoading) {
           return const Center(child: CircularProgressIndicator());
-        } else if (billingDetailState is BillingDetailLoaded) {
+        } else if (billingDetailState is BillingDetailLoaded &&
+            billingDetailState.billingDetail.isNotEmpty) {
           final billingDetail = billingDetailState.billingDetail.first;
           return AddressBoxModal(
             name: billingDetail.city ?? "N/A",
             address: billingDetail.address ?? "N/A",
             email: billingDetail.emailAddress ?? "N/A",
             phone: billingDetail.phoneNumber ?? "N/A",
-            onTap: () =>
-                AutoRouter.of(context).push(const AddressesViewRoute()),
+            onTap: () => AutoRouter.of(context)
+                .push(const AddressesViewRoute())
+                .then((_) {
+              if (userId != null) {
+                context.read<BillingDetailCubit>().getBillingDetail(
+                      userId: userId!,
+                      isDefault: true,
+                    );
+              }
+            }),
           );
         } else if (billingDetailState is BillingDetailSuccess ||
             billingDetailState is BillingDetailPatched) {
-          if (userState is AuthAuthenticated) {
-            context.read<BillingDetailCubit>().getBillingDetail(
-                  userId: (userState as AuthAuthenticated).user!.id,
-                );
-          }
+          _refreshBillingData();
           return const Center(child: CircularProgressIndicator());
         } else {
           return _buildNoAddressBox(context);
@@ -159,13 +158,32 @@ class _CheckoutState extends State<Checkout> {
     );
   }
 
+  void _refreshBillingData() {
+    if (userId != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        context.read<BillingDetailCubit>().getBillingDetail(
+              userId: userId!,
+              isDefault: true,
+            );
+      });
+    }
+  }
+
   Widget _buildNoAddressBox(BuildContext context) {
     return AddressBoxModal(
       name: L10n.of(context)!.noData,
       address: L10n.of(context)!.pleaseUpdateAddress,
       email: L10n.of(context)!.noEmail,
       phone: L10n.of(context)!.noPhone,
-      onTap: () => AutoRouter.of(context).push(const AddressesViewRoute()),
+      onTap: () =>
+          AutoRouter.of(context).push(const AddressesViewRoute()).then((_) {
+        if (userId != null) {
+          context.read<BillingDetailCubit>().getBillingDetail(
+                userId: userId!,
+                isDefault: true,
+              );
+        }
+      }),
     );
   }
 
@@ -174,21 +192,26 @@ class _CheckoutState extends State<Checkout> {
       builder: (context, paymentMethodState) {
         if (paymentMethodState is PaymentMethodLoading) {
           return const Center(child: CircularProgressIndicator());
-        } else if (paymentMethodState is PaymentMethodLoaded) {
+        } else if (paymentMethodState is PaymentMethodLoaded &&
+            paymentMethodState.paymentMethods.isNotEmpty) {
           final card = paymentMethodState.paymentMethods.first;
           return PaymentMethodBoxModal(
-            onTap: () =>
-                AutoRouter.of(context).push(const PaymentMethodsViewRoute()),
+            onTap: () => AutoRouter.of(context)
+                .push(const PaymentMethodsViewRoute())
+                .then((_) {
+              if (userId != null) {
+                context.read<PaymentMethodCubit>().getPaymentMethod(
+                      userId: userId!,
+                      isDefault: true,
+                    );
+              }
+            }),
             brand: card.card_brand,
             text: "${card.card_brand} Ending *****${card.card_last4}",
           );
         } else if (paymentMethodState is PaymentMethodSuccess ||
             paymentMethodState is PaymentMethodPatched) {
-          if (userState is AuthAuthenticated) {
-            context.read<PaymentMethodCubit>().getPaymentMethod(
-                  userId: (userState as AuthAuthenticated).user!.id,
-                );
-          }
+          _refreshPaymentData();
           return const Center(child: CircularProgressIndicator());
         } else {
           return _buildNoPaymentMethodBox(context);
@@ -197,9 +220,29 @@ class _CheckoutState extends State<Checkout> {
     );
   }
 
+  void _refreshPaymentData() {
+    if (userId != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        context.read<PaymentMethodCubit>().getPaymentMethod(
+              userId: userId!,
+              isDefault: true,
+            );
+      });
+    }
+  }
+
   Widget _buildNoPaymentMethodBox(BuildContext context) {
     return PaymentMethodBoxModal(
-      onTap: () => AutoRouter.of(context).push(const PaymentMethodsViewRoute()),
+      onTap: () => AutoRouter.of(context)
+          .push(const PaymentMethodsViewRoute())
+          .then((_) {
+        if (userId != null) {
+          context.read<PaymentMethodCubit>().getPaymentMethod(
+                userId: userId!,
+                isDefault: true,
+              );
+        }
+      }),
       text: L10n.of(context)!.noPaymentMethodFound,
     );
   }
@@ -235,7 +278,7 @@ class _CheckoutState extends State<Checkout> {
     final billingState = context.read<BillingDetailCubit>().state;
     final paymentState = context.read<PaymentMethodCubit>().state;
 
-    if (cartState is! CartLoaded || userState is! AuthAuthenticated) {
+    if (cartState is! CartLoaded || userId == null) {
       return;
     }
 
@@ -252,10 +295,9 @@ class _CheckoutState extends State<Checkout> {
       return;
     }
 
-    final authenticatedUser = (userState as AuthAuthenticated).user!;
     await _createAndSubmitOrder(
       context,
-      authenticatedUser.id,
+      userId!,
       billingState.billingDetail.first,
       paymentState.paymentMethods.first,
       cartItems,
