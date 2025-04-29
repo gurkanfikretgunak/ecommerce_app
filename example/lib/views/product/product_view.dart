@@ -61,7 +61,7 @@ class _ProductViewState extends State<ProductView> {
           buttonOnPressed: () {
             AutoRouter.of(context).push(MainpageViewRoute(pageNo: 2));
           },
-          description: L10n.of(context)!.orderSuccessDescription,
+          description: L10n.of(context)!.productAddedToCartSuccess,
           iconPath: "assets/icons/cart.svg",
           buttonText: L10n.of(context)!.viewCart,
         );
