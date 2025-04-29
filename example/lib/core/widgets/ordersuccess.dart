@@ -1,5 +1,6 @@
 import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
+import 'package:example/cubits/orderwishlist/orderwishlist_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
@@ -20,6 +21,7 @@ class OrderSuccess extends StatelessWidget {
           ),
           OrderSuccessLabel(
             onPrimaryButtonPressed: () {
+              context.read<OrderwishlistCubit>().showOrder(true);
               context.read<BottomNavigationCubit>().setPage(1);
             },
             onSecondaryButtonPressed: () {

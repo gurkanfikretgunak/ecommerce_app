@@ -84,7 +84,7 @@ class _ProductBoxModalState extends State<ProductBoxModal> {
                       ContentText(
                         textAlign: TextAlign.start,
                         text: "\$ ${widget.price}",
-                        fontSize: widget.fontSize ?? 15,
+                        fontSize: widget.fontSize ?? 16,
                         color: widget.priceColor ??
                             ColorConstant.instance.primary_main,
                       ),
@@ -97,6 +97,7 @@ class _ProductBoxModalState extends State<ProductBoxModal> {
                             inStock: true,
                             text: widget.size!,
                             onTap: () {}),
+                      SizedBox(width: widget.spacing ?? 6),
                       if (widget.sizeList != null)
                         DropDownMenuInput(
                           items: widget.sizeList!,

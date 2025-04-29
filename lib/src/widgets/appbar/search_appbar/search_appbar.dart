@@ -44,7 +44,7 @@ class _SearchAppbarState extends State<SearchAppbar> {
               onPressed: widget.onPressed,
             ),
             SizedBox(
-              height: 55,
+              height: 50,
               width: screenWidth * 0.65,
               child: SearchBarInput(
                 textEditingController: widget.textEditingController,
