@@ -221,6 +221,7 @@ class _ProductViewState extends State<ProductView> {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: ProductDescriptionLabel(
+        descriptionHeaderText: L10n.of(context)!.description,
         text: state.productDetail.description,
         imagePath: state.productDetail.description_image[0],
       ),
