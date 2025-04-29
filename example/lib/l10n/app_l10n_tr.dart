@@ -192,6 +192,9 @@ class L10nTr extends L10n {
   String get viewCart => 'SEPETİ GÖRÜNTÜLE';
 
   @override
+  String get description => 'Açıklama';
+
+  @override
   String get cartSuccessDescription => 'Ürün sepetinize başarıyla eklendi. Alışverişe devam edebilir veya ödemeye geçebilirsiniz';
 
   @override

@@ -192,6 +192,9 @@ class L10nEn extends L10n {
   String get viewCart => 'VIEW CART';
 
   @override
+  String get description => 'DESCRIPTION';
+
+  @override
   String get cartSuccessDescription => 'Dolor magna eget est lorem ipsum dolor sit amet consectetur.';
 
   @override

@@ -461,6 +461,12 @@ abstract class L10n {
   /// **'VIEW CART'**
   String get viewCart;
 
+  /// No description provided for @description.
+  ///
+  /// In en, this message translates to:
+  /// **'DESCRIPTION'**
+  String get description;
+
   /// No description provided for @cartSuccessDescription.
   ///
   /// In en, this message translates to:

@@ -69,6 +69,7 @@
     "accessories": "Accessories",
     "success": "SUCCESS",
     "viewCart": "VIEW CART",
+    "description":"DESCRIPTION",
     "cartSuccessDescription": "Dolor magna eget est lorem ipsum dolor sit amet consectetur.",
     "goBack": "Go Back",
     "color": "Color:",
