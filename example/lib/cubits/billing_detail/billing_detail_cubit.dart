@@ -12,11 +12,15 @@ class BillingDetailCubit extends Cubit<BillingDetailState> {
     try {
       final billingDetail = await BillingDetailRespository()
           .getBillingDetail(userId: userId, isDefault: isDefault);
-      emit(BillingDetailLoaded(
-        billingDetail: billingDetail,
-      ));
+
+      if (state is BillingDetailLoaded) {
+        final currentState = state as BillingDetailLoaded;
+        emit(currentState.copyWith(billingDetail: billingDetail));
+      } else {
+        emit(BillingDetailLoaded(billingDetail: billingDetail));
+      }
     } catch (e) {
-      emit(BillingDetailError("Failed to get billing detail:${e.toString()}"));
+      emit(BillingDetailError("Failed to get billing detail: ${e.toString()}"));
     }
   }
 
