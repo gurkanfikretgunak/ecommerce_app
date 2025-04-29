@@ -84,8 +84,8 @@ class _SearchViewState extends State<SearchView> {
               BlocBuilder<SearchCubit, SearchState>(
                 builder: (context, state) {
                   return Wrap(
-                    spacing: 5.0,
-                    runSpacing: 5.0,
+                    /*spacing: 0.5,
+                    runSpacing: 0.5,*/
                     children: allTags
                         .map((tagName) => TagsLabel(
                               label: tagName,

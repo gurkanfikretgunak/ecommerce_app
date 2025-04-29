@@ -40,6 +40,8 @@ class _TagsLabelState extends State<TagsLabel> {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
+        width: 80,
+        height: 45,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -57,7 +59,7 @@ class _TagsLabelState extends State<TagsLabel> {
                 ? widget.selectedTextColor ??
                     ColorConstant.instance.primary_main
                 : widget.unselectedTextColor ?? ColorConstant.instance.neutral4,
-            fontSize: widget.fontSize ?? 12,
+            fontSize: widget.fontSize ?? 10,
           ),
           backgroundColor: widget.isSelected!
               ? widget.selectedColor ?? ColorConstant.instance.neutral9
