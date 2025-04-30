@@ -30,7 +30,7 @@ dependencies:
   slang_flutter: ^3.22.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-
+  app_links: ^3.4.3
  
 
 dev_dependencies:
