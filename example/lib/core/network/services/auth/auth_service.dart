@@ -53,9 +53,13 @@ class AuthService {
 
   Future<User?> signInWithFacebook() async {
     try {
+      final redirectUrl = kIsWeb
+          ? '${dotenv.env['SUPABASE_WEB_CLIENT_ID']}/auth/v1/callback'
+          : 'com.example.example://login-callback';
+
       final success = await auth.signInWithOAuth(
         OAuthProvider.facebook,
-        redirectTo: '${dotenv.env['SUPABASE_WEB_CLIENT_ID']}/auth/v1/callback',
+        redirectTo: redirectUrl,
         authScreenLaunchMode: kIsWeb
             ? LaunchMode.platformDefault
             : LaunchMode.externalApplication,
@@ -73,7 +77,6 @@ class AuthService {
         throw 'Facebook sign in failed';
       }
     } catch (e) {
-      print('Error during Facebook sign in: $e');
       return null;
     }
   }
