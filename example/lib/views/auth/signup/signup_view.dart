@@ -29,6 +29,16 @@ class _SignUpViewState extends State<SignUpView> {
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
+  void showToast(
+      BuildContext context, String title, String description, ToastType type) {
+    final toast = ToastMessageLabel(
+      title: title,
+      description: description,
+      type: type,
+    );
+    toast.show(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -178,9 +188,11 @@ class _SignUpViewState extends State<SignUpView> {
                               passwordController.text,
                             );
                       } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                              content: Text(L10n.of(context)!.pleaseFixErrors)),
+                        showToast(
+                          context,
+                          L10n.of(context)!.validationError,
+                          L10n.of(context)!.pleaseFixErrors,
+                          ToastType.error,
                         );
                       }
                     },
