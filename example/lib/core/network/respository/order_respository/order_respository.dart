@@ -24,10 +24,8 @@ class OrderRespository {
           item.orderDetail = orderDetailResponse.first;
           item.orderDetails = orderDetailResponse;
         }
-        return response;
-      } else {
-        throw Exception('Order not found');
       }
+      return response;
     } catch (e) {
       rethrow;
     }
