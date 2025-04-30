@@ -12,7 +12,7 @@
 import 'package:auto_route/auto_route.dart' as _i25;
 import 'package:example/core/network/models/categorie_model/categorie_model.dart'
     as _i27;
-import 'package:example/core/widgets/checkout.dart' as _i5;
+import 'package:example/views/checkout/checkout_view.dart' as _i5;
 import 'package:example/views/account/account_view.dart' as _i1;
 import 'package:example/views/addresses/addresses_view.dart' as _i2;
 import 'package:example/views/auth/signin/signin_view.dart' as _i21;
@@ -43,7 +43,7 @@ import 'package:flutter/material.dart' as _i26;
 /// [_i1.AccountView]
 class AccountViewRoute extends _i25.PageRouteInfo<void> {
   const AccountViewRoute({List<_i25.PageRouteInfo>? children})
-    : super(AccountViewRoute.name, initialChildren: children);
+      : super(AccountViewRoute.name, initialChildren: children);
 
   static const String name = 'AccountViewRoute';
 
@@ -59,7 +59,7 @@ class AccountViewRoute extends _i25.PageRouteInfo<void> {
 /// [_i2.AddressesView]
 class AddressesViewRoute extends _i25.PageRouteInfo<void> {
   const AddressesViewRoute({List<_i25.PageRouteInfo>? children})
-    : super(AddressesViewRoute.name, initialChildren: children);
+      : super(AddressesViewRoute.name, initialChildren: children);
 
   static const String name = 'AddressesViewRoute';
 
@@ -80,10 +80,10 @@ class CategorieProductsViewRoute
     required _i27.Categorie categorie,
     List<_i25.PageRouteInfo>? children,
   }) : super(
-         CategorieProductsViewRoute.name,
-         args: CategorieProductsViewRouteArgs(key: key, categorie: categorie),
-         initialChildren: children,
-       );
+          CategorieProductsViewRoute.name,
+          args: CategorieProductsViewRouteArgs(key: key, categorie: categorie),
+          initialChildren: children,
+        );
 
   static const String name = 'CategorieProductsViewRoute';
 
@@ -116,7 +116,7 @@ class CategorieProductsViewRouteArgs {
 /// [_i4.CategoriesView]
 class CategoriesViewRoute extends _i25.PageRouteInfo<void> {
   const CategoriesViewRoute({List<_i25.PageRouteInfo>? children})
-    : super(CategoriesViewRoute.name, initialChildren: children);
+      : super(CategoriesViewRoute.name, initialChildren: children);
 
   static const String name = 'CategoriesViewRoute';
 
@@ -129,17 +129,17 @@ class CategoriesViewRoute extends _i25.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.Checkout]
+/// [_i5.CheckoutView]
 class CheckoutRoute extends _i25.PageRouteInfo<CheckoutRouteArgs> {
   CheckoutRoute({
     _i26.Key? key,
     _i26.VoidCallback? buttonCallBack,
     List<_i25.PageRouteInfo>? children,
   }) : super(
-         CheckoutRoute.name,
-         args: CheckoutRouteArgs(key: key, buttonCallBack: buttonCallBack),
-         initialChildren: children,
-       );
+          CheckoutRoute.name,
+          args: CheckoutRouteArgs(key: key, buttonCallBack: buttonCallBack),
+          initialChildren: children,
+        );
 
   static const String name = 'CheckoutRoute';
 
@@ -149,7 +149,8 @@ class CheckoutRoute extends _i25.PageRouteInfo<CheckoutRouteArgs> {
       final args = data.argsAs<CheckoutRouteArgs>(
         orElse: () => const CheckoutRouteArgs(),
       );
-      return _i5.Checkout(key: args.key, buttonCallBack: args.buttonCallBack);
+      return _i5.CheckoutView(
+          key: args.key, buttonCallBack: args.buttonCallBack);
     },
   );
 }
@@ -171,7 +172,7 @@ class CheckoutRouteArgs {
 /// [_i6.FilterView]
 class FilterViewRoute extends _i25.PageRouteInfo<void> {
   const FilterViewRoute({List<_i25.PageRouteInfo>? children})
-    : super(FilterViewRoute.name, initialChildren: children);
+      : super(FilterViewRoute.name, initialChildren: children);
 
   static const String name = 'FilterViewRoute';
 
@@ -187,7 +188,7 @@ class FilterViewRoute extends _i25.PageRouteInfo<void> {
 /// [_i7.HomeView]
 class HomeViewRoute extends _i25.PageRouteInfo<void> {
   const HomeViewRoute({List<_i25.PageRouteInfo>? children})
-    : super(HomeViewRoute.name, initialChildren: children);
+      : super(HomeViewRoute.name, initialChildren: children);
 
   static const String name = 'HomeViewRoute';
 
@@ -203,7 +204,7 @@ class HomeViewRoute extends _i25.PageRouteInfo<void> {
 /// [_i8.LanguageView]
 class LanguageViewRoute extends _i25.PageRouteInfo<void> {
   const LanguageViewRoute({List<_i25.PageRouteInfo>? children})
-    : super(LanguageViewRoute.name, initialChildren: children);
+      : super(LanguageViewRoute.name, initialChildren: children);
 
   static const String name = 'LanguageViewRoute';
 
@@ -223,10 +224,10 @@ class MainpageViewRoute extends _i25.PageRouteInfo<MainpageViewRouteArgs> {
     int? pageNo,
     List<_i25.PageRouteInfo>? children,
   }) : super(
-         MainpageViewRoute.name,
-         args: MainpageViewRouteArgs(key: key, pageNo: pageNo),
-         initialChildren: children,
-       );
+          MainpageViewRoute.name,
+          args: MainpageViewRouteArgs(key: key, pageNo: pageNo),
+          initialChildren: children,
+        );
 
   static const String name = 'MainpageViewRoute';
 
@@ -258,7 +259,7 @@ class MainpageViewRouteArgs {
 /// [_i10.NewAddressView]
 class NewAddressViewRoute extends _i25.PageRouteInfo<void> {
   const NewAddressViewRoute({List<_i25.PageRouteInfo>? children})
-    : super(NewAddressViewRoute.name, initialChildren: children);
+      : super(NewAddressViewRoute.name, initialChildren: children);
 
   static const String name = 'NewAddressViewRoute';
 
@@ -274,7 +275,7 @@ class NewAddressViewRoute extends _i25.PageRouteInfo<void> {
 /// [_i11.NewCardView]
 class NewCardViewRoute extends _i25.PageRouteInfo<void> {
   const NewCardViewRoute({List<_i25.PageRouteInfo>? children})
-    : super(NewCardViewRoute.name, initialChildren: children);
+      : super(NewCardViewRoute.name, initialChildren: children);
 
   static const String name = 'NewCardViewRoute';
 
@@ -290,7 +291,7 @@ class NewCardViewRoute extends _i25.PageRouteInfo<void> {
 /// [_i12.NotificationView]
 class NotificationViewRoute extends _i25.PageRouteInfo<void> {
   const NotificationViewRoute({List<_i25.PageRouteInfo>? children})
-    : super(NotificationViewRoute.name, initialChildren: children);
+      : super(NotificationViewRoute.name, initialChildren: children);
 
   static const String name = 'NotificationViewRoute';
 
@@ -306,7 +307,7 @@ class NotificationViewRoute extends _i25.PageRouteInfo<void> {
 /// [_i13.OnboardingView]
 class OnboardingViewRoute extends _i25.PageRouteInfo<void> {
   const OnboardingViewRoute({List<_i25.PageRouteInfo>? children})
-    : super(OnboardingViewRoute.name, initialChildren: children);
+      : super(OnboardingViewRoute.name, initialChildren: children);
 
   static const String name = 'OnboardingViewRoute';
 
@@ -327,10 +328,10 @@ class OrderwishlistViewRoute
     bool? showOrder,
     List<_i25.PageRouteInfo>? children,
   }) : super(
-         OrderwishlistViewRoute.name,
-         args: OrderwishlistViewRouteArgs(key: key, showOrder: showOrder),
-         initialChildren: children,
-       );
+          OrderwishlistViewRoute.name,
+          args: OrderwishlistViewRouteArgs(key: key, showOrder: showOrder),
+          initialChildren: children,
+        );
 
   static const String name = 'OrderwishlistViewRoute';
 
@@ -362,7 +363,7 @@ class OrderwishlistViewRouteArgs {
 /// [_i15.PaymentMethodsView]
 class PaymentMethodsViewRoute extends _i25.PageRouteInfo<void> {
   const PaymentMethodsViewRoute({List<_i25.PageRouteInfo>? children})
-    : super(PaymentMethodsViewRoute.name, initialChildren: children);
+      : super(PaymentMethodsViewRoute.name, initialChildren: children);
 
   static const String name = 'PaymentMethodsViewRoute';
 
@@ -382,10 +383,10 @@ class PaymentViewRoute extends _i25.PageRouteInfo<PaymentViewRouteArgs> {
     int? initialStep = 0,
     List<_i25.PageRouteInfo>? children,
   }) : super(
-         PaymentViewRoute.name,
-         args: PaymentViewRouteArgs(key: key, initialStep: initialStep),
-         initialChildren: children,
-       );
+          PaymentViewRoute.name,
+          args: PaymentViewRouteArgs(key: key, initialStep: initialStep),
+          initialChildren: children,
+        );
 
   static const String name = 'PaymentViewRoute';
 
@@ -417,7 +418,7 @@ class PaymentViewRouteArgs {
 /// [_i17.ProductView]
 class ProductViewRoute extends _i25.PageRouteInfo<void> {
   const ProductViewRoute({List<_i25.PageRouteInfo>? children})
-    : super(ProductViewRoute.name, initialChildren: children);
+      : super(ProductViewRoute.name, initialChildren: children);
 
   static const String name = 'ProductViewRoute';
 
@@ -433,11 +434,11 @@ class ProductViewRoute extends _i25.PageRouteInfo<void> {
 /// [_i18.ProfileView]
 class ProfileViewRoute extends _i25.PageRouteInfo<ProfileViewRouteArgs> {
   ProfileViewRoute({_i26.Key? key, List<_i25.PageRouteInfo>? children})
-    : super(
-        ProfileViewRoute.name,
-        args: ProfileViewRouteArgs(key: key),
-        initialChildren: children,
-      );
+      : super(
+          ProfileViewRoute.name,
+          args: ProfileViewRouteArgs(key: key),
+          initialChildren: children,
+        );
 
   static const String name = 'ProfileViewRoute';
 
@@ -467,7 +468,7 @@ class ProfileViewRouteArgs {
 /// [_i19.ResetPasswordView]
 class ResetPasswordViewRoute extends _i25.PageRouteInfo<void> {
   const ResetPasswordViewRoute({List<_i25.PageRouteInfo>? children})
-    : super(ResetPasswordViewRoute.name, initialChildren: children);
+      : super(ResetPasswordViewRoute.name, initialChildren: children);
 
   static const String name = 'ResetPasswordViewRoute';
 
@@ -483,7 +484,7 @@ class ResetPasswordViewRoute extends _i25.PageRouteInfo<void> {
 /// [_i20.SearchView]
 class SearchViewRoute extends _i25.PageRouteInfo<void> {
   const SearchViewRoute({List<_i25.PageRouteInfo>? children})
-    : super(SearchViewRoute.name, initialChildren: children);
+      : super(SearchViewRoute.name, initialChildren: children);
 
   static const String name = 'SearchViewRoute';
 
@@ -499,7 +500,7 @@ class SearchViewRoute extends _i25.PageRouteInfo<void> {
 /// [_i21.SignInView]
 class SignInViewRoute extends _i25.PageRouteInfo<void> {
   const SignInViewRoute({List<_i25.PageRouteInfo>? children})
-    : super(SignInViewRoute.name, initialChildren: children);
+      : super(SignInViewRoute.name, initialChildren: children);
 
   static const String name = 'SignInViewRoute';
 
@@ -515,7 +516,7 @@ class SignInViewRoute extends _i25.PageRouteInfo<void> {
 /// [_i22.SignUpView]
 class SignUpViewRoute extends _i25.PageRouteInfo<void> {
   const SignUpViewRoute({List<_i25.PageRouteInfo>? children})
-    : super(SignUpViewRoute.name, initialChildren: children);
+      : super(SignUpViewRoute.name, initialChildren: children);
 
   static const String name = 'SignUpViewRoute';
 
@@ -536,14 +537,14 @@ class SplashViewRoute extends _i25.PageRouteInfo<SplashViewRouteArgs> {
     String? splashText,
     List<_i25.PageRouteInfo>? children,
   }) : super(
-         SplashViewRoute.name,
-         args: SplashViewRouteArgs(
-           key: key,
-           logoPath: logoPath,
-           splashText: splashText,
-         ),
-         initialChildren: children,
-       );
+          SplashViewRoute.name,
+          args: SplashViewRouteArgs(
+            key: key,
+            logoPath: logoPath,
+            splashText: splashText,
+          ),
+          initialChildren: children,
+        );
 
   static const String name = 'SplashViewRoute';
 
@@ -581,7 +582,7 @@ class SplashViewRouteArgs {
 /// [_i24.VerificationView]
 class VerificationViewRoute extends _i25.PageRouteInfo<void> {
   const VerificationViewRoute({List<_i25.PageRouteInfo>? children})
-    : super(VerificationViewRoute.name, initialChildren: children);
+      : super(VerificationViewRoute.name, initialChildren: children);
 
   static const String name = 'VerificationViewRoute';
 

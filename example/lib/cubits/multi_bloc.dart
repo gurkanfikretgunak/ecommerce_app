@@ -1,5 +1,3 @@
-import 'package:example/core/network/models/billing_detail_model/billing_detail_model.dart';
-import 'package:example/core/widgets/wishlist.dart';
 import 'package:example/cubits/auth/auth_cubit.dart';
 import 'package:example/cubits/billing_detail/billing_detail_cubit.dart';
 import 'package:example/cubits/cart/cart_cubit.dart';
