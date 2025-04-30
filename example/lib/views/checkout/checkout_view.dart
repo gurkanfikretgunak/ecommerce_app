@@ -21,15 +21,15 @@ import 'package:example/cubits/cart/cart_state.dart';
 import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
-class Checkout extends StatefulWidget {
+class CheckoutView extends StatefulWidget {
   final VoidCallback? buttonCallBack;
-  const Checkout({super.key, this.buttonCallBack});
+  const CheckoutView({super.key, this.buttonCallBack});
 
   @override
-  State<Checkout> createState() => _CheckoutState();
+  State<CheckoutView> createState() => _CheckoutViewState();
 }
 
-class _CheckoutState extends State<Checkout> {
+class _CheckoutViewState extends State<CheckoutView> {
   late final AuthState userState;
   String? userId;
 

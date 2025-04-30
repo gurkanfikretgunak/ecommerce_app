@@ -7,9 +7,9 @@ import 'package:example/cubits/auth/auth_state.dart';
 import 'package:example/cubits/payment_step/payment_step_cubit.dart';
 import 'package:example/cubits/payment_step/payment_step_state.dart';
 import 'package:example/route/route.gr.dart';
-import 'package:example/core/widgets/cart.dart';
-import 'package:example/core/widgets/checkout.dart';
-import 'package:example/core/widgets/ordersuccess.dart';
+import 'package:example/views/cart/cart_view.dart';
+import 'package:example/views/checkout/checkout_view.dart';
+import 'package:example/views/ordersuccess/ordersuccess_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
@@ -24,18 +24,18 @@ class PaymentView extends StatelessWidget {
   List<Widget> getStepContents(
       BuildContext context, AuthAuthenticated authState) {
     return [
-      Cart(
+      CartView(
         buttonCallBack: () {
           context.read<PaymentStepCubit>().nextStep();
         },
         userId: authState.user.id,
       ),
-      const Checkout(
+      const CheckoutView(
           /* buttonCallBack: () {
           context.read<PaymentStepCubit>().nextStep();
         },*/
           ),
-      OrderSuccess(),
+      OrderSuccessView(),
     ];
   }
 

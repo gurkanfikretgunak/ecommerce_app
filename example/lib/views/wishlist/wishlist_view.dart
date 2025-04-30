@@ -12,16 +12,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:example/l10n/app_l10n.dart';
 
-class Wishlist extends StatefulWidget {
-  const Wishlist({
+class WishlistView extends StatefulWidget {
+  const WishlistView({
     super.key,
   });
 
   @override
-  State<Wishlist> createState() => _WishlistState();
+  State<WishlistView> createState() => _WishlistViewState();
 }
 
-class _WishlistState extends State<Wishlist> {
+class _WishlistViewState extends State<WishlistView> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthState>(

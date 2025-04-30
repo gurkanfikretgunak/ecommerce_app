@@ -10,17 +10,17 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:example/l10n/app_l10n.dart';
 
-class Cart extends StatefulWidget {
+class CartView extends StatefulWidget {
   final VoidCallback? buttonCallBack;
   final String userId;
 
-  const Cart({super.key, this.buttonCallBack, required this.userId});
+  const CartView({super.key, this.buttonCallBack, required this.userId});
 
   @override
-  State<Cart> createState() => _CartState();
+  State<CartView> createState() => _CartViewState();
 }
 
-class _CartState extends State<Cart> {
+class _CartViewState extends State<CartView> {
   @override
   void initState() {
     super.initState();

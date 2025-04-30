@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:example/l10n/app_l10n.dart';
 
-class OrderSuccess extends StatelessWidget {
-  const OrderSuccess({
+class OrderSuccessView extends StatelessWidget {
+  const OrderSuccessView({
     super.key,
   });
 

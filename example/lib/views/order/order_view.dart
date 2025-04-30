@@ -9,16 +9,16 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:example/l10n/app_l10n.dart';
 
-class Order extends StatefulWidget {
-  const Order({
+class OrderView extends StatefulWidget {
+  const OrderView({
     super.key,
   });
 
   @override
-  State<Order> createState() => _OrderState();
+  State<OrderView> createState() => _OrderViewState();
 }
 
-class _OrderState extends State<Order> {
+class _OrderViewState extends State<OrderView> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();

@@ -1,6 +1,6 @@
 import 'package:example/core/gen/assets.gen.dart';
-import 'package:example/core/widgets/order.dart';
-import 'package:example/core/widgets/wishlist.dart';
+import 'package:example/views/order/order_view.dart';
+import 'package:example/views/wishlist/wishlist_view.dart';
 import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
 import 'package:example/cubits/orderwishlist/orderwishlist_cubit.dart';
 import 'package:example/cubits/product/product_cubit.dart';
@@ -133,7 +133,7 @@ class _OrderwishlistViewState extends State<OrderwishlistView> {
                 ],
               ),
               context.emptySizedHeightBoxNormal,
-              _showOrder ? Order() : Wishlist(),
+              _showOrder ? OrderView() : WishlistView(),
               /*BlocBuilder<ProductCubit, ProductState>(
                 builder: (context, state) {
                   if (state is ProductLoading) {
