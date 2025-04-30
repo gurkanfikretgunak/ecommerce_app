@@ -43,6 +43,20 @@ class AuthService {
     }
   }
 
+  Future<User?> getSessionFromUrl(Uri uri) async {
+    try {
+      final response = await auth.getSessionFromUrl(uri);
+      if (response.session != null) {
+        return response.session.user;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print('getSessionFromUrl error: $e');
+      return null;
+    }
+  }
+
   Future<void>? resetPassword(email) async {
     try {
       auth.resetPasswordForEmail(email);

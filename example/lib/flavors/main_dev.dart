@@ -1,9 +1,12 @@
+// main.dart
+
 import 'package:example/cubits/locale/locale_cubit.dart';
 import 'package:example/cubits/multi_bloc.dart';
 import 'package:example/flavor.dart';
 import 'package:example/l10n/app_l10n.dart';
 import 'package:example/route/route.dart';
 import 'package:example/core/network/services/auth/supabase_initialize.dart';
+import 'package:example/core/network/services/deeplink/deeplink_service.dart';
 // ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -18,6 +21,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+final appRouter = AppRouter();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load();
@@ -29,9 +34,25 @@ void main() async {
     OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
     OneSignal.initialize(dotenv.env['ONESIGNAL_APP_ID'] ?? "");
     OneSignal.Notifications.requestPermission(true);
+
+    await DeeplinkService().initialize();
+
+    _checkForInitialDeeplink();
   }
   AppConfig(appName: "My App - Dev", flavor: Flavor.development);
   runApp(const MultiBloc());
+}
+
+Future<void> _checkForInitialDeeplink() async {
+  try {
+    final initialUri = await DeeplinkService().getInitialLink();
+
+    if (initialUri != null) {
+      DeeplinkService().handleDeeplink(initialUri);
+    }
+  } catch (e) {
+    rethrow;
+  }
 }
 
 class ExampleApp extends StatelessWidget {
@@ -54,7 +75,7 @@ class ExampleApp extends StatelessWidget {
             ),
             useMaterial3: true,
           ),
-          routerConfig: AppRouter().config(),
+          routerConfig: appRouter.config(),
         );
       },
     );
