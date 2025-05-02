@@ -18,6 +18,7 @@ class WishlistCubit extends Cubit<WishlistState> {
 
   Future<void> isProductInWishlist(int productId, String userId) async {
     try {
+      emit(WishlistLoading());
       final response =
           await WishlistRespository().isProductInWishlist(productId, userId);
       emit(WishlistIsFavorite(response));

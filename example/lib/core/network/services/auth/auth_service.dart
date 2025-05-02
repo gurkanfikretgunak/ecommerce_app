@@ -52,7 +52,6 @@ class AuthService {
         return null;
       }
     } catch (e) {
-      print('getSessionFromUrl error: $e');
       return null;
     }
   }
@@ -80,7 +79,7 @@ class AuthService {
       );
 
       if (success) {
-        final user = getCurrentUser();
+        final user = await getCurrentUser();
 
         if (user != null) {
           return user;
