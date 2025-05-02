@@ -147,26 +147,11 @@ class _CheckoutViewState extends State<CheckoutView> {
               }
             }),
           );
-        } else if (billingDetailState is BillingDetailSuccess ||
-            billingDetailState is BillingDetailPatched) {
-          _refreshBillingData();
-          return const Center(child: CircularProgressAnimation());
         } else {
           return _buildNoAddressBox(context);
         }
       },
     );
-  }
-
-  void _refreshBillingData() {
-    if (userId != null) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        context.read<BillingDetailCubit>().getBillingDetail(
-              userId: userId!,
-              isDefault: true,
-            );
-      });
-    }
   }
 
   Widget _buildNoAddressBox(BuildContext context) {
@@ -209,26 +194,11 @@ class _CheckoutViewState extends State<CheckoutView> {
             brand: card.card_brand,
             text: "${card.card_brand} Ending *****${card.card_last4}",
           );
-        } else if (paymentMethodState is PaymentMethodSuccess ||
-            paymentMethodState is PaymentMethodPatched) {
-          _refreshPaymentData();
-          return const Center(child: CircularProgressAnimation());
         } else {
           return _buildNoPaymentMethodBox(context);
         }
       },
     );
-  }
-
-  void _refreshPaymentData() {
-    if (userId != null) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        context.read<PaymentMethodCubit>().getPaymentMethod(
-              userId: userId!,
-              isDefault: true,
-            );
-      });
-    }
   }
 
   Widget _buildNoPaymentMethodBox(BuildContext context) {
