@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:example/core/gen/assets.gen.dart';
+import 'package:example/core/network/services/deeplink/deeplink_service.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:example/cubits/auth/auth_cubit.dart';
 import 'package:example/cubits/auth/auth_state.dart';
@@ -27,8 +28,22 @@ class _SplashViewState extends State<SplashView> {
     Future.delayed(const Duration(seconds: 3), () async {
       if (!mounted) return;
       loadLanguage();
-      context.read<AuthCubit>().checkToken();
+      _checkForInitialDeeplink();
     });
+  }
+
+  Future<void> _checkForInitialDeeplink() async {
+    try {
+      final initialUri = await DeeplinkService().getInitialLink();
+
+      if (initialUri != null) {
+        DeeplinkService().handleDeeplink(initialUri);
+      } else {
+        context.read<AuthCubit>().checkToken();
+      }
+    } catch (e) {
+      context.read<AuthCubit>().checkToken();
+    }
   }
 
   Future<void> loadLanguage() async {

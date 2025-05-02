@@ -34,25 +34,9 @@ void main() async {
     OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
     OneSignal.initialize(dotenv.env['ONESIGNAL_APP_ID'] ?? "");
     OneSignal.Notifications.requestPermission(true);
-
-    await DeeplinkService().initialize();
-
-    _checkForInitialDeeplink();
   }
   AppConfig(appName: "My App - Dev", flavor: Flavor.development);
   runApp(const MultiBloc());
-}
-
-Future<void> _checkForInitialDeeplink() async {
-  try {
-    final initialUri = await DeeplinkService().getInitialLink();
-
-    if (initialUri != null) {
-      DeeplinkService().handleDeeplink(initialUri);
-    }
-  } catch (e) {
-    rethrow;
-  }
 }
 
 class ExampleApp extends StatelessWidget {
