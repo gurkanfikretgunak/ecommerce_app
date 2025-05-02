@@ -6,7 +6,7 @@ class PopUpCubit extends Cubit<bool> {
 
   Future<void> loadBannerPreference() async {
     final box = await Hive.openBox('settings');
-    final showBanner = box.get('show_banner');
+    final showBanner = box.get('show_banner') ?? true;
     emit(showBanner);
   }
 
