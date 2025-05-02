@@ -67,7 +67,9 @@ class _NewCardViewState extends State<NewCardView> {
               child: CustomAppbar(
                 text: L10n.of(context)!.addNewCard,
                 onPressed: () {
-                  Navigator.pop(context);
+                  // Navigator.pop(context);
+                  AutoRouter.of(context)
+                      .replace(const PaymentMethodsViewRoute());
                 },
                 iconColor: ColorConstant.instance.neutral1,
               ),
