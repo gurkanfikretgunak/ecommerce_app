@@ -20,7 +20,6 @@ import 'package:example/cubits/cart/cart_cubit.dart';
 import 'package:example/cubits/cart/cart_state.dart';
 import 'package:example/l10n/app_l10n.dart';
 
-@RoutePage()
 class CheckoutView extends StatefulWidget {
   final VoidCallback? buttonCallBack;
   const CheckoutView({super.key, this.buttonCallBack});
