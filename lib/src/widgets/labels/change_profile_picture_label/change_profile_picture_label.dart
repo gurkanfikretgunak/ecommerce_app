@@ -98,9 +98,14 @@ class _ChangeProfilePictureLabelState extends State<ChangeProfilePictureLabel> {
                     Opacity(
                       opacity: _selectedImagePath != widget.imagePath ? 1 : 0.5,
                       child: CustomButton(
-                        onPressed: () {
-                          widget.onImageSelected!(_selectedImagePath!);
-                        },
+                        onPressed: _selectedImagePath != null
+                            ? () {
+                                if (_selectedImagePath != widget.imagePath) {
+                                  widget.onImageSelected!(_selectedImagePath!);
+                                }
+                                Navigator.pop(context);
+                              }
+                            : null,
                         color: widget.buttonColor ??
                             ColorConstant.instance.primary_main,
                         height: widget.buttonHeight ?? 40,
