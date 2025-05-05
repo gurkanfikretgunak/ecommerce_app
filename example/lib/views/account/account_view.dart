@@ -107,7 +107,7 @@ class _AccountViewState extends State<AccountView> {
                       imagePath: state.user.profile_picture!,
                       name: user.display_name ?? "",
                       username: user.email ?? "",
-                      icon: Icons.photo_camera,
+                      //icon: Icons.photo_camera,
                     ),
                     context.emptySizedHeightBoxNormal,
                     Column(

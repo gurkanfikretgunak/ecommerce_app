@@ -44,7 +44,7 @@ class ProfileView extends StatelessWidget {
                       imagePath: state.user.profile_picture!,
                       name: user.display_name ?? "",
                       username: user.email ?? "",
-                      icon: Icons.photo_camera,
+                      icon: Icons.edit,
                     ),
                     context.emptySizedHeightBoxNormal,
                     AccountInfoBoxColumnLayout(

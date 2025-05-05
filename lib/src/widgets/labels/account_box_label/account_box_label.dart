@@ -22,7 +22,7 @@ class AccountBoxLabel extends StatelessWidget {
       children: [
         AccountPictureLabel(
           imagePath: imagePath,
-          icon: icon ?? Icons.photo_camera,
+          icon: icon,
         ),
         context.emptySizedWidthBoxLow,
         Column(
