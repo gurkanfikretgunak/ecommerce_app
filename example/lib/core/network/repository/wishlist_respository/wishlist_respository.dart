@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:example/core/network/models/product_model/product_model.dart';
 import 'package:example/core/network/models/wishlist_model/wishlist_model.dart';
-import 'package:example/core/network/respository/product_respository/product_respository.dart';
+import 'package:example/core/network/repository/product_respository/product_respository.dart';
 import 'package:example/core/network/services/api/api_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
