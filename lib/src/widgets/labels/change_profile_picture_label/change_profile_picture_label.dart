@@ -1,5 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ChangeProfilePictureLabel extends StatefulWidget {
   final String? title;
@@ -8,8 +10,9 @@ class ChangeProfilePictureLabel extends StatefulWidget {
   final Color? buttonColor;
   final double? buttonHeight;
   final double? titleFontSize;
-  final String imagePath;
-  final VoidCallback? buttonOnPressed;
+  final String? imagePath;
+  final Function(String)? onImageSelected;
+  final VoidCallback? onPressed;
 
   const ChangeProfilePictureLabel(
       {super.key,
@@ -20,7 +23,8 @@ class ChangeProfilePictureLabel extends StatefulWidget {
       this.buttonHeight,
       this.titleFontSize,
       required this.imagePath,
-      this.buttonOnPressed});
+      this.onImageSelected,
+      this.onPressed});
 
   @override
   State<ChangeProfilePictureLabel> createState() =>
@@ -28,6 +32,28 @@ class ChangeProfilePictureLabel extends StatefulWidget {
 }
 
 class _ChangeProfilePictureLabelState extends State<ChangeProfilePictureLabel> {
+  final ImagePicker _picker = ImagePicker();
+  late String? _selectedImagePath;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedImagePath = widget.imagePath;
+  }
+
+  Future<void> _pickImage() async {
+    try {
+      final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+      if (image != null) {
+        setState(() {
+          _selectedImagePath = image.path;
+        });
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -45,15 +71,18 @@ class _ChangeProfilePictureLabelState extends State<ChangeProfilePictureLabel> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     AccountPictureLabel(
-                      imagePath: widget.imagePath,
-                      imageHeight: 120,
-                      imageWidth: 120,
-                    ),
+                        imagePath: _selectedImagePath ?? "",
+                        imageHeight: 120,
+                        icon: Icons.edit,
+                        imageWidth: 120,
+                        onPressed: () {
+                          _pickImage();
+                        }),
                     context.emptySizedHeightBoxNormal,
                     HeadText(
                       fontSize: widget.titleFontSize ?? 30,
                       color: ColorConstant.instance.neutral1,
-                      text: widget.title ?? '',
+                      text: widget.title ?? "Change Profile Picture",
                     ),
                     context.emptySizedHeightBoxNormal,
                     SizedBox(
@@ -66,12 +95,19 @@ class _ChangeProfilePictureLabelState extends State<ChangeProfilePictureLabel> {
                       ),
                     ),
                     context.emptySizedHeightBoxNormal,
-                    CustomButton(
-                      onPressed: widget.buttonOnPressed,
-                      color: widget.buttonColor ??
-                          ColorConstant.instance.primary_main,
-                      height: widget.buttonHeight ?? 40,
-                      text: widget.buttonText,
+                    Opacity(
+                      opacity: _selectedImagePath != widget.imagePath ? 1 : 0.5,
+                      child: CustomButton(
+                        onPressed: () {
+                          widget.onImageSelected!(_selectedImagePath!);
+                        },
+                        color: widget.buttonColor ??
+                            ColorConstant.instance.primary_main,
+                        height: widget.buttonHeight ?? 40,
+                        text: _selectedImagePath != null
+                            ? "Save"
+                            : widget.buttonText,
+                      ),
                     ),
                   ],
                 ),
