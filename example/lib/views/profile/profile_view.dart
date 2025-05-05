@@ -1,0 +1,150 @@
+import 'dart:io';
+
+import 'package:example/core/gen/assets.gen.dart';
+import 'package:example/core/network/models/user_model/user_model.dart';
+import 'package:example/core/network/services/auth/auth_service.dart';
+import 'package:example/cubits/profile_picture/profile_picture_cubit.dart';
+import 'package:example/cubits/profile_picture/profile_picture_state.dart';
+import 'package:example/route/route.gr.dart';
+import 'package:example/cubits/auth/auth_cubit.dart';
+import 'package:example/cubits/auth/auth_state.dart';
+import 'package:flutter/material.dart';
+import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:example/l10n/app_l10n.dart';
+
+@RoutePage()
+class ProfileView extends StatefulWidget {
+  const ProfileView({super.key});
+
+  @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
+  late List<AccountInfoBoxLabel> accountBoxItems;
+
+  void showToast(
+      BuildContext context, String title, String description, ToastType type) {
+    final toast = ToastMessageLabel(
+      title: title,
+      description: description,
+      type: type,
+    );
+    toast.show(context);
+  }
+
+  void _showChangeProfilePictureDialog(String userId, String? imagePath) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return ChangeProfilePictureLabel(
+          title: 'Change Profile Picture',
+          imagePath: imagePath,
+          description: "Select a new profile picture from your gallery.",
+          buttonText: "Change",
+          onImageSelected: (newImagePath) {
+            context
+                .read<ProfilePictureCubit>()
+                .uploadProfilePicture(userId, newImagePath);
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: CustomAppbar(
+          text: L10n.of(context)!.profile,
+          onPressed: () => Navigator.pop(context),
+          iconColor: ColorConstant.instance.neutral1,
+        ),
+      ),
+      body: BlocBuilder<AuthCubit, AuthState>(
+        builder: (context, authState) {
+          if (authState is AuthLoading) {
+            return const Center(child: CircularProgressAnimation());
+          } else if (authState is AuthAuthenticated) {
+            final user = authState.user;
+
+            return BlocProvider(
+              create: (_) => ProfilePictureCubit(),
+              child: BlocConsumer<ProfilePictureCubit, ProfilePictureState>(
+                listener: (context, state) {
+                  if (state is ProfilePictureUploaded) {
+                    showToast(
+                      context,
+                      "Profile Picture Changed",
+                      "Your profile picture has been updated successfully.",
+                      ToastType.success,
+                    );
+                    context.read<AuthCubit>().getCurrentUser();
+                  } else if (state is ProfilePictureError) {
+                    showToast(
+                      context,
+                      "Error",
+                      state.message,
+                      ToastType.error,
+                    );
+                  }
+                },
+                builder: (context, state) {
+                  return SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Column(
+                        children: [
+                          AccountBoxLabel(
+                            imagePath: user.profile_picture ?? "",
+                            name: user.display_name ?? "",
+                            username: user.email ?? "",
+                            icon: Icons.edit,
+                            onPicturePressed: () {
+                              _showChangeProfilePictureDialog(
+                                  user.id, user.profile_picture);
+                            },
+                          ),
+                          context.emptySizedHeightBoxNormal,
+                          AccountInfoBoxColumnLayout(
+                            items: accountBoxItems = [
+                              AccountInfoBoxLabel(
+                                title: L10n.of(context)!.name,
+                                value: user.display_name ?? "",
+                              ),
+                              AccountInfoBoxLabel(
+                                title: L10n.of(context)!.phoneNumber,
+                                value: user.phone_number ?? "",
+                              ),
+                              AccountInfoBoxLabel(
+                                title: L10n.of(context)!.email,
+                                value: user.email ?? "",
+                              ),
+                              AccountInfoBoxLabel(
+                                title: L10n.of(context)!.password,
+                                value: L10n.of(context)!.changePassword,
+                                valueColor: ColorConstant.instance.primary_main,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            );
+          } else if (authState is AuthUnauthenticated) {
+            AutoRouter.of(context).replace(const SignInViewRoute());
+          }
+
+          return const SizedBox.shrink();
+        },
+      ),
+    );
+  }
+}

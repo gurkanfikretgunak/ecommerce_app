@@ -1,0 +1,101 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services"
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader("UTF-8") { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterVersionCode = localProperties.getProperty("flutter.versionCode")
+if (flutterVersionCode == null) {
+    flutterVersionCode = "1"
+}
+
+def flutterVersionName = localProperties.getProperty("flutter.versionName")
+if (flutterVersionName == null) {
+    flutterVersionName = "1.0"
+}
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+
+android {
+
+    flavorDimensions "flavor-type"
+
+    productFlavors{
+        dev
+        {
+        dimension "flavor-type"
+        applicationIdSuffix ".dev"
+        
+        versionNameSuffix "-dev"
+        resValue "string", "app_name_dev", "E-Commerce Example Dev"
+        }
+        prod
+        {
+            dimension "flavor-type"
+            resValue "string", "app_name_prod", "E-Commerce Example Prod"
+            
+        }
+    }
+
+    namespace = "com.example.example"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.example.example"
+        minSdk = 33
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+        manifestPlaceholders = [
+            GOOGLE_API_KEY: localProperties.getProperty('GOOGLE_API_KEY', ''),
+            applicationName: "android.app.Application"
+        ]
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("upload-keystore.jks") 
+            storePassword localProperties.getProperty('STORE_PASSWORD', '')
+            keyAlias "upload"            
+            keyPassword localProperties.getProperty('KEY_PASSWORD', '')      
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+   implementation platform('com.google.firebase:firebase-bom:33.10.0')
+}
+
+flutter {
+    source = "../.."
+}
+
+apply plugin: 'com.google.gms.google-services'
