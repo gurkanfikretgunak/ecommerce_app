@@ -4,6 +4,7 @@ import 'package:example/core/gen/assets.gen.dart';
 import 'package:example/core/network/models/user_model/user_model.dart';
 import 'package:example/core/network/services/auth/auth_service.dart';
 import 'package:example/cubits/profile_picture/profile_picture_cubit.dart';
+import 'package:example/cubits/profile_picture/profile_picture_state.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:example/cubits/auth/auth_cubit.dart';
 import 'package:example/cubits/auth/auth_state.dart';
@@ -23,6 +24,16 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> {
   late List<AccountInfoBoxLabel> accountBoxItems;
+
+  void showToast(
+      BuildContext context, String title, String description, ToastType type) {
+    final toast = ToastMessageLabel(
+      title: title,
+      description: description,
+      type: type,
+    );
+    toast.show(context);
+  }
 
   void _showChangeProfilePictureDialog(String userId, String? imagePath) {
     showDialog(
@@ -62,16 +73,34 @@ class _ProfileViewState extends State<ProfileView> {
             final user = authState.user;
 
             return BlocProvider(
-              create: (_) => ProfilePictureCubit(user.profile_picture),
-              child: BlocBuilder<ProfilePictureCubit, String>(
-                builder: (context, profilePicture) {
+              create: (_) => ProfilePictureCubit(),
+              child: BlocConsumer<ProfilePictureCubit, ProfilePictureState>(
+                listener: (context, state) {
+                  if (state is ProfilePictureUploaded) {
+                    showToast(
+                      context,
+                      "Profile Picture Changed",
+                      "Your profile picture has been updated successfully.",
+                      ToastType.success,
+                    );
+                    context.read<AuthCubit>().getCurrentUser();
+                  } else if (state is ProfilePictureError) {
+                    showToast(
+                      context,
+                      "Error",
+                      state.message,
+                      ToastType.error,
+                    );
+                  }
+                },
+                builder: (context, state) {
                   return SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.all(15),
                       child: Column(
                         children: [
                           AccountBoxLabel(
-                            imagePath: profilePicture,
+                            imagePath: user.profile_picture ?? "",
                             name: user.display_name ?? "",
                             username: user.email ?? "",
                             icon: Icons.edit,

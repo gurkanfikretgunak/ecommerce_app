@@ -391,36 +391,18 @@ class ProductViewRoute extends _i24.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i17.ProfileView]
-class ProfileViewRoute extends _i24.PageRouteInfo<ProfileViewRouteArgs> {
-  ProfileViewRoute({_i25.Key? key, List<_i24.PageRouteInfo>? children})
-    : super(
-        ProfileViewRoute.name,
-        args: ProfileViewRouteArgs(key: key),
-        initialChildren: children,
-      );
+class ProfileViewRoute extends _i24.PageRouteInfo<void> {
+  const ProfileViewRoute({List<_i24.PageRouteInfo>? children})
+    : super(ProfileViewRoute.name, initialChildren: children);
 
   static const String name = 'ProfileViewRoute';
 
   static _i24.PageInfo page = _i24.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<ProfileViewRouteArgs>(
-        orElse: () => const ProfileViewRouteArgs(),
-      );
-      return _i17.ProfileView(key: args.key);
+      return const _i17.ProfileView();
     },
   );
-}
-
-class ProfileViewRouteArgs {
-  const ProfileViewRouteArgs({this.key});
-
-  final _i25.Key? key;
-
-  @override
-  String toString() {
-    return 'ProfileViewRouteArgs{key: $key}';
-  }
 }
 
 /// generated route for
