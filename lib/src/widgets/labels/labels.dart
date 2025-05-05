@@ -5,6 +5,7 @@ export 'package:shopapp_widgets/src/widgets/labels/address_form_label/address_fo
 export 'package:shopapp_widgets/src/widgets/labels/bottom_navigation_label/bottom_navigation_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/card_form_label/card_form_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/cart_add_remove_button_label/cart_add_remove_button_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/change_profile_picture_label/change_profile_picture_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/colors_label/colors_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/filter_form_label/filter_form_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/filter_section_label/filter_section_label.dart';
@@ -21,6 +22,7 @@ export 'package:shopapp_widgets/src/widgets/labels/product_header_image_label/pr
 export 'package:shopapp_widgets/src/widgets/labels/product_info_label/product_info_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/product_section_label/product_section_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/radius_icon_label/radius_icon_label.dart';
+export 'package:shopapp_widgets/src/widgets/labels/reset_password_form_label/reset_password_form_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/review_form_label/review_form_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/settings_box_label/settings_box_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/signin_form_label/signin_form_label.dart';
@@ -34,4 +36,3 @@ export 'package:shopapp_widgets/src/widgets/labels/tags_label/tags_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/timer_label/timer_label.dart';
 export 'package:shopapp_widgets/src/widgets/labels/timer_label_box/timer_label_box.dart';
 export 'package:shopapp_widgets/src/widgets/labels/toast_message_label/toast_message_label.dart';
-export 'package:shopapp_widgets/src/widgets/labels/reset_password_form_label/reset_password_form_label.dart';
