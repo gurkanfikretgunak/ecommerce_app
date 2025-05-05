@@ -7,6 +7,7 @@ class AccountBoxLabel extends StatelessWidget {
   final IconData? icon;
   final String name;
   final String username;
+  final VoidCallback? onPicturePressed;
 
   const AccountBoxLabel({
     super.key,
@@ -14,6 +15,7 @@ class AccountBoxLabel extends StatelessWidget {
     required this.name,
     required this.username,
     this.icon,
+    this.onPicturePressed,
   });
 
   @override
@@ -23,6 +25,7 @@ class AccountBoxLabel extends StatelessWidget {
         AccountPictureLabel(
           imagePath: imagePath,
           icon: icon,
+          onPressed: onPicturePressed,
         ),
         context.emptySizedWidthBoxLow,
         Column(
