@@ -1,15 +1,20 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:example/core/network/models/user_model/user_model.dart';
 import 'package:example/core/network/services/api/api_service.dart';
+import 'package:example/core/network/services/api/functions_api_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class UserRespository {
   Dio dio;
   ApiService apiService;
+  FunctionsApiService functionsApiService;
   final authToken = dotenv.env['SUPABASE_KEY'];
   UserRespository()
       : dio = Dio(),
-        apiService = ApiService(Dio());
+        apiService = ApiService(Dio()),
+        functionsApiService = FunctionsApiService(Dio());
 
   Future<void> postUser(User user) async {
     try {
@@ -41,6 +46,20 @@ class UserRespository {
           apikey: authToken, authToken: 'Bearer $authToken', uuid: 'eq.$uuid');
 
       return response.isNotEmpty;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<bool> uploadProfilePhoto(String userId, File file) async {
+    try {
+      final response = await functionsApiService.uploadProfilePhoto(
+        apikey: authToken,
+        authToken: 'Bearer $authToken',
+        file: file,
+        userId: userId,
+      );
+      return response;
     } catch (e) {
       rethrow;
     }
