@@ -1,12 +1,17 @@
 import 'dart:async';
 import 'package:example/core/network/models/filter_model/filter_model.dart';
-import 'package:example/core/network/respository/search_respository/search_respository.dart';
+import 'package:example/core/network/repository/search_respository/search_respository.dart';
 import 'package:example/cubits/search_cubit/search_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchCubit extends Cubit<SearchState> {
-  SearchCubit() : super(SearchApply(filter: Filter(), products: []));
+  SearchCubit()
+      : super(SearchState(
+          filter: Filter(tags: const []),
+          products: [],
+          isLoading: false,
+        ));
 
   Timer? _debounceTimer;
 
@@ -18,52 +23,70 @@ class SearchCubit extends Cubit<SearchState> {
   }
 
   void getSearch() async {
+    emit(state.copyWith(isLoading: true, errorMessage: null));
+
     try {
-      final applyState = state as SearchApply;
-      final result =
-          await SearchRespository().getSearchProducts(applyState.filter);
+      final result = await SearchRespository().getSearchProducts(state.filter);
+
       if (result.isNotEmpty) {
-        emit(applyState.copyWith(products: result));
+        emit(state.copyWith(products: result, isLoading: false));
       } else {
-        emit(applyState.copyWith(products: []));
+        emit(state.copyWith(products: [], isLoading: false));
       }
     } catch (e) {
-      emit(SearchError("Error: $e"));
+      emit(state.copyWith(errorMessage: "Error: $e", isLoading: false));
     }
   }
 
   void changeColor(Color color) {
-    final applyState = state as SearchApply;
-    emit(applyState.copyWith(filter: applyState.filter.copyWith(color: color)));
+    emit(state.copyWith(filter: state.filter.copyWith(color: color)));
   }
 
   void changeSize(String size) {
-    final applyState = state as SearchApply;
-    emit(applyState.copyWith(filter: applyState.filter.copyWith(size: size)));
+    emit(state.copyWith(filter: state.filter.copyWith(size: size)));
   }
 
   void changePrice(double price) {
-    final applyState = state as SearchApply;
-    emit(applyState.copyWith(filter: applyState.filter.copyWith(price: price)));
+    emit(state.copyWith(filter: state.filter.copyWith(price: price)));
   }
 
   void changeCategorie(String categorie) {
-    final applyState = state as SearchApply;
-    emit(applyState.copyWith(
-        filter: applyState.filter.copyWith(categorie: categorie)));
+    emit(state.copyWith(filter: state.filter.copyWith(categorie: categorie)));
+  }
+
+  void applyFilters() {
+    _debouncedSearch();
   }
 
   void changeSearchText(String text) {
-    final applyState = state as SearchApply;
-    emit(applyState.copyWith(
-        filter: applyState.filter.copyWith(searchText: text)));
+    emit(state.copyWith(filter: state.filter.copyWith(searchText: text)));
     _debouncedSearch();
+  }
+
+  void changeTag(String text) {
+    final updatedTags = List<String>.from(state.filter.tags ?? []);
+
+    if (updatedTags.contains(text)) {
+      updatedTags.remove(text);
+    } else {
+      updatedTags.add(text);
+    }
+
+    emit(state.copyWith(filter: state.filter.copyWith(tags: updatedTags)));
+    _debouncedSearch();
+  }
+
+  bool isAdded(String label) {
+    return state.filter.tags?.contains(label) ?? false;
   }
 
   void clearFilters() {
     _debounceTimer?.cancel();
-    final applyState = state as SearchApply;
-    emit(applyState.copyWith(filter: Filter(), products: []));
+    emit(SearchState(
+      filter: Filter(tags: const []),
+      products: [],
+      isLoading: false,
+    ));
   }
 
   @override

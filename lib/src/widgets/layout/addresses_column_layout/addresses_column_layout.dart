@@ -59,15 +59,13 @@ class _AddressesColumnLayoutState extends State<AddressesColumnLayout> {
                   return false;
                 },
                 onDismissed: (direction) {
-                  setState(() {
+                  if (widget.deleteBillingDetailCallBack != null) {
+                    widget.deleteBillingDetailCallBack!(index);
                     widget.addressItems.removeAt(index);
-                    if (widget.deleteBillingDetailCallBack != null) {
-                      widget.deleteBillingDetailCallBack!(index);
-                    }
-                    if (widget.addressItems.isEmpty) {
-                      Navigator.pop(context);
-                    }
-                  });
+                  }
+                  if (widget.addressItems.isEmpty) {
+                    Navigator.pop(context);
+                  }
                 },
                 child: AddressBoxModal(
                   name: widget.addressItems[index].name,

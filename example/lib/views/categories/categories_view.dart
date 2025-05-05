@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:example/views/categories/models/categories_cubit.dart';
-import 'package:example/views/categories/models/categories_state.dart';
 import 'package:example/core/gen/assets.gen.dart';
+import 'package:example/cubits/categories/categories_cubit.dart';
+import 'package:example/cubits/categories/categories_state.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,7 +37,7 @@ class _CategoriesViewState extends State<CategoriesView> {
       body: BlocBuilder<CategoriesCubit, CategoriesState>(
           builder: (context, state) {
         if (state is CategoriesLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressAnimation());
         } else if (state is CategoriesError) {
           return const Center(child: Text(""));
         } else if (state is CategoriesLoaded) {

@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:example/views/auth/models/auth_cubit.dart';
-import 'package:example/views/auth/models/auth_state.dart';
+import 'package:example/cubits/auth/auth_cubit.dart';
+import 'package:example/cubits/auth/auth_state.dart';
 import 'package:example/cubits/validation/validation_cubit.dart';
 import 'package:example/cubits/validation/validation_state.dart';
 import 'package:example/route/route.gr.dart';
@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class SignUpView extends StatefulWidget {
@@ -28,6 +29,16 @@ class _SignUpViewState extends State<SignUpView> {
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
+  void showToast(
+      BuildContext context, String title, String description, ToastType type) {
+    final toast = ToastMessageLabel(
+      title: title,
+      description: description,
+      type: type,
+    );
+    toast.show(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -39,7 +50,7 @@ class _SignUpViewState extends State<SignUpView> {
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: CustomAppbar(
-            text: "CREATE YOUR ACCOUNT",
+            text: L10n.of(context)!.createYourAccount,
             onPressed: () {
               Navigator.pop(context);
             },
@@ -109,6 +120,13 @@ class _SignUpViewState extends State<SignUpView> {
                         confirmPasswordErrorMessage = validationState.error;
                       }
                       return SignUpForm(
+                        firstNameHintText: L10n.of(context)!.firstName,
+                        lastNameHintText: L10n.of(context)!.lastName,
+                        emailHintText: L10n.of(context)!.email,
+                        phoneHintText: L10n.of(context)!.phoneNumber,
+                        passwordHintText: L10n.of(context)!.password,
+                        confirmPasswordHintText:
+                            L10n.of(context)!.confirmPassword,
                         firstNameController: firstNameController,
                         lastNameController: lastNameController,
                         emailController: emailController,
@@ -159,7 +177,7 @@ class _SignUpViewState extends State<SignUpView> {
                     },
                   ),
                   CustomButton(
-                    text: "SIGN UP",
+                    text: L10n.of(context)!.signUp,
                     onPressed: () {
                       if (context.read<ValidationCubit>().isSignUpFormValid()) {
                         context.read<AuthCubit>().signUp(
@@ -170,10 +188,11 @@ class _SignUpViewState extends State<SignUpView> {
                               passwordController.text,
                             );
                       } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content:
-                                  Text('Please fix the errors in the form')),
+                        showToast(
+                          context,
+                          L10n.of(context)!.validationError,
+                          L10n.of(context)!.pleaseFixErrors,
+                          ToastType.error,
                         );
                       }
                     },
@@ -181,7 +200,7 @@ class _SignUpViewState extends State<SignUpView> {
                   context.emptySizedHeightBoxLow,
                   CustomButton(
                     icon: FontAwesomeIcons.google,
-                    text: "SIGN UP WITH GOOGLE",
+                    text: L10n.of(context)!.signInWithGoogle,
                     color: ColorConstant.instance.neutral9,
                     textColor: ColorConstant.instance.neutral1,
                     iconColor: ColorConstant.instance.neutral1,
@@ -192,7 +211,7 @@ class _SignUpViewState extends State<SignUpView> {
                   context.emptySizedHeightBoxLow,
                   CustomButton(
                     icon: FontAwesomeIcons.facebook,
-                    text: "SIGN UP WITH FACEBOOK",
+                    text: L10n.of(context)!.signInWithFacebook,
                     color: ColorConstant.instance.neutral9,
                     textColor: ColorConstant.instance.neutral1,
                     iconColor: ColorConstant.instance.neutral1,

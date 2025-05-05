@@ -37,12 +37,12 @@ class AccountInfoBoxLabel extends StatelessWidget {
         children: [
           ContentText(
             text: title,
-            fontSize: fontSize ?? 18,
+            fontSize: fontSize ?? 16,
             color: titleColor ?? ColorConstant.instance.neutral4,
           ),
           ContentText(
             text: value,
-            fontSize: fontSize ?? 18,
+            fontSize: fontSize ?? 16,
             color: valueColor ?? ColorConstant.instance.neutral1,
           ),
         ],

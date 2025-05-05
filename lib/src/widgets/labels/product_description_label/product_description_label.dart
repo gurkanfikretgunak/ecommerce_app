@@ -4,9 +4,13 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 class ProductDescriptionLabel extends StatelessWidget {
   final String text;
   final String imagePath;
+  final String? descriptionHeaderText;
 
   const ProductDescriptionLabel(
-      {super.key, required this.text, required this.imagePath});
+      {super.key,
+      required this.text,
+      required this.imagePath,
+      this.descriptionHeaderText = "DESCRIPTION"});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +19,7 @@ class ProductDescriptionLabel extends StatelessWidget {
       children: [
         HeadText(
           color: ColorConstant.instance.neutral1,
-          text: "DESCRIPTION",
+          text: descriptionHeaderText!,
           fontSize: 20,
         ),
         context.emptySizedHeightBoxLow,
@@ -27,7 +31,7 @@ class ProductDescriptionLabel extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.9,
             imagePath: imagePath),
         context.emptySizedHeightBoxLow,
-        Align(
+        /*Align(
           child: Column(
             children: [
               ContentText(
@@ -41,7 +45,7 @@ class ProductDescriptionLabel extends StatelessWidget {
               )
             ],
           ),
-        )
+        )*/
       ],
     );
   }

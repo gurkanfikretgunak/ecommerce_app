@@ -1,12 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:example/core/gen/assets.gen.dart';
+import 'package:example/cubits/bottom_navigation/bottom_navigation_cubit.dart';
+import 'package:example/cubits/product/product_cubit.dart';
 import 'package:example/cubits/search_cubit/search_cubit.dart';
 import 'package:example/cubits/search_cubit/search_state.dart';
 import 'package:example/route/route.gr.dart';
-import 'package:example/views/mainpage/models/bottom_navigation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class SearchView extends StatefulWidget {
@@ -17,25 +19,39 @@ class SearchView extends StatefulWidget {
 }
 
 class _SearchViewState extends State<SearchView> {
-  List<TagsLabel> tags = [
-    const TagsLabel(label: "Shoes"),
-    const TagsLabel(label: "Dresses"),
-    const TagsLabel(label: "Shirts"),
-    const TagsLabel(label: "Polos"),
-    const TagsLabel(label: "Jeans"),
-    const TagsLabel(label: "Blazers"),
-    const TagsLabel(label: "Coats"),
-    const TagsLabel(label: "Trousers"),
-    const TagsLabel(label: "Skirts"),
-    const TagsLabel(label: "Bags"),
-    const TagsLabel(label: "Jacket"),
-    const TagsLabel(label: "Top"),
-  ];
+  void addTags(String tag) {
+    context.read<SearchCubit>().changeTag(tag);
+  }
+
+  bool isAdded(String tag) {
+    return context.read<SearchCubit>().isAdded(tag);
+  }
 
   final TextEditingController searchController = TextEditingController();
 
   @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final allTags = [
+      "shoes",
+      "dresses",
+      "shirts",
+      "polos",
+      "jeans",
+      "blazers",
+      "coats",
+      "trousers",
+      "skirts",
+      "bags",
+      "jacket",
+      "top"
+    ];
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
@@ -44,9 +60,13 @@ class _SearchViewState extends State<SearchView> {
             context.read<SearchCubit>().changeSearchText(text);
           },
           textEditingController: searchController,
-          text: "Search Product ...",
+          text: L10n.of(context)!.searchProduct,
           onPressed: () {
-            context.read<BottomNavigationCubit>().setPage(0);
+            if (AutoRouter.of(context).canPop()) {
+              Navigator.of(context).pop();
+            } else {
+              context.read<BottomNavigationCubit>().setPage(0);
+            }
           },
           iconOnPressed: () {
             AutoRouter.of(context).push(const FilterViewRoute());
@@ -61,19 +81,64 @@ class _SearchViewState extends State<SearchView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               context.emptySizedHeightBoxNormal,
-              Wrap(
-                spacing: 5.0,
-                runSpacing: 5.0,
-                children: tags,
+              BlocBuilder<SearchCubit, SearchState>(
+                builder: (context, state) {
+                  return Wrap(
+                    /*spacing: 0.5,
+                    runSpacing: 0.5,*/
+                    children: allTags
+                        .map((tagName) => TagsLabel(
+                              label: tagName,
+                              onChanged: addTags,
+                              isSelected:
+                                  state.filter.tags?.contains(tagName) ?? false,
+                            ))
+                        .toList(),
+                  );
+                },
               ),
               context.emptySizedHeightBoxNormal,
               BlocBuilder<SearchCubit, SearchState>(
                 builder: (context, state) {
-                  if (state is SearchApply) {
+                  if (state.isLoading) {
+                    return const Center(
+                      child: CircularProgressAnimation(),
+                    );
+                  } else if (state.errorMessage != null) {
+                    return Center(
+                      child: HeadText(
+                        text: state.errorMessage!,
+                        color: ColorConstant.instance.neutral1,
+                      ),
+                    );
+                  } else if (state.products.isEmpty) {
+                    return Center(
+                      child: Column(
+                        children: [
+                          const Icon(
+                            Icons.search_off,
+                            size: 48,
+                            color: Colors.grey,
+                          ),
+                          const SizedBox(height: 16),
+                          HeadText(
+                            text: L10n.of(context)!.noProductsFound,
+                            color: ColorConstant.instance.neutral1,
+                          ),
+                          const SizedBox(height: 8),
+                          ContentText(
+                            text: L10n.of(context)!.changeSearchTerm,
+                            textAlign: TextAlign.center,
+                            color: ColorConstant.instance.neutral4,
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
                     return Column(
                       children: [
                         SectionLayout(
-                          sectionText: "Search Result",
+                          sectionText: L10n.of(context)!.searchResult,
                           layout: ProductGridLayout(
                               productItems: state.products
                                   .map((e) => ProductCardModal(
@@ -81,17 +146,18 @@ class _SearchViewState extends State<SearchView> {
                                         productStock: e.sold_count.toString(),
                                         productName: e.name,
                                         productPrice: e.price.toString(),
+                                        onTap: () {
+                                          context
+                                              .read<ProductCubit>()
+                                              .changeProduct(e);
+                                          AutoRouter.of(context)
+                                              .push(ProductViewRoute());
+                                        },
                                       ))
                                   .toList()),
                         ),
                       ],
                     );
-                  } else if (state is SearchError) {
-                    return Center(child: Text(state.message));
-                  } else if (state is SearchApply) {
-                    return Center(child: Text("Lütfen filtre seçiniz"));
-                  } else {
-                    return const Center(child: CircularProgressIndicator());
                   }
                 },
               ),

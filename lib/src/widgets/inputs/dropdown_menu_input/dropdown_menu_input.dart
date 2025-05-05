@@ -29,7 +29,7 @@ class _DropDownMenuInputState extends State<DropDownMenuInput> {
           value: value,
           child: ContentText(
               text: value,
-              fontSize: 12,
+              fontSize: 11,
               color: ColorConstant.instance.neutral1),
         );
       }).toList(),

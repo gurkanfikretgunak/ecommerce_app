@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:example/cubits/cart/cart_state.dart';
 import 'package:example/core/network/models/cart_model/cart_model.dart';
-import 'package:example/core/network/respository/cart_respository/cart_respository.dart';
+import 'package:example/core/network/repository/cart_respository/cart_respository.dart';
 
 class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());

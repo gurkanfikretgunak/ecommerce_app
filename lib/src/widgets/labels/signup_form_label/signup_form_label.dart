@@ -27,6 +27,13 @@ class SignUpForm extends StatefulWidget {
   final String? passwordErrorMessage;
   final String? confirmPasswordErrorMessage;
 
+  final String firstNameHintText;
+  final String lastNameHintText;
+  final String emailHintText;
+  final String phoneHintText;
+  final String passwordHintText;
+  final String confirmPasswordHintText;
+
   const SignUpForm({
     super.key,
     required this.firstNameController,
@@ -53,6 +60,12 @@ class SignUpForm extends StatefulWidget {
     this.phoneErrorMessage,
     this.passwordErrorMessage,
     this.confirmPasswordErrorMessage,
+    this.firstNameHintText = 'First Name',
+    this.lastNameHintText = 'Last Name',
+    this.emailHintText = 'Email',
+    this.phoneHintText = 'Phone Number',
+    this.passwordHintText = 'Password',
+    this.confirmPasswordHintText = 'Confirm Password',
   });
 
   @override
@@ -74,7 +87,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 Expanded(
                   child: TextFieldInput(
                     controller: widget.firstNameController,
-                    hintText: 'First Name',
+                    hintText: widget.firstNameHintText,
                     onChanged: widget.onChangedFirstName,
                     errorMessage: widget.firstNameErrorMessage,
                     isValid: widget.isFirstNameValid ?? false,
@@ -84,7 +97,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 Expanded(
                   child: TextFieldInput(
                     controller: widget.lastNameController,
-                    hintText: 'Last Name',
+                    hintText: widget.lastNameHintText,
                     onChanged: widget.onChangedLastName,
                     errorMessage: widget.lastNameErrorMessage,
                     isValid: widget.isLastNameValid ?? false,
@@ -95,7 +108,7 @@ class _SignUpFormState extends State<SignUpForm> {
             context.emptySizedHeightBoxNormal,
             TextFieldInput(
               controller: widget.emailController,
-              hintText: 'Email',
+              hintText: widget.emailHintText,
               inputType: InputType.email,
               onChanged: widget.onChangedEmail,
               errorMessage: widget.emailErrorMessage,
@@ -104,7 +117,7 @@ class _SignUpFormState extends State<SignUpForm> {
             context.emptySizedHeightBoxNormal,
             TextFieldInput(
               controller: widget.phoneController,
-              hintText: 'Phone Number',
+              hintText: widget.phoneHintText,
               inputType: InputType.phone,
               onChanged: widget.onChangedPhone,
               errorMessage: widget.phoneErrorMessage,
@@ -113,7 +126,7 @@ class _SignUpFormState extends State<SignUpForm> {
             context.emptySizedHeightBoxNormal,
             TextFieldInput(
               controller: widget.passwordController,
-              hintText: 'Password',
+              hintText: widget.passwordHintText,
               inputType: InputType.password,
               errorMessage: widget.passwordErrorMessage,
               onChanged: widget.onChangedPassword,
@@ -122,7 +135,7 @@ class _SignUpFormState extends State<SignUpForm> {
             context.emptySizedHeightBoxNormal,
             TextFieldInput(
               controller: widget.confirmPasswordController,
-              hintText: 'Confirm Password',
+              hintText: widget.confirmPasswordHintText,
               inputType: InputType.password,
               errorMessage: widget.confirmPasswordErrorMessage,
               onChanged: widget.onChangedConfirmPassword,

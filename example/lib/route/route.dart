@@ -11,13 +11,13 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(page: OnboardingViewRoute.page),
         AutoRoute(page: SignUpViewRoute.page),
+        AutoRoute(page: ResetPasswordViewRoute.page),
         AutoRoute(page: VerificationViewRoute.page),
         AutoRoute(page: MainpageViewRoute.page),
         AutoRoute(page: CategoriesViewRoute.page),
         AutoRoute(page: CategorieProductsViewRoute.page),
         AutoRoute(page: ProductViewRoute.page),
         AutoRoute(page: PaymentViewRoute.page),
-        AutoRoute(page: CheckoutRoute.page),
         AutoRoute(page: AddressesViewRoute.page),
         AutoRoute(page: NewAddressViewRoute.page),
         AutoRoute(page: PaymentMethodsViewRoute.page),
@@ -28,6 +28,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: ProfileViewRoute.page),
         AutoRoute(page: OrderwishlistViewRoute.page),
         AutoRoute(page: NotificationViewRoute.page),
+        AutoRoute(page: LanguageViewRoute.page),
       ];
 }
 

@@ -55,14 +55,16 @@ class _PaymentCardColumnLayoutState extends State<PaymentCardColumnLayout> {
                   }
                 });
               },
-              child: PaymentCardModal(
-                cartNumber: paymentCardItems[index].cartNumber,
-                name: paymentCardItems[index].name,
-                isSelected: paymentCardItems[index].isSelected,
-                color: paymentCardItems[index].color,
-                expirationDate: paymentCardItems[index].expirationDate,
-                brand: paymentCardItems[index].brand,
-                onTap: paymentCardItems[index].onTap,
+              child: Center(
+                child: PaymentCardModal(
+                  cartNumber: paymentCardItems[index].cartNumber,
+                  name: paymentCardItems[index].name,
+                  isSelected: paymentCardItems[index].isSelected,
+                  color: paymentCardItems[index].color,
+                  expirationDate: paymentCardItems[index].expirationDate,
+                  brand: paymentCardItems[index].brand,
+                  onTap: paymentCardItems[index].onTap,
+                ),
               ),
             );
           },

@@ -6,20 +6,21 @@ import 'package:example/core/network/models/wishlist_model/wishlist_model.dart';
 import 'package:example/cubits/cart/cart_cubit.dart';
 import 'package:example/cubits/product/product_cubit.dart';
 import 'package:example/cubits/product/product_state.dart';
+import 'package:example/cubits/product_detail/product_detail_cubit.dart';
+import 'package:example/cubits/product_detail/product_detail_state.dart';
 import 'package:example/cubits/review/review_cubit.dart';
 import 'package:example/cubits/review/review_state.dart';
 import 'package:example/cubits/wishlist/wishlist_cubit.dart';
 import 'package:example/cubits/wishlist/wishlist_state.dart';
 import 'package:example/route/route.gr.dart';
-import 'package:example/views/auth/models/auth_cubit.dart';
-import 'package:example/views/auth/models/auth_state.dart';
-import 'package:example/views/product/models/product_detail_cubit.dart';
-import 'package:example/views/product/models/product_detail_state.dart';
+import 'package:example/cubits/auth/auth_cubit.dart';
+import 'package:example/cubits/auth/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class ProductView extends StatefulWidget {
@@ -38,8 +39,8 @@ class _ProductViewState extends State<ProductView> {
     super.initState();
 
     final productCubit = context.read<ProductCubit>();
-    if (productCubit.state is ProductLoaded) {
-      final product = (productCubit.state as ProductLoaded).product;
+    if (productCubit.state is ProductChanged) {
+      final product = (productCubit.state as ProductChanged).product;
       context.read<ProductDetailCubit>().getProductDetail(product.product_id);
 
       userState = context.read<AuthCubit>().state;
@@ -56,14 +57,13 @@ class _ProductViewState extends State<ProductView> {
       builder: (BuildContext context) {
         return PopupSuccesLabel(
           succesIconPath: Assets.icons.success.path,
-          title: "SUCCESS",
+          title: L10n.of(context)!.success,
           buttonOnPressed: () {
             AutoRouter.of(context).push(MainpageViewRoute(pageNo: 2));
           },
-          description:
-              "Dolor magna eget est lorem ipsum dolor sit amet consectetur.",
+          description: L10n.of(context)!.productAddedToCartSuccess,
           iconPath: "assets/icons/cart.svg",
-          buttonText: "VIEW CART",
+          buttonText: L10n.of(context)!.viewCart,
         );
       },
     );
@@ -81,8 +81,10 @@ class _ProductViewState extends State<ProductView> {
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, productState) {
         if (productState is ProductLoading) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (productState is ProductLoaded) {
+          return const Center(child: CircularProgressAnimation());
+        } else if (productState is ProductChanged) {
+          final product = (productState as ProductChanged).product;
+
           return _buildProductDetail(productState.product);
         } else if (productState is ProductError) {
           return _buildErrorView(productState.message);
@@ -115,7 +117,7 @@ class _ProductViewState extends State<ProductView> {
     return BlocBuilder<ProductDetailCubit, ProductDetailState>(
       builder: (context, state) {
         if (state is ProductDetailLoading) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressAnimation());
         } else if (state is ProductDetailLoaded) {
           return _buildProductContent(state, product);
         } else if (state is ProductDetailError) {
@@ -160,7 +162,7 @@ class _ProductViewState extends State<ProductView> {
         context.emptySizedWidthBoxNormal,
         InkWell(
           onTap: () {
-            AutoRouter.of(context).push(const SearchViewRoute());
+            AutoRouter.of(context).push(MainpageViewRoute(pageNo: 3));
           },
           child: SvgPicture.asset("assets/icons/search.svg"),
         ),
@@ -185,7 +187,7 @@ class _ProductViewState extends State<ProductView> {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: ProductSectionLabel(
-        title: "Color:",
+        title: L10n.of(context)!.color,
         element: ColorsLabel(
           colors: state.productDetail.colors
               .map((color) => Color(int.parse("0x$color")))
@@ -203,7 +205,7 @@ class _ProductViewState extends State<ProductView> {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: ProductSectionLabel(
-        title: "Size:",
+        title: L10n.of(context)!.size,
         element: SizesLabel(
           sizes: state.productDetail.sizes,
           selectedSize: state.selectedSize,
@@ -219,6 +221,7 @@ class _ProductViewState extends State<ProductView> {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: ProductDescriptionLabel(
+        descriptionHeaderText: L10n.of(context)!.description,
         text: state.productDetail.description,
         imagePath: state.productDetail.description_image[0],
       ),
@@ -253,30 +256,35 @@ class _ProductViewState extends State<ProductView> {
               listener: (context, reviewState) {
                 if (reviewState is ReviewSuccess) {
                   final productCubit = context.read<ProductCubit>();
-                  if (productCubit.state is ProductLoaded) {
+                  if (productCubit.state is ProductChanged) {
                     final product =
-                        (productCubit.state as ProductLoaded).product;
+                        (productCubit.state as ProductChanged).product;
                     context
                         .read<ProductDetailCubit>()
-                        .getProductDetail(product.id);
+                        .getProductDetail(product.product_id);
                   }
                   reviewTextController.clear();
                 }
               },
               builder: (context, reviewState) {
                 return ReviewFormLabel(
-                  onStarSelected: (rate) {
-                    context.read<ProductDetailCubit>().changeSelectedRate(rate);
-                  },
-                  onSubmit: () => _submitReview(authState, state),
-                  selectedStarCount: state.selectedRate ?? 0,
-                  reviewTextController: reviewTextController,
-                );
+                    onStarSelected: (rate) {
+                      context
+                          .read<ProductDetailCubit>()
+                          .changeSelectedRate(rate);
+                    },
+                    onSubmit: () => _submitReview(authState, state),
+                    selectedStarCount: state.selectedRate ?? 0,
+                    reviewTextController: reviewTextController,
+                    titleText: L10n.of(context)!.addReview,
+                    reviewHintText: L10n.of(context)!.yourReview,
+                    ratingLabelText: L10n.of(context)!.yourRating,
+                    submitButtonText: L10n.of(context)!.submit);
               },
             );
           } else {
-            return const Center(
-              child: Text('Please sign in to leave a review.'),
+            return Center(
+              child: Text(L10n.of(context)!.pleaseSignInReview),
             );
           }
         },
@@ -298,7 +306,7 @@ class _ProductViewState extends State<ProductView> {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: SectionLayout(
-        sectionText: "RELATED PRODUCT",
+        sectionText: L10n.of(context)!.relatedProduct,
         layout: ProductRowLayout(
           items: state.relatedProducts!.map((relatedProduct) {
             return ProductCardModal(
@@ -308,6 +316,9 @@ class _ProductViewState extends State<ProductView> {
               productStock: relatedProduct.sold_count.toString(),
               onTap: () {
                 context.read<ProductCubit>().changeProduct(relatedProduct);
+                context
+                    .read<ProductDetailCubit>()
+                    .getProductDetail(relatedProduct.product_id);
               },
             );
           }).toList(),
@@ -319,7 +330,7 @@ class _ProductViewState extends State<ProductView> {
   Widget _buildBottomSheet() {
     return BlocBuilder<ProductCubit, ProductState>(
       builder: (context, productState) {
-        if (productState is ProductLoaded) {
+        if (productState is ProductChanged) {
           return BlocBuilder<ProductDetailCubit, ProductDetailState>(
             builder: (context, productDetailState) {
               if (productDetailState is ProductDetailLoaded) {
@@ -354,13 +365,14 @@ class _ProductViewState extends State<ProductView> {
                     .isProductInWishlist(product.id, userId);
                 isFavorite = wishlistState.isFavorite;
               } else if (wishlistState is WishlistLoading) {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressAnimation());
               }
               return ProductBottomSheetLabel(
                 isFavorite: isFavorite,
                 favoriteOnPressed: () =>
                     _toggleFavorite(productId, state, userId),
                 buttonOnPressed: () => _addToCart(product, state, userId),
+                buttonText: L10n.of(context)!.addToCard,
                 price: product.price.toString(),
               );
             },

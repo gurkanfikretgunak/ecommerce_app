@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:example/core/gen/assets.gen.dart';
+import 'package:example/l10n/app_l10n_en.dart';
 import 'package:example/views/auth/signin/signin_view.dart';
 import 'package:example/route/route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:auto_route/annotations.dart';
+import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
 class OnboardingView extends StatefulWidget {
@@ -37,25 +39,25 @@ class _OnboardingViewState extends State<OnboardingView> {
         children: [
           OnboardingSlider(
             imagePath: Assets.images.onboardingimageFirst.path,
-            firstText: "CLASSY",
-            secondText: "FROM HEAD",
-            thirdText: "TO TOE",
+            firstText: L10n.of(context)!.onboardingTextOne1,
+            secondText: L10n.of(context)!.onboardingTextOne2,
+            thirdText: L10n.of(context)!.onboardingTextOne3,
             pageController: _pageController,
             onNext: () => _goToNextPage(0),
           ),
           OnboardingSlider(
             imagePath: Assets.images.onboardingimageSecond.path,
-            firstText: "FLY AWAY",
-            secondText: "WITH YOUR",
-            thirdText: "STYLE",
+            firstText: L10n.of(context)!.onboardingTextTwo1,
+            secondText: L10n.of(context)!.onboardingTextTwo2,
+            thirdText: L10n.of(context)!.onboardingTextTwo3,
             pageController: _pageController,
             onNext: () => _goToNextPage(1),
           ),
           OnboardingSlider(
             imagePath: Assets.images.onboardingimageThird.path,
-            firstText: "CLOTHES",
-            secondText: "FOR A BIG",
-            thirdText: "PLANET",
+            firstText: L10n.of(context)!.onboardingTextThree1,
+            secondText: L10n.of(context)!.onboardingTextThree2,
+            thirdText: L10n.of(context)!.onboardingTextThree3,
             pageController: _pageController,
             onNext: () => _goToNextPage(2),
           )

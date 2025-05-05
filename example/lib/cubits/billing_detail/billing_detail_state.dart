@@ -17,9 +17,19 @@ class BillingDetailLoaded extends BillingDetailState {
 
   @override
   List<Object?> get props => [billingDetail];
+
+  BillingDetailLoaded copyWith({
+    List<BillingDetail>? billingDetail,
+  }) {
+    return BillingDetailLoaded(
+      billingDetail: billingDetail ?? this.billingDetail,
+    );
+  }
 }
 
 class BillingDetailPatched extends BillingDetailState {}
+
+class BillingDetailDeleted extends BillingDetailState {}
 
 class BillingDetailSuccess extends BillingDetailState {
   final String message;

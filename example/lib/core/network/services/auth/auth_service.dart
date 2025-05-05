@@ -43,18 +43,43 @@ class AuthService {
     }
   }
 
+  Future<User?> getSessionFromUrl(Uri uri) async {
+    try {
+      final response = await auth.getSessionFromUrl(uri);
+      if (response.session != null) {
+        return response.session.user;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      return null;
+    }
+  }
+
+  Future<void>? resetPassword(email) async {
+    try {
+      auth.resetPasswordForEmail(email);
+    } catch (e) {
+      throw Exception("Reset Password unsuccessful:$e");
+    }
+  }
+
   Future<User?> signInWithFacebook() async {
     try {
+      final redirectUrl = kIsWeb
+          ? '${dotenv.env['SUPABASE_WEB_CLIENT_ID']}/auth/v1/callback'
+          : 'com.example.example://login-callback';
+
       final success = await auth.signInWithOAuth(
         OAuthProvider.facebook,
-        redirectTo: '${dotenv.env['SUPABASE_WEB_CLIENT_ID']}/auth/v1/callback',
+        redirectTo: redirectUrl,
         authScreenLaunchMode: kIsWeb
             ? LaunchMode.platformDefault
             : LaunchMode.externalApplication,
       );
 
       if (success) {
-        final user = getCurrentUser();
+        final user = await getCurrentUser();
 
         if (user != null) {
           return user;
@@ -65,7 +90,6 @@ class AuthService {
         throw 'Facebook sign in failed';
       }
     } catch (e) {
-      print('Error during Facebook sign in: $e');
       return null;
     }
   }

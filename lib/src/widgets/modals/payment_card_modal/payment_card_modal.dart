@@ -42,24 +42,22 @@ class PaymentCardModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String logoPath = "";
-    CreditCardType? creditCardType;
 
     switch (brand) {
       case "Visa":
         logoPath = "assets/images/Visa.png";
-        creditCardType = CreditCardType.visa;
+
         break;
       case "MasterCard":
         logoPath = "assets/images/mastercard.png";
-        creditCardType = CreditCardType.mastercard;
+
         break;
       case "American Express":
         logoPath = "assets/images/amex.png";
-        creditCardType = CreditCardType.amex;
+
         break;
       default:
         logoPath = "";
-        creditCardType = CreditCardType.none;
     }
 
     return GestureDetector(
@@ -99,7 +97,7 @@ class PaymentCardModal extends StatelessWidget {
           topLeftColor: color ?? ColorConstant.instance.primary_main,
           bottomRightColor: color ?? ColorConstant.instance.primary_darker,
           enableFlipping: enableFlipping ?? false,
-          creditCardType: creditCardType ?? CreditCardType.none,
+          creditCardType: CreditCardType.none,
           cardProviderLogo: brand != null && logoPath.isNotEmpty
               ? Image.asset(logoPath)
               : null,

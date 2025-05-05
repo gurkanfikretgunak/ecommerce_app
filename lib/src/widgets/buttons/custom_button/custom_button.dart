@@ -44,24 +44,36 @@ class CustomButton extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(radius ?? 25)),
               )),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                icon ?? null,
-                color: iconColor ?? ColorConstant.instance.neutral9,
-                size: 15,
-              ),
-              if (icon != null) context.emptySizedWidthBoxNormal,
-              Text(
-                text ?? "",
-                style: GoogleFonts.poppins(
-                  fontSize: fontSize ?? 15,
-                  color: textColor ?? ColorConstant.instance.neutral9,
-                ),
-              ),
-            ],
-          )),
+          child: icon != null
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(
+                      icon,
+                      color: iconColor ?? ColorConstant.instance.neutral9,
+                      size: 15,
+                    ),
+                    context.emptySizedWidthBoxNormal,
+                    Text(
+                      text ?? "",
+                      style: GoogleFonts.poppins(
+                        fontSize: fontSize ?? 15,
+                        color: textColor ?? ColorConstant.instance.neutral9,
+                      ),
+                    ),
+                    context.emptySizedWidthBoxNormal,
+                  ],
+                )
+              : Center(
+                  child: Text(
+                    text ?? "",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.poppins(
+                      fontSize: fontSize ?? 15,
+                      color: textColor ?? ColorConstant.instance.neutral9,
+                    ),
+                  ),
+                )),
     );
   }
 }

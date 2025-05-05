@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:example/core/network/models/order_detail_model/order_detail_model.dart';
 import 'package:example/core/network/models/order_model/order_model.dart';
-import 'package:example/core/network/respository/order_respository/order_respository.dart';
+import 'package:example/core/network/repository/order_respository/order_respository.dart';
 import 'package:example/core/network/services/api/api_service.dart';
 import 'package:example/cubits/order/order_state.dart';
 
@@ -15,13 +15,9 @@ class OrderCubit extends Cubit<OrderState> {
     try {
       emit(OrderLoading());
       final response = await OrderRespository().getOrder(userId);
-      if (response.isNotEmpty) {
-        emit(OrderLoaded(response));
-      } else {
-        emit(OrderError("No orders found"));
-      }
+      emit(OrderLoaded(response));
     } catch (e) {
-      emit(OrderError("Failed to get order:${e.toString()}"));
+      emit(OrderError("${e.toString()}"));
     }
   }
 

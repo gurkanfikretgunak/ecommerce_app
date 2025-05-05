@@ -105,7 +105,9 @@ class _TypeaheadTextfieldInputState extends State<TypeaheadTextfieldInput> {
       },
       onSuggestionSelected: (String text) {
         widget.controller.text = text;
-        widget.onTextChanged!(text);
+        if (widget.onTextChanged != null) {
+          widget.onTextChanged!(text);
+        }
       },
     );
   }

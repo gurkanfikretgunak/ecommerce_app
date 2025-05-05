@@ -21,6 +21,13 @@ class CardFormLabel extends StatefulWidget {
   final Function(String) onExpDateChanged;
   final Function(String) onCvvChanged;
 
+  // Eklenen özelleştirilebilir metin parametreleri
+  final String nameOnCardHintText;
+  final String cardNumberHintText;
+  final String expMonthHintText;
+  final String expDateHintText;
+  final String cvvHintText;
+
   const CardFormLabel({
     super.key,
     required this.nameController,
@@ -38,6 +45,12 @@ class CardFormLabel extends StatefulWidget {
     required this.onExpMonthChanged,
     required this.onExpDateChanged,
     required this.onCvvChanged,
+    // Metin parametreleri için varsayılan değerler
+    this.nameOnCardHintText = "Name On Card",
+    this.cardNumberHintText = "Card Number",
+    this.expMonthHintText = "Exp Month",
+    this.expDateHintText = "Exp Date",
+    this.cvvHintText = "Cvv",
   });
 
   @override
@@ -69,14 +82,14 @@ class _CardFormLabelState extends State<CardFormLabel> {
         ),
         context.emptySizedHeightBoxNormal,
         TextFieldInput(
-          hintText: "Name On Card",
+          hintText: widget.nameOnCardHintText,
           controller: widget.nameController,
           isValid: widget.isNameValid,
           onChanged: widget.onNameChanged,
         ),
         context.emptySizedHeightBoxNormal,
         TextFieldInput(
-          hintText: "Card Number",
+          hintText: widget.cardNumberHintText,
           controller: widget.cardNumberController,
           isValid: widget.isCardNumberValid,
           onChanged: widget.onCardNumberChanged,
@@ -91,7 +104,7 @@ class _CardFormLabelState extends State<CardFormLabel> {
             Expanded(
               child: TextFieldInput(
                 controller: widget.expMonthController,
-                hintText: 'Exp Month',
+                hintText: widget.expMonthHintText,
                 isValid: widget.isExpMonthValid,
                 onChanged: widget.onExpMonthChanged,
               ),
@@ -100,7 +113,7 @@ class _CardFormLabelState extends State<CardFormLabel> {
             Expanded(
               child: TextFieldInput(
                 controller: widget.expDateController,
-                hintText: 'Exp Date',
+                hintText: widget.expDateHintText,
                 isValid: widget.isExpDateValid,
                 onChanged: widget.onExpDateChanged,
               ),
@@ -109,7 +122,7 @@ class _CardFormLabelState extends State<CardFormLabel> {
         ),
         context.emptySizedHeightBoxNormal,
         TextFieldInput(
-          hintText: "Cvv",
+          hintText: widget.cvvHintText,
           controller: widget.cvvController,
           isValid: widget.isCvvValid,
           onChanged: widget.onCvvChanged,

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -46,14 +47,13 @@ class ImageRadiusModal extends StatelessWidget {
         width: width ?? 60,
         height: height ?? 60,
         fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) {
-          return Image.asset(
-            imagePath,
-            width: width ?? 60,
-            height: height ?? 60,
-            fit: BoxFit.cover,
-          );
-        },
+      );
+    } else if (File(imagePath).existsSync()) {
+      return Image.file(
+        File(imagePath),
+        width: width ?? 60,
+        height: height ?? 60,
+        fit: BoxFit.cover,
       );
     } else {
       return Image.asset(

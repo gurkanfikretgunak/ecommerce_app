@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:example/core/network/models/wishlist_model/wishlist_model.dart';
-import 'package:example/core/network/respository/wishlist_respository/wishlist_respository.dart';
+import 'package:example/core/network/repository/wishlist_respository/wishlist_respository.dart';
 import 'package:example/cubits/wishlist/wishlist_state.dart';
 
 class WishlistCubit extends Cubit<WishlistState> {
@@ -18,6 +18,7 @@ class WishlistCubit extends Cubit<WishlistState> {
 
   Future<void> isProductInWishlist(int productId, String userId) async {
     try {
+      emit(WishlistLoading());
       final response =
           await WishlistRespository().isProductInWishlist(productId, userId);
       emit(WishlistIsFavorite(response));
