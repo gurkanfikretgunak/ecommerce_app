@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:example/core/network/models/payment_method_model/payment_method_model.dart';
-import 'package:example/core/network/respository/payment_method_respository/payment_method_respository.dart';
+import 'package:example/core/network/repository/payment_method_respository/payment_method_respository.dart';
 import 'package:example/cubits/payment_method/payment_method_state.dart';
 
 class PaymentMethodCubit extends Cubit<PaymentMethodState> {

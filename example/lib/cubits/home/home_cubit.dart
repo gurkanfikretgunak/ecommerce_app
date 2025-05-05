@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:example/core/network/respository/product_respository/product_respository.dart';
+import 'package:example/core/network/repository/product_respository/product_respository.dart';
 import 'package:example/cubits/home/home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {

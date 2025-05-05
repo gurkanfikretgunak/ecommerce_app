@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:example/core/network/models/filter_model/filter_model.dart';
-import 'package:example/core/network/respository/search_respository/search_respository.dart';
+import 'package:example/core/network/repository/search_respository/search_respository.dart';
 import 'package:example/cubits/search_cubit/search_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
