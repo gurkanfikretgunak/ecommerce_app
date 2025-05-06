@@ -93,7 +93,7 @@ class _HomeViewState extends State<HomeView> {
         if (state is HomeLoading) {
           return const _LoadingScreen();
         } else if (state is HomeError) {
-          return _ErrorScreen(message: state.message);
+          return Center(child: CircularProgressAnimation());
         } else if (state is HomeLoaded) {
           return _buildHomeContent(state);
         }
@@ -274,44 +274,6 @@ class _LoadingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(child: CircularProgressAnimation()),
-    );
-  }
-}
-
-class _ErrorScreen extends StatelessWidget {
-  final String message;
-
-  const _ErrorScreen({required this.message});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.error_outline, size: 48, color: Colors.red),
-              const SizedBox(height: 16),
-              Text(
-                'Bir hata oluştu',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              const SizedBox(height: 8),
-              Text(message),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  context.read<HomeCubit>().loadHomeData();
-                  context.read<CategoriesCubit>().loadCategories();
-                },
-                child: const Text('Tekrar Dene'),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

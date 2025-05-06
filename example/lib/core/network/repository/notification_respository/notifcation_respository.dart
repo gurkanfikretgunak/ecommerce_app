@@ -12,11 +12,8 @@ class NotifcationRespository {
     try {
       final response = await functionsApiService.getNotifications(
           apikey: authToken, authToken: 'Bearer $authToken');
-      if (response.isNotEmpty) {
-        return response;
-      } else {
-        throw Exception('Notifications not found');
-      }
+
+      return response;
     } catch (e) {
       rethrow;
     }

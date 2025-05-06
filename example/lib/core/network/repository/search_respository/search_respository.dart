@@ -17,7 +17,6 @@ class SearchRespository {
           body: filter.toJson());
 
       if (response.isNotEmpty) {
-        print(response.first.toJson());
         return response;
       } else {
         throw Exception('Products not found');

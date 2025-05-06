@@ -98,12 +98,17 @@ class AuthService {
     final webClientId = dotenv.env['SUPABASE_WEB_CLIENT_ID'];
     final iosClientId = dotenv.env['SUPABASE_IOS_CLIENT_ID'];
 
-    final GoogleSignIn googleSignIn = GoogleSignIn(
-      clientId: iosClientId,
-      serverClientId: !kIsWeb && defaultTargetPlatform == TargetPlatform.android
-          ? webClientId
-          : null,
-    );
+    final GoogleSignIn googleSignIn;
+
+    if (kIsWeb) {
+      googleSignIn = GoogleSignIn(
+        clientId: webClientId,
+      );
+    } else {
+      googleSignIn = GoogleSignIn(
+        serverClientId: webClientId,
+      );
+    }
 
     try {
       final googleUser = await googleSignIn.signIn();
