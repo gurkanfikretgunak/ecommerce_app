@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:example/cubits/locale/locale_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 @RoutePage()
@@ -41,9 +43,8 @@ class _SplashViewState extends State<SplashView> {
       } else {
         context.read<AuthCubit>().checkToken();
       }
-    } catch (e) {
-      context.read<AuthCubit>().checkToken();
-    }
+    } catch (e) {}
+    context.read<AuthCubit>().checkToken();
   }
 
   Future<void> loadLanguage() async {
@@ -62,9 +63,13 @@ class _SplashViewState extends State<SplashView> {
           if (state is AuthAuthenticated) {
             AutoRouter.of(context).replace(MainpageViewRoute());
           } else if (state is AuthUnauthenticated) {
-            AutoRouter.of(context).replace(const OnboardingViewRoute());
+            if (kIsWeb) {
+              AutoRouter.of(context).replace(const SignInViewRoute());
+            } else {
+              AutoRouter.of(context).replace(const OnboardingViewRoute());
+            }
           } else {
-            AutoRouter.of(context).replace(const OnboardingViewRoute());
+            AutoRouter.of(context).replace(const SignUpViewRoute());
           }
         },
         builder: (context, state) {
