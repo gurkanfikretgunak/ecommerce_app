@@ -881,6 +881,12 @@ abstract class L10n {
   /// **'Notification'**
   String get notification;
 
+  /// No description provided for @notificationIsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification is empty'**
+  String get notificationIsEmpty;
+
   /// No description provided for @paymentInformation.
   ///
   /// In en, this message translates to:

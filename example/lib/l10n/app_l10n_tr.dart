@@ -404,6 +404,9 @@ class L10nTr extends L10n {
   String get notification => 'Bildirimler';
 
   @override
+  String get notificationIsEmpty => 'Bildirim Listesi Boş';
+
+  @override
   String get paymentInformation => 'Ödeme Bilgileri';
 
   @override

@@ -149,6 +149,7 @@
     "wishlist": "Wishlist",
     "accountSettings": "Account",
     "notification": "Notification",
+    "notificationIsEmpty":"Notification is empty",
     "paymentInformation": "Payment Information",
     "privacySetting": "Privacy Setting",
     "generalSetting": "General Setting",
@@ -180,6 +181,7 @@
     "selectNewProfilePicture": "Select a new profile picture from your gallery.",
     "change": "Change",
     "save": "Save"
+
    
 
    

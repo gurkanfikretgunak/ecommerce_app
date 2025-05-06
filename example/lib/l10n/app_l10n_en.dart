@@ -404,6 +404,9 @@ class L10nEn extends L10n {
   String get notification => 'Notification';
 
   @override
+  String get notificationIsEmpty => 'Notification is empty';
+
+  @override
   String get paymentInformation => 'Payment Information';
 
   @override

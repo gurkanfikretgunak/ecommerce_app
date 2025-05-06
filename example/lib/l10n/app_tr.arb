@@ -132,6 +132,7 @@
   "myOrder": "Siparişler",
   "accountSettings": "Hesap",
   "notification": "Bildirimler",
+  "notificationIsEmpty":"Bildirim Listesi Boş",
   "paymentInformation": "Ödeme Bilgileri",
   "privacySetting": "Gizlilik Ayarları",
   "generalSetting": "Genel Ayarlar",
