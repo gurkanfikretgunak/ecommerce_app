@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class NofiticationBoxModal extends StatefulWidget {
+class NotificationBoxModal extends StatefulWidget {
   final String iconPath;
   final String text;
   final String timeText;
@@ -18,7 +18,7 @@ class NofiticationBoxModal extends StatefulWidget {
   bool isSeen;
   bool isSelected;
 
-  NofiticationBoxModal({
+  NotificationBoxModal({
     super.key,
     required this.iconPath,
     required this.text,
@@ -38,10 +38,10 @@ class NofiticationBoxModal extends StatefulWidget {
   });
 
   @override
-  State<NofiticationBoxModal> createState() => _NofiticationBoxModalState();
+  State<NotificationBoxModal> createState() => _NotificationBoxModalState();
 }
 
-class _NofiticationBoxModalState extends State<NofiticationBoxModal> {
+class _NotificationBoxModalState extends State<NotificationBoxModal> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -63,7 +63,7 @@ class _NofiticationBoxModalState extends State<NofiticationBoxModal> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width * 0.55,
               child: ContentText(
                 text: widget.text,
@@ -72,7 +72,7 @@ class _NofiticationBoxModalState extends State<NofiticationBoxModal> {
                 color: widget.isSeen
                     ? ColorConstant.instance.neutral5
                     : widget.textColor ?? ColorConstant.instance.neutral1,
-                fontSize: widget.fontSize ?? 12,
+                fontSize: widget.fontSize ?? 13,
               ),
             ),
             ContentText(
@@ -80,7 +80,7 @@ class _NofiticationBoxModalState extends State<NofiticationBoxModal> {
               color: widget.isSeen
                   ? ColorConstant.instance.neutral5
                   : widget.timeTextColor ?? ColorConstant.instance.neutral4,
-              fontSize: widget.timeFontSize ?? 10,
+              fontSize: widget.timeFontSize ?? 12,
             ),
           ],
         )
