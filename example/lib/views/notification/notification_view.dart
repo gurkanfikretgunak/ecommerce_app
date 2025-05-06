@@ -1,5 +1,9 @@
 import 'package:example/core/gen/assets.gen.dart';
+import 'package:example/cubits/notification/notification_cubit.dart';
+import 'package:example/cubits/notification/notification_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:example/l10n/app_l10n.dart';
@@ -13,30 +17,12 @@ class NotificationView extends StatefulWidget {
 }
 
 class _NotificationViewState extends State<NotificationView> {
-  late bool isSelectView;
-
   @override
   void initState() {
     super.initState();
-    isSelectView = false;
-  }
 
-  final List<NofiticationBoxModal> nofiticationItems = [
-    NofiticationBoxModal(
-        iconPath: Assets.icons.cart.path,
-        isSeen: false,
-        isSelected: false,
-        text:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-        timeText: "2 Day Ago"),
-    NofiticationBoxModal(
-        iconPath: Assets.icons.cart.path,
-        isSeen: false,
-        isSelected: false,
-        text:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
-        timeText: "3 Day Ago"),
-  ];
+    context.read<NotificationCubit>().getNotifications();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,42 +35,52 @@ class _NotificationViewState extends State<NotificationView> {
             },
             text: L10n.of(context)!.notification,
             iconColor: ColorConstant.instance.neutral1,
-            actions: [
-              if (isSelectView)
-                IconButton(
-                    onPressed: () {
-                      setState(() {});
-                    },
-                    icon: const Icon(Icons.done_all)),
-              IconButton(
-                  onPressed: () {
-                    setState(() {
-                      isSelectView = !isSelectView;
-                    });
-                  },
-                  icon: const Icon(Icons.more_horiz))
-            ],
           )),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(15),
-          child: Column(
-            children: [
-              NotificationBoxColumnLayout(
-                  isSelectView: isSelectView,
-                  nofiticationItems: nofiticationItems),
-              context.emptySizedHeightBoxNormal,
-              if (isSelectView)
-                Align(
-                    alignment: Alignment.bottomCenter,
-                    child: CustomButton(
-                      onPressed: () {},
-                      height: 50,
-                      text: L10n.of(context)!.markAsRead,
-                    )),
-            ],
-          ),
-        ),
+      body: BlocConsumer<NotificationCubit, NotificationState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          bool isEmpty = false;
+          if (state is NotificationLoading) {
+            return const Center(child: CircularProgressAnimation());
+          } else if (state is NotificationLoaded) {
+            isEmpty = state.notifications.isEmpty;
+            if (isEmpty) {
+              return Center(
+                child: HeadText(
+                  text: L10n.of(context)!.notificationIsEmpty,
+                  color: ColorConstant.instance.neutral1,
+                ),
+              );
+            }
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: Column(
+                  children: [
+                    NotificationBoxColumnLayout(
+                      notificationItems: state.notifications.map((item) {
+                        return NotificationBoxModal(
+                          text: item.content,
+                          timeText: DateFormat('yyyy-MM-dd')
+                              .format(DateTime.parse(item.date)),
+                          iconPath: Assets.icons.cart.path,
+                          isSeen: false,
+                          isSelected: false,
+                        );
+                      }).toList(),
+                    ),
+                    context.emptySizedHeightBoxNormal,
+                  ],
+                ),
+              ),
+            );
+          } else if (state is NotificationError) {
+            return Center(
+              child: Text(state.error),
+            );
+          }
+          return const SizedBox.shrink();
+        },
       ),
     );
   }
