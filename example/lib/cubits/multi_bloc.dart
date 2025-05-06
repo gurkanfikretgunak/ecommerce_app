@@ -2,6 +2,7 @@ import 'package:example/cubits/auth/auth_cubit.dart';
 import 'package:example/cubits/billing_detail/billing_detail_cubit.dart';
 import 'package:example/cubits/cart/cart_cubit.dart';
 import 'package:example/cubits/locale/locale_cubit.dart';
+import 'package:example/cubits/notification/notification_cubit.dart';
 
 import 'package:example/cubits/order/order_cubit.dart';
 import 'package:example/cubits/orderwishlist/orderwishlist_cubit.dart';
@@ -58,6 +59,9 @@ class MultiBloc extends StatelessWidget {
       BlocProvider<PopUpCubit>(create: (_) => PopUpCubit()),
       BlocProvider<OrderwishlistCubit>(create: (_) => OrderwishlistCubit()),
       BlocProvider<ProfilePictureCubit>(create: (_) => ProfilePictureCubit()),
+      BlocProvider<NotificationCubit>(
+        create: (_) => NotificationCubit(),
+      ),
     ], child: const ExampleApp());
   }
 }
