@@ -37,10 +37,10 @@ class _ProfileViewState extends State<ProfileView> {
       context: context,
       builder: (dialogContext) {
         return ChangeProfilePictureLabel(
-          title: 'Change Profile Picture',
+          title: L10n.of(context)!.changeProfilePicture,
           imagePath: imagePath,
-          description: "Select a new profile picture from your gallery.",
-          buttonText: "Change",
+          description: L10n.of(context)!.selectNewProfilePicture,
+          buttonText: L10n.of(context)!.save,
           onImageSelected: (newImagePath) {
             profileCubit.uploadProfilePicture(userId, newImagePath);
           },
@@ -71,8 +71,8 @@ class _ProfileViewState extends State<ProfileView> {
                 if (state is ProfilePictureUploaded) {
                   showToast(
                     context,
-                    "Profile Picture Changed",
-                    "Your profile picture has been updated successfully.",
+                    L10n.of(context)!.profilePictureChanged,
+                    L10n.of(context)!.profilePictureUpdatedSuccessfully,
                     ToastType.success,
                   );
                   context.read<AuthCubit>().getCurrentUser();
