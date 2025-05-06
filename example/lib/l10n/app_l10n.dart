@@ -1018,6 +1018,42 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'English'**
   String get english;
+
+  /// No description provided for @profilePictureChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile Picture Changed'**
+  String get profilePictureChanged;
+
+  /// No description provided for @profilePictureUpdatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Your profile picture has been updated successfully.'**
+  String get profilePictureUpdatedSuccessfully;
+
+  /// No description provided for @changeProfilePicture.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Profile Picture'**
+  String get changeProfilePicture;
+
+  /// No description provided for @selectNewProfilePicture.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a new profile picture from your gallery.'**
+  String get selectNewProfilePicture;
+
+  /// No description provided for @change.
+  ///
+  /// In en, this message translates to:
+  /// **'Change'**
+  String get change;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

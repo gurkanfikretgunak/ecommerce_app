@@ -471,4 +471,22 @@ class L10nEn extends L10n {
 
   @override
   String get english => 'English';
+
+  @override
+  String get profilePictureChanged => 'Profile Picture Changed';
+
+  @override
+  String get profilePictureUpdatedSuccessfully => 'Your profile picture has been updated successfully.';
+
+  @override
+  String get changeProfilePicture => 'Change Profile Picture';
+
+  @override
+  String get selectNewProfilePicture => 'Select a new profile picture from your gallery.';
+
+  @override
+  String get change => 'Change';
+
+  @override
+  String get save => 'Save';
 }

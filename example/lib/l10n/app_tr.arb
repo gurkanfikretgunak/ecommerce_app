@@ -154,6 +154,13 @@
   "category": "Kategori",
   "price": "FİYAT",
   "turkish":"Türkçe",
-  "english":"İngilizce"
+  "english":"İngilizce",
+  "profilePictureChanged": "Profil Fotoğrafı Değiştirildi",
+  "profilePictureUpdatedSuccessfully": "Profil fotoğrafınız başarıyla güncellendi.",
+  "changeProfilePicture": "Profil Fotoğrafını Değiştir",
+  "selectNewProfilePicture": "Galerinizden yeni bir profil fotoğrafı seçin.",
+  "change": "Değiştir",
+  "save": "Kaydet"
+
 
 }

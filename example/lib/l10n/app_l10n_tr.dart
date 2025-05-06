@@ -471,4 +471,22 @@ class L10nTr extends L10n {
 
   @override
   String get english => 'İngilizce';
+
+  @override
+  String get profilePictureChanged => 'Profil Fotoğrafı Değiştirildi';
+
+  @override
+  String get profilePictureUpdatedSuccessfully => 'Profil fotoğrafınız başarıyla güncellendi.';
+
+  @override
+  String get changeProfilePicture => 'Profil Fotoğrafını Değiştir';
+
+  @override
+  String get selectNewProfilePicture => 'Galerinizden yeni bir profil fotoğrafı seçin.';
+
+  @override
+  String get change => 'Değiştir';
+
+  @override
+  String get save => 'Kaydet';
 }

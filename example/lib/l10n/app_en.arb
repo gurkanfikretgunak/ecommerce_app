@@ -173,7 +173,13 @@
     "category": "Category",
     "price": "PRICE",
     "turkish":"Turkish",
-    "english":"English"
+    "english":"English",
+    "profilePictureChanged": "Profile Picture Changed",
+    "profilePictureUpdatedSuccessfully": "Your profile picture has been updated successfully.",
+    "changeProfilePicture": "Change Profile Picture",
+    "selectNewProfilePicture": "Select a new profile picture from your gallery.",
+    "change": "Change",
+    "save": "Save"
    
 
    
