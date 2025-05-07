@@ -35,6 +35,13 @@ class _SignInViewState extends State<SignInView> {
   }
 
   @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
@@ -119,7 +126,7 @@ class _SignInViewState extends State<SignInView> {
                           },
                           onForgotPasswordPressed: () {
                             AutoRouter.of(context)
-                                .push(const ResetPasswordViewRoute());
+                                .push(const ForgotPasswordViewRoute());
                           },
                           onChangedPassword: (password) {
                             context

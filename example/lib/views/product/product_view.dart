@@ -51,6 +51,11 @@ class _ProductViewState extends State<ProductView> {
     }
   }
 
+  void dispose() {
+    reviewTextController.dispose();
+    super.dispose();
+  }
+
   void _showAddToCartSuccess() {
     showDialog(
       context: context,

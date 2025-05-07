@@ -29,6 +29,11 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
     toast.show(context);
   }
 
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
