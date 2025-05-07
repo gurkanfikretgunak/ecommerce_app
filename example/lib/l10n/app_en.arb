@@ -180,7 +180,15 @@
     "changeProfilePicture": "Change Profile Picture",
     "selectNewProfilePicture": "Select a new profile picture from your gallery.",
     "change": "Change",
-    "save": "Save"
+    "save": "Save",
+    "changePasswordTitle": "Change Password",
+    "changePasswordInstruction": "To update your password, please verify your current password and choose a new one",
+    "currentPasswordHint": "Current Password",
+    "newPasswordHint": "New Password",
+    "confirmNewPasswordHint": "Confirm New Password",
+    "validationErrorTitle": "Validation Error",
+    "passwordChangedTitle": "Password Changed",
+    "passwordChangedDescription": "Password changed successfully"
 
    
 

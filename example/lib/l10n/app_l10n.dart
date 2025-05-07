@@ -1060,6 +1060,54 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'Save'**
   String get save;
+
+  /// No description provided for @changePasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Password'**
+  String get changePasswordTitle;
+
+  /// No description provided for @changePasswordInstruction.
+  ///
+  /// In en, this message translates to:
+  /// **'To update your password, please verify your current password and choose a new one'**
+  String get changePasswordInstruction;
+
+  /// No description provided for @currentPasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Current Password'**
+  String get currentPasswordHint;
+
+  /// No description provided for @newPasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get newPasswordHint;
+
+  /// No description provided for @confirmNewPasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm New Password'**
+  String get confirmNewPasswordHint;
+
+  /// No description provided for @validationErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Validation Error'**
+  String get validationErrorTitle;
+
+  /// No description provided for @passwordChangedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Password Changed'**
+  String get passwordChangedTitle;
+
+  /// No description provided for @passwordChangedDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Password changed successfully'**
+  String get passwordChangedDescription;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

@@ -161,7 +161,15 @@
   "changeProfilePicture": "Profil Fotoğrafını Değiştir",
   "selectNewProfilePicture": "Galerinizden yeni bir profil fotoğrafı seçin.",
   "change": "Değiştir",
-  "save": "Kaydet"
+  "save": "Kaydet",
+  "changePasswordTitle": "Şifre Değiştir",
+  "changePasswordInstruction": "Şifrenizi güncellemek için lütfen mevcut şifrenizi doğrulayın ve yeni bir şifre belirleyin",
+  "currentPasswordHint": "Mevcut Şifre",
+  "newPasswordHint": "Yeni Şifre",
+  "confirmNewPasswordHint": "Yeni Şifreyi Onayla",
+  "validationErrorTitle": "Doğrulama Hatası",
+  "passwordChangedTitle": "Şifre Değiştirildi",
+  "passwordChangedDescription": "Şifre başarıyla değiştirildi"
 
 
 }

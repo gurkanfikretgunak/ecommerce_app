@@ -492,4 +492,28 @@ class L10nEn extends L10n {
 
   @override
   String get save => 'Save';
+
+  @override
+  String get changePasswordTitle => 'Change Password';
+
+  @override
+  String get changePasswordInstruction => 'To update your password, please verify your current password and choose a new one';
+
+  @override
+  String get currentPasswordHint => 'Current Password';
+
+  @override
+  String get newPasswordHint => 'New Password';
+
+  @override
+  String get confirmNewPasswordHint => 'Confirm New Password';
+
+  @override
+  String get validationErrorTitle => 'Validation Error';
+
+  @override
+  String get passwordChangedTitle => 'Password Changed';
+
+  @override
+  String get passwordChangedDescription => 'Password changed successfully';
 }

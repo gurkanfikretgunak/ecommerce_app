@@ -492,4 +492,28 @@ class L10nTr extends L10n {
 
   @override
   String get save => 'Kaydet';
+
+  @override
+  String get changePasswordTitle => 'Şifre Değiştir';
+
+  @override
+  String get changePasswordInstruction => 'Şifrenizi güncellemek için lütfen mevcut şifrenizi doğrulayın ve yeni bir şifre belirleyin';
+
+  @override
+  String get currentPasswordHint => 'Mevcut Şifre';
+
+  @override
+  String get newPasswordHint => 'Yeni Şifre';
+
+  @override
+  String get confirmNewPasswordHint => 'Yeni Şifreyi Onayla';
+
+  @override
+  String get validationErrorTitle => 'Doğrulama Hatası';
+
+  @override
+  String get passwordChangedTitle => 'Şifre Değiştirildi';
+
+  @override
+  String get passwordChangedDescription => 'Şifre başarıyla değiştirildi';
 }
