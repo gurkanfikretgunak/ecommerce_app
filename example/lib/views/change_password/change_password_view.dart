@@ -50,7 +50,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
       ],
       child: Scaffold(
         appBar: CustomAppbar(
-          text: 'Change Password',
+          text: L10n.of(context)!.changePassword,
           onPressed: () {
             Navigator.pop(context);
           },
@@ -78,18 +78,12 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                       color: ColorConstant.instance.neutral1,
                       textAlign: TextAlign.start,
                       softWrap: true,
-                      text:
-                          "To keep your account secure, please verify your current password and choose a new one",
+                      text: L10n.of(context)!.changePasswordInstruction,
                     ),
                   ),
                   context.emptySizedHeightBoxNormal,
                   BlocConsumer<ValidationCubit, ValidationState>(
-                    listener: (context, state) {
-                      if (state is ValidationError) {
-                        showToast(context, 'Validation Error', state.error,
-                            ToastType.error);
-                      }
-                    },
+                    listener: (context, state) {},
                     builder: (context, validationState) {
                       bool isCurrentPasswordValid = true;
                       bool isNewPasswordValid = true;
@@ -134,9 +128,11 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                               .validateConfirmPassword(
                                   confirmPassword, newPasswordController.text);
                         },
-                        currentPasswordHintText: "Current Password",
-                        newPasswordHintText: "New Password",
-                        newConfirmPasswordHintText: "Confirm New Password",
+                        currentPasswordHintText:
+                            L10n.of(context)!.currentPasswordHint,
+                        newPasswordHintText: L10n.of(context)!.newPasswordHint,
+                        newConfirmPasswordHintText:
+                            L10n.of(context)!.confirmNewPasswordHint,
                         newPasswordErrorMessage: newPasswordErrorMessage,
                         newConfirmPasswordErrorMessage:
                             newConfirmPasswordErrorMessage,
@@ -162,8 +158,8 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                                 .updatePassword(newPasswordController.text);
                             showToast(
                               context,
-                              "Şifre Değiştirildi",
-                              "Şifre başarıyla değiştirildi",
+                              L10n.of(context)!.passwordChangedTitle,
+                              L10n.of(context)!.passwordChangedDescription,
                               ToastType.success,
                             );
                           } else {
