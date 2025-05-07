@@ -9,14 +9,14 @@ import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:example/l10n/app_l10n.dart';
 
 @RoutePage()
-class ResetPasswordView extends StatefulWidget {
-  const ResetPasswordView({super.key});
+class ForgotPasswordView extends StatefulWidget {
+  const ForgotPasswordView({super.key});
 
   @override
-  State<ResetPasswordView> createState() => _ResetPasswordViewState();
+  State<ForgotPasswordView> createState() => _ForgotPasswordViewState();
 }
 
-class _ResetPasswordViewState extends State<ResetPasswordView> {
+class _ForgotPasswordViewState extends State<ForgotPasswordView> {
   final TextEditingController emailController = TextEditingController();
 
   void showToast(
