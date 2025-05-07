@@ -85,7 +85,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                         emailErrorMessage = validationState.error;
                       }
 
-                      return ResetPasswordFormLabel(
+                      return ForgotPasswordFormLabel(
                         emailController: emailController,
                         emailLabelText: L10n.of(context)!.email,
                         emailHintText: L10n.of(context)!.enterEmail,

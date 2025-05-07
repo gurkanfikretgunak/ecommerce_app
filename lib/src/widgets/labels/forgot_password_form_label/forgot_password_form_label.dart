@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
-class ResetPasswordFormLabel extends StatefulWidget {
+class ForgotPasswordFormLabel extends StatefulWidget {
   final TextEditingController emailController;
   final String? emailErrorMessage;
   final Function(String)? onChangedEmail;
@@ -9,7 +9,7 @@ class ResetPasswordFormLabel extends StatefulWidget {
   final bool? isEmailValid;
   final String emailLabelText;
 
-  const ResetPasswordFormLabel(
+  const ForgotPasswordFormLabel(
       {super.key,
       required this.emailController,
       this.onChangedEmail,
@@ -19,10 +19,11 @@ class ResetPasswordFormLabel extends StatefulWidget {
       required this.emailHintText});
 
   @override
-  State<ResetPasswordFormLabel> createState() => _ResetPasswordFormLabelState();
+  State<ForgotPasswordFormLabel> createState() =>
+      _ForgotPasswordFormLabelState();
 }
 
-class _ResetPasswordFormLabelState extends State<ResetPasswordFormLabel> {
+class _ForgotPasswordFormLabelState extends State<ForgotPasswordFormLabel> {
   @override
   Widget build(BuildContext context) {
     return Center(
