@@ -11,7 +11,7 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(page: OnboardingViewRoute.page),
         AutoRoute(page: SignUpViewRoute.page),
-        AutoRoute(page: ResetPasswordViewRoute.page),
+        AutoRoute(page: ForgotPasswordViewRoute.page),
         AutoRoute(page: VerificationViewRoute.page),
         AutoRoute(page: MainpageViewRoute.page),
         AutoRoute(page: CategoriesViewRoute.page),
@@ -29,6 +29,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: OrderwishlistViewRoute.page),
         AutoRoute(page: NotificationViewRoute.page),
         AutoRoute(page: LanguageViewRoute.page),
+        AutoRoute(page: ChangePasswordViewRoute.page),
       ];
 }
 
