@@ -112,7 +112,7 @@ class _CategorieProductsViewState extends State<CategorieProductsView> {
                         productPrice: product.price.toString(),
                         onTap: () {
                           context.read<ProductCubit>().changeProduct(product);
-                          AutoRouter.of(context).push(const ProductViewRoute());
+                          AutoRouter.of(context).push(ProductViewRoute());
                         },
                       );
                     }).toList(),

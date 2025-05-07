@@ -19,7 +19,7 @@ import 'package:example/views/auth/signup/signup_view.dart' as _i22;
 import 'package:example/views/categorie_products/categorie_products_view.dart'
     as _i3;
 import 'package:example/views/categories/categories_view.dart' as _i4;
-import 'package:example/views/change_password/change_password.dart' as _i5;
+import 'package:example/views/change_password/change_password_view.dart' as _i5;
 import 'package:example/views/filter/filter_view.dart' as _i6;
 import 'package:example/views/forgot_password/forgot_password_view.dart' as _i7;
 import 'package:example/views/home/home_view.dart' as _i8;

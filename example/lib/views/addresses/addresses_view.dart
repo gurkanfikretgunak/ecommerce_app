@@ -72,8 +72,8 @@ class _AddressesViewState extends State<AddressesView> {
                     } else if (state is BillingDetailLoaded) {
                       if (state.billingDetail.isEmpty) {
                         return Center(
-                          child: HeadText(
-                            text: "No Address Found",
+                          child: ContentText(
+                            text: L10n.of(context)!.noAddressFound,
                             color: ColorConstant.instance.neutral1,
                           ),
                         );
@@ -82,7 +82,6 @@ class _AddressesViewState extends State<AddressesView> {
                         padding: const EdgeInsets.all(15),
                         child: AddressesColumnLayout(
                           deleteBillingDetailCallBack: (index) {
-                            print("Delete Address: ${index}");
                             context
                                 .read<BillingDetailCubit>()
                                 .deleteBillingDetail(
@@ -111,13 +110,11 @@ class _AddressesViewState extends State<AddressesView> {
                     } else if (state is BillingDetailError) {
                       return Center(
                         child: ContentText(
-                            text: "Failed to load billing details.",
+                            text: L10n.of(context)!.failedToLoadBillingDetails,
                             color: ColorConstant.instance.neutral1),
                       );
                     }
-                    return const Center(
-                      child: ContentText(text: "Unexpected state."),
-                    );
+                    return const CircularProgressAnimation();
                   },
                 ),
               ),

@@ -151,7 +151,7 @@ class _SearchViewState extends State<SearchView> {
                                               .read<ProductCubit>()
                                               .changeProduct(e);
                                           AutoRouter.of(context)
-                                              .push(const ProductViewRoute());
+                                              .push(ProductViewRoute());
                                         },
                                       ))
                                   .toList()),

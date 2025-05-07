@@ -25,11 +25,7 @@ class PaymentMethodRespository {
         user_id: 'eq.$userId',
       );
 
-      if (response.isNotEmpty) {
-        return response;
-      } else {
-        throw Exception('Payment Method not found');
-      }
+      return response;
     } catch (e) {
       rethrow;
     }

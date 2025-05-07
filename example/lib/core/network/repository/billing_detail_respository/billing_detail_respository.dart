@@ -24,11 +24,7 @@ class BillingDetailRespository {
         isdefault: isDefaultquery,
       );
 
-      if (response.isNotEmpty) {
-        return response;
-      } else {
-        throw Exception('Billing Detail not found');
-      }
+      return response;
     } catch (e) {
       rethrow;
     }

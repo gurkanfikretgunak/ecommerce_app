@@ -83,7 +83,7 @@ class _WishlistViewState extends State<WishlistView> {
                         context
                             .read<ProductCubit>()
                             .changeProduct(item.product!);
-                        AutoRouter.of(context).push(const ProductViewRoute());
+                        AutoRouter.of(context).push(ProductViewRoute());
                       },
                       onSizeChange: (value) {
                         item.selectedSize = value;

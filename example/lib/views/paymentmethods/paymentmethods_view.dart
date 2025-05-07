@@ -76,7 +76,7 @@ class _PaymentMethodsViewState extends State<PaymentMethodsView> {
                   } else if (state is PaymentMethodLoaded) {
                     if (state.paymentMethods.isEmpty) {
                       return Center(
-                        child: HeadText(
+                        child: ContentText(
                           text: L10n.of(context)!.noPaymentMethodFound,
                           color: ColorConstant.instance.neutral1,
                         ),

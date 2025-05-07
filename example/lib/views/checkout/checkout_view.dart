@@ -227,7 +227,7 @@ class _CheckoutViewState extends State<CheckoutView> {
           size: item.size,
           onTap: () {
             context.read<ProductCubit>().changeProduct(item.product!);
-            AutoRouter.of(context).push(const ProductViewRoute());
+            AutoRouter.of(context).push(ProductViewRoute());
           },
         );
       }).toList(),
