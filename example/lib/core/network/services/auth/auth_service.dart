@@ -30,6 +30,30 @@ class AuthService {
     }
   }
 
+  Future<bool> verifyCurrentPassword(String password) async {
+    try {
+      final User? user = await getCurrentUser();
+      final response =
+          await auth.signInWithPassword(email: user?.email, password: password);
+      return response.session != null;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<void> updateUserPassword(String password) async {
+    try {
+      final User? user = await getCurrentUser();
+      if (user != null) {
+        await auth.updateUser(UserAttributes(password: password));
+      } else {
+        throw Exception("User not found");
+      }
+    } catch (e) {
+      throw Exception("Update Password unsuccessful: $e");
+    }
+  }
+
   Future<User?> signIn(email, password) async {
     try {
       final response =
