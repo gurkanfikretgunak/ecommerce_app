@@ -73,6 +73,17 @@ class ConfirmPasswordInvalid extends ValidationState {
   List<Object?> get props => [error];
 }
 
+class CurrentPasswordValid extends ValidationState {}
+
+class CurrentPasswordInvalid extends ValidationState {
+  final String error;
+
+  CurrentPasswordInvalid(this.error);
+
+  @override
+  List<Object?> get props => [error];
+}
+
 class CardNumberValid extends ValidationState {}
 
 class CardNumberInvalid extends ValidationState {

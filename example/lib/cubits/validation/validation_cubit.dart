@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:example/core/network/services/auth/auth_service.dart';
 import 'package:example/cubits/validation/validation_state.dart';
 
 class ValidationCubit extends Cubit<ValidationState> {
@@ -14,6 +15,7 @@ class ValidationCubit extends Cubit<ValidationState> {
   bool _isExpMonthValid = false;
   bool _isExpYearValid = false;
   bool _isCvvValid = false;
+  bool _isCurrentPasswordValid = false;
 
   void validateEmail(String email) {
     if (email.isEmpty) {
@@ -45,6 +47,21 @@ class ValidationCubit extends Cubit<ValidationState> {
       emit(ValidationSuccess(
           isEmailValid: _isEmailValid, isPasswordValid: _isPasswordValid));
     }
+  }
+
+  void validateCurrentPassword(String password) async {
+    await AuthService().verifyCurrentPassword(password).then((isValid) {
+      if (isValid) {
+        _isCurrentPasswordValid = true;
+        emit(CurrentPasswordValid());
+      } else {
+        _isCurrentPasswordValid = false;
+        emit(CurrentPasswordInvalid('Invalid current password'));
+      }
+    }).catchError((error) {
+      _isCurrentPasswordValid = false;
+      emit(CurrentPasswordInvalid(error.toString()));
+    });
   }
 
   void validateFirstName(String firstName) {
@@ -199,5 +216,11 @@ class ValidationCubit extends Cubit<ValidationState> {
         _isExpMonthValid &&
         _isExpYearValid &&
         _isCvvValid;
+  }
+
+  bool isChangePasswordFormValid() {
+    return _isCurrentPasswordValid &&
+        _isPasswordValid &&
+        _isConfirmPasswordValid;
   }
 }
