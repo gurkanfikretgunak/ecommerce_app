@@ -51,6 +51,7 @@ class _ProductViewState extends State<ProductView> {
     }
   }
 
+  @override
   void dispose() {
     reviewTextController.dispose();
     super.dispose();
@@ -94,7 +95,7 @@ class _ProductViewState extends State<ProductView> {
         } else if (productState is ProductError) {
           return _buildErrorView(productState.message);
         }
-        return Container();
+        return const Center(child: CircularProgressAnimation());
       },
     );
   }
@@ -128,7 +129,7 @@ class _ProductViewState extends State<ProductView> {
         } else if (state is ProductDetailError) {
           return _buildErrorView(state.message);
         }
-        return Container();
+        return const Center(child: CircularProgressAnimation());
       },
     );
   }
@@ -342,11 +343,11 @@ class _ProductViewState extends State<ProductView> {
                 return _buildAuthenticatedBottomSheet(
                     productState.product, productDetailState);
               }
-              return Container();
+              return const Center(child: CircularProgressAnimation());
             },
           );
         }
-        return Container();
+        return const Center(child: CircularProgressAnimation());
       },
     );
   }
@@ -383,7 +384,7 @@ class _ProductViewState extends State<ProductView> {
             },
           );
         }
-        return Container();
+        return const Center(child: CircularProgressAnimation());
       },
     );
   }
