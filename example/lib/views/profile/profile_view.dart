@@ -117,6 +117,11 @@ class _ProfileViewState extends State<ProfileView> {
                               value: user.email ?? "",
                             ),
                             AccountInfoBoxLabel(
+                              onTap: () {
+                                AutoRouter.of(context).push(
+                                  const ChangePasswordViewRoute(),
+                                );
+                              },
                               title: L10n.of(context)!.password,
                               value: L10n.of(context)!.changePassword,
                               valueColor: ColorConstant.instance.primary_main,
