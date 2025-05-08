@@ -2,44 +2,64 @@ import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class SliderIndicator extends StatefulWidget {
+class SliderIndicator extends StatelessWidget {
   final PageController pageController;
   final int count;
-  final double? dotHeight;
-  final double? dotWidth;
-  final WormType? wormType;
-  final Color? dotColor;
-  final Color? activeDotColor;
+  final Color activeColor;
+  final Color inactiveColor;
+  final double size;
+  final double spacing;
 
   const SliderIndicator({
     super.key,
     required this.pageController,
     required this.count,
-    this.dotHeight,
-    this.dotWidth,
-    this.wormType,
-    this.dotColor,
-    this.activeDotColor,
+    this.activeColor = Colors.white,
+    this.inactiveColor = Colors.white60,
+    this.size = 8.0,
+    this.spacing = 4.0,
   });
 
   @override
-  State<SliderIndicator> createState() => _SliderIndicatorState();
-}
-
-class _SliderIndicatorState extends State<SliderIndicator> {
-  @override
   Widget build(BuildContext context) {
-    return SmoothPageIndicator(
-      controller: widget.pageController,
-      count: widget.count,
-      effect: WormEffect(
-        dotHeight: widget.dotHeight ?? 8,
-        dotWidth: widget.dotWidth ?? 8,
-        type: widget.wormType ?? WormType.thinUnderground,
-        dotColor: widget.dotColor ?? ColorConstant.instance.neutral9,
-        activeDotColor:
-            widget.activeDotColor ?? ColorConstant.instance.primary_main,
-      ),
+    return AnimatedBuilder(
+      animation: pageController,
+      builder: (context, _) {
+        final double page =
+            pageController.hasClients ? (pageController.page ?? 0) : 0;
+
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            color: ColorConstant.instance.neutral1.withOpacity(0.4),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: List.generate(
+              count,
+              (index) {
+                final double distance = (page - index).abs();
+
+                final double scaleFactor =
+                    1.0 - (distance * 0.3).clamp(0.0, 0.3);
+                final double opacity = 1.0 - (distance * 0.6).clamp(0.0, 0.6);
+                return Container(
+                  margin: EdgeInsets.symmetric(horizontal: spacing / 2),
+                  height: size * scaleFactor,
+                  width: size * scaleFactor,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: index == page.round()
+                        ? activeColor
+                        : inactiveColor.withOpacity(opacity),
+                  ),
+                );
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 }
