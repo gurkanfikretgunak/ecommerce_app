@@ -1,6 +1,4 @@
 
-![logo_background](https://github.com/user-attachments/assets/51225647-9180-49e9-9c54-c1fa89af1c42)
-
 ## ShopApp - Flutter E-Commerce Application
 
 ## Overview
