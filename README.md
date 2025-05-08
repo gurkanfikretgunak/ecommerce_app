@@ -7,6 +7,11 @@
 
 ShopApp is an e-commerce application that allows users to browse products, view details, add items to cart, and complete purchases. The project consists of a core UI kit with reusable widgets and a complete shopping application built using Flutter and Supabase.
 
+## Design
+
+The application follows a clean, modern design inspired by a template from Figma Community. The UI design prioritizes user experience with an intuitive layout and pleasant aesthetics.
+
+https://www.figma.com/community/file/1305009210349128805
 
 ## Technologies Used
 - **Framework:** Flutter - an open-source mobile application development framework developed by Google
@@ -288,19 +293,16 @@ Supabase serves as the primary backend solution providing:
 
 Firebase is used for push notifications to keep users updated about their orders and other activities.
 
-## Contributing
+## Contributors
 
-If you'd like to contribute to this project, please follow these steps:
-
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature/your-feature-name`)
-3. Make your changes
-4. Commit your changes (`git commit -m 'Add some feature'`)
-5. Push to the branch (`git push origin feature/your-feature-name`)
-6. Open a Pull Request
+- Gürkan Fikret Günak ([@gurkanfikretgunak](https://github.com/gurkanfikretgunak)) 
+- Selim Kütük ([@SelimKutuk](https://github.com/SelimKutuk))
+- Kaan Çerkez ([@KaanCL](https://github.com/KaanCL))
 
 ## Acknowledgements
 
 - Thanks to the Flutter team for the amazing framework
 - Supabase for the backend solutions
+- [NILAH - E-commerce Mobile App UI Kit](https://www.figma.com/community/file/1305009210349128805) for the design inspiration
 - All the package authors that made this project possible
+- Everyone who has contributed ideas, feedback, and suggestions
