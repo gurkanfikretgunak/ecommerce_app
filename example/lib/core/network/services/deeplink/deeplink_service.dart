@@ -2,7 +2,7 @@
 
 import 'package:app_links/app_links.dart';
 import 'package:example/flavors/main_dev.dart';
-import 'package:example/route/route.gr.dart';
+import 'package:example/app/route/route.gr.dart';
 import 'package:example/core/network/services/auth/auth_service.dart';
 import 'package:example/main.dart';
 
