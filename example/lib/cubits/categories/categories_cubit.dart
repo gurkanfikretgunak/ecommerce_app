@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:example/core/network/repository/categorie_respository/categorie_respository.dart';
+import 'package:example/core/network/repository/categorie_repository/categorie_repository.dart';
 import 'package:example/cubits/categories/categories_state.dart';
 
 class CategoriesCubit extends Cubit<CategoriesState> {
@@ -9,9 +9,9 @@ class CategoriesCubit extends Cubit<CategoriesState> {
     try {
       emit(CategoriesLoading());
 
-      final categorieRespository = CategorieRespository();
+      final categorieRepository = CategorieRepository();
 
-      final categories = await categorieRespository.getCategories();
+      final categories = await categorieRepository.getCategories();
 
       emit(CategoriesLoaded(categories: categories));
     } catch (e) {

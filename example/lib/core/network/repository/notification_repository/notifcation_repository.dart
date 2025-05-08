@@ -3,10 +3,10 @@ import 'package:example/core/network/models/notification_model/notification_mode
 import 'package:example/core/network/services/api/functions_api_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class NotifcationRespository {
+class NotifcationRepository {
   FunctionsApiService functionsApiService;
   final authToken = dotenv.env['SUPABASE_KEY'];
-  NotifcationRespository() : functionsApiService = FunctionsApiService(Dio());
+  NotifcationRepository() : functionsApiService = FunctionsApiService(Dio());
 
   Future<List<Notification>> getNotifications() async {
     try {

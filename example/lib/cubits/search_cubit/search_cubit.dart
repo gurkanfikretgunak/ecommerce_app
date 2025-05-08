@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:example/core/network/models/filter_model/filter_model.dart';
-import 'package:example/core/network/repository/search_respository/search_respository.dart';
+import 'package:example/core/network/repository/search_repository/search_repository.dart';
 import 'package:example/cubits/search_cubit/search_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +26,7 @@ class SearchCubit extends Cubit<SearchState> {
     emit(state.copyWith(isLoading: true, errorMessage: null));
 
     try {
-      final result = await SearchRespository().getSearchProducts(state.filter);
+      final result = await SearchRepository().getSearchProducts(state.filter);
 
       if (result.isNotEmpty) {
         emit(state.copyWith(products: result, isLoading: false));

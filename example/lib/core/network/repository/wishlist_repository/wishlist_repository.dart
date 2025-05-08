@@ -1,16 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:example/core/network/models/product_model/product_model.dart';
 import 'package:example/core/network/models/wishlist_model/wishlist_model.dart';
-import 'package:example/core/network/repository/product_respository/product_respository.dart';
+import 'package:example/core/network/repository/product_repository/product_repository.dart';
 import 'package:example/core/network/services/api/api_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class WishlistRespository {
+class WishlistRepository {
   Dio dio;
   ApiService apiService;
   final String? authToken = dotenv.env['SUPABASE_KEY'];
 
-  WishlistRespository()
+  WishlistRepository()
       : dio = Dio(),
         apiService = ApiService(Dio());
 
@@ -23,7 +23,7 @@ class WishlistRespository {
       );
       if (response.isNotEmpty) {
         for (Wishlist item in response) {
-          final product = await ProductRespository()
+          final product = await ProductRepository()
               .getProductsById(id: '${item.product_id}');
           item.product = product.first;
         }

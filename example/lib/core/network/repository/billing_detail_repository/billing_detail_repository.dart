@@ -3,10 +3,10 @@ import 'package:example/core/network/models/billing_detail_model/billing_detail_
 import 'package:example/core/network/services/api/api_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class BillingDetailRespository {
+class BillingDetailRepository {
   ApiService apiService;
   final authToken = dotenv.env['SUPABASE_KEY'];
-  BillingDetailRespository() : apiService = ApiService(Dio());
+  BillingDetailRepository() : apiService = ApiService(Dio());
 
   Future<List<BillingDetail>> getBillingDetail(
       {required String userId, bool? isDefault}) async {

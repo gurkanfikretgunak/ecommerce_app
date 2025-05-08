@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:example/core/network/models/cart_model/cart_model.dart';
-import 'package:example/core/network/repository/product_respository/product_respository.dart';
+import 'package:example/core/network/repository/product_repository/product_repository.dart';
 import 'package:example/core/network/services/api/api_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class CartRespository {
+class CartRepository {
   ApiService apiService;
   final authToken = dotenv.env['SUPABASE_KEY'];
-  CartRespository() : apiService = ApiService(Dio());
+  CartRepository() : apiService = ApiService(Dio());
 
   Future<List<Cart>> getCart(String userId) async {
     try {
@@ -18,7 +18,7 @@ class CartRespository {
 
       if (response.isNotEmpty) {
         for (Cart item in response) {
-          final productResponse = await ProductRespository()
+          final productResponse = await ProductRepository()
               .getProductsById(id: '${item.productId}');
           item.product = productResponse.first;
         }

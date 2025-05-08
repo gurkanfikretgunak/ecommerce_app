@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:example/core/network/repository/product_respository/product_respository.dart';
+import 'package:example/core/network/repository/product_repository/product_repository.dart';
 import 'package:example/cubits/categorie_products/categorie_products_state.dart';
 
 class CategorieProductsCubit extends Cubit<CategorieProductsState> {
@@ -9,7 +9,7 @@ class CategorieProductsCubit extends Cubit<CategorieProductsState> {
     try {
       emit(CategorieProductsLoading());
 
-      final products = await ProductRespository().getProducts(
+      final products = await ProductRepository().getProducts(
         tag: tag,
         categorieId: id,
       );

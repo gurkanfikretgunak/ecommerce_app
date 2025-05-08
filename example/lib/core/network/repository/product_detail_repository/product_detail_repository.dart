@@ -1,16 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:example/core/network/models/product_detail_model/product_detail_model.dart';
 import 'package:example/core/network/models/review_model/review_model.dart';
-import 'package:example/core/network/repository/user_respository/user_respository.dart';
+import 'package:example/core/network/repository/user_repository/user_repository.dart';
 import 'package:example/core/network/services/api/api_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class ProductDetailRespository {
+class ProductDetailRepository {
   Dio dio;
   ApiService apiService;
   final String? authToken = dotenv.env['SUPABASE_KEY'];
 
-  ProductDetailRespository()
+  ProductDetailRepository()
       : dio = Dio(),
         apiService = ApiService(Dio());
 
@@ -29,8 +29,7 @@ class ProductDetailRespository {
         if (productDetail.reviews != null) {
           for (Review item in productDetail.reviews!) {
             if (item.userId != null) {
-              final userResponse =
-                  await UserRespository().getUser(item.userId!);
+              final userResponse = await UserRepository().getUser(item.userId!);
               if (userResponse != null) {
                 item.user = userResponse;
               }

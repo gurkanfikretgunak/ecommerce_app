@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:example/core/network/models/order_detail_model/order_detail_model.dart';
 import 'package:example/core/network/models/order_model/order_model.dart';
-import 'package:example/core/network/repository/order_respository/order_respository.dart';
+import 'package:example/core/network/repository/order_repository/order_repository.dart';
 import 'package:example/core/network/services/api/api_service.dart';
 import 'package:example/cubits/order/order_state.dart';
 
@@ -14,7 +14,7 @@ class OrderCubit extends Cubit<OrderState> {
   Future<void> getOrder(String userId) async {
     try {
       emit(OrderLoading());
-      final response = await OrderRespository().getOrder(userId);
+      final response = await OrderRepository().getOrder(userId);
       emit(OrderLoaded(response));
     } catch (e) {
       emit(OrderError("${e.toString()}"));
@@ -24,7 +24,7 @@ class OrderCubit extends Cubit<OrderState> {
   Future<void> postOrder(Order order, List<OrderDetail> orderDetails) async {
     emit(OrderInitial());
     try {
-      final response = await OrderRespository().postOrder(order, orderDetails);
+      final response = await OrderRepository().postOrder(order, orderDetails);
       if (response) {
         emit(OrderSucces("Order posted successfully!"));
       } else {

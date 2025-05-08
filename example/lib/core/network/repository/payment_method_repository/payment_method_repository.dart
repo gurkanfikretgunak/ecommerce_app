@@ -4,10 +4,10 @@ import 'package:example/core/network/models/payment_method_model/payment_method_
 import 'package:example/core/network/services/api/api_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class PaymentMethodRespository {
+class PaymentMethodRepository {
   ApiService apiService;
   final authToken = dotenv.env['SUPABASE_KEY'];
-  PaymentMethodRespository() : apiService = ApiService(Dio());
+  PaymentMethodRepository() : apiService = ApiService(Dio());
 
   Future<List<PaymentMethod>> getPaymentMethod(
       {required String userId, bool? isDefault}) async {

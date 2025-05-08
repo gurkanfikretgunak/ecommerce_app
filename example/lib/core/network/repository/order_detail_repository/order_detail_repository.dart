@@ -3,10 +3,10 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:dio/dio.dart';
 import 'package:example/core/network/models/order_detail_model/order_detail_model.dart';
 
-class OrderDetailRespository {
+class OrderDetailRepository {
   ApiService apiService;
   final authToken = dotenv.env['SUPABASE_KEY'];
-  OrderDetailRespository() : apiService = ApiService(Dio());
+  OrderDetailRepository() : apiService = ApiService(Dio());
 
   Future<List<OrderDetail>> getOrderDetail(String orderId) async {
     try {

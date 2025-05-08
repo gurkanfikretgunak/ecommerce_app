@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:example/core/network/repository/product_detail_respository/product_detail_respository.dart';
-import 'package:example/core/network/repository/product_respository/product_respository.dart';
+import 'package:example/core/network/repository/product_detail_repository/product_detail_repository.dart';
+import 'package:example/core/network/repository/product_repository/product_repository.dart';
 import 'package:example/cubits/product_detail/product_detail_state.dart';
 import 'package:flutter/material.dart';
 
@@ -12,10 +12,10 @@ class ProductDetailCubit extends Cubit<ProductDetailState> {
       emit(ProductDetailLoading());
 
       final productDetail =
-          await ProductDetailRespository().getProductDetail(id);
+          await ProductDetailRepository().getProductDetail(id);
 
       final relatedProduct =
-          await ProductRespository().getProducts(title: "related product");
+          await ProductRepository().getProducts(title: "related product");
 
       emit(
         ProductDetailLoaded(

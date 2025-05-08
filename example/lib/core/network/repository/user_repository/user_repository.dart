@@ -6,12 +6,12 @@ import 'package:example/core/network/services/api/api_service.dart';
 import 'package:example/core/network/services/api/functions_api_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class UserRespository {
+class UserRepository {
   Dio dio;
   ApiService apiService;
   FunctionsApiService functionsApiService;
   final authToken = dotenv.env['SUPABASE_KEY'];
-  UserRespository()
+  UserRepository()
       : dio = Dio(),
         apiService = ApiService(Dio()),
         functionsApiService = FunctionsApiService(Dio());

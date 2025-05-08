@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:example/core/network/repository/product_respository/product_respository.dart';
+import 'package:example/core/network/repository/product_repository/product_repository.dart';
 import 'package:example/cubits/home/home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -9,11 +9,10 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       emit(HomeLoading());
 
-      final hotDeals =
-          await ProductRespository().getProducts(title: "hot deal");
+      final hotDeals = await ProductRepository().getProducts(title: "hot deal");
       final newArrivals =
-          await ProductRespository().getProducts(title: "new arrival");
-      final onSales = await ProductRespository().getProducts(title: "on sale");
+          await ProductRepository().getProducts(title: "new arrival");
+      final onSales = await ProductRepository().getProducts(title: "on sale");
 
       emit(HomeLoaded(
           hotDeals: hotDeals, newArrivals: newArrivals, onSale: onSales));

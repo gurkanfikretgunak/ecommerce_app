@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:example/core/network/repository/notification_respository/notifcation_respository.dart';
+import 'package:example/core/network/repository/notification_repository/notifcation_repository.dart';
 import 'package:example/cubits/notification/notification_state.dart';
 
 class NotificationCubit extends Cubit<NotificationState> {
@@ -9,7 +9,7 @@ class NotificationCubit extends Cubit<NotificationState> {
     try {
       emit(NotificationLoading());
 
-      final notifications = await NotifcationRespository().getNotifications();
+      final notifications = await NotifcationRepository().getNotifications();
       emit(NotificationLoaded(notifications: notifications));
     } catch (e) {
       emit(NotificationError(e.toString()));

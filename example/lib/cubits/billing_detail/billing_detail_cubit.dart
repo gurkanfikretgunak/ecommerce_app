@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:example/core/network/models/billing_detail_model/billing_detail_model.dart';
-import 'package:example/core/network/repository/billing_detail_respository/billing_detail_respository.dart';
+import 'package:example/core/network/repository/billing_detail_repository/billing_detail_repository.dart';
 import 'package:example/cubits/billing_detail/billing_detail_state.dart';
 
 class BillingDetailCubit extends Cubit<BillingDetailState> {
@@ -10,7 +10,7 @@ class BillingDetailCubit extends Cubit<BillingDetailState> {
       {required String userId, bool? isDefault}) async {
     emit(BillingDetailLoading());
     try {
-      final billingDetail = await BillingDetailRespository()
+      final billingDetail = await BillingDetailRepository()
           .getBillingDetail(userId: userId, isDefault: isDefault);
 
       if (state is BillingDetailLoaded) {
@@ -26,7 +26,7 @@ class BillingDetailCubit extends Cubit<BillingDetailState> {
 
   Future<void> postBillingDetail(BillingDetail billingDetail) async {
     try {
-      await BillingDetailRespository().postBillingDetail(billingDetail);
+      await BillingDetailRepository().postBillingDetail(billingDetail);
       emit(BillingDetailSuccess("Billing detail added successfully"));
     } catch (e) {
       emit(BillingDetailError("Failed to post billing detail:${e.toString()}"));
@@ -35,7 +35,7 @@ class BillingDetailCubit extends Cubit<BillingDetailState> {
 
   Future<void> patchBillingDetail(int id) async {
     try {
-      await BillingDetailRespository().patchBillingDetail(id);
+      await BillingDetailRepository().patchBillingDetail(id);
       emit(BillingDetailPatched());
     } catch (e) {
       emit(
@@ -45,7 +45,7 @@ class BillingDetailCubit extends Cubit<BillingDetailState> {
 
   Future<void> deleteBillingDetail(int id) async {
     try {
-      await BillingDetailRespository().deleteBillingDetail(id);
+      await BillingDetailRepository().deleteBillingDetail(id);
       emit(BillingDetailDeleted());
     } catch (e) {
       emit(BillingDetailError(

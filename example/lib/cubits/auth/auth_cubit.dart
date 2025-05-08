@@ -2,7 +2,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:example/cubits/auth/auth_state.dart';
 import 'package:example/core/network/models/user_model/user_model.dart';
-import 'package:example/core/network/repository/user_respository/user_respository.dart';
+import 'package:example/core/network/repository/user_repository/user_repository.dart';
 import 'package:example/core/network/services/auth/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // ignore: depend_on_referenced_packages
@@ -17,7 +17,7 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       supabase.User? user = await _authService.getCurrentUser();
       if (user != null) {
-        final userModel = await UserRespository().getUser(user.id);
+        final userModel = await UserRepository().getUser(user.id);
 
         emit(AuthAuthenticated(userModel));
       } else {
@@ -34,7 +34,7 @@ class AuthCubit extends Cubit<AuthState> {
       String? userId = prefs.getString('user_id');
 
       if (userId != null) {
-        final userModel = await UserRespository().getUser(userId);
+        final userModel = await UserRepository().getUser(userId);
         emit(AuthAuthenticated(userModel));
       } else {
         emit(AuthUnauthenticated());
@@ -58,7 +58,7 @@ class AuthCubit extends Cubit<AuthState> {
             display_name: "$firstName $lastName",
             first_name: firstName,
             last_name: lastName);
-        await UserRespository().postUser(userModel);
+        await UserRepository().postUser(userModel);
         emit(AuthSignUpSuccess(userModel));
       } else {
         emit(AuthUnauthenticated());
@@ -72,7 +72,7 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       supabase.User? user = await _authService.signIn(email, password);
       if (user != null) {
-        final userModel = await UserRespository().getUser(user.id);
+        final userModel = await UserRepository().getUser(user.id);
 
         if (rememberMe) {
           final prefs = await SharedPreferences.getInstance();
@@ -122,8 +122,8 @@ class AuthCubit extends Cubit<AuthState> {
           last_name: user.userMetadata?['last_name'] ?? '',
         );
 
-        if (!await UserRespository().isUUIDExist(user.id)) {
-          await UserRespository().postUser(userModel);
+        if (!await UserRepository().isUUIDExist(user.id)) {
+          await UserRepository().postUser(userModel);
         }
 
         final prefs = await SharedPreferences.getInstance();
@@ -154,8 +154,8 @@ class AuthCubit extends Cubit<AuthState> {
           last_name: user.userMetadata?['last_name'] ?? '',
         );
 
-        if (!await UserRespository().isUUIDExist(user.id)) {
-          await UserRespository().postUser(userModel);
+        if (!await UserRepository().isUUIDExist(user.id)) {
+          await UserRepository().postUser(userModel);
         }
 
         final prefs = await SharedPreferences.getInstance();

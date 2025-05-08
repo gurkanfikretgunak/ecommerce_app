@@ -3,7 +3,7 @@ import 'package:example/core/network/models/categorie_model/categorie_model.dart
 import 'package:example/core/network/services/api/api_service.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class CategorieRespository {
+class CategorieRepository {
   Future<List<Categorie>> getCategories() async {
     final Dio dio = Dio();
     final apiService = ApiService(dio);

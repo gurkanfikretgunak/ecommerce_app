@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:example/core/network/models/payment_method_model/payment_method_model.dart';
-import 'package:example/core/network/repository/payment_method_respository/payment_method_respository.dart';
+import 'package:example/core/network/repository/payment_method_repository/payment_method_repository.dart';
 import 'package:example/cubits/payment_method/payment_method_state.dart';
 
 class PaymentMethodCubit extends Cubit<PaymentMethodState> {
@@ -10,7 +10,7 @@ class PaymentMethodCubit extends Cubit<PaymentMethodState> {
       {required String userId, bool? isDefault}) async {
     emit(PaymentMethodLoading());
     try {
-      final paymentMethods = await PaymentMethodRespository()
+      final paymentMethods = await PaymentMethodRepository()
           .getPaymentMethod(userId: userId, isDefault: isDefault);
       emit(PaymentMethodLoaded(paymentMethods: paymentMethods));
     } catch (e) {
@@ -20,7 +20,7 @@ class PaymentMethodCubit extends Cubit<PaymentMethodState> {
 
   Future<void> postPaymentMethod(PaymentMethod paymentMethod) async {
     try {
-      await PaymentMethodRespository().postPaymentMethod(paymentMethod);
+      await PaymentMethodRepository().postPaymentMethod(paymentMethod);
       emit(PaymentMethodSuccess('Payment method added successfully'));
     } catch (e) {
       emit(PaymentMethodError('Failed to post payment method'));
@@ -29,7 +29,7 @@ class PaymentMethodCubit extends Cubit<PaymentMethodState> {
 
   Future<void> patchPaymentMethod(int id) async {
     try {
-      await PaymentMethodRespository().patchPaymentMethod(id);
+      await PaymentMethodRepository().patchPaymentMethod(id);
       emit(PaymentMethodPatched());
     } catch (e) {
       emit(PaymentMethodError('Failed to patch payment method'));
@@ -38,7 +38,7 @@ class PaymentMethodCubit extends Cubit<PaymentMethodState> {
 
   Future<void> deletePaymentMethod(int id) async {
     try {
-      await PaymentMethodRespository().deletePaymentMethod(id);
+      await PaymentMethodRepository().deletePaymentMethod(id);
       emit(PaymentMethodDeleted());
     } catch (e) {
       emit(PaymentMethodError('Failed to delete payment method'));

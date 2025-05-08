@@ -4,10 +4,10 @@ import 'package:example/core/network/services/api/api_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class SearchRespository {
+class SearchRepository {
   ApiService apiService;
   final authToken = dotenv.env['SUPABASE_KEY'];
-  SearchRespository() : apiService = ApiService(Dio());
+  SearchRepository() : apiService = ApiService(Dio());
 
   Future<List<Product>> getSearchProducts(Filter filter) async {
     try {
