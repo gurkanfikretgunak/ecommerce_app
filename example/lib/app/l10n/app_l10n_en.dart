@@ -148,6 +148,12 @@ class L10nEn extends L10n {
   String get loremIpsum => 'Lorem ipsum dolor sit amet';
 
   @override
+  String get newSeasonDescription => 'New season, new style — starting from just \$30!';
+
+  @override
+  String get winterSaleDescription => 'New season, new style! Winter sale up to 50% off is on now.';
+
+  @override
   String get startFrom => '  startFrom';
 
   @override

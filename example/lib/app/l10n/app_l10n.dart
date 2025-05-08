@@ -377,6 +377,18 @@ abstract class L10n {
   /// **'Lorem ipsum dolor sit amet'**
   String get loremIpsum;
 
+  /// No description provided for @newSeasonDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'New season, new style — starting from just \$30!'**
+  String get newSeasonDescription;
+
+  /// No description provided for @winterSaleDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'New season, new style! Winter sale up to 50% off is on now.'**
+  String get winterSaleDescription;
+
   /// No description provided for @startFrom.
   ///
   /// In en, this message translates to:

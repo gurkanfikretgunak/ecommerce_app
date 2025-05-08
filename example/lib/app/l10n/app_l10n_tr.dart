@@ -148,6 +148,12 @@ class L10nTr extends L10n {
   String get loremIpsum => 'Lorem ipsum dolor sit amet';
 
   @override
+  String get newSeasonDescription => 'Yeni sezon, yeni stil — sadece 30 dolardan başlayan fiyatlarla!';
+
+  @override
+  String get winterSaleDescription => 'Yeni sezon, yeni stil! %50’ye varan kış indirimi başladı.';
+
+  @override
   String get startFrom => 'başlayan';
 
   @override
