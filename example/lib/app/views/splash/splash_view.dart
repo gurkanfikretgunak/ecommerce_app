@@ -61,15 +61,15 @@ class _SplashViewState extends State<SplashView> {
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthAuthenticated) {
-            AutoRouter.of(context).replace(MainpageViewRoute());
+            AutoRouter.of(context).replaceAll([MainpageViewRoute()]);
           } else if (state is AuthUnauthenticated) {
             if (kIsWeb) {
-              AutoRouter.of(context).replace(const SignInViewRoute());
+              AutoRouter.of(context).replaceAll([const SignInViewRoute()]);
             } else {
-              AutoRouter.of(context).replace(const OnboardingViewRoute());
+              AutoRouter.of(context).replaceAll([const OnboardingViewRoute()]);
             }
           } else {
-            AutoRouter.of(context).replace(const SignUpViewRoute());
+            AutoRouter.of(context).replaceAll([const SignUpViewRoute()]);
           }
         },
         builder: (context, state) {

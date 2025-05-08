@@ -52,7 +52,7 @@ class _SignInViewState extends State<SignInView> {
         body: BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
             if (state is AuthAuthenticated) {
-              AutoRouter.of(context).replace(MainpageViewRoute());
+              AutoRouter.of(context).replaceAll([MainpageViewRoute()]);
             } else if (state is AuthError) {
               showToast(
                 context,

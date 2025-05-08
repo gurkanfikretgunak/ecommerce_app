@@ -63,7 +63,7 @@ class _SearchViewState extends State<SearchView> {
           text: L10n.of(context)!.searchProduct,
           onPressed: () {
             if (AutoRouter.of(context).canPop()) {
-              Navigator.of(context).pop();
+              Navigator.pop(context);
             } else {
               context.read<BottomNavigationCubit>().setPage(0);
             }
