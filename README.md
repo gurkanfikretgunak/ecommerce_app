@@ -243,6 +243,7 @@ The application features a clean, modern design with an intuitive user interface
 | `slang: ^3.22.0` / `slang_flutter`    | Flutter packages for string manipulation and localization.                                              |
 | `hive: ^2.2.3` / `hive_flutter`       | A lightweight and fast key-value database for Flutter, storing data locally in a NoSQL format.          |
 | `app_links: ^3.4.3`                  | A Flutter package for handling deep links and universal links.                                           |
+| `cached_network_image: ^3.4.1`       | A Flutter library for displaying images from the internet with caching functionality.                    |
 
 ## Architecture
 
