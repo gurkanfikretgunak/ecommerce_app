@@ -40,11 +40,7 @@ class ProductRepository {
         id: id,
       );
 
-      if (response.isNotEmpty) {
-        return response;
-      } else {
-        throw Exception('Products not found');
-      }
+      return response;
     } catch (e) {
       rethrow;
     }

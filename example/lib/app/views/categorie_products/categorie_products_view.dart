@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:example/app/l10n/app_l10n.dart';
 import 'package:example/core/network/models/product_model/product_model.dart';
 import 'package:example/core/cubits/categorie_products/categorie_products_cubit.dart';
 import 'package:example/core/cubits/categorie_products/categorie_products_state.dart';
@@ -102,6 +103,15 @@ class _CategorieProductsViewState extends State<CategorieProductsView> {
                 if (state is CategorieProductsLoading) {
                   return const Center(child: CircularProgressAnimation());
                 } else if (state is CategorieProductsLoaded) {
+                  if (state.products.isEmpty) {
+                    return Center(
+                      child: ContentText(
+                        text: L10n.of(context)!.noProductsFound,
+                        color: ColorConstant.instance.neutral1,
+                      ),
+                    );
+                  }
+
                   return ProductGridLayout(
                     crossAxisSpacing: 3,
                     productItems: state.products.map((product) {
@@ -112,7 +122,7 @@ class _CategorieProductsViewState extends State<CategorieProductsView> {
                         productPrice: product.price.toString(),
                         onTap: () {
                           context.read<ProductCubit>().changeProduct(product);
-                          AutoRouter.of(context).push(ProductViewRoute());
+                          AutoRouter.of(context).push(const ProductViewRoute());
                         },
                       );
                     }).toList(),
