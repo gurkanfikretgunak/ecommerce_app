@@ -12,7 +12,6 @@ class PaymentStepCubit extends Cubit<PaymentStepState> {
   void nextStep() {
     if (state is PaymentStepChanged) {
       final currentStep = (state as PaymentStepChanged).currentStep;
-      debugPrint("Next Step Called: $currentStep -> ${currentStep + 1}");
 
       emit(PaymentStepChanged(currentStep + 1));
     } else {

@@ -160,9 +160,6 @@ class AuthService {
 
       return authResponse.user;
     } catch (e) {
-      if (kDebugMode) {
-        print("Error during Google Sign-In: $e");
-      }
       return null;
     }
   }
