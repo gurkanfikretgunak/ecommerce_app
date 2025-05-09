@@ -80,6 +80,7 @@ class _WishlistViewState extends State<WishlistView> {
                       price: item.product!.price,
                       sizeList: item.sizes,
                       onTap: () {
+                        context.read<WishlistCubit>().resetState();
                         context
                             .read<ProductCubit>()
                             .changeProduct(item.product!);

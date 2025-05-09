@@ -18,10 +18,9 @@ class WishlistCubit extends Cubit<WishlistState> {
 
   Future<void> isProductInWishlist(int productId, String userId) async {
     try {
-      emit(WishlistLoading());
-      final response =
+      final isInWishlist =
           await WishlistRepository().isProductInWishlist(productId, userId);
-      emit(WishlistIsFavorite(response));
+      emit(WishlistIsFavorite(isInWishlist));
     } catch (e) {
       emit(WishlistError("Failed to check wishlist: ${e.toString()}"));
     }
@@ -45,5 +44,9 @@ class WishlistCubit extends Cubit<WishlistState> {
     } catch (e) {
       emit(WishlistError("Failed to remove from wishlist: ${e.toString()}"));
     }
+  }
+
+  void resetState() {
+    emit(WishlistInitial());
   }
 }
