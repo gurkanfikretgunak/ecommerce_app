@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -42,8 +43,8 @@ class ImageRadiusModal extends StatelessWidget {
 
   Widget _buildImage() {
     if (imagePath.startsWith('http') || imagePath.startsWith('https')) {
-      return Image.network(
-        imagePath,
+      return CachedNetworkImage(
+        imageUrl: imagePath,
         width: width ?? 60,
         height: height ?? 60,
         fit: BoxFit.cover,

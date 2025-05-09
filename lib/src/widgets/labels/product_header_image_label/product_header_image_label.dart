@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -36,7 +37,7 @@ class ProductHeaderImageLabel extends StatelessWidget {
 
   Widget _buildImage(String path) {
     if (path.startsWith('http://') || path.startsWith('https://')) {
-      return Image.network(path, fit: BoxFit.contain);
+      return CachedNetworkImage(imageUrl: path, fit: BoxFit.contain);
     } else {
       return Image.asset(path, fit: BoxFit.cover);
     }

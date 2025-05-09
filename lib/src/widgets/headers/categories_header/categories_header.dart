@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class CategoriesHeader extends StatelessWidget {
   final String imagePath;
@@ -43,7 +44,7 @@ class CategoriesHeader extends StatelessWidget {
 
   Widget _buildImage(String path) {
     if (path.startsWith('http://') || path.startsWith('https://')) {
-      return Image.network(path);
+      return CachedNetworkImage(imageUrl: (path));
     } else {
       return Image.asset(path);
     }
