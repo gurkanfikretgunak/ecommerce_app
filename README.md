@@ -222,28 +222,42 @@ The application features a clean, modern design with an intuitive user interface
 *Screenshots can be added to this section to showcase the app's UI.*
 
 ## Packages Used
-
 | **Package**                          | **Description**                                                                                         |
 |--------------------------------------|---------------------------------------------------------------------------------------------------------|
-| `cupertino_icons: ^1.0.8`            | A Flutter package that includes icons from Apple's design language.                                      |
-| `shopapp_widgets`                    | Custom widgets for the ShoppApp UI Kit. This package is stored locally in the project.                   |
-| `auto_route: ^9.3.0+1`               | A routing package for Flutter that simplifies navigation and supports deep linking.                       |
-| `firebase_core`                      | Required to initialize Firebase in your Flutter application.                                             |
-| `firebase_messaging`                 | A Flutter plugin for Firebase Cloud Messaging for push notifications.                                    |
-| `onesignal_flutter: ^5.1.2`          | Flutter plugin for OneSignal, an easy-to-use push notification service.                                  |
-| `firebase_auth`                      | Flutter plugin for Firebase Authentication.                                                             |
-| `google_sign_in: ^5.2.1`             | A Flutter plugin for Google Sign-In authentication.                                                      |
-| `flutter_bloc: ^9.1.0`               | State management library based on the BLoC (Business Logic Component) pattern.                           |
-| `supabase_flutter: ^2.8.2`           | Flutter package for Supabase, providing database, authentication, and storage.                           |
-| `dio: ^5.0.0`                        | A powerful HTTP client for Flutter, supporting interceptors, form data, and request cancellation.        |
-| `retrofit: ^4.4.2`                   | A type-safe HTTP client for Flutter that simplifies working with REST APIs using annotations.            |
-| `json_annotation: ^4.9.0`            | Provides annotations to generate code for JSON serialization and deserialization.                        |
-| `intl: ^0.19.0`                      | Package for internationalization and localization support.                                               |
-| `shared_preferences: ^2.5.2`         | A Flutter plugin for persistent storage of simple data, such as preferences and settings.                |
-| `slang: ^3.22.0` / `slang_flutter`    | Flutter packages for string manipulation and localization.                                              |
-| `hive: ^2.2.3` / `hive_flutter`       | A lightweight and fast key-value database for Flutter, storing data locally in a NoSQL format.          |
-| `app_links: ^3.4.3`                  | A Flutter package for handling deep links and universal links.                                           |
-| `cached_network_image: ^3.4.1`       | A Flutter library for displaying images from the internet with caching functionality.                    |
+| `google_fonts: ^4.3.1`               | For using Google Fonts in the application                                                               |
+| `smooth_page_indicator: ^1.2.0+3`    | For page indicators in onboarding screens                                                               |
+| `simple_ripple_animation: ^0.1.0`    | For ripple animation effects                                                                            |
+| `loading_animation_widget: ^1.3.0`   | For loading animations                                                                                  |
+| `font_awesome_flutter: ^10.6.0`      | For Font Awesome icons                                                                                  |
+| `flutter_svg: ^2.0.10`               | For SVG support                                                                                         |
+| `flutter_typeahead: ^4.0.0`          | For typeahead/autocomplete functionality                                                                |
+| `flutter_dotenv: ^5.0.2`             | For environment variable management                                                                     |
+| `u_credit_card`                      | For credit card UI components                                                                           |
+| `lottie: ^1.0.5`                     | For Lottie animations                                                                                   |
+| `equatable: ^2.0.7`                  | For equality comparisons                                                                                |
+| `toastification: ^0.0.2`             | For toast notifications                                                                                 |
+| `intl_phone_number_input: ^0.7.4`    | For international phone number input                                                                    |
+| `image_picker: ^1.1.2`               | For selecting images from gallery or camera                                                             |
+| `cached_network_image: ^3.4.1`       | A Flutter library for displaying images from the internet with caching functionality                     |
+| `cupertino_icons: ^1.0.8`            | A Flutter package that includes icons from Apple's design language                                      |
+| `auto_route: ^9.3.0+1`               | A routing package for Flutter that simplifies navigation and supports deep linking                      |
+| `firebase_core: ^15.2.1`             | Required to initialize Firebase in your Flutter application                                             |
+| `firebase_messaging: ^15.2.1`        | A Flutter plugin for Firebase Cloud Messaging for push notifications                                    |
+| `onesignal_flutter: ^5.1.2`          | Flutter plugin for OneSignal, an easy-to-use push notification service                                  |
+| `firebase_auth: ^5.6.2`              | Flutter plugin for Firebase Authentication                                                              |
+| `google_sign_in: ^5.2.1`             | A Flutter plugin for Google Sign-In authentication                                                      |
+| `flutter_bloc: ^9.1.0`               | State management library based on the BLoC (Business Logic Component) pattern                           |
+| `supabase_flutter: ^2.8.2`           | Flutter package for Supabase, providing database, authentication, and storage                           |
+| `dio: ^5.0.0`                        | A powerful HTTP client for Flutter, supporting interceptors, form data, and request cancellation        |
+| `retrofit: ^4.4.2`                   | A type-safe HTTP client for Flutter that simplifies working with REST APIs using annotations            |
+| `json_annotation: ^4.9.0`            | Provides annotations to generate code for JSON serialization and deserialization                        |
+| `json_serializable: ^6.0.0`          | For JSON serialization                                                                                 |
+| `intl: ^0.19.0`                      | Package for internationalization and localization support                                               |
+| `shared_preferences: ^2.5.2`         | A Flutter plugin for persistent storage of simple data, such as preferences and settings                |
+| `riverpod: ^2.2.3`                   | For state management                                                                                    |
+| `riverpod_flutter: ^1.1.0`           | Flutter hooks for Riverpod                                                                              |
+| `hive: ^2.2.3` / `hive_flutter`       | A lightweight and fast key-value database for Flutter, storing data locally in a NoSQL format          |
+| `app_links: ^3.4.3`                  | A Flutter package for handling deep links and universal links                                           |
 
 ## Architecture
 
