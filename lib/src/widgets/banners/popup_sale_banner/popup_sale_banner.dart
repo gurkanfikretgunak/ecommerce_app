@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class PopupSaleBanner extends StatefulWidget {
@@ -27,20 +28,34 @@ class _PopupSaleBannerState extends State<PopupSaleBanner> {
   bool isChecked = false;
 
   @override
-  @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    double dialogWidth;
+    double dialogHeight;
+
+    if (kIsWeb) {
+      dialogWidth = screenWidth * 0.25;
+      dialogHeight = screenHeight * 0.8;
+    } else {
+      dialogWidth = screenWidth * 0.8;
+      dialogHeight = screenHeight * 0.7;
+    }
+
     return Dialog(
       insetPadding: const EdgeInsets.all(15),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: SizedBox(
-        width: MediaQuery.of(context).size.width * 0.8,
-        height: MediaQuery.of(context).size.height * 0.7,
+        width: dialogWidth,
+        height: dialogHeight,
         child: Stack(
           children: [
             Image.asset(
               widget.imagePath,
               fit: BoxFit.cover,
-              height: MediaQuery.of(context).size.height * 0.7,
+              width: dialogWidth,
+              height: dialogHeight,
             ),
             Align(
               alignment: Alignment.bottomCenter,
@@ -52,13 +67,13 @@ class _PopupSaleBannerState extends State<PopupSaleBanner> {
                     context.emptySizedHeightBoxNormal,
                     ContentText(
                       text: widget.subTitle,
-                      fontSize: 22,
+                      fontSize: kIsWeb ? 18 : 22, // Web'de daha küçük font
                       color: ColorConstant.instance.neutral9,
                     ),
                     context.emptySizedHeightBoxLow,
                     HeadText(
                       text: "${widget.discount}%",
-                      fontSize: 80,
+                      fontSize: kIsWeb ? 60 : 80, // Web'de daha küçük font
                       color: ColorConstant.instance.neutral9,
                     ),
                     BannerButton(
@@ -79,7 +94,9 @@ class _PopupSaleBannerState extends State<PopupSaleBanner> {
                           onChanged: (value) {
                             setState(() {
                               isChecked = value!;
-                              widget.checkBoxPressed!(!isChecked);
+                              if (widget.checkBoxPressed != null) {
+                                widget.checkBoxPressed!(!isChecked);
+                              }
                             });
                           },
                         ),
@@ -104,7 +121,7 @@ class _PopupSaleBannerState extends State<PopupSaleBanner> {
                   textAlign: TextAlign.start,
                   softWrap: true,
                   text: widget.saleTitle,
-                  fontSize: 23,
+                  fontSize: kIsWeb ? 20 : 23, // Web'de daha küçük font
                 ),
               ),
             ),

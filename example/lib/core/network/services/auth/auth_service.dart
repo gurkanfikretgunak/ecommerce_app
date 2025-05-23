@@ -30,6 +30,30 @@ class AuthService {
     }
   }
 
+  Future<bool> verifyCurrentPassword(String password) async {
+    try {
+      final User? user = await getCurrentUser();
+      final response =
+          await auth.signInWithPassword(email: user?.email, password: password);
+      return response.session != null;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<void> updateUserPassword(String password) async {
+    try {
+      final User? user = await getCurrentUser();
+      if (user != null) {
+        await auth.updateUser(UserAttributes(password: password));
+      } else {
+        throw Exception("User not found");
+      }
+    } catch (e) {
+      throw Exception("Update Password unsuccessful: $e");
+    }
+  }
+
   Future<User?> signIn(email, password) async {
     try {
       final response =
@@ -98,12 +122,17 @@ class AuthService {
     final webClientId = dotenv.env['SUPABASE_WEB_CLIENT_ID'];
     final iosClientId = dotenv.env['SUPABASE_IOS_CLIENT_ID'];
 
-    final GoogleSignIn googleSignIn = GoogleSignIn(
-      clientId: iosClientId,
-      serverClientId: !kIsWeb && defaultTargetPlatform == TargetPlatform.android
-          ? webClientId
-          : null,
-    );
+    final GoogleSignIn googleSignIn;
+
+    if (kIsWeb) {
+      googleSignIn = GoogleSignIn(
+        clientId: webClientId,
+      );
+    } else {
+      googleSignIn = GoogleSignIn(
+        serverClientId: webClientId,
+      );
+    }
 
     try {
       final googleUser = await googleSignIn.signIn();
@@ -131,9 +160,6 @@ class AuthService {
 
       return authResponse.user;
     } catch (e) {
-      if (kDebugMode) {
-        print("Error during Google Sign-In: $e");
-      }
       return null;
     }
   }
