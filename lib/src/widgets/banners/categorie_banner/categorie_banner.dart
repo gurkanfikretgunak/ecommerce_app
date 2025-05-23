@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class CategorieBanner extends StatelessWidget {
   final String imagePath;
@@ -15,7 +16,9 @@ class CategorieBanner extends StatelessWidget {
       onTap: onTap ?? () {},
       child: Stack(
         children: [
-          Image.network(imagePath),
+          CachedNetworkImage(
+            imageUrl: imagePath,
+          ),
           Positioned(
             bottom: 45,
             left: 10,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
 class ProductCardModal extends StatelessWidget {
@@ -8,6 +9,7 @@ class ProductCardModal extends StatelessWidget {
   final String productPrice;
   final VoidCallback? onTap;
   final double? imageHeight;
+  final double? imageWidth;
 
   const ProductCardModal({
     super.key,
@@ -15,6 +17,7 @@ class ProductCardModal extends StatelessWidget {
     required this.productStock,
     required this.productName,
     this.imageHeight,
+    this.imageWidth,
     required this.productPrice,
     this.onTap,
   });
@@ -22,6 +25,27 @@ class ProductCardModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isNetworkImage = Uri.parse(imagePath).isAbsolute;
+
+    double calculatedHeight;
+    if (kIsWeb) {
+      calculatedHeight = imageHeight ?? context.dynamicWidth(0.35);
+    } else {
+      calculatedHeight = imageHeight ?? context.dynamicWidth(0.45);
+    }
+
+    double calculatedWidth;
+    if (kIsWeb) {
+      final screenWidth = MediaQuery.of(context).size.width;
+      if (screenWidth > 1200) {
+        calculatedWidth = imageWidth ?? context.dynamicWidth(0.30);
+      } else if (screenWidth > 800) {
+        calculatedWidth = imageWidth ?? context.dynamicWidth(0.35);
+      } else {
+        calculatedWidth = imageWidth ?? context.dynamicWidth(0.40);
+      }
+    } else {
+      calculatedWidth = imageWidth ?? context.dynamicWidth(0.40);
+    }
 
     return GestureDetector(
       onTap: onTap ?? () {},
@@ -31,8 +55,8 @@ class ProductCardModal extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              width: context.dynamicWidth(.40),
-              height: imageHeight ?? context.dynamicWidth(.45),
+              width: calculatedWidth,
+              height: calculatedHeight,
               child: Container(
                 color: Colors.grey.withOpacity(0.3),
                 child: isNetworkImage

@@ -28,7 +28,14 @@ class HomepageBanner extends StatelessWidget {
               children: [
                 HomepageBannerHeadText(text: titleText),
                 HeadText(text: subTitleText),
-                ContentText(text: descriptionText),
+                SizedBox(
+                  width: 200,
+                  child: ContentText(
+                    textAlign: TextAlign.left,
+                    text: descriptionText,
+                    softWrap: true,
+                  ),
+                ),
               ],
             )),
         const Positioned(

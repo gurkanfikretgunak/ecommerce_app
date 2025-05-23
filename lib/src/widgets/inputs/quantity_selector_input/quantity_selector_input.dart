@@ -20,7 +20,6 @@ class _QuantitySelectorInputState extends State<QuantitySelectorInput> {
   void initState() {
     super.initState();
     count = widget.count ?? 2;
-    print(count);
   }
 
   @override

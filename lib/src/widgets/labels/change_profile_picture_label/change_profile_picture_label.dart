@@ -109,9 +109,7 @@ class _ChangeProfilePictureLabelState extends State<ChangeProfilePictureLabel> {
                         color: widget.buttonColor ??
                             ColorConstant.instance.primary_main,
                         height: widget.buttonHeight ?? 40,
-                        text: _selectedImagePath != null
-                            ? "Save"
-                            : widget.buttonText,
+                        text: widget.buttonText,
                       ),
                     ),
                   ],

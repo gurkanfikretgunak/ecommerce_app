@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shopapp_widgets/shoapp_ui_kit.dart';
 
@@ -50,8 +51,8 @@ class ProductDescriptionImage extends StatelessWidget {
 
   Widget _getImageWidget(String path) {
     if (path.startsWith('http://') || path.startsWith('https://')) {
-      return Image.network(
-        path,
+      return CachedNetworkImage(
+        imageUrl: path,
         width: width ?? 370,
         height: height ?? 170,
         fit: BoxFit.cover,
